@@ -1,0 +1,179 @@
+<?php
+/**
+ * Controller is the customized base controller class.
+ * All controller classes for this application should extend from this base class.
+ */
+abstract class WebBaseController extends BaseController
+{
+	/**
+	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
+	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
+	 */
+	public $layout='//layouts/column2';
+	/**
+	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
+	 */
+	public $menu=array();
+	/**
+	 * @var array the breadcrumbs of the current page. The value of this property will
+	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
+	 * for more details on how to specify this property.
+	 */
+	public $breadcrumbs=array();
+	/**
+	 * @var string Current page title, used in the header <head> tags
+	 */
+	public $pageTitle;
+	/**
+	 * @var string website Name
+	 */
+	public $siteName;
+	/**
+	 * @var string website Slogan
+	 */
+	public $siteSlogan;
+	/**
+	 * @var string website logo image URL
+	 */
+	public $siteLogo;
+	/**
+	 * @var array contain various regional contents
+	 */
+	public $page = array();
+
+	/* (non-PHPdoc)
+	 * @see CController::init()
+	 */
+	public function init() {
+		parent::init();
+		/** Set language **/
+		Yii::app()->setLanguage(Yii::app()->getUser()->getState('language', Yii::app()->getRequest()->getPreferredLanguage()));
+		$this->siteName = Yii::app()->setting->get('web', 'siteName', Yii::app()->params['name']);
+		$this->siteSlogan = Yii::app()->setting->get('web', 'siteSlogan');
+		Yii::app()->setHomeUrl(Yii::app()->setting->get('web', 'homeUrl', 'core/node'));
+
+		$this->layout = Yii::app()->setting->get('web', 'layout', '//layouts/column2');
+		Yii::app()->theme = Yii::app()->setting->get('web', 'theme', 'classic');
+		$themeinfo = Webtheme::getThemeInfo();
+		foreach ($themeinfo["region"] as $region => $name){
+			$this->page[$region] = "";
+		}
+		if (($img = Yii::app()->setting->get('web', 'siteLogo')) && file_exists(Yii::getPathOfAlias("webroot.images") . DIRECTORY_SEPARATOR . $img)){
+			$this->siteLogo = CHtml::image(Yii::app()->request->baseUrl . '/images/' . $img, 'siteLogo');
+		}
+	}
+
+	function filters() {
+		return array(
+			"Rights",
+			array(
+            	"ext.components.ESetReturnUrlFilter + index, admin, view",
+			)
+        );
+	}
+
+	/**
+	* The filter method for 'rights' access filter.
+	* This filter is a wrapper of {@link CAccessControlFilter}.
+	* @param CFilterChain $filterChain the filter chain that the filter is on.
+	*/
+	public function filterRights($filterChain)
+	{
+		$filter = new RightsFilter;
+		$filter->allowedActions = $this->allowedActions();
+		$filter->filter($filterChain);
+	}
+	/**
+	 * Choose the correct language by lang parameters
+	 */
+	public function filterLanguage($filterChain){
+		Yii::app()->lang->init();
+		$filterChain->run();
+	}
+
+	/**
+	* @return string the actions that are always allowed separated by commas.
+	*/
+	public function allowedActions()
+	{
+		return '';
+	}
+	/**
+	* Denies the access of the user.
+	* @param string $message the message to display to the user.
+	* This method may be invoked when access check fails.
+	* @throws CHttpException when called unless login is required.
+	*/
+	public function accessDenied($message=null)
+	{
+		if( $message===null )
+			$message = Yii::t('rights', 'You are not authorized to perform this action.');
+
+		$user = Yii::app()->getUser();
+		if( $user->isGuest===true )
+			$user->loginRequired();
+		else
+			throw new CHttpException(403, $message);
+	}
+
+	/**
+	 * Perform Ajax Validation
+	 * @param CModel $model	: The model to perform validation
+	 * @param string $form  : The ID of the form
+	 */
+	protected function performAjaxValidation($model, $form) {
+		if(isset($_POST['ajax']) && $_POST['ajax'] == $form) {
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+	}
+/*
+	function render($view, $data = NULL, $return = FALSE, $renderBlock = TRUE) {
+		if ($renderBlock){
+			$this->renderBlocks();
+		}
+		parent::render($view, $data, $return);
+	}
+
+	protected function renderBlocks() {
+		return;
+		$blocks = Blocktheme::model()->with('owner')->findAllByAttributes(
+				array("theme" => Yii::app()->setting->get("web", "theme", "classic"))
+			);
+		foreach ($blocks as $block){
+			$this->page[$block->region] .= $block->owner->render();
+		}
+	}
+*/
+	/**
+	 * Load Model, based on the Primary key
+	 * @param string $model  The model class name
+	 * @throws CHttpException
+	 */
+	protected function loadModel($model = false) {
+		if(!$model)
+			$model = str_replace('Controller', '', get_class($this));
+
+		if($this->_model === null) {
+			if(isset($_GET['id'])){
+				$this->_model = CActiveRecord::model($model)->findbyPk(urldecode($_GET['id']));
+			} else {
+				$pkeys = CActiveRecord::model($model)->getTableSchema()->primaryKey;
+				if (is_string($pkeys) && isset($_GET[$pkeys])){
+					$this->_model = CActiveRecord::model($model)->findbyPk(urldecode($_GET[$pkeys]));
+				} elseif (is_array($pkeys)){
+					$tmp = array_flip($pkeys);
+					foreach ($pkeys as $field) {
+						if (isset($_GET[$field])) $tmp[$field] = urldecode($_GET[$field]);
+						else { $tmp = FALSE; break; }
+					}
+					if (! empty($tmp))
+					$this->_model = CActiveRecord::model($model)->findbyPk($tmp);
+				}
+			}
+			if($this->_model===null)
+				throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
+		}
+		return $this->_model;
+	}
+}

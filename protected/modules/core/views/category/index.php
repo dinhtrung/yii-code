@@ -1,0 +1,16 @@
+<?php
+
+
+$this->breadcrumbs = array(
+	Yii::t('category', 'Categories'),
+);
+
+if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Categories'));
+?>
+
+<h1><?php echo $this->pageTitle = Yii::t('category', 'Categories'); ?></h1>
+
+<?php $this->widget('zii.widgets.CListView', array(
+	'dataProvider'=>$dataProvider,
+	'itemView'=>'_view',
+)); ?>
