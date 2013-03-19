@@ -1,8 +1,8 @@
-<?php $this->pageTitle=Yii::app()->name . ' - '.Yii::t('user', "Profile");
+<?php
 $this->breadcrumbs=array(
 	Yii::t('user', "Profile"),
 );
-?><h2><?php echo Yii::t('user', 'Your profile'); ?></h2>
+?><h1><?php echo $this->pageTitle = Yii::t('user', 'Your profile'); ?></h1>
 <?php echo $this->renderPartial('menu'); ?>
 
 <?php if(Yii::app()->user->hasFlash('profileMessage')): ?>

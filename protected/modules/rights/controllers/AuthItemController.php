@@ -6,70 +6,23 @@
 * @copyright Copyright &copy; 2010 Christoffer Niska
 * @since 0.5
 */
-class AuthItemController extends RController
+class AuthItemController extends WebBaseController
 {
+	public $defaultAction = 'permissions';
 	/**
 	* @property RAuthorizer
 	*/
 	private $_authorizer;
-	/**
-	* @property CAuthItem the currently loaded data model instance.
-	*/
-	private $_model;
 
 	/**
 	* Initializes the controller.
 	*/
 	public function init()
 	{
+		parent::init();
 		$this->_authorizer = $this->module->getAuthorizer();
-		$this->layout = $this->module->layout;
-		$this->defaultAction = 'permissions';
-
-		// Register the scripts
-		$this->module->registerScripts();
 	}
 
-	/**
-	* @return array action filters
-	*/
-	public function filters()
-	{
-		return array(
-			'accessControl'
-		);
-	}
-
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow', // Allow superusers to access Rights
-				'actions'=>array(
-					'permissions',
-					'operations',
-					'tasks',
-					'roles',
-					'generate',
-					'create',
-					'update',
-					'delete',
-					'removeChild',
-					'assign',
-					'revoke',
-					'sortable',
-				),
-				'users'=>$this->_authorizer->getSuperusers(),
-			),
-			array('deny', // Deny all users
-				'users'=>array('*'),
-			),
-		);
-	}
 
 	/**
 	* Displays the permission overview.
@@ -84,15 +37,10 @@ class AuthItemController extends RController
 
 		// Initialize the columns
 		$columns = array(
-			'name',
 			array(
     			'name'=>'description',
-	    		'header'=>Rights::t('core', 'Item'),
+	    		'header'=>Yii::t('rights', 'Item'),
 				'type'=>'raw',
-    			'htmlOptions'=>array(
-    				'class'=>'permission-column',
-    				'style'=>'width:25%',
-	    		),
     		),
 		);
 
@@ -103,10 +51,6 @@ class AuthItemController extends RController
 				'name'=>strtolower($roleName),
     			'header'=>$role->getNameText(),
     			'type'=>'raw',
-    			'htmlOptions'=>array(
-    				'class'=>'role-column',
-    				'style'=>'width:'.$roleColumnWidth.'%',
-    			),
     		);
 		}
 
@@ -126,7 +70,7 @@ class AuthItemController extends RController
 	public function actionOperations()
 	{
 		Yii::app()->user->rightsReturnUrl = array('authItem/operations');
-		
+
 		$dataProvider = new RAuthItemDataProvider('operations', array(
 			'type'=>CAuthItem::TYPE_OPERATION,
 			'sortable'=>array(
@@ -150,7 +94,7 @@ class AuthItemController extends RController
 	public function actionTasks()
 	{
 		Yii::app()->user->rightsReturnUrl = array('authItem/tasks');
-		
+
 		$dataProvider = new RAuthItemDataProvider('tasks', array(
 			'type'=>CAuthItem::TYPE_TASK,
 			'sortable'=>array(
@@ -174,7 +118,7 @@ class AuthItemController extends RController
 	public function actionRoles()
 	{
 		Yii::app()->user->rightsReturnUrl = array('authItem/roles');
-		
+
 		$dataProvider = new RAuthItemDataProvider('roles', array(
 			'type'=>CAuthItem::TYPE_ROLE,
 			'sortable'=>array(
@@ -233,7 +177,7 @@ class AuthItemController extends RController
 				if( ($generatedItems = $generator->run())!==false && $generatedItems!==array() )
 				{
 					Yii::app()->getUser()->setFlash($this->module->flashSuccessKey,
-						Rights::t('core', 'Authorization items created.')
+						Yii::t('rights', 'Authorization items created.')
 					);
 					$this->redirect(array('authItem/permissions'));
 				}
@@ -271,7 +215,7 @@ class AuthItemController extends RController
 	public function actionCreate()
 	{
 		$type = $this->getType();
-		
+
 		// Create the authorization item form
 		$formModel = new AuthItemForm('create');
 
@@ -281,12 +225,12 @@ class AuthItemController extends RController
 			if( $formModel->validate()===true )
 			{
 				// Create the item
-				$item = $this->_authorizer->createAuthItem($formModel->name, $type, $formModel->description, $formModel->bizRule, $formModel->data);
+				$item = $this->_authorizer->createAuthItem($formModel->name, $type, $formModel->bizRule, $formModel->data);
 				$item = $this->_authorizer->attachAuthItemBehavior($item);
 
 				// Set a flash message for creating the item
 				Yii::app()->user->setFlash($this->module->flashSuccessKey,
-					Rights::t('core', ':name created.', array(':name'=>$item->getNameText()))
+					Yii::t('rights', ':name created.', array(':name'=>$item->getNameText()))
 				);
 
 				// Redirect to the correct destination
@@ -306,9 +250,9 @@ class AuthItemController extends RController
 	public function actionUpdate()
 	{
 		// Get the authorization item
-		$model = $this->loadModel();
+		$model = $this->loadRightModel();
 		$itemName = $model->getName();
-		
+
 		// Create the authorization item form
 		$formModel = new AuthItemForm('update');
 
@@ -318,28 +262,28 @@ class AuthItemController extends RController
 			if( $formModel->validate()===true )
 			{
 				// Update the item and load it
-				$this->_authorizer->updateAuthItem($itemName, $formModel->name, $formModel->description, $formModel->bizRule, $formModel->data);
+				$this->_authorizer->updateAuthItem($itemName, $formModel->name, $formModel->bizRule, $formModel->data);
 				$item = $this->_authorizer->authManager->getAuthItem($formModel->name);
 				$item = $this->_authorizer->attachAuthItemBehavior($item);
 
 				// Set a flash message for updating the item
 				Yii::app()->user->setFlash($this->module->flashSuccessKey,
-					Rights::t('core', ':name updated.', array(':name'=>$item->getNameText()))
+					Yii::t('rights', ':name updated.', array(':name'=>$item->getNameText()))
 				);
 
 				// Redirect to the correct destination
 				$this->redirect(Yii::app()->user->getRightsReturnUrl(array('authItem/permissions')));
 			}
 		}
-		
+
 		$type = Rights::getValidChildTypes($model->type);
 		$exclude = array($this->module->superuserName);
 		$childSelectOptions = Rights::getParentAuthItemSelectOptions($model, $type, $exclude);
-		
+
 		if( $childSelectOptions!==array() )
 		{
 			$childFormModel = new AuthChildForm();
-		
+
 			// Child form is submitted and data is valid
 			if( isset($_POST['AuthChildForm'])===true )
 			{
@@ -353,7 +297,7 @@ class AuthItemController extends RController
 
 					// Set a flash message for adding the child
 					Yii::app()->user->setFlash($this->module->flashSuccessKey,
-						Rights::t('core', 'Child :name added.', array(':name'=>$child->getNameText()))
+						Yii::t('rights', 'Child :name added.', array(':name'=>$child->getNameText()))
 					);
 
 					// Reidrect to the same page
@@ -368,7 +312,6 @@ class AuthItemController extends RController
 
 		// Set the values for the form fields
 		$formModel->name = $model->name;
-		$formModel->description = $model->description;
 		$formModel->type = $model->type;
 		$formModel->bizRule = $model->bizRule!=='NULL' ? $model->bizRule : '';
 		$formModel->data = $model->data!==null ? serialize($model->data) : '';
@@ -396,7 +339,7 @@ class AuthItemController extends RController
 		if( Yii::app()->request->isPostRequest===true )
 		{
 			$itemName = $this->getItemName();
-			
+
 			// Load the item and save the name for later use
 			$item = $this->_authorizer->authManager->getAuthItem($itemName);
 			$item = $this->_authorizer->attachAuthItemBehavior($item);
@@ -406,7 +349,7 @@ class AuthItemController extends RController
 
 			// Set a flash message for deleting the item
 			Yii::app()->user->setFlash($this->module->flashSuccessKey,
-				Rights::t('core', ':name deleted.', array(':name'=>$item->getNameText()))
+				Yii::t('rights', ':name deleted.', array(':name'=>$item->getNameText()))
 			);
 
 			// If AJAX request, we should not redirect the browser
@@ -415,7 +358,7 @@ class AuthItemController extends RController
 		}
 		else
 		{
-			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('rights', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 
@@ -429,7 +372,7 @@ class AuthItemController extends RController
 		{
 			$itemName = $this->getItemName();
 			$childName = $this->getChildName();
-			
+
 			// Remove the child and load it
 			$this->_authorizer->authManager->removeItemChild($itemName, $childName);
 			$child = $this->_authorizer->authManager->getAuthItem($childName);
@@ -437,7 +380,7 @@ class AuthItemController extends RController
 
 			// Set a flash message for removing the child
 			Yii::app()->user->setFlash($this->module->flashSuccessKey,
-				Rights::t('core', 'Child :name removed.', array(':name'=>$child->getNameText()))
+				Yii::t('rights', 'Child :name removed.', array(':name'=>$child->getNameText()))
 			);
 
 			// If AJAX request, we should not redirect the browser
@@ -446,7 +389,7 @@ class AuthItemController extends RController
 		}
 		else
 		{
-			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('rights', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 
@@ -458,9 +401,9 @@ class AuthItemController extends RController
 		// We only allow deletion via POST request
 		if( Yii::app()->request->isPostRequest===true )
 		{
-			$model = $this->loadModel();
+			$model = $this->loadRightModel();
 			$childName = $this->getChildName();
-			
+
 			if( $childName!==null && $model->hasChild($childName)===false )
 				$model->addChild($childName);
 
@@ -470,7 +413,7 @@ class AuthItemController extends RController
 		}
 		else
 		{
-			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('rights', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 
@@ -482,7 +425,7 @@ class AuthItemController extends RController
 		// We only allow deletion via POST request
 		if( Yii::app()->request->isPostRequest===true )
 		{
-			$model = $this->loadModel();
+			$model = $this->loadRightModel();
 			$childName = $this->getChildName();
 
 			if( $childName!==null && $model->hasChild($childName)===true )
@@ -494,7 +437,7 @@ class AuthItemController extends RController
 		}
 		else
 		{
-			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('rights', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 
@@ -510,10 +453,10 @@ class AuthItemController extends RController
 		}
 		else
 		{
-			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('rights', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
-	
+
 	/**
 	* @return string the item name or null if not set.
 	*/
@@ -521,7 +464,7 @@ class AuthItemController extends RController
 	{
 		return isset($_GET['name'])===true ? urldecode($_GET['name']) : null;
 	}
-	
+
 	/**
 	* @return string the child name or null if not set.
 	*/
@@ -529,7 +472,7 @@ class AuthItemController extends RController
 	{
 		return isset($_GET['child'])===true ? urldecode($_GET['child']) : null;
 	}
-	
+
 	/**
 	 * Returns the authorization item type after validation.
 	 * @return int the type.
@@ -541,19 +484,19 @@ class AuthItemController extends RController
 		if( in_array($type, $validTypes)===true )
 			return $type;
 		else
-			throw new CException(Rights::t('core', 'Invalid authorization item type.'));
+			throw new CException(Yii::t('rights', 'Invalid authorization item type.'));
 	}
 
 	/**
 	* Returns the data model based on the primary key given in the GET variable.
 	* If the data model is not found, an HTTP exception will be raised.
 	*/
-	public function loadModel()
+	public function loadRightModel()
 	{
 		if( $this->_model===null )
 		{
 			$itemName = $this->getItemName();
-			
+
 			if( $itemName!==null )
 			{
 				$this->_model = $this->_authorizer->authManager->getAuthItem($itemName);
@@ -561,7 +504,7 @@ class AuthItemController extends RController
 			}
 
 			if( $this->_model===null )
-				throw new CHttpException(404, Rights::t('core', 'The requested page does not exist.'));
+				throw new CHttpException(404, Yii::t('rights', 'The requested page does not exist.'));
 		}
 
 		return $this->_model;

@@ -3,11 +3,9 @@
 class LogoutController extends WebBaseController
 {
 	public $defaultAction = 'logout';
-	function allowedActions() {
+	public function allowedActions(){
 		return 'logout';
 	}
-
-
 	/**
 	 * Logout the current user and redirect to returnLogoutUrl.
 	 */

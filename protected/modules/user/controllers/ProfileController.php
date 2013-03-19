@@ -28,31 +28,27 @@ class ProfileController extends WebBaseController
 	public function actionEdit()
 	{
 		$model = $this->loadUser();
-		$profile=$model->profile;
 
 		// ajax validator
-		if(isset($_POST['ajax']) && $_POST['ajax']==='profile-form')
+		if(isset($_POST['ajax']))
 		{
-			echo UActiveForm::validate(array($model,$profile));
+			echo UActiveForm::validate(array($model));
 			Yii::app()->end();
 		}
 
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
-			$profile->attributes=$_POST['Profile'];
 
-			if($model->validate()&&$profile->validate()) {
+			if($model->validate()) {
 				$model->save();
-				$profile->save();
 				Yii::app()->user->setFlash('profileMessage',Yii::t('user', "Changes is saved."));
 				$this->redirect(array('/user/profile'));
-			} else $profile->validate();
+			}
 		}
 
 		$this->render('edit',array(
 			'model'=>$model,
-			'profile'=>$profile,
 		));
 	}
 

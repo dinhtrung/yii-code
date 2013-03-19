@@ -1,17 +1,13 @@
-<?php
-$this->breadcrumbs=array(
+<?php $this->breadcrumbs=array(
 	Yii::t('user', "Users"),
 );
 ?>
 
-<h1><?php echo Yii::t('user', "List User"); ?></h1>
-<?php if(UserModule::isAdmin()) {
-	?><ul class="actions">
-	<li><?php echo CHtml::link(Yii::t('user', 'Manage User'),array('/user/admin')); ?></li>
-	<li><?php echo CHtml::link(Yii::t('user', 'Manage Profile Field'),array('profileField/admin')); ?></li>
-</ul><!-- actions --><?php
-} ?>
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<h1><?php echo $this->pageTitle = Yii::t('user', "List User"); ?></h1>
+
+
+<?php
+$this->widget('zii.widgets.grid.CGridView', array(
 	'dataProvider'=>$dataProvider,
 	'columns'=>array(
 		array(
@@ -19,10 +15,7 @@ $this->breadcrumbs=array(
 			'type'=>'raw',
 			'value' => 'CHtml::link(CHtml::encode($data->username),array("user/view","id"=>$data->id))',
 		),
-		array(
-			'name' => 'createtime',
-			'value' => 'date("d.m.Y H:i:s",$data->createtime)',
-		),
+		'createtime:datetime',
 		array(
 			'name' => 'lastvisit',
 			'value' => '(($data->lastvisit)?date("d.m.Y H:i:s",$data->lastvisit):Yii::t("user", "Not visited"))',

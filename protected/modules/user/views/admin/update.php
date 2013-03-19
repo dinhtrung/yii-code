@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1><?php echo  Yii::t('user', 'Update User')." ".$model->id; ?></h1>
+<h1><?php echo $this->pageTitle = Yii::t('user', 'Update User')." ".$model->id; ?></h1>
 
 <?php echo $this->renderPartial('_menu', array(
 		'list'=> array(

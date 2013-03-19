@@ -2,11 +2,7 @@
 
 class DefaultController extends WebBaseController
 {
-	function allowedActions() {
-		return 'index';
-	}
-
-
+	
 	/**
 	 * Lists all models.
 	 */

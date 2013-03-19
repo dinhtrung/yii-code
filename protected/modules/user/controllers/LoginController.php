@@ -3,10 +3,9 @@
 class LoginController extends WebBaseController
 {
 	public $defaultAction = 'login';
-	function allowedActions() {
+	public function allowedActions(){
 		return 'login';
 	}
-
 
 	/**
 	 * Displays the login page
@@ -33,7 +32,7 @@ class LoginController extends WebBaseController
 		} else
 			$this->redirect(Yii::app()->controller->module->returnUrl);
 	}
-
+	
 	private function lastViset() {
 		$lastVisit = User::model()->notsafe()->findByPk(Yii::app()->user->id);
 		$lastVisit->lastvisit = time();

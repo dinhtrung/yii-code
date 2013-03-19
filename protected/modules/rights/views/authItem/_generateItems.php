@@ -32,7 +32,7 @@
 
 <?php else: ?>
 
-	<tr><th  class="no-items-row" colspan="3"><?php echo Rights::t('core', 'No actions found.'); ?></th></tr>
+	<tr><th  class="no-items-row" colspan="3"><?php echo Yii::t('rights', 'No actions found.'); ?></th></tr>
 
 <?php endif; ?>
 
@@ -40,7 +40,7 @@
 
 	<?php if( $displayModuleHeadingRow===true ): ?>
 
-		<tr><th class="module-heading-row" colspan="3"><?php echo Rights::t('core', 'Modules'); ?></th></tr>
+		<tr><th class="module-heading-row" colspan="3"><?php echo Yii::t('rights', 'Modules'); ?></th></tr>
 
 	<?php endif; ?>
 

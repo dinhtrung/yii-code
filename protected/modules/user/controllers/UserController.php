@@ -2,7 +2,7 @@
 
 class UserController extends WebBaseController
 {
-	function allowedActions() {
+	public function allowedActions(){
 		return 'index, view';
 	}
 
@@ -36,7 +36,6 @@ class UserController extends WebBaseController
 			'dataProvider'=>$dataProvider,
 		));
 	}
-
 
 
 	/**

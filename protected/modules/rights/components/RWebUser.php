@@ -58,7 +58,7 @@ class RWebUser extends CWebUser
 	{
 		return $this->getState('Rights_isSuperuser');
 	}
-
+	
 	/**
 	 * @param array $value return url.
 	 */
@@ -66,20 +66,20 @@ class RWebUser extends CWebUser
 	{
 		$this->setState('Rights_returnUrl', $value);
 	}
-
+	
 	/**
-	 * Returns the URL that the user should be redirected to
+	 * Returns the URL that the user should be redirected to 
 	 * after updating an authorization item.
 	 * @param string $defaultUrl the default return URL in case it was not set previously. If this is null,
 	 * the application entry URL will be considered as the default return URL.
-	 * @return string the URL that the user should be redirected to
+	 * @return string the URL that the user should be redirected to 
 	 * after updating an authorization item.
 	 */
 	public function getRightsReturnUrl($defaultUrl=null)
 	{
 		if( ($returnUrl = $this->getState('Rights_returnUrl'))!==null )
 			$this->returnUrl = null;
-
+		
 		return $returnUrl!==null ? CHtml::normalizeUrl($returnUrl) : CHtml::normalizeUrl($defaultUrl);
 	}
 }

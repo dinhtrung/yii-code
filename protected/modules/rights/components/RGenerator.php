@@ -147,8 +147,7 @@ class RGenerator extends CApplicationComponent
 	* @param string $path the path.
 	* @return array the controllers.
 	*/
-//	protected function getControllersInPath($path)
-	public function getControllersInPath($path)
+	protected function getControllersInPath($path)
 	{
 		$controllers = array();
 
@@ -185,8 +184,7 @@ class RGenerator extends CApplicationComponent
 	* @param string $path the path.
 	* @return array the controllers.
 	*/
-//	protected function getControllersInModules($path)
-	public function getControllersInModules($path)
+	protected function getControllersInModules($path)
 	{
 		$items = array();
 

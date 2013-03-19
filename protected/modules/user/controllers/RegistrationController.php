@@ -3,9 +3,8 @@
 class RegistrationController extends WebBaseController
 {
 	public $defaultAction = 'registration';
-
-	function allowedActions() {
-		return 'captcha, registration';
+	public function allowedActions(){
+		return 'registration, captcha';
 	}
 
 
@@ -26,13 +25,11 @@ class RegistrationController extends WebBaseController
 	 */
 	public function actionRegistration() {
             $model = new RegistrationForm;
-            $profile=new Profile;
-            $profile->regMode = true;
 
 			// ajax validator
 			if(isset($_POST['ajax']) && $_POST['ajax']==='registration-form')
 			{
-				echo UActiveForm::validate(array($model,$profile));
+				echo UActiveForm::validate(array($model));
 				Yii::app()->end();
 			}
 
@@ -41,8 +38,7 @@ class RegistrationController extends WebBaseController
 		    } else {
 		    	if(isset($_POST['RegistrationForm'])) {
 					$model->attributes=$_POST['RegistrationForm'];
-					$profile->attributes=((isset($_POST['Profile'])?$_POST['Profile']:array()));
-					if($model->validate()&&$profile->validate())
+					if($model->validate())
 					{
 						$soucePassword = $model->password;
 						$model->activkey=UserModule::encrypting(microtime().$model->password);
@@ -50,15 +46,20 @@ class RegistrationController extends WebBaseController
 						$model->verifyPassword=UserModule::encrypting($model->verifyPassword);
 						$model->createtime=time();
 						$model->lastvisit=((Yii::app()->controller->module->loginNotActiv||(Yii::app()->controller->module->activeAfterRegister&&Yii::app()->controller->module->sendActivationMail==false))&&Yii::app()->controller->module->autoLogin)?time():0;
-						$model->superuser=0;
+						$model->role=0;
 						$model->status=((Yii::app()->controller->module->activeAfterRegister)?User::STATUS_ACTIVE:User::STATUS_NOACTIVE);
 
 						if ($model->save()) {
-							$profile->user_id=$model->id;
-							$profile->save();
 							if (Yii::app()->controller->module->sendActivationMail) {
 								$activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));
-								UserModule::sendMail($model->email,Yii::t('user', "You registered from {site_name}",array('{site_name}'=>Yii::app()->name)),Yii::t('user', "Please activate you account go to {activation_url}",array('{activation_url}'=>$activation_url)));
+								Yii::import('ext.mail.*');
+								$message = new YiiMailMessage;
+								$message->setBody(Yii::t('user', "Please activate you account go to {activation_url}",array('{activation_url}'=>$activation_url)), 'text/plain');
+								$message->setSubject(Yii::t('user', "You registered from {site_name}",array('{site_name}'=>Yii::app()->name)));
+								// Send a reply for notice the user
+								$message->setFrom(array(Yii::app()->setting->get('Webtheme', 'serverEmail', Yii::app()->params['adminEmail']) => Yii::app()->setting->get('Webtheme', 'siteName', Yii::app()->name)));
+								$message->addTo($model->email, $model->name);
+								Yii::app()->mail->send($message);
 							}
 
 							if ((Yii::app()->controller->module->loginNotActiv||(Yii::app()->controller->module->activeAfterRegister&&Yii::app()->controller->module->sendActivationMail==false))&&Yii::app()->controller->module->autoLogin) {
@@ -79,9 +80,9 @@ class RegistrationController extends WebBaseController
 								$this->refresh();
 							}
 						}
-					} else $profile->validate();
+					}
 				}
-			    $this->render('/user/registration',array('model'=>$model,'profile'=>$profile));
+			    $this->render('/user/registration',array('model'=>$model));
 		    }
 	}
 }

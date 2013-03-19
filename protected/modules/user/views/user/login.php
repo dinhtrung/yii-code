@@ -1,11 +1,9 @@
-<?php
-$this->pageTitle=Yii::app()->name . ' - '.Yii::t('user', "Login");
-$this->breadcrumbs=array(
+<?php $this->breadcrumbs=array(
 	Yii::t('user', "Login"),
 );
 ?>
 
-<h1><?php echo $this->pageTitle = Yii::t('user', "Đăng nhập"); ?></h1>
+<h1><?php echo $this->pageTitle= Yii::t('user', "Login"); ?></h1>
 
 <?php if(Yii::app()->user->hasFlash('loginMessage')): ?>
 

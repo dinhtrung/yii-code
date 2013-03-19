@@ -4,17 +4,11 @@ class ActivationController extends WebBaseController
 {
 	public $defaultAction = 'activation';
 
-	function allowedActions() {
-		return 'activation';
-	}
-
-
+	
 	/**
 	 * Activation user account
 	 */
 	public function actionActivation () {
-		if (! isset($_GET['email']) || ! isset($_GET['activkey']))
-			throw new CHttpException(404, Yii::t('app', 'The page you requested was not found.'));
 		$email = $_GET['email'];
 		$activkey = $_GET['activkey'];
 		if ($email&&$activkey) {

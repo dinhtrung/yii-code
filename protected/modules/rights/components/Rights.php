@@ -78,9 +78,9 @@ class Rights
 	public static function getAuthItemOptions()
 	{
 		return array(
-			CAuthItem::TYPE_OPERATION=>Rights::t('core', 'Operation'),
-			CAuthItem::TYPE_TASK=>Rights::t('core', 'Task'),
-			CAuthItem::TYPE_ROLE=>Rights::t('core', 'Role'),
+			CAuthItem::TYPE_OPERATION=>Yii::t('rights', 'Operation'),
+			CAuthItem::TYPE_TASK=>Yii::t('rights', 'Task'),
+			CAuthItem::TYPE_ROLE=>Yii::t('rights', 'Role'),
 		);
 	}
 
@@ -95,7 +95,7 @@ class Rights
 		if( isset($options[ $type ])===true )
 			return $options[ $type ];
 		else
-			throw new CException(Rights::t('core', 'Invalid authorization item type.'));
+			throw new CException(Yii::t('rights', 'Invalid authorization item type.'));
 	}
 
 	/**
@@ -107,10 +107,10 @@ class Rights
 	{
 		switch( (int)$type )
 		{
-			case CAuthItem::TYPE_OPERATION: return Rights::t('core', 'Operations');
-			case CAuthItem::TYPE_TASK: return Rights::t('core', 'Tasks');
-			case CAuthItem::TYPE_ROLE: return Rights::t('core', 'Roles');
-			default: throw new CException(Rights::t('core', 'Invalid authorization item type.'));
+			case CAuthItem::TYPE_OPERATION: return Yii::t('rights', 'Operations');
+			case CAuthItem::TYPE_TASK: return Yii::t('rights', 'Tasks');
+			case CAuthItem::TYPE_ROLE: return Yii::t('rights', 'Roles');
+			default: throw new CException(Yii::t('rights', 'Invalid authorization item type.'));
 		}
 	}
 
@@ -126,7 +126,7 @@ class Rights
 			case CAuthItem::TYPE_OPERATION: return array('authItem/operations');
 			case CAuthItem::TYPE_TASK: return array('authItem/tasks');
 			case CAuthItem::TYPE_ROLE: return array('authItem/roles');
-			default: throw new CException(Rights::t('core', 'Invalid authorization item type.'));
+			default: throw new CException(Yii::t('rights', 'Invalid authorization item type.'));
 		}
 	}
 
@@ -146,7 +146,7 @@ class Rights
 			// Operations can consist of other operations
 			case CAuthItem::TYPE_OPERATION: return array(CAuthItem::TYPE_OPERATION);
 			// Invalid type
-			default: throw new CException(Rights::t('core', 'Invalid authorization item type.'));
+			default: throw new CException(Yii::t('rights', 'Invalid authorization item type.'));
 		}
 	}
 
@@ -236,16 +236,6 @@ class Rights
 	}
 
 	/**
-	* @return string a string that can be displayed on your Web page
-	* showing Powered-by-Rights information.
-	*/
-	public static function powered()
-	{
-		$module = self::module();
-		return 'Secured with <a href="http://www.yiiframework.com/extension/rights" rel="external">Rights</a> version '.$module->getVersion().'.';
-	}
-
-	/**
 	* @return RightsModule the Rights module.
 	*/
 	public static function module()
@@ -287,20 +277,5 @@ class Rights
 			self::$_a = self::module()->getAuthorizer();
 
 		return self::$_a;
-	}
-
-	/**
-	* Translates a message to the specified language.
-	* Wrapper class for setting the category correctly.
-	* @param string $category message category.
-	* @param string $message the original message.
-	* @param array $params parameters to be applied to the message using <code>strtr</code>.
-	* @param string $source which message source application component to use.
-	* @param string $language the target language.
-	* @return string the translated message.
-	*/
-	public static function t($category, $message, $params=array(), $source=null, $language=null)
-	{
-		return Yii::t('RightsModule.'.$category, $message, $params, $source, $language);
 	}
 }

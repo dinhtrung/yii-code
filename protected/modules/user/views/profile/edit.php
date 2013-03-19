@@ -1,9 +1,9 @@
-<?php $this->pageTitle=Yii::app()->name . ' - '.Yii::t('user', "Profile");
-$this->breadcrumbs=array(
+<?php $this->breadcrumbs=array(
 	Yii::t('user', "Profile")=>array('profile'),
 	Yii::t('user', "Edit"),
 );
-?><h2><?php echo Yii::t('user', 'Edit profile'); ?></h2>
+?>
+<h1><?php echo $this->pageTitle = Yii::t('user', 'Edit profile'); ?></h1>
 <?php echo $this->renderPartial('menu'); ?>
 
 <?php if(Yii::app()->user->hasFlash('profileMessage')): ?>
@@ -20,36 +20,7 @@ $this->breadcrumbs=array(
 
 	<p class="note"><?php echo Yii::t('user', 'Fields with <span class="required">*</span> are required.'); ?></p>
 
-	<?php echo $form->errorSummary(array($model,$profile)); ?>
-
-<?php 
-		$profileFields=$profile->getFields();
-		if ($profileFields) {
-			foreach($profileFields as $field) {
-			?>
-	<div class="row">
-		<?php echo $form->labelEx($profile,$field->varname);
-		
-		if ($field->widgetEdit($profile)) {
-			echo $field->widgetEdit($profile);
-		} elseif ($field->range) {
-			echo $form->dropDownList($profile,$field->varname,Profile::range($field->range));
-		} elseif ($field->field_type=="TEXT") {
-			echo $form->textArea($profile,$field->varname,array('rows'=>6, 'cols'=>50));
-		} else {
-			echo $form->textField($profile,$field->varname,array('size'=>60,'maxlength'=>(($field->field_size)?$field->field_size:255)));
-		}
-		echo $form->error($profile,$field->varname); ?>
-	</div>	
-			<?php
-			}
-		}
-?>
-	<div class="row">
-		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'username'); ?>
-	</div>
+	<?php echo $form->errorSummary(array($model)); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'email'); ?>

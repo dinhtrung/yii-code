@@ -9,12 +9,7 @@ class AdminController extends WebBaseController
 	 */
 	public function actionAdmin()
 	{
-		$dataProvider=new CActiveDataProvider('User', array(
-			'pagination'=>array(
-				'pageSize'=>Yii::app()->controller->module->user_page_size,
-			),
-		));
-
+		$dataProvider=new CActiveDataProvider('User');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -26,7 +21,7 @@ class AdminController extends WebBaseController
 	 */
 	public function actionView()
 	{
-		$model = $this->loadModel("User");
+		$model = $this->loadModel('User');
 		$this->render('view',array(
 			'model'=>$model,
 		));
@@ -39,17 +34,28 @@ class AdminController extends WebBaseController
 	public function actionCreate()
 	{
 		$model=new User;
+		$this->performAjaxValidation($model, 'user-form');
+		Rights::getAuthorizer()->attachUserBehavior($model);
+		/*
+		// Get assigned Items for current user
+		$assignedItems = Rights::getAuthorizer()->getAuthItems(CAuthItem::TYPE_ROLE, $model->getId());
+		$model->role = array_keys($assignedItems);
+		*/
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
 			$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
 			$model->createtime=time();
 			$model->lastvisit=time();
-			if($model->validate()&&$profile->validate()) {
+			if($model->validate()) {
 				$model->password=Yii::app()->controller->module->encrypting($model->password);
 				if($model->save()) {
+					// Update and redirect
+					Rights::getAuthorizer()->authManager->assign($model->role, $model->getId());
+					$item = Rights::getAuthorizer()->authManager->getAuthItem($model->role);
+					$item = Rights::getAuthorizer()->attachAuthItemBehavior($item);
+					$this->redirect(Yii::app()->getUser()->getReturnUrl());
 				}
-				$this->redirect(array('view','id'=>$model->id));
 			}
 		}
 
@@ -64,29 +70,30 @@ class AdminController extends WebBaseController
 	 */
 	public function actionUpdate()
 	{
-		$model=$this->loadModel("User");
-		$profile=$model->profile;
+		$model=$this->loadModel('User');
+		$this->performAjaxValidation($model, 'user-form');
+		Rights::getAuthorizer()->attachUserBehavior($model);
+		Rights::getAuthorizer()->authManager->revoke($model->role, $model->getId());
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
-			if (isset($_POST['Profile'])){
-				$profile->attributes=$_POST['Profile'];
-			}
-			if($model->validate()&&$profile->validate()) {
+
+			if($model->validate()) {
 				$old_password = User::model()->notsafe()->findByPk($model->id);
-				if ($old_password->password!=$model->password) {
+				if (! empty($model->password) AND ($old_password->password!=$model->password)) {
 					$model->password=Yii::app()->controller->module->encrypting($model->password);
 					$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
-				}
+				} else { $model->password = $old_password->password; }
 				$model->save();
-				$profile->save();
-				$this->redirect(array('view','id'=>$model->id));
-			} else $profile->validate();
+				Rights::getAuthorizer()->authManager->assign($model->role, $model->getId());
+				$item = Rights::getAuthorizer()->authManager->getAuthItem($model->role);
+				$item = Rights::getAuthorizer()->attachAuthItemBehavior($item);
+				$this->redirect(Yii::app()->getUser()->getReturnUrl());
+			}
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
-			'profile'=>$profile,
 		));
 	}
 
@@ -100,9 +107,9 @@ class AdminController extends WebBaseController
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$model = $this->loadModel("User");
-			$profile = Profile::model()->findByPk($model->id);
-			$profile->delete();
+			$model = $this->loadModel('User');
+			Rights::getAuthorizer()->attachUserBehavior($model);
+			Rights::getAuthorizer()->authManager->revoke($model->role, $model->getId());
 			$model->delete();
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_POST['ajax']))

@@ -51,14 +51,14 @@ class RAuthorizer extends CApplicationComponent
 	* @param mixed $data additional data associated with the item.
 	* @return CAuthItem the authorization item
 	*/
-	public function createAuthItem($name, $type, $description='', $bizRule=null, $data=null)
+	public function createAuthItem($name, $type, $bizRule=null, $data=null)
 	{
 		$bizRule = $bizRule!=='' ? $bizRule : null;
 
 		if( $data!==null )
 			$data = $data!=='' ? $this->sanitizeExpression($data.';') : null;
 
-		return $this->_authManager->createAuthItem($name, $type, $description, $bizRule, $data);
+		return $this->_authManager->createAuthItem($name, $type, $name, $bizRule, $data);
 	}
 
 	/**
@@ -70,11 +70,10 @@ class RAuthorizer extends CApplicationComponent
 	* PHP code that will be executed when {@link checkAccess} is called for the item.
 	* @param mixed $data additional data associated with the item.
 	*/
-	public function updateAuthItem($oldName, $name, $description='', $bizRule=null, $data=null)
+	public function updateAuthItem($oldName, $name, $bizRule=null, $data=null)
 	{
 		$authItem = $this->_authManager->getAuthItem($oldName);
 		$authItem->name = $name;
-		$authItem->description = $description!=='' ? $description : null;
 		$authItem->bizRule = $bizRule!=='' ? $bizRule : null;
 
 		// Make sure that data is not already serialized.
@@ -302,7 +301,7 @@ class RAuthorizer extends CApplicationComponent
 		// Make sure that we have superusers, otherwise we would allow full access to Rights
 		// if there for some reason is not any superusers.
 		if( $superusers===array() )
-			throw new CHttpException(403, Rights::t('core', 'There must be at least one superuser!'));
+			throw new CHttpException(403, Yii::t('rights', 'There must be at least one superuser!'));
 
 		return $superusers;
 	}

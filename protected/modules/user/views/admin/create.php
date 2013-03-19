@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 	Yii::t('user', 'Create'),
 );
 ?>
-<h1><?php echo Yii::t('user', "Create User"); ?></h1>
+<h1><?php echo $this->pageTitle = Yii::t('user', "Create User"); ?></h1>
 
 <?php
 	echo $this->renderPartial('_menu',array(

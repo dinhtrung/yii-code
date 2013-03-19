@@ -122,7 +122,6 @@ class RPermissionDataProvider extends CDataProvider
 		{
 			$row = array();
 			$row['description'] = $item->getNameLink();
-			$row['name'] = $item->getName();
 
 			foreach( $this->_roles as $roleName=>$role )
 			{

@@ -6,7 +6,7 @@
 * @copyright Copyright &copy; 2010 Christoffer Niska
 * @since 0.9.1
 */
-class AssignmentController extends RController
+class AssignmentController extends WebBaseController
 {
 	/**
 	* @property RAuthorizer
@@ -18,42 +18,9 @@ class AssignmentController extends RController
 	*/
 	public function init()
 	{
+		parent::init();
 		$this->_authorizer = $this->module->getAuthorizer();
-		$this->layout = $this->module->layout;
 		$this->defaultAction = 'view';
-
-		// Register the scripts
-		$this->module->registerScripts();
-	}
-
-	/**
-	* @return array action filters
-	*/
-	public function filters()
-	{
-		return array('accessControl');
-	}
-
-	/**
-	* Specifies the access control rules.
-	* This method is used by the 'accessControl' filter.
-	* @return array access control rules
-	*/
-	public function accessRules()
-	{
-		return array(
-			array('allow', // Allow superusers to access Rights
-				'actions'=>array(
-					'view',
-					'user',
-					'revoke',
-				),
-				'users'=>$this->_authorizer->getSuperusers(),
-			),
-			array('deny', // Deny all users
-				'users'=>array('*'),
-			),
-		);
 	}
 
 	/**
@@ -105,7 +72,7 @@ class AssignmentController extends RController
 					$item = $this->_authorizer->attachAuthItemBehavior($item);
 
 					Yii::app()->user->setFlash($this->module->flashSuccessKey,
-						Rights::t('core', 'Permission :name assigned.', array(':name'=>$item->getNameText()))
+						Yii::t('rights', 'Permission :name assigned.', array(':name'=>$item->getNameText()))
 					);
 
 					$this->redirect(array('assignment/user', 'id'=>$model->getId()));
@@ -141,7 +108,7 @@ class AssignmentController extends RController
 		if( Yii::app()->request->isPostRequest===true )
 		{
 			$itemName = $this->getItemName();
-			
+
 			// Revoke the item from the user and load it
 			$this->_authorizer->authManager->revoke($itemName, $_GET['id']);
 			$item = $this->_authorizer->authManager->getAuthItem($itemName);
@@ -149,7 +116,7 @@ class AssignmentController extends RController
 
 			// Set flash message for revoking the item
 			Yii::app()->user->setFlash($this->module->flashSuccessKey,
-				Rights::t('core', 'Permission :name revoked.', array(':name'=>$item->getNameText()))
+				Yii::t('rights', 'Permission :name revoked.', array(':name'=>$item->getNameText()))
 			);
 
 			// if AJAX request, we should not redirect the browser
@@ -158,10 +125,10 @@ class AssignmentController extends RController
 		}
 		else
 		{
-			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('rights', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
-	
+
 	/**
 	* @return string the item name or null if not set.
 	*/

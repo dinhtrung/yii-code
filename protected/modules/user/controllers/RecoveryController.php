@@ -3,11 +3,9 @@
 class RecoveryController extends WebBaseController
 {
 	public $defaultAction = 'recovery';
-
-	function allowedActions() {
+	public function allowedActions(){
 		return 'recovery';
 	}
-
 	/**
 	 * Recovery password
 	 */
@@ -31,13 +29,13 @@ class RecoveryController extends WebBaseController
 									$find->status = 1;
 								}
 								$find->save();
-								Yii::app()->user->setFlash('recoveryMessage',UserModule::t("New password is saved."));
+								Yii::app()->user->setFlash('recoveryMessage',Yii::t('user', "New password is saved."));
 								$this->redirect(Yii::app()->controller->module->recoveryUrl);
 							}
-						}
+						} 
 						$this->render('changepassword',array('form'=>$form2));
 		    		} else {
-		    			Yii::app()->user->setFlash('recoveryMessage',UserModule::t("Incorrect recovery link."));
+		    			Yii::app()->user->setFlash('recoveryMessage',Yii::t('user', "Incorrect recovery link."));
 						$this->redirect(Yii::app()->controller->module->recoveryUrl);
 		    		}
 		    	} else {
@@ -46,20 +44,20 @@ class RecoveryController extends WebBaseController
 			    		if($form->validate()) {
 			    			$user = User::model()->notsafe()->findbyPk($form->user_id);
 							$activation_url = 'http://' . $_SERVER['HTTP_HOST'].$this->createUrl(implode(Yii::app()->controller->module->recoveryUrl),array("activkey" => $user->activkey, "email" => $user->email));
-
-							$subject = UserModule::t("You have requested the password recovery site {site_name}",
+							
+							$subject = Yii::t('user', "You have requested the password recovery site {site_name}",
 			    					array(
 			    						'{site_name}'=>Yii::app()->name,
 			    					));
-			    			$message = UserModule::t("You have requested the password recovery site {site_name}. To receive a new password, go to {activation_url}.",
+			    			$message = Yii::t('user', "You have requested the password recovery site {site_name}. To receive a new password, go to {activation_url}.",
 			    					array(
 			    						'{site_name}'=>Yii::app()->name,
 			    						'{activation_url}'=>$activation_url,
 			    					));
-
+							
 			    			UserModule::sendMail($user->email,$subject,$message);
-
-							Yii::app()->user->setFlash('recoveryMessage',UserModule::t("Please check your email. An instructions was sent to your email address."));
+			    			
+							Yii::app()->user->setFlash('recoveryMessage',Yii::t('user', "Please check your email. An instructions was sent to your email address."));
 			    			$this->refresh();
 			    		}
 			    	}

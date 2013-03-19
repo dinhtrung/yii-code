@@ -6,7 +6,7 @@
 * @copyright Copyright &copy; 2010 Christoffer Niska
 * @since 0.6
 */
-class RController extends Controller
+class RController extends CController
 {
 	/**
 	* @property string the default layout for the controller view. Defaults to '//layouts/column1',
@@ -53,7 +53,7 @@ class RController extends Controller
 	public function accessDenied($message=null)
 	{
 		if( $message===null )
-			$message = Rights::t('core', 'You are not authorized to perform this action.');
+			$message = Yii::t('rights', 'You are not authorized to perform this action.');
 
 		$user = Yii::app()->getUser();
 		if( $user->isGuest===true )

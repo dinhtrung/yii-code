@@ -1,50 +1,51 @@
 <?php $this->breadcrumbs = array(
-	'Rights'=>Rights::getBaseUrl(),
-	Rights::t('core', 'Tasks'),
+	Yii::t('rights', 'Rights') =>Rights::getBaseUrl(),
+	Yii::t('rights', 'Tasks'),
 ); ?>
 
 <div id="tasks">
 
-	<h2><?php echo Rights::t('core', 'Tasks'); ?></h2>
+	<h1><?php echo $this->pageTitle = Yii::t('rights', 'Tasks'); ?></h1>
 
 	<p>
-		<?php echo Rights::t('core', 'A task is a permission to perform multiple operations, for example accessing a group of controller action.'); ?><br />
-		<?php echo Rights::t('core', 'Tasks exist below roles in the authorization hierarchy and can therefore only inherit from other tasks and/or operations.'); ?>
+		<?php echo Yii::t('rights', 'A task is a permission to perform multiple operations, for example accessing a group of controller action.'); ?><br />
+		<?php echo Yii::t('rights', 'Tasks exist below roles in the authorization hierarchy and can therefore only inherit from other tasks and/or operations.'); ?>
 	</p>
 
-	<p><?php echo CHtml::link(Rights::t('core', 'Create a new task'), array('authItem/create', 'type'=>CAuthItem::TYPE_TASK), array(
+	<p><?php echo CHtml::link(Yii::t('rights', 'Create a new task'), array('authItem/create', 'type'=>CAuthItem::TYPE_TASK), array(
 		'class'=>'add-task-link',
 	)); ?></p>
 
 	<?php $this->widget('zii.widgets.grid.CGridView', array(
 	    'dataProvider'=>$dataProvider,
 	    'template'=>'{items}',
-	    'emptyText'=>Rights::t('core', 'No tasks found.'),
+	    'emptyText'=>Yii::t('rights', 'No tasks found.'),
 	    'htmlOptions'=>array('class'=>'grid-view task-table'),
 	    'columns'=>array(
     		array(
     			'name'=>'name',
-    			'header'=>Rights::t('core', 'Name'),
+    			'header'=>Yii::t('rights', 'Name'),
     			'type'=>'raw',
     			'htmlOptions'=>array('class'=>'name-column'),
     			'value'=>'$data->getGridNameLink()',
     		),
     		array(
     			'name'=>'description',
-    			'header'=>Rights::t('core', 'Description'),
+    			'header'=>Yii::t('rights', 'Description'),
     			'type'=>'raw',
     			'htmlOptions'=>array('class'=>'description-column'),
+    			'value'=>'$data->getNameLink()',
     		),
     		array(
     			'name'=>'bizRule',
-    			'header'=>Rights::t('core', 'Business rule'),
+    			'header'=>Yii::t('rights', 'Business rule'),
     			'type'=>'raw',
     			'htmlOptions'=>array('class'=>'bizrule-column'),
     			'visible'=>Rights::module()->enableBizRule===true,
     		),
     		array(
     			'name'=>'data',
-    			'header'=>Rights::t('core', 'Data'),
+    			'header'=>Yii::t('rights', 'Data'),
     			'type'=>'raw',
     			'htmlOptions'=>array('class'=>'data-column'),
     			'visible'=>Rights::module()->enableBizRuleData===true,
@@ -58,6 +59,6 @@
 	    )
 	)); ?>
 
-	<p class="info"><?php echo Rights::t('core', 'Values within square brackets tell how many children each item has.'); ?></p>
+	<p class="info"><?php echo Yii::t('rights', 'Values within square brackets tell how many children each item has.'); ?></p>
 
 </div>

@@ -69,11 +69,6 @@ class UserModule extends CWebModule
 	 */
 	public $relations = array();
 
-	/**
-	 * @var array
-	 * @desc Profile model relation from other models
-	 */
-	public $profileRelations = array();
 
 	/**
 	 * @var boolean
@@ -86,9 +81,6 @@ class UserModule extends CWebModule
 	//public $cacheEnable = false;
 
 	public $tableUsers = '{{users}}';
-	public $tableProfiles = '{{profiles}}';
-	public $tableProfileFields = '{{profiles_fields}}';
-
 	static private $_user;
 	static private $_admin;
 	static private $_admins;
@@ -156,50 +148,16 @@ class UserModule extends CWebModule
 		return false;
 	}
 
-	/**
-	 * Return admin status.
-	 * @return boolean
-	 */
-	public static function isAdmin() {
-		if(Yii::app()->user->isGuest)
-			return false;
-		else {
-			if (!isset(self::$_admin)) {
-				if(self::user()->superuser)
-					self::$_admin = true;
-				else
-					self::$_admin = false;
-			}
-			return self::$_admin;
-		}
-	}
-
-	/**
-	 * Return admins.
-	 * @return array syperusers names
-	 */
-	public static function getAdmins() {
-		if (!self::$_admins) {
-			$admins = User::model()->active()->superuser()->findAll();
-			$return_name = array();
-			foreach ($admins as $admin)
-				array_push($return_name,$admin->username);
-			self::$_admins = $return_name;
-		}
-		return self::$_admins;
-	}
 
 	/**
 	 * Send mail method
 	 */
-	public static function sendMail($email,$subject,$body) {
-		$message = new YiiMailMessage;
-		$message->setBody($body, 'text/html');
-		$message->setSubject($subject);
-		// Send the requested email to contactEmail setting.
-		$message->setFrom(array(Yii::app()->setting->get('Webtheme', 'serverEmail', Yii::app()->params['adminEmail']) => Yii::app()->setting->get('Webtheme', 'siteName', Yii::app()->name)));
-		$message->addTo($email);
-		Yii::app()->mail->send($message);
+	public static function sendMail($email,$subject,$message) {
+    	$adminEmail = Yii::app()->params['adminEmail'];
+	    $headers = "MIME-Version: 1.0\r\nFrom: $adminEmail\r\nReply-To: $adminEmail\r\nContent-Type: text/html; charset=utf-8";
+	    $message = wordwrap($message, 70);
+	    $message = str_replace("\n.", "\n..", $message);
+	    return mail($email,'=?UTF-8?B?'.base64_encode($subject).'?=',$message,$headers);
 	}
 
 	/**

@@ -1,7 +1,7 @@
 <?php
 
 class UWjuiAutoComplete {
-	
+
 	public $params = array(
 		'ui-theme'=>'base',
 		'modelName'=>'',
@@ -11,7 +11,7 @@ class UWjuiAutoComplete {
 		'relationName'=>'',
 		'minLength'=>'',
 	);
-	
+
 	/**
 	 * Widget initialization
 	 * @return array
@@ -27,12 +27,11 @@ class UWjuiAutoComplete {
 				'optionName'=>Yii::t('user', 'Lable field name',array(),__CLASS__),
 				'emptyFieldLabel'=>Yii::t('user', 'Empty item name',array(),__CLASS__),
 				'emptyFieldValue'=>Yii::t('user', 'Empty item value',array(),__CLASS__),
-				'relationName'=>Yii::t('user', 'Profile model relation name',array(),__CLASS__),
 				'minLength'=>Yii::t('user', 'minimal start research length',array(),__CLASS__),
 			),
 		);
 	}
-	
+
 	/**
 	 * @param $value
 	 * @param $model
@@ -42,7 +41,7 @@ class UWjuiAutoComplete {
 	public function setAttributes($value,$model,$field_varname) {
 		return $value;
 	}
-	
+
 	/**
 	 * @param $model - profile model
 	 * @param $field - profile fields model item
@@ -55,13 +54,13 @@ class UWjuiAutoComplete {
 		} else {
 			$m = CActiveRecord::model($this->params['modelName'])->findByPk($model->getAttribute($field->varname));
 		}
-		
+
 		if ($m)
 			return (($this->params['optionName'])?$m->getAttribute($this->params['optionName']):$m->id);
 		else
 			return $this->params['emptyFieldLabel'];
 	}
-	
+
 	/**
 	 * @param $model - profile model
 	 * @param $field - profile fields model item
@@ -74,22 +73,22 @@ class UWjuiAutoComplete {
 			$models = CActiveRecord::model($this->params['modelName'])->findAll();
 		foreach ($models as $m)
 			$list[] = (($this->params['optionName'])?array('label'=>$m->getAttribute($this->params['optionName']),'id'=>$m->id):array('label'=>$m->id,'id'=>$m->id));
-		
+
 		if (!isset($htmlOptions['id'])) $htmlOptions['id'] = $field->varname;
 		$id = $htmlOptions['id'];
-		
+
 		$relation = $model->relations();
 		if ($this->params['relationName']&&isset($relation[$this->params['relationName']])) {
 			$m = $model->__get($this->params['relationName']);
 		} else {
 			$m = CActiveRecord::model($this->params['modelName'])->findByPk($model->getAttribute($field->varname));
 		}
-		
+
 		if ($m)
 			$default_value = (($this->params['optionName'])?$m->getAttribute($this->params['optionName']):$m->id);
 		else
 			$default_value = '';
-		
+
 		$htmlOptions['value'] = $default_value;
 		$options['source'] = $list;
 		$options['minLength'] = $this->params['minLength'];
@@ -104,7 +103,7 @@ class UWjuiAutoComplete {
 		$cs->registerScriptFile($baseUrl.'/js/jquery-ui.min.js');
 		$js = "jQuery('#{$id}').autocomplete({$options});";
 		$cs->registerScript('Autocomplete'.'#'.$id, $js);
-		
+
 		return CHtml::activeTextField($model,$field->varname,$htmlOptions).CHtml::activehiddenField($model,$field->varname);
 	}
-} 
+}

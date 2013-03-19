@@ -4,7 +4,7 @@
 
 	<p class="note"><?php echo Yii::t('user', 'Fields with <span class="required">*</span> are required.'); ?></p>
 
-	<?php echo CHtml::errorSummary($model); ?>
+	<?php echo CHtml::errorSummary(array($model)); ?>
 
 	<div class="row">
 		<?php echo CHtml::activeLabelEx($model,'username'); ?>
@@ -14,7 +14,7 @@
 
 	<div class="row">
 		<?php echo CHtml::activeLabelEx($model,'password'); ?>
-		<?php echo CHtml::activePasswordField($model,'password',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo CHtml::activePasswordField($model,'password',array('size'=>60,'maxlength'=>128, 'value' => '')); ?>
 		<?php echo CHtml::error($model,'password'); ?>
 	</div>
 
@@ -25,9 +25,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo CHtml::activeLabelEx($model,'superuser'); ?>
-		<?php echo CHtml::activeDropDownList($model,'superuser',User::itemAlias('AdminStatus')); ?>
-		<?php echo CHtml::error($model,'superuser'); ?>
+		<?php echo CHtml::activeLabelEx($model,'role'); ?>
+		<?php echo CHtml::activeDropDownList($model,'role',Rights::getAuthItemSelectOptions(CAuthItem::TYPE_ROLE)); ?>
+		<?php echo CHtml::error($model,'role'); ?>
 	</div>
 
 	<div class="row">
@@ -35,8 +35,9 @@
 		<?php echo CHtml::activeDropDownList($model,'status',User::itemAlias('UserStatus')); ?>
 		<?php echo CHtml::error($model,'status'); ?>
 	</div>
+
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton(Yii::t('app', 'Save')); ?>
 	</div>
 
 <?php echo CHtml::endForm(); ?>

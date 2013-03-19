@@ -1,13 +1,13 @@
 <?php $this->breadcrumbs = array(
-	'Rights'=>Rights::getBaseUrl(),
-	Rights::t('core', 'Generate items'),
+	Yii::t('rights', 'Rights')=>Rights::getBaseUrl(),
+	Yii::t('rights', 'Generate items'),
 ); ?>
 
 <div id="generator">
 
-	<h2><?php echo Rights::t('core', 'Generate items'); ?></h2>
+	<h1><?php echo $this->pageTitle = Yii::t('rights', 'Generate items'); ?></h1>
 
-	<p><?php echo Rights::t('core', 'Please select which items you wish to generate.'); ?></p>
+	<p><?php echo Yii::t('rights', 'Please select which items you wish to generate.'); ?></p>
 
 	<div class="form">
 
@@ -15,12 +15,12 @@
 
 			<div class="row">
 
-				<table class="items generate-item-table" border="0" cellpadding="0" cellspacing="0">
+				<table class="items generate-item-table">
 
 					<tbody>
 
 						<tr class="application-heading-row">
-							<th colspan="3"><?php echo Rights::t('core', 'Application'); ?></th>
+							<th colspan="3"><?php echo Yii::t('rights', 'Application'); ?></th>
 						</tr>
 
 						<?php $this->renderPartial('_generateItems', array(
@@ -40,11 +40,11 @@
 
 			<div class="row">
 
-   				<?php echo CHtml::link(Rights::t('core', 'Select all'), '#', array(
+   				<?php echo CHtml::link(Yii::t('rights', 'Select all'), '#', array(
    					'onclick'=>"jQuery('.generate-item-table').find(':checkbox').attr('checked', 'checked'); return false;",
    					'class'=>'selectAllLink')); ?>
    				/
-				<?php echo CHtml::link(Rights::t('core', 'Select none'), '#', array(
+				<?php echo CHtml::link(Yii::t('rights', 'Select none'), '#', array(
 					'onclick'=>"jQuery('.generate-item-table').find(':checkbox').removeAttr('checked'); return false;",
 					'class'=>'selectNoneLink')); ?>
 
@@ -52,7 +52,7 @@
 
    			<div class="row">
 
-				<?php echo CHtml::submitButton(Rights::t('core', 'Generate')); ?>
+				<?php echo CHtml::submitButton(Yii::t('rights', 'Generate')); ?>
 
 			</div>
 
