@@ -9,9 +9,10 @@ return array(
 	// Application directory
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	// Application Name
-	'name'=>'Yii Application',
+	'name'=>'Báo cáo cho hệ thống USSD Gateway',
 	// Application Language
 	'language'	=>	'vi',
+	'sourceLanguage'	=>	'en',
 	// preloading 'log' component
 	'preload'	=>	array('log', 'cache', 'settings'),
 	// autoloading model and component classes
@@ -57,6 +58,10 @@ return array(
 					'levels'=> (YII_DEBUG)?'trace,info,profile,warning,error':'info',
 				),
 			),
+		),
+		// Extra message source
+		'messages' => array(
+			'class'	=>	'CPhpMessageSource',
 		),
 		// Extra message source
 		'dbmessages' => array(

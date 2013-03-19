@@ -1,6 +1,5 @@
 <?php
 return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main.php') , array(
-	'name' => 'My Web Application',
 	// autoloading model and component classes
 	'import' => array(
 		// Rights
