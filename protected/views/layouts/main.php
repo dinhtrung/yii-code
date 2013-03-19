@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html >
+<html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
@@ -14,9 +14,9 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 
-	<title><?php echo CHtml::encode(Yii::app()->name); ?> | <?php echo CHtml::encode($this->pageTitle); ?></title>
-</head>
+	<title><?php echo CHtml::encode($this->pageTitle); ?> | <?php echo CHtml::encode(Yii::app()->name); ?> </title>
 
+	</head>
 <body>
 
 <div class="container" id="page">
@@ -28,23 +28,15 @@
 	<div id="mainMbMenu">
 		<?php
 		$menuitems =  array(
-				array('label'=>'Home', 'url'=>array(Yii::app()->getHomeUrl())),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+				array('label'=>'Báo cáo', 'url'=>'/site/index'),
+				array('label' => 'Người dùng',
+					'items' => array(
+						array('label' => 'Đăng nhập', 'url' => 'user/login', 'visible' => (Yii::app()->getUser()->isGuest)),
+						array('label' => 'Hồ sơ', 'url' => 'user/profile', 'visible' => ! (Yii::app()->getUser()->isGuest)),
+						array('label' => 'Quản lý người dùng', 'url' => '/user/admin', 'visible' => (Yii::app()->getUser()->checkAccess('User.Admin.*'))),
+					),
+				)
 			);
-		$rightGenerator = new RGenerator();
-		$modules = array_keys(Yii::app()->getModules());
-		foreach ($modules as $module) {
-			$module_menu = array();
-			$controllers = $rightGenerator->getControllersInPath(Yii::getPathOfAlias("application.modules.$module.controllers"));
-			foreach ($controllers as $ctrl => $info) {
-				$module_menu[] = array('label' => Yii::t($module, $info['name']), 'url' => array("/$module/" . strtolower($info['name'])));
-			}
-			if (! empty($module_menu)){
-				$menuitems[] = array('url' => array("#$module"), 'label' => Yii::t($module, $module),
-							"items" => $module_menu);
-			}
-		}
 		$this->widget('ext.widgets.mbmenu.MbMenu',array(
 			'items'=> $menuitems,
 		)); ?>
@@ -58,9 +50,8 @@
 	<?php echo $content; ?>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+		Copyright &copy; <?php echo date('Y'); ?> VMS Mobifone.<br/>
 		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
 	</div><!-- footer -->
 
 </div><!-- page -->
