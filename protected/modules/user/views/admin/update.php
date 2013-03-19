@@ -13,6 +13,6 @@ $this->breadcrumbs=array(
 			CHtml::link(Yii::t('user', 'Create User'),array('create')),
 			CHtml::link(Yii::t('user', 'View User'),array('view','id'=>$model->id)),
 		),
-	)); 
+	));
 
-	echo $this->renderPartial('_form', array('model'=>$model,'profile'=>$profile)); ?>
+	echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1><?php echo Yii::t('user', "Login"); ?></h1>
+<h1><?php echo $this->pageTitle = Yii::t('user', "Đăng nhập"); ?></h1>
 
 <?php if(Yii::app()->user->hasFlash('loginMessage')): ?>
 
@@ -21,25 +21,25 @@ $this->breadcrumbs=array(
 <?php echo CHtml::beginForm(); ?>
 
 	<p class="note"><?php echo Yii::t('user', 'Fields with <span class="required">*</span> are required.'); ?></p>
-	
+
 	<?php echo CHtml::errorSummary($model); ?>
-	
+
 	<div class="row">
 		<?php echo CHtml::activeLabelEx($model,'username'); ?>
 		<?php echo CHtml::activeTextField($model,'username') ?>
 	</div>
-	
+
 	<div class="row">
 		<?php echo CHtml::activeLabelEx($model,'password'); ?>
 		<?php echo CHtml::activePasswordField($model,'password') ?>
 	</div>
-	
+
 	<div class="row">
 		<p class="hint">
 		<?php echo CHtml::link(Yii::t('user', "Register"),Yii::app()->getModule('user')->registrationUrl); ?> | <?php echo CHtml::link(Yii::t('user', "Lost Password?"),Yii::app()->getModule('user')->recoveryUrl); ?>
 		</p>
 	</div>
-	
+
 	<div class="row rememberMe">
 		<?php echo CHtml::activeCheckBox($model,'rememberMe'); ?>
 		<?php echo CHtml::activeLabelEx($model,'rememberMe'); ?>
@@ -48,7 +48,7 @@ $this->breadcrumbs=array(
 	<div class="row submit">
 		<?php echo CHtml::submitButton(Yii::t('user', "Login")); ?>
 	</div>
-	
+
 <?php echo CHtml::endForm(); ?>
 </div><!-- form -->
 

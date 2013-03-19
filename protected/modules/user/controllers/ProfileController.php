@@ -17,7 +17,6 @@ class ProfileController extends WebBaseController
 		$model = $this->loadUser();
 	    $this->render('profile',array(
 	    	'model'=>$model,
-			'profile'=>$model->profile,
 	    ));
 	}
 

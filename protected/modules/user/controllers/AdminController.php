@@ -39,30 +39,22 @@ class AdminController extends WebBaseController
 	public function actionCreate()
 	{
 		$model=new User;
-		$profile=new Profile;
 		if(isset($_POST['User']))
 		{
 			$model->attributes=$_POST['User'];
 			$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
 			$model->createtime=time();
 			$model->lastvisit=time();
-			if (isset($_POST['Profile'])){
-				$profile->attributes=$_POST['Profile'];
-				$profile->user_id=0;
-			}
 			if($model->validate()&&$profile->validate()) {
 				$model->password=Yii::app()->controller->module->encrypting($model->password);
 				if($model->save()) {
-					$profile->user_id=$model->id;
-					$profile->save();
 				}
 				$this->redirect(array('view','id'=>$model->id));
-			} else $profile->validate();
+			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
-			'profile'=>$profile,
 		));
 	}
 

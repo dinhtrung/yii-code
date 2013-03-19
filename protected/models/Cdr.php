@@ -19,6 +19,11 @@ class Cdr extends CActiveRecord
 {
 	public $time_start;
 	public $time_end;
+	public $phatsinhcuoc;
+	public $khongphatsinhcuoc;
+	public $khongtrucuoc;
+	public $sanluong;
+	public $doanhthu;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -59,10 +64,7 @@ class Cdr extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-		);
+		return array();
 	}
 
 	/**
@@ -72,8 +74,8 @@ class Cdr extends CActiveRecord
 	{
 		return array(
 			'time' => 'Thời gian',
-				'time_start' => 'Thời gian bắt đầu',
-				'time_end' => 'Thời gian kết thúc',
+			'time_start' => 'Thời gian bắt đầu',
+			'time_end' => 'Thời gian kết thúc',
 			'a_number' => 'Số thuê bao',
 			'b_number' => 'Mã dịch vụ',
 			'eventid' => 'Mã sự kiện',
@@ -83,6 +85,12 @@ class Cdr extends CActiveRecord
 			'cost' => 'Cước',
 			'channeltype' => 'Loại kênh',
 			'information' => 'Thông tin khác',
+			// Custom properties
+				'phatsinhcuoc' => 'Phát sinh cước',
+				'khongphatsinhcuoc' => 'Không phát sinh cước',
+				'khongtrucuoc'	=>	'Không trừ cước',
+				'sanluong'	=>	'Sản lượng',
+				'doanhthu'	=>	'Doanh thu',
 		);
 	}
 
@@ -111,5 +119,30 @@ class Cdr extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+
+	public function summary(){
+		$criteria=new CDbCriteria;
+
+		$criteria->group = 'cpid, b_number';
+		$criteria->select = 'time,
+							cpid,
+							b_number,
+							COUNT(*) AS sanluong,
+							SUM((status = 1) AND (cost = 0)) AS khongphatsinhcuoc,
+							SUM((status=1) AND (cost > 0)) AS phatsinhcuoc,
+							SUM((status=0)) AS khongtrucuoc,
+							SUM(cost) AS doanhthu';
+		$criteria->compare('time',$this->time,true);
+		$criteria->compare('time', '>=' . $this->time_start);
+		$criteria->compare('time', '<=' . $this->time_end);
+		$criteria->compare('b_number',$this->b_number,true);
+		$criteria->compare('cpid',$this->cpid);
+
+		return new CActiveDataProvider($this, array(
+				'criteria'=>$criteria,
+		));
+
 	}
 }
