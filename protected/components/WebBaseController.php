@@ -46,8 +46,6 @@ abstract class WebBaseController extends BaseController
 	 */
 	public function init() {
 		parent::init();
-		/** Set language **/
-		Yii::app()->setLanguage(Yii::app()->getUser()->getState('language', Yii::app()->getRequest()->getPreferredLanguage()));
 		$this->siteName = Yii::app()->setting->get('web', 'siteName', Yii::app()->params['name']);
 		$this->siteSlogan = Yii::app()->setting->get('web', 'siteSlogan');
 		Yii::app()->setHomeUrl(Yii::app()->setting->get('web', 'homeUrl', 'core/node'));

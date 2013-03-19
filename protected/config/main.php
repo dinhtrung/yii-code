@@ -25,6 +25,16 @@ return array(
 	),
 	// application components
 	'components'=>array(
+// 		'db'=>array(
+// 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/yii-code.db',
+// 			'username' => 'root',
+// 			'password' => '',
+// 			'charset' => 'utf8',
+// 			'tablePrefix' => '',
+// 			'emulatePrepare' => YII_DEBUG,
+// 			'enableParamLogging' => YII_DEBUG,
+// 			'enableProfiling' => YII_DEBUG
+// 		),
 		// uncomment the following to use a MySQL database
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=yii_core',
@@ -33,8 +43,8 @@ return array(
 			'password' => 'myroot',
 			'charset' => 'utf8',
 			'tablePrefix' => '',
-			'enableParamLogging' => YII_DEBUG,
-			'enableProfiling' => YII_DEBUG,
+			'enableParamLogging' => TRUE,
+			'enableProfiling' => TRUE
 		),
 		'errorHandler' => array(
 			// use 'site/error' action to display errors
@@ -55,7 +65,11 @@ return array(
 		),
 		// Extra message source
 		'dbmessages' => array(
-			'class'	=>	'CPhpMessageSource',
+			'class'	=>	'CDbMessageSource',
+			'sourceMessageTable'	=>	'sourcemessage',
+			'translatedMessageTable'	=>	'message',
+			'language'	=>	'en',
+			'onMissingTranslation'	=> array('TranslateModule', 'missingTranslation'),
 		),
 		// Caching method - for Debug is CDummyCache but for production is CFileCache
 		'cache' => array(

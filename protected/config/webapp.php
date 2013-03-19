@@ -29,6 +29,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 			'enableBizRuleData' => false, // Whether to enable data for business rules.
 			'flashSuccessKey' => 'RightsSuccess', // Key to use for setting success flash messages.
 			'flashErrorKey' => 'RightsError', // Key to use for setting error flash messages.
+			'appLayout' => 'application.views.layouts.column2', // Layout to use for displaying Rights.
 			'baseUrl' => '/rights', // Base URL for Rights. Change if module is nested.
 			'cssFile' => 'rights.css', // Style sheet file to use for Rights.
 		) ,
@@ -69,7 +70,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-			), 
+			),
 		) ,
 		'authManager' => array(
 			'class' => 'RDbAuthManager',
