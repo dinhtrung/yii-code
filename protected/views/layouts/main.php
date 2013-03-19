@@ -21,19 +21,37 @@
 
 <div class="container" id="page">
 
-	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+	<div id="header" class="span-24 last">
+		<h1 class="span-14 prepend-top"><?php echo CHtml::encode(Yii::app()->name); ?></h1>
+		<div class="span-10 last prepend-top">
+			<?php if (Yii::app()->getUser()->isGuest):?>
+			<p class="flash-warning">Vui lòng <?php echo CHtml::link(
+					Yii::t('user', 'Login'),
+					Yii::app()->createUrl('user/login')
+					); ?> vào hệ thống</p>
+			<?php else: ?>
+			<p class="flash-success">Xin chào, <?php echo CHtml::link(
+					Yii::app()->getUser()->name,
+					Yii::app()->createUrl('user/profile')
+					); ?> |
+					<?php echo CHtml::link(
+					Yii::t('user', 'Logout'),
+					Yii::app()->createUrl('user/logout')
+					); ?>
+			</p>
+			<?php endif; ?>
+		</div>
 	</div><!-- header -->
-
+	<hr class="clearfix">
 	<div id="mainMbMenu">
 		<?php
 		$menuitems =  array(
-				array('label'=>'Báo cáo', 'url'=>'/site/index'),
+				array('label'=>'Báo cáo', 'url'=>array('/site/index')),
 				array('label' => 'Người dùng',
 					'items' => array(
-						array('label' => 'Đăng nhập', 'url' => 'user/login', 'visible' => (Yii::app()->getUser()->isGuest)),
-						array('label' => 'Hồ sơ', 'url' => 'user/profile', 'visible' => ! (Yii::app()->getUser()->isGuest)),
-						array('label' => 'Quản lý người dùng', 'url' => '/user/admin', 'visible' => (Yii::app()->getUser()->checkAccess('User.Admin.*'))),
+						array('label' => 'Đăng nhập', 'url' => array('/user/login'), 'visible' => (Yii::app()->getUser()->isGuest)),
+						array('label' => 'Hồ sơ', 'url' => array('/user/profile'), 'visible' => ! (Yii::app()->getUser()->isGuest)),
+						array('label' => 'Quản lý người dùng', 'url' => array('/user/admin'), 'visible' => (Yii::app()->getUser()->checkAccess('User.Admin.*'))),
 					),
 				)
 			);

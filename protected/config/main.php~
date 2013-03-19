@@ -30,11 +30,11 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=yii_core',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'myroot',
+			'password' => 'istt!2#',
 			'charset' => 'utf8',
 			'tablePrefix' => '',
-			'enableParamLogging' => YII_DEBUG,
-			'enableProfiling' => YII_DEBUG,
+			'enableParamLogging' => TRUE,
+			'enableProfiling' => TRUE
 		),
 		'errorHandler' => array(
 			// use 'site/error' action to display errors
@@ -55,7 +55,11 @@ return array(
 		),
 		// Extra message source
 		'dbmessages' => array(
-			'class'	=>	'CPhpMessageSource',
+			'class'	=>	'CDbMessageSource',
+			'sourceMessageTable'	=>	'sourcemessage',
+			'translatedMessageTable'	=>	'message',
+			'language'	=>	'en',
+			'onMissingTranslation'	=> array('TranslateModule', 'missingTranslation'),
 		),
 		// Caching method - for Debug is CDummyCache but for production is CFileCache
 		'cache' => array(

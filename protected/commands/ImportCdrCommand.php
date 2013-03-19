@@ -32,10 +32,29 @@ class ImportCdrCommand extends CConsoleCommand
         // The query to run against
         $query = 'LOAD DATA LOCAL INFILE ":file" REPLACE INTO TABLE cdr CHARACTER SET utf8 FIELDS TERMINATED BY ":" OPTIONALLY ENCLOSED BY \'"\' LINES TERMINATED BY "\n" (time, a_number, b_number, eventid, cpid, contentid, status, cost , channeltype , information)';
 
+	// Processed files
+	$processed = Yii::app()->db->createCommand('SELECT filename FROM processed')->queryAll();
+	foreach ($processed as $k => $fn) $processed[$k] = $fn['filename'];
+
         $cdrfiles = CFileHelper::findFiles($this->path, array('fileTypes' => array('cdr')));
-        foreach ($cdrfiles as $filename){
+        foreach ($cdrfiles as $filepath){
+		$filename = basename($filepath);
+		if (in_array($filename, $processed)) {
+			echo "Skip file: ".$filename."\n";
+			continue;
+		}
         	echo Yii::t('import-cdr', "Prepare to import file ':file'\n",array(':file' => $filename));
-        	Yii::app()->db->createCommand(strtr($query, array(':file' => $filename)))->execute();
+		$sql = strtr($query, array(':file' => $filepath));
+        	try {
+
+			Yii::app()->db->createCommand($sql)->execute();
+		} catch (CDbException $e){
+			mysql_connect('localhost', 'root', 'istt!2#', false, 128);
+			mysql_select_db('yii_core');
+//			mysql_set_charset('utf8');
+			mysql_query($sql);
+		}
+		Yii::app()->db->createCommand()->insert('processed', array('filename' => $filename));
         	echo "Done...\n";
         }
     }
