@@ -1,0 +1,2128 @@
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "log" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "cache" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "request" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.base.CModule] Loading "user" module
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "user" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "session" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "setting" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "db" application component
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:50:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:50:50 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='web'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:50:50 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (83)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "themeManager" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (84)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "messages" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (91)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.web.filters.CFilterChain] Running filter AdminController.filterRights()
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "coreMessages" application component
+in /var/www/html/istt/protected/components/BaseActiveRecord.php (53)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (25)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (106)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (36)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (106)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (36)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:50:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (106)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (36)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:50:50 [trace] [system.base.CModule] Loading "rights" module
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (261)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (244)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (38)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "authorizer" application component
+in /var/www/html/istt/protected/modules/rights/RightsModule.php (131)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (38)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "authManager" application component
+in /var/www/html/istt/protected/modules/rights/components/RAuthorizer.php (27)
+in /var/www/html/istt/protected/modules/rights/RightsModule.php (131)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (38)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.db.CDbCommand] Querying SQL: SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					WHERE t1.type=:type
+					ORDER BY t1.type DESC, weight ASC. Bound with :type=2
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (169)
+in /var/www/html/istt/protected/modules/rights/components/RAuthorizer.php (102)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (163)
+in /var/www/html/istt/protected/modules/user/views/admin/_form.php (29)
+in /var/www/html/istt/protected/modules/user/views/admin/create.php (13)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (64)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					WHERE t1.type=:type
+					ORDER BY t1.type DESC, weight ASC. Bound with :type=2)
+2013/03/19 16:50:50 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					WHERE t1.type=:type
+					ORDER BY t1.type DESC, weight ASC. Bound with :type=2)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "dbmessages" application component
+in /var/www/html/istt/protected/modules/rights/components/behaviors/RAuthItemBehavior.php (41)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (202)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (164)
+in /var/www/html/istt/protected/modules/user/views/admin/_form.php (29)
+in /var/www/html/istt/protected/modules/user/views/admin/create.php (13)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (64)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "widgetFactory" application component
+in /var/www/html/istt/protected/views/layouts/column2.php (1)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (64)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "assetManager" application component
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (109)
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (205)
+in /var/www/html/istt/protected/views/layouts/main.php (60)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (64)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:50:50 [trace] [system.CModule] Loading "clientScript" application component
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (118)
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (206)
+in /var/www/html/istt/protected/views/layouts/main.php (60)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (64)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "log" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "cache" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "request" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.base.CModule] Loading "user" module
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "user" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "session" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "setting" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "db" application component
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='web'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (83)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "themeManager" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (84)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "messages" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (91)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.web.filters.CFilterChain] Running filter AdminController.filterRights()
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "coreMessages" application component
+in /var/www/html/istt/protected/components/BaseActiveRecord.php (53)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (25)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (106)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (36)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (106)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (36)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (106)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (36)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:08 [trace] [system.base.CModule] Loading "rights" module
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (261)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (244)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (38)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "authorizer" application component
+in /var/www/html/istt/protected/modules/rights/RightsModule.php (131)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (38)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "authManager" application component
+in /var/www/html/istt/protected/modules/rights/components/RAuthorizer.php (27)
+in /var/www/html/istt/protected/modules/rights/RightsModule.php (131)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (38)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.ar.CActiveRecord] User.exists()
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (50)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SELECT 1 FROM `users` `t` WHERE `t`.`username`=:ycp0 LIMIT 1. Bound with :ycp0='ndtrung'
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (50)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`username`=:ycp0 LIMIT 1. Bound with :ycp0='ndtrung')
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`username`=:ycp0 LIMIT 1. Bound with :ycp0='ndtrung')
+2013/03/19 16:51:08 [trace] [system.db.ar.CActiveRecord] User.exists()
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (50)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SELECT 1 FROM `users` `t` WHERE `t`.`email`=:ycp1 LIMIT 1. Bound with :ycp1='ndtrung@istt.com.vn'
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (50)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`email`=:ycp1 LIMIT 1. Bound with :ycp1='ndtrung@istt.com.vn')
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`email`=:ycp1 LIMIT 1. Bound with :ycp1='ndtrung@istt.com.vn')
+2013/03/19 16:51:08 [trace] [system.db.ar.CActiveRecord] User.exists()
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SELECT 1 FROM `users` `t` WHERE `t`.`username`=:ycp2 LIMIT 1. Bound with :ycp2='ndtrung'
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`username`=:ycp2 LIMIT 1. Bound with :ycp2='ndtrung')
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`username`=:ycp2 LIMIT 1. Bound with :ycp2='ndtrung')
+2013/03/19 16:51:08 [trace] [system.db.ar.CActiveRecord] User.exists()
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SELECT 1 FROM `users` `t` WHERE `t`.`email`=:ycp3 LIMIT 1. Bound with :ycp3='ndtrung@istt.com.vn'
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`email`=:ycp3 LIMIT 1. Bound with :ycp3='ndtrung@istt.com.vn')
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`email`=:ycp3 LIMIT 1. Bound with :ycp3='ndtrung@istt.com.vn')
+2013/03/19 16:51:08 [trace] [system.db.ar.CActiveRecord] User.insert()
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Executing SQL: INSERT INTO `users` (`activkey`, `createtime`, `superuser`, `status`, `username`, `password`, `email`, `role`, `lastvisit`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8). Bound with :yp0='a5dcdbbf03cf6056d1804482e6d71575', :yp1=1363686668, :yp2=0, :yp3=1, :yp4='ndtrung', :yp5='2eb3dce5a83b7c0f91071ebe80b3b67a', :yp6='ndtrung@istt.com.vn', :yp7=0, :yp8=1363686668
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.execute] begin:system.db.CDbCommand.execute(INSERT INTO `users` (`activkey`, `createtime`, `superuser`, `status`, `username`, `password`, `email`, `role`, `lastvisit`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8). Bound with :yp0='a5dcdbbf03cf6056d1804482e6d71575', :yp1=1363686668, :yp2=0, :yp3=1, :yp4='ndtrung', :yp5='2eb3dce5a83b7c0f91071ebe80b3b67a', :yp6='ndtrung@istt.com.vn', :yp7=0, :yp8=1363686668)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.execute] end:system.db.CDbCommand.execute(INSERT INTO `users` (`activkey`, `createtime`, `superuser`, `status`, `username`, `password`, `email`, `role`, `lastvisit`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8). Bound with :yp0='a5dcdbbf03cf6056d1804482e6d71575', :yp1=1363686668, :yp2=0, :yp3=1, :yp4='ndtrung', :yp5='2eb3dce5a83b7c0f91071ebe80b3b67a', :yp6='ndtrung@istt.com.vn', :yp7=0, :yp8=1363686668)
+2013/03/19 16:51:08 [trace] [system.db.ar.CActiveRecord] writing MANY_MANY data for User
+in /var/www/html/istt/protected/extensions/behaviors/CAdvancedArBehavior.php (102)
+in /var/www/html/istt/protected/extensions/behaviors/CAdvancedArBehavior.php (93)
+in /var/www/html/istt/protected/components/BaseActiveRecord.php (45)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SELECT *
+FROM `authassignment`
+WHERE itemname=:itemname AND userid=:userid. Bound with :itemname='Admin', :userid='3'
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (50)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (54)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT *
+FROM `authassignment`
+WHERE itemname=:itemname AND userid=:userid. Bound with :itemname='Admin', :userid='3')
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT *
+FROM `authassignment`
+WHERE itemname=:itemname AND userid=:userid. Bound with :itemname='Admin', :userid='3')
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Executing SQL: INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES (:itemname, :userid, :bizrule, :data). Bound with :itemname='Admin', :userid='3', :bizrule=NULL, :data='N;'
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (51)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (54)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.execute] begin:system.db.CDbCommand.execute(INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES (:itemname, :userid, :bizrule, :data). Bound with :itemname='Admin', :userid='3', :bizrule=NULL, :data='N;')
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.execute] end:system.db.CDbCommand.execute(INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES (:itemname, :userid, :bizrule, :data). Bound with :itemname='Admin', :userid='3', :bizrule=NULL, :data='N;')
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (169)
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (65)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (55)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "log" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "cache" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "request" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.base.CModule] Loading "user" module
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "user" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "session" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "setting" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "db" application component
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='web'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (83)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "themeManager" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (84)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "messages" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (91)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.web.filters.CFilterChain] Running filter AdminController.filterRights()
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.web.filters.CFilterChain] Running filter ESetReturnUrlFilter.filter()
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "coreMessages" application component
+in /var/www/html/istt/protected/components/BaseActiveRecord.php (53)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (25)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (12)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `users`
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (12)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `users`
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (12)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "widgetFactory" application component
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.ar.CActiveRecord] User.count()
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `users` `t`
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT COUNT(*) FROM `users` `t`)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT COUNT(*) FROM `users` `t`)
+2013/03/19 16:51:08 [trace] [system.db.ar.CActiveRecord] User.findAll()
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `users` `t` LIMIT 10
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM `users` `t` LIMIT 10)
+2013/03/19 16:51:08 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM `users` `t` LIMIT 10)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "assetManager" application component
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "clientScript" application component
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "format" application component
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:08 [trace] [system.CModule] Loading "dbmessages" application component
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "log" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "cache" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "request" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.base.CModule] Loading "user" module
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "user" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "session" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "setting" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "db" application component
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:10 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:10 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='web'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:10 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (83)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "themeManager" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (84)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "messages" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (91)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.web.filters.CFilterChain] Running filter AdminController.filterRights()
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "coreMessages" application component
+in /var/www/html/istt/protected/components/BaseActiveRecord.php (53)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (25)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (106)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (36)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (106)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (36)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:10 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (106)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (36)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:10 [trace] [system.base.CModule] Loading "rights" module
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (261)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (244)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (38)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "authorizer" application component
+in /var/www/html/istt/protected/modules/rights/RightsModule.php (131)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (38)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "authManager" application component
+in /var/www/html/istt/protected/modules/rights/components/RAuthorizer.php (27)
+in /var/www/html/istt/protected/modules/rights/RightsModule.php (131)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (38)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.db.CDbCommand] Querying SQL: SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					WHERE t1.type=:type
+					ORDER BY t1.type DESC, weight ASC. Bound with :type=2
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (169)
+in /var/www/html/istt/protected/modules/rights/components/RAuthorizer.php (102)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (163)
+in /var/www/html/istt/protected/modules/user/views/admin/_form.php (29)
+in /var/www/html/istt/protected/modules/user/views/admin/create.php (13)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (64)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					WHERE t1.type=:type
+					ORDER BY t1.type DESC, weight ASC. Bound with :type=2)
+2013/03/19 16:51:10 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					WHERE t1.type=:type
+					ORDER BY t1.type DESC, weight ASC. Bound with :type=2)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "dbmessages" application component
+in /var/www/html/istt/protected/modules/rights/components/behaviors/RAuthItemBehavior.php (41)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (202)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (164)
+in /var/www/html/istt/protected/modules/user/views/admin/_form.php (29)
+in /var/www/html/istt/protected/modules/user/views/admin/create.php (13)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (64)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "widgetFactory" application component
+in /var/www/html/istt/protected/views/layouts/column2.php (1)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (64)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "assetManager" application component
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (109)
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (205)
+in /var/www/html/istt/protected/views/layouts/main.php (60)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (64)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:10 [trace] [system.CModule] Loading "clientScript" application component
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (118)
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (206)
+in /var/www/html/istt/protected/views/layouts/main.php (60)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (64)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "log" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "cache" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "request" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.base.CModule] Loading "user" module
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "user" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "session" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "setting" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "db" application component
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='web'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (83)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "themeManager" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (84)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "messages" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (91)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.web.filters.CFilterChain] Running filter AdminController.filterRights()
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "coreMessages" application component
+in /var/www/html/istt/protected/components/BaseActiveRecord.php (53)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (25)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (106)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (36)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (106)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (36)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (106)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (36)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:27 [trace] [system.base.CModule] Loading "rights" module
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (261)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (244)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (38)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "authorizer" application component
+in /var/www/html/istt/protected/modules/rights/RightsModule.php (131)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (38)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "authManager" application component
+in /var/www/html/istt/protected/modules/rights/components/RAuthorizer.php (27)
+in /var/www/html/istt/protected/modules/rights/RightsModule.php (131)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (38)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.ar.CActiveRecord] User.exists()
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (50)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT 1 FROM `users` `t` WHERE `t`.`username`=:ycp0 LIMIT 1. Bound with :ycp0='istt'
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (50)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`username`=:ycp0 LIMIT 1. Bound with :ycp0='istt')
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`username`=:ycp0 LIMIT 1. Bound with :ycp0='istt')
+2013/03/19 16:51:27 [trace] [system.db.ar.CActiveRecord] User.exists()
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (50)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT 1 FROM `users` `t` WHERE `t`.`email`=:ycp1 LIMIT 1. Bound with :ycp1='support@istt.com.vn'
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (50)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`email`=:ycp1 LIMIT 1. Bound with :ycp1='support@istt.com.vn')
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`email`=:ycp1 LIMIT 1. Bound with :ycp1='support@istt.com.vn')
+2013/03/19 16:51:27 [trace] [system.db.ar.CActiveRecord] User.exists()
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT 1 FROM `users` `t` WHERE `t`.`username`=:ycp2 LIMIT 1. Bound with :ycp2='istt'
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`username`=:ycp2 LIMIT 1. Bound with :ycp2='istt')
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`username`=:ycp2 LIMIT 1. Bound with :ycp2='istt')
+2013/03/19 16:51:27 [trace] [system.db.ar.CActiveRecord] User.exists()
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT 1 FROM `users` `t` WHERE `t`.`email`=:ycp3 LIMIT 1. Bound with :ycp3='support@istt.com.vn'
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`email`=:ycp3 LIMIT 1. Bound with :ycp3='support@istt.com.vn')
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT 1 FROM `users` `t` WHERE `t`.`email`=:ycp3 LIMIT 1. Bound with :ycp3='support@istt.com.vn')
+2013/03/19 16:51:27 [trace] [system.db.ar.CActiveRecord] User.insert()
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Executing SQL: INSERT INTO `users` (`activkey`, `createtime`, `superuser`, `status`, `username`, `password`, `email`, `role`, `lastvisit`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8). Bound with :yp0='bdfbc82d29ecdd78767abcf9667b4cd7', :yp1=1363686687, :yp2=0, :yp3=1, :yp4='istt', :yp5='1ac58615a496edbf73a178d2085244c6', :yp6='support@istt.com.vn', :yp7=0, :yp8=1363686687
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.execute] begin:system.db.CDbCommand.execute(INSERT INTO `users` (`activkey`, `createtime`, `superuser`, `status`, `username`, `password`, `email`, `role`, `lastvisit`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8). Bound with :yp0='bdfbc82d29ecdd78767abcf9667b4cd7', :yp1=1363686687, :yp2=0, :yp3=1, :yp4='istt', :yp5='1ac58615a496edbf73a178d2085244c6', :yp6='support@istt.com.vn', :yp7=0, :yp8=1363686687)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.execute] end:system.db.CDbCommand.execute(INSERT INTO `users` (`activkey`, `createtime`, `superuser`, `status`, `username`, `password`, `email`, `role`, `lastvisit`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8). Bound with :yp0='bdfbc82d29ecdd78767abcf9667b4cd7', :yp1=1363686687, :yp2=0, :yp3=1, :yp4='istt', :yp5='1ac58615a496edbf73a178d2085244c6', :yp6='support@istt.com.vn', :yp7=0, :yp8=1363686687)
+2013/03/19 16:51:27 [trace] [system.db.ar.CActiveRecord] writing MANY_MANY data for User
+in /var/www/html/istt/protected/extensions/behaviors/CAdvancedArBehavior.php (102)
+in /var/www/html/istt/protected/extensions/behaviors/CAdvancedArBehavior.php (93)
+in /var/www/html/istt/protected/components/BaseActiveRecord.php (45)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (52)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT *
+FROM `authassignment`
+WHERE itemname=:itemname AND userid=:userid. Bound with :itemname='Admin', :userid='4'
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (50)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (54)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT *
+FROM `authassignment`
+WHERE itemname=:itemname AND userid=:userid. Bound with :itemname='Admin', :userid='4')
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT *
+FROM `authassignment`
+WHERE itemname=:itemname AND userid=:userid. Bound with :itemname='Admin', :userid='4')
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Executing SQL: INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES (:itemname, :userid, :bizrule, :data). Bound with :itemname='Admin', :userid='4', :bizrule=NULL, :data='N;'
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (51)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (54)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.execute] begin:system.db.CDbCommand.execute(INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES (:itemname, :userid, :bizrule, :data). Bound with :itemname='Admin', :userid='4', :bizrule=NULL, :data='N;')
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.execute] end:system.db.CDbCommand.execute(INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES (:itemname, :userid, :bizrule, :data). Bound with :itemname='Admin', :userid='4', :bizrule=NULL, :data='N;')
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (169)
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (65)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (55)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "log" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "cache" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "request" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.base.CModule] Loading "user" module
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "user" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "session" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "setting" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "db" application component
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='web'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (83)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "themeManager" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (84)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "messages" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (91)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.web.filters.CFilterChain] Running filter AdminController.filterRights()
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.web.filters.CFilterChain] Running filter ESetReturnUrlFilter.filter()
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "coreMessages" application component
+in /var/www/html/istt/protected/components/BaseActiveRecord.php (53)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (25)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (12)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `users`
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (12)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `users`
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (12)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "widgetFactory" application component
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.ar.CActiveRecord] User.count()
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `users` `t`
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT COUNT(*) FROM `users` `t`)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT COUNT(*) FROM `users` `t`)
+2013/03/19 16:51:27 [trace] [system.db.ar.CActiveRecord] User.findAll()
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `users` `t` LIMIT 10
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM `users` `t` LIMIT 10)
+2013/03/19 16:51:27 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM `users` `t` LIMIT 10)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "assetManager" application component
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "clientScript" application component
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "format" application component
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:27 [trace] [system.CModule] Loading "dbmessages" application component
+in /var/www/html/istt/protected/modules/user/views/admin/index.php (41)
+in /var/www/html/istt/protected/modules/user/controllers/AdminController.php (15)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "log" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "cache" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "request" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.base.CModule] Loading "user" module
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "user" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "session" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "setting" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "db" application component
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='web'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (83)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "themeManager" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (84)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "messages" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (91)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.web.filters.CFilterChain] Running filter LogoutController.filterRights()
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "log" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "cache" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "request" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.base.CModule] Loading "user" module
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "user" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "session" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "setting" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "db" application component
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='web'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (83)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "themeManager" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (84)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "messages" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (91)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.web.filters.CFilterChain] Running filter LoginController.filterRights()
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "widgetFactory" application component
+in /var/www/html/istt/protected/views/layouts/column2.php (1)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "authManager" application component
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (43)
+in /var/www/html/istt/protected/views/layouts/main.php (54)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT *
+FROM `authassignment`
+WHERE userid=:userid. Bound with :userid=NULL
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (43)
+in /var/www/html/istt/protected/views/layouts/main.php (54)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT *
+FROM `authassignment`
+WHERE userid=:userid. Bound with :userid=NULL)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT *
+FROM `authassignment`
+WHERE userid=:userid. Bound with :userid=NULL)
+2013/03/19 16:51:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (169)
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (65)
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (43)
+in /var/www/html/istt/protected/views/layouts/main.php (54)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC)
+2013/03/19 16:51:32 [trace] [system.web.auth.CDbAuthManager] Checking permission "User.Admin.*"
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (43)
+in /var/www/html/istt/protected/views/layouts/main.php (54)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT `parent`
+FROM `authitemchild`
+WHERE child=:name. Bound with :name='User.Admin.*'
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (43)
+in /var/www/html/istt/protected/views/layouts/main.php (54)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT `parent`
+FROM `authitemchild`
+WHERE child=:name. Bound with :name='User.Admin.*')
+2013/03/19 16:51:32 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT `parent`
+FROM `authitemchild`
+WHERE child=:name. Bound with :name='User.Admin.*')
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "assetManager" application component
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (109)
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (205)
+in /var/www/html/istt/protected/views/layouts/main.php (60)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "clientScript" application component
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (118)
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (206)
+in /var/www/html/istt/protected/views/layouts/main.php (60)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:32 [trace] [system.CModule] Loading "coreMessages" application component
+in /var/www/html/istt/protected/views/layouts/main.php (65)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "log" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "cache" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "request" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.base.CModule] Loading "user" module
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "user" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "session" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "setting" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "db" application component
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:37 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:37 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='web'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:37 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (83)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "themeManager" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (84)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "messages" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (91)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.web.filters.CFilterChain] Running filter LoginController.filterRights()
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "coreMessages" application component
+in /var/www/html/istt/protected/components/BaseActiveRecord.php (53)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (25)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/modules/user/models/User.php (28)
+in /var/www/html/istt/protected/modules/user/components/UserIdentity.php (27)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (52)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+2013/03/19 16:51:37 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/modules/user/models/User.php (28)
+in /var/www/html/istt/protected/modules/user/components/UserIdentity.php (27)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (52)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:37 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/modules/user/models/User.php (28)
+in /var/www/html/istt/protected/modules/user/components/UserIdentity.php (27)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (52)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:37 [trace] [system.db.ar.CActiveRecord] User.findByAttributes()
+in /var/www/html/istt/protected/modules/user/components/UserIdentity.php (27)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (52)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.db.CDbCommand] Querying SQL: SELECT id, username, password, email, activkey, createtime, lastvisit, role, status FROM `users` `t` WHERE `t`.`username`=:yp0 LIMIT 1. Bound with :yp0='istt'
+in /var/www/html/istt/protected/modules/user/components/UserIdentity.php (27)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (52)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT id, username, password, email, activkey, createtime, lastvisit, role, status FROM `users` `t` WHERE `t`.`username`=:yp0 LIMIT 1. Bound with :yp0='istt')
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT id, username, password, email, activkey, createtime, lastvisit, role, status FROM `users` `t` WHERE `t`.`username`=:yp0 LIMIT 1. Bound with :yp0='istt')
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "widgetFactory" application component
+in /var/www/html/istt/protected/views/layouts/column2.php (1)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "authManager" application component
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (43)
+in /var/www/html/istt/protected/views/layouts/main.php (54)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.db.CDbCommand] Querying SQL: SELECT *
+FROM `authassignment`
+WHERE userid=:userid. Bound with :userid=NULL
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (43)
+in /var/www/html/istt/protected/views/layouts/main.php (54)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT *
+FROM `authassignment`
+WHERE userid=:userid. Bound with :userid=NULL)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT *
+FROM `authassignment`
+WHERE userid=:userid. Bound with :userid=NULL)
+2013/03/19 16:51:37 [trace] [system.db.CDbCommand] Querying SQL: SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (169)
+in /var/www/html/istt/protected/modules/rights/components/RDbAuthManager.php (65)
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (43)
+in /var/www/html/istt/protected/views/layouts/main.php (54)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC)
+2013/03/19 16:51:37 [trace] [system.web.auth.CDbAuthManager] Checking permission "User.Admin.*"
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (43)
+in /var/www/html/istt/protected/views/layouts/main.php (54)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.db.CDbCommand] Querying SQL: SELECT `parent`
+FROM `authitemchild`
+WHERE child=:name. Bound with :name='User.Admin.*'
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (43)
+in /var/www/html/istt/protected/views/layouts/main.php (54)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT `parent`
+FROM `authitemchild`
+WHERE child=:name. Bound with :name='User.Admin.*')
+2013/03/19 16:51:37 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT `parent`
+FROM `authitemchild`
+WHERE child=:name. Bound with :name='User.Admin.*')
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "assetManager" application component
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (109)
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (205)
+in /var/www/html/istt/protected/views/layouts/main.php (60)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:37 [trace] [system.CModule] Loading "clientScript" application component
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (118)
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (206)
+in /var/www/html/istt/protected/views/layouts/main.php (60)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (31)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "log" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "cache" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "request" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.base.CModule] Loading "user" module
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "user" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "session" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "setting" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "db" application component
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='web'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (83)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "themeManager" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (84)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "messages" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (91)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.web.filters.CFilterChain] Running filter LoginController.filterRights()
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "coreMessages" application component
+in /var/www/html/istt/protected/components/BaseActiveRecord.php (53)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (25)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/modules/user/models/User.php (28)
+in /var/www/html/istt/protected/modules/user/components/UserIdentity.php (27)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (52)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/modules/user/models/User.php (28)
+in /var/www/html/istt/protected/modules/user/components/UserIdentity.php (27)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (52)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/modules/user/models/User.php (28)
+in /var/www/html/istt/protected/modules/user/components/UserIdentity.php (27)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (52)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:41 [trace] [system.db.ar.CActiveRecord] User.findByAttributes()
+in /var/www/html/istt/protected/modules/user/components/UserIdentity.php (27)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (52)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT id, username, password, email, activkey, createtime, lastvisit, role, status FROM `users` `t` WHERE `t`.`username`=:yp0 LIMIT 1. Bound with :yp0='istt'
+in /var/www/html/istt/protected/modules/user/components/UserIdentity.php (27)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (52)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT id, username, password, email, activkey, createtime, lastvisit, role, status FROM `users` `t` WHERE `t`.`username`=:yp0 LIMIT 1. Bound with :yp0='istt')
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT id, username, password, email, activkey, createtime, lastvisit, role, status FROM `users` `t` WHERE `t`.`username`=:yp0 LIMIT 1. Bound with :yp0='istt')
+2013/03/19 16:51:41 [trace] [system.base.CModule] Loading "rights" module
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (261)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (244)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (21)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (57)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "authorizer" application component
+in /var/www/html/istt/protected/modules/rights/RightsModule.php (131)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (21)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (57)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "authManager" application component
+in /var/www/html/istt/protected/modules/rights/components/RAuthorizer.php (27)
+in /var/www/html/istt/protected/modules/rights/RightsModule.php (131)
+in /var/www/html/istt/protected/modules/rights/components/Rights.php (277)
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (21)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (57)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT *
+FROM `authassignment`
+WHERE userid=:userid. Bound with :userid='4'
+in /var/www/html/istt/protected/modules/rights/components/RAuthorizer.php (340)
+in /var/www/html/istt/protected/modules/rights/components/RWebUser.php (21)
+in /var/www/html/istt/protected/modules/user/models/UserLogin.php (57)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (22)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT *
+FROM `authassignment`
+WHERE userid=:userid. Bound with :userid='4')
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT *
+FROM `authassignment`
+WHERE userid=:userid. Bound with :userid='4')
+2013/03/19 16:51:41 [trace] [system.db.ar.CActiveRecord] User.findByPk()
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (37)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (23)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT id, username, password, email, activkey, createtime, lastvisit, role, status FROM `users` `t` WHERE `t`.`id`=4 LIMIT 1
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (37)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (23)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT id, username, password, email, activkey, createtime, lastvisit, role, status FROM `users` `t` WHERE `t`.`id`=4 LIMIT 1)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT id, username, password, email, activkey, createtime, lastvisit, role, status FROM `users` `t` WHERE `t`.`id`=4 LIMIT 1)
+2013/03/19 16:51:41 [trace] [system.db.ar.CActiveRecord] User.findAll()
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (39)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (23)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `users` `t` WHERE `t`.`username`=:ycp0 LIMIT 2. Bound with :ycp0='istt'
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (39)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (23)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM `users` `t` WHERE `t`.`username`=:ycp0 LIMIT 2. Bound with :ycp0='istt')
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM `users` `t` WHERE `t`.`username`=:ycp0 LIMIT 2. Bound with :ycp0='istt')
+2013/03/19 16:51:41 [trace] [system.db.ar.CActiveRecord] User.findAll()
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (39)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (23)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `users` `t` WHERE `t`.`email`=:ycp1 LIMIT 2. Bound with :ycp1='support@istt.com.vn'
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (39)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (23)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM `users` `t` WHERE `t`.`email`=:ycp1 LIMIT 2. Bound with :ycp1='support@istt.com.vn')
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM `users` `t` WHERE `t`.`email`=:ycp1 LIMIT 2. Bound with :ycp1='support@istt.com.vn')
+2013/03/19 16:51:41 [trace] [system.db.ar.CActiveRecord] User.update()
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (39)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (23)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.db.ar.CActiveRecord] User.updateByPk()
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (39)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (23)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Executing SQL: UPDATE `users` SET `id`=:yp0, `username`=:yp1, `password`=:yp2, `email`=:yp3, `activkey`=:yp4, `createtime`=:yp5, `lastvisit`=:yp6, `role`=:yp7, `status`=:yp8 WHERE `users`.`id`=4. Bound with :yp0=4, :yp1='istt', :yp2='1ac58615a496edbf73a178d2085244c6', :yp3='support@istt.com.vn', :yp4='bdfbc82d29ecdd78767abcf9667b4cd7', :yp5=1363686687, :yp6=1363686701, :yp7=0, :yp8=1
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (39)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (23)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.execute] begin:system.db.CDbCommand.execute(UPDATE `users` SET `id`=:yp0, `username`=:yp1, `password`=:yp2, `email`=:yp3, `activkey`=:yp4, `createtime`=:yp5, `lastvisit`=:yp6, `role`=:yp7, `status`=:yp8 WHERE `users`.`id`=4. Bound with :yp0=4, :yp1='istt', :yp2='1ac58615a496edbf73a178d2085244c6', :yp3='support@istt.com.vn', :yp4='bdfbc82d29ecdd78767abcf9667b4cd7', :yp5=1363686687, :yp6=1363686701, :yp7=0, :yp8=1)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.execute] end:system.db.CDbCommand.execute(UPDATE `users` SET `id`=:yp0, `username`=:yp1, `password`=:yp2, `email`=:yp3, `activkey`=:yp4, `createtime`=:yp5, `lastvisit`=:yp6, `role`=:yp7, `status`=:yp8 WHERE `users`.`id`=4. Bound with :yp0=4, :yp1='istt', :yp2='1ac58615a496edbf73a178d2085244c6', :yp3='support@istt.com.vn', :yp4='bdfbc82d29ecdd78767abcf9667b4cd7', :yp5=1363686687, :yp6=1363686701, :yp7=0, :yp8=1)
+2013/03/19 16:51:41 [trace] [system.db.ar.CActiveRecord] writing MANY_MANY data for User
+in /var/www/html/istt/protected/extensions/behaviors/CAdvancedArBehavior.php (102)
+in /var/www/html/istt/protected/extensions/behaviors/CAdvancedArBehavior.php (93)
+in /var/www/html/istt/protected/components/BaseActiveRecord.php (45)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (39)
+in /var/www/html/istt/protected/modules/user/controllers/LoginController.php (23)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "log" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "cache" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "request" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.base.CModule] Loading "user" module
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "user" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "session" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "setting" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "db" application component
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='web'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (83)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "themeManager" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (84)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "messages" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (91)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.web.filters.CFilterChain] Running filter ProfileController.filterRights()
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "coreMessages" application component
+in /var/www/html/istt/protected/components/BaseActiveRecord.php (53)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (25)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/modules/user/models/User.php (28)
+in /var/www/html/istt/protected/modules/user/UserModule.php (176)
+in /var/www/html/istt/protected/modules/user/controllers/ProfileController.php (94)
+in /var/www/html/istt/protected/modules/user/controllers/ProfileController.php (17)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/modules/user/models/User.php (28)
+in /var/www/html/istt/protected/modules/user/UserModule.php (176)
+in /var/www/html/istt/protected/modules/user/controllers/ProfileController.php (94)
+in /var/www/html/istt/protected/modules/user/controllers/ProfileController.php (17)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `users`)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `users`
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (123)
+in /var/www/html/istt/protected/components/MultiActiveRecord.php (56)
+in /var/www/html/istt/protected/modules/user/models/User.php (28)
+in /var/www/html/istt/protected/modules/user/UserModule.php (176)
+in /var/www/html/istt/protected/modules/user/controllers/ProfileController.php (94)
+in /var/www/html/istt/protected/modules/user/controllers/ProfileController.php (17)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `users`)
+2013/03/19 16:51:41 [trace] [system.db.ar.CActiveRecord] User.findByPk()
+in /var/www/html/istt/protected/modules/user/UserModule.php (176)
+in /var/www/html/istt/protected/modules/user/controllers/ProfileController.php (94)
+in /var/www/html/istt/protected/modules/user/controllers/ProfileController.php (17)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `users` `t` WHERE (status=1) AND (`t`.`id`=4) LIMIT 1
+in /var/www/html/istt/protected/modules/user/UserModule.php (176)
+in /var/www/html/istt/protected/modules/user/controllers/ProfileController.php (94)
+in /var/www/html/istt/protected/modules/user/controllers/ProfileController.php (17)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM `users` `t` WHERE (status=1) AND (`t`.`id`=4) LIMIT 1)
+2013/03/19 16:51:41 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM `users` `t` WHERE (status=1) AND (`t`.`id`=4) LIMIT 1)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "widgetFactory" application component
+in /var/www/html/istt/protected/views/layouts/column2.php (1)
+in /var/www/html/istt/protected/modules/user/controllers/ProfileController.php (20)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "assetManager" application component
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (109)
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (205)
+in /var/www/html/istt/protected/views/layouts/main.php (60)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/ProfileController.php (20)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:41 [trace] [system.CModule] Loading "clientScript" application component
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (118)
+in /var/www/html/istt/protected/extensions/widgets/mbmenu/MbMenu.php (206)
+in /var/www/html/istt/protected/views/layouts/main.php (60)
+in /var/www/html/istt/protected/views/layouts/column2.php (29)
+in /var/www/html/istt/protected/modules/user/controllers/ProfileController.php (20)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "log" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "cache" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "request" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "urlManager" application component
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "user" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "session" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (50)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "setting" application component
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "db" application component
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.db.CDbConnection] Opening DB connection
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 16:51:43 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `settings`
+in /var/www/html/istt/protected/extensions/components/Settings.php (37)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 16:51:43 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='web'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/components/WebBaseController.php (51)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 16:51:43 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme'
+in /var/www/html/istt/protected/extensions/components/Settings.php (134)
+in /var/www/html/istt/protected/extensions/components/Settings.php (81)
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (83)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "themeManager" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (84)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "messages" application component
+in /var/www/html/istt/protected/modules/core/models/Webtheme.php (91)
+in /var/www/html/istt/protected/components/WebBaseController.php (57)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.web.filters.CFilterChain] Running filter SiteController.filterRights()
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.web.filters.CFilterChain] Running filter ESetReturnUrlFilter.filter()
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `cdr`
+in /var/www/html/istt/protected/controllers/SiteController.php (7)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `cdr`)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `cdr`)
+2013/03/19 16:51:43 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `cdr`
+in /var/www/html/istt/protected/controllers/SiteController.php (7)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `cdr`)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `cdr`)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "widgetFactory" application component
+in /var/www/html/istt/protected/views/site/overview.php (45)
+in /var/www/html/istt/protected/controllers/SiteController.php (9)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "clientScript" application component
+in /var/www/html/istt/protected/extensions/widgets/datetimepicker/CJuiDateTimePicker.php (25)
+in /var/www/html/istt/protected/views/site/overview.php (53)
+in /var/www/html/istt/protected/controllers/SiteController.php (9)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "assetManager" application component
+in /var/www/html/istt/protected/extensions/widgets/datetimepicker/CJuiDateTimePicker.php (25)
+in /var/www/html/istt/protected/views/site/overview.php (53)
+in /var/www/html/istt/protected/controllers/SiteController.php (9)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.db.ar.CActiveRecord] Cdr.count()
+in /var/www/html/istt/protected/views/site/overview.php (119)
+in /var/www/html/istt/protected/controllers/SiteController.php (9)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM (SELECT time,
+							cpid,
+							b_number,
+							COUNT(*) AS sanluong,
+							SUM((status = 1) AND (cost = 0)) AS khongphatsinhcuoc,
+							SUM((status=1) AND (cost > 0)) AS phatsinhcuoc,
+							SUM((status=0)) AS khongtrucuoc,
+							SUM(cost) AS doanhthu FROM `cdr` `t` GROUP BY cpid, b_number) sq
+in /var/www/html/istt/protected/views/site/overview.php (119)
+in /var/www/html/istt/protected/controllers/SiteController.php (9)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT COUNT(*) FROM (SELECT time,
+							cpid,
+							b_number,
+							COUNT(*) AS sanluong,
+							SUM((status = 1) AND (cost = 0)) AS khongphatsinhcuoc,
+							SUM((status=1) AND (cost > 0)) AS phatsinhcuoc,
+							SUM((status=0)) AS khongtrucuoc,
+							SUM(cost) AS doanhthu FROM `cdr` `t` GROUP BY cpid, b_number) sq)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT COUNT(*) FROM (SELECT time,
+							cpid,
+							b_number,
+							COUNT(*) AS sanluong,
+							SUM((status = 1) AND (cost = 0)) AS khongphatsinhcuoc,
+							SUM((status=1) AND (cost > 0)) AS phatsinhcuoc,
+							SUM((status=0)) AS khongtrucuoc,
+							SUM(cost) AS doanhthu FROM `cdr` `t` GROUP BY cpid, b_number) sq)
+2013/03/19 16:51:43 [trace] [system.db.ar.CActiveRecord] Cdr.findAll()
+in /var/www/html/istt/protected/views/site/overview.php (119)
+in /var/www/html/istt/protected/controllers/SiteController.php (9)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.db.CDbCommand] Querying SQL: SELECT time,
+							cpid,
+							b_number,
+							COUNT(*) AS sanluong,
+							SUM((status = 1) AND (cost = 0)) AS khongphatsinhcuoc,
+							SUM((status=1) AND (cost > 0)) AS phatsinhcuoc,
+							SUM((status=0)) AS khongtrucuoc,
+							SUM(cost) AS doanhthu FROM `cdr` `t` GROUP BY cpid, b_number LIMIT 10
+in /var/www/html/istt/protected/views/site/overview.php (119)
+in /var/www/html/istt/protected/controllers/SiteController.php (9)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT time,
+							cpid,
+							b_number,
+							COUNT(*) AS sanluong,
+							SUM((status = 1) AND (cost = 0)) AS khongphatsinhcuoc,
+							SUM((status=1) AND (cost > 0)) AS phatsinhcuoc,
+							SUM((status=0)) AS khongtrucuoc,
+							SUM(cost) AS doanhthu FROM `cdr` `t` GROUP BY cpid, b_number LIMIT 10)
+2013/03/19 16:51:43 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT time,
+							cpid,
+							b_number,
+							COUNT(*) AS sanluong,
+							SUM((status = 1) AND (cost = 0)) AS khongphatsinhcuoc,
+							SUM((status=1) AND (cost > 0)) AS phatsinhcuoc,
+							SUM((status=0)) AS khongtrucuoc,
+							SUM(cost) AS doanhthu FROM `cdr` `t` GROUP BY cpid, b_number LIMIT 10)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "coreMessages" application component
+in /var/www/html/istt/protected/views/site/overview.php (119)
+in /var/www/html/istt/protected/controllers/SiteController.php (9)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 16:51:43 [trace] [system.CModule] Loading "format" application component
+in /var/www/html/istt/protected/views/site/overview.php (119)
+in /var/www/html/istt/protected/controllers/SiteController.php (9)
+in /var/www/html/istt/protected/components/WebBaseController.php (84)
+in /var/www/html/istt/index.php (29)
+2013/03/19 19:39:02 [trace] [system.CModule] Loading "log" application component
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:02 [trace] [system.CModule] Loading "cache" application component
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:02 [trace] [system.CModule] Loading "request" application component
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:02 [trace] [system.CModule] Loading "urlManager" application component
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:02 [trace] [system.base.CModule] Loading "user" module
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:02 [trace] [system.CModule] Loading "user" application component
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (50)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:02 [trace] [system.CModule] Loading "session" application component
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (50)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:02 [trace] [system.CModule] Loading "setting" application component
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (51)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:02 [trace] [system.CModule] Loading "db" application component
+in /media/srv/www/yii/yii-code/protected/extensions/components/Settings.php (37)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (51)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:02 [trace] [system.db.CDbConnection] Opening DB connection
+in /media/srv/www/yii/yii-code/protected/extensions/components/Settings.php (37)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (51)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:11 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2005] Unknown MySQL server host 'istt' (2)' in /media/srv/www/yii/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /media/srv/www/yii/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /media/srv/www/yii/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /media/srv/www/yii/framework/base/CModule.php(387): CDbConnection->init()
+#3 /media/srv/www/yii/framework/base/CApplication.php(438): CModule->getComponent('db')
+#4 /media/srv/www/yii/yii-code/protected/extensions/components/Settings.php(37): CApplication->getDb()
+#5 /media/srv/www/yii/framework/base/CModule.php(387): Settings->init()
+#6 /media/srv/www/yii/framework/base/CModule.php(103): CModule->getComponent('setting')
+#7 /media/srv/www/yii/yii-code/protected/components/WebBaseController.php(51): CModule->__get('setting')
+#8 /media/srv/www/yii/framework/web/CWebApplication.php(281): WebBaseController->init()
+#9 /media/srv/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/login')
+#10 /media/srv/www/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /media/srv/www/yii/yii-code/index.php(29): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php/user/login
+---
+2013/03/19 19:39:11 [trace] [system.CModule] Loading "errorHandler" application component
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "log" application component
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "cache" application component
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "request" application component
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "urlManager" application component
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.base.CModule] Loading "user" module
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "user" application component
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (50)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "session" application component
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (50)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "setting" application component
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (51)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "db" application component
+in /media/srv/www/yii/yii-code/protected/extensions/components/Settings.php (37)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (51)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.db.CDbConnection] Opening DB connection
+in /media/srv/www/yii/yii-code/protected/extensions/components/Settings.php (37)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (51)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `settings`
+in /media/srv/www/yii/yii-code/protected/extensions/components/Settings.php (37)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (51)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW FULL COLUMNS FROM `settings`)
+2013/03/19 19:39:47 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `settings`
+in /media/srv/www/yii/yii-code/protected/extensions/components/Settings.php (37)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (51)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SHOW CREATE TABLE `settings`)
+2013/03/19 19:39:47 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='web'
+in /media/srv/www/yii/yii-code/protected/extensions/components/Settings.php (134)
+in /media/srv/www/yii/yii-code/protected/extensions/components/Settings.php (81)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (51)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='web')
+2013/03/19 19:39:47 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme'
+in /media/srv/www/yii/yii-code/protected/extensions/components/Settings.php (134)
+in /media/srv/www/yii/yii-code/protected/extensions/components/Settings.php (81)
+in /media/srv/www/yii/yii-code/protected/modules/core/models/Webtheme.php (83)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (57)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT * FROM settings WHERE category=:cat. Bound with :cat='Webtheme')
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "themeManager" application component
+in /media/srv/www/yii/yii-code/protected/modules/core/models/Webtheme.php (84)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (57)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.web.filters.CFilterChain] Running filter LoginController.filterRights()
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "messages" application component
+in /media/srv/www/yii/yii-code/protected/modules/user/views/user/login.php (2)
+in /media/srv/www/yii/yii-code/protected/modules/user/controllers/LoginController.php (31)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (84)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "widgetFactory" application component
+in /media/srv/www/yii/yii-code/protected/views/layouts/column2.php (1)
+in /media/srv/www/yii/yii-code/protected/modules/user/controllers/LoginController.php (31)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (84)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "authManager" application component
+in /media/srv/www/yii/yii-code/protected/modules/rights/components/RWebUser.php (43)
+in /media/srv/www/yii/yii-code/protected/views/layouts/main.php (54)
+in /media/srv/www/yii/yii-code/protected/views/layouts/column2.php (29)
+in /media/srv/www/yii/yii-code/protected/modules/user/controllers/LoginController.php (31)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (84)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.db.CDbCommand] Querying SQL: SELECT *
+FROM `authassignment`
+WHERE userid=:userid. Bound with :userid=NULL
+in /media/srv/www/yii/yii-code/protected/modules/rights/components/RWebUser.php (43)
+in /media/srv/www/yii/yii-code/protected/views/layouts/main.php (54)
+in /media/srv/www/yii/yii-code/protected/views/layouts/column2.php (29)
+in /media/srv/www/yii/yii-code/protected/modules/user/controllers/LoginController.php (31)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (84)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT *
+FROM `authassignment`
+WHERE userid=:userid. Bound with :userid=NULL)
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT *
+FROM `authassignment`
+WHERE userid=:userid. Bound with :userid=NULL)
+2013/03/19 19:39:47 [trace] [system.db.CDbCommand] Querying SQL: SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC
+in /media/srv/www/yii/yii-code/protected/modules/rights/components/RDbAuthManager.php (169)
+in /media/srv/www/yii/yii-code/protected/modules/rights/components/RDbAuthManager.php (65)
+in /media/srv/www/yii/yii-code/protected/modules/rights/components/RWebUser.php (43)
+in /media/srv/www/yii/yii-code/protected/views/layouts/main.php (54)
+in /media/srv/www/yii/yii-code/protected/views/layouts/column2.php (29)
+in /media/srv/www/yii/yii-code/protected/modules/user/controllers/LoginController.php (31)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (84)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC)
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT name,t1.type,description,t1.bizrule,t1.data,weight
+					FROM authitem t1
+					LEFT JOIN rights t2 ON name=itemname
+					ORDER BY t1.type DESC, weight ASC)
+2013/03/19 19:39:47 [trace] [system.db.CDbCommand] Querying SQL: SELECT *
+FROM `authitem`
+WHERE name=:name. Bound with :name='User.Admin.*'
+in /media/srv/www/yii/yii-code/protected/modules/rights/components/RDbAuthManager.php (73)
+in /media/srv/www/yii/yii-code/protected/modules/rights/components/RWebUser.php (43)
+in /media/srv/www/yii/yii-code/protected/views/layouts/main.php (54)
+in /media/srv/www/yii/yii-code/protected/views/layouts/column2.php (29)
+in /media/srv/www/yii/yii-code/protected/modules/user/controllers/LoginController.php (31)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (84)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] begin:system.db.CDbCommand.query(SELECT *
+FROM `authitem`
+WHERE name=:name. Bound with :name='User.Admin.*')
+2013/03/19 19:39:47 [profile] [system.db.CDbCommand.query] end:system.db.CDbCommand.query(SELECT *
+FROM `authitem`
+WHERE name=:name. Bound with :name='User.Admin.*')
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "assetManager" application component
+in /media/srv/www/yii/yii-code/protected/extensions/widgets/mbmenu/MbMenu.php (109)
+in /media/srv/www/yii/yii-code/protected/extensions/widgets/mbmenu/MbMenu.php (205)
+in /media/srv/www/yii/yii-code/protected/views/layouts/main.php (60)
+in /media/srv/www/yii/yii-code/protected/views/layouts/column2.php (29)
+in /media/srv/www/yii/yii-code/protected/modules/user/controllers/LoginController.php (31)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (84)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "clientScript" application component
+in /media/srv/www/yii/yii-code/protected/extensions/widgets/mbmenu/MbMenu.php (118)
+in /media/srv/www/yii/yii-code/protected/extensions/widgets/mbmenu/MbMenu.php (206)
+in /media/srv/www/yii/yii-code/protected/views/layouts/main.php (60)
+in /media/srv/www/yii/yii-code/protected/views/layouts/column2.php (29)
+in /media/srv/www/yii/yii-code/protected/modules/user/controllers/LoginController.php (31)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (84)
+in /media/srv/www/yii/yii-code/index.php (29)
+2013/03/19 19:39:47 [trace] [system.CModule] Loading "coreMessages" application component
+in /media/srv/www/yii/yii-code/protected/views/layouts/main.php (65)
+in /media/srv/www/yii/yii-code/protected/views/layouts/column2.php (29)
+in /media/srv/www/yii/yii-code/protected/modules/user/controllers/LoginController.php (31)
+in /media/srv/www/yii/yii-code/protected/components/WebBaseController.php (84)
+in /media/srv/www/yii/yii-code/index.php (29)
