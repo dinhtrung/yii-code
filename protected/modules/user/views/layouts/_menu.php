@@ -1,5 +1,5 @@
 <?php
-$this->primary['user'] = array(
+$this->mainMenu['user'] = array(
 	'label' => Yii::t('user', 'User'),
 	'items'=>array(
 		array('label' => Yii::t('user', 'Admin'), 'url'=>array('/user/admin'), 'visible'=>Yii::app()->user->checkAccess('User.Admin.Index')),

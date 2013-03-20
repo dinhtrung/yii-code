@@ -6,7 +6,7 @@ if (! is_null($controller->getModule())) $resource[] = ucfirst($controller->getM
 $resource[] = ucfirst($controller->getId());
 $resource = implode('.', $resource) . '.';
 $current = $controller->getAction()->getId();
-$tmp = array('index', 'admin', 'create');
+$tmp = array('admin', 'create');
 foreach ($tmp as $actionId){
 	$this->menu[$actionId] = array(
 			'label'		=>	Yii::t('app', ucfirst($actionId)) . ' ' . Yii::t('block', ucfirst($modelClass)),

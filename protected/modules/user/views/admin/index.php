@@ -32,7 +32,7 @@ $this->breadcrumbs=array(
 		),
 		array(
 			'name'=>'role',
-			'value'=>'Yii::t("rights", $data->role, array(), "dbmessages")',
+			'value'=>'Yii::t('user', implode(", ", $data->role), array(), "dbmessages")',
 		),
 		array(
 			'class'=>'CButtonColumn',

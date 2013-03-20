@@ -6,6 +6,8 @@ class User extends BaseActiveRecord
 	const STATUS_ACTIVE=1;
 	const STATUS_BANED=-1;
 
+	public $role;
+
 	/**
 	 * The followings are the available columns in table 'users':
 	 * @var integer $id
@@ -82,26 +84,6 @@ class User extends BaseActiveRecord
 		);
 	}
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'username'=>Yii::t('user', "Username"),
-			'password'=>Yii::t('user', "Password"),
-			'verifyPassword'=>Yii::t('user', "Retype Password"),
-			'email'=>Yii::t('user', "E-mail"),
-			'verifyCode'=>Yii::t('user', "Verification Code"),
-			'id' => Yii::t('user', "Id"),
-			'activkey' => Yii::t('user', "activation key"),
-			'createtime' => Yii::t('user', "Registration date"),
-			'lastvisit' => Yii::t('user', "Last visit"),
-			'role' => Yii::t('user', "Role"),
-			'status' => Yii::t('user', "Status"),
-		);
-	}
-
 	public function scopes()
     {
         return array(
@@ -145,5 +127,14 @@ class User extends BaseActiveRecord
 			return isset($_items[$type][$code]) ? $_items[$type][$code] : false;
 		else
 			return isset($_items[$type]) ? $_items[$type] : false;
+	}
+
+
+	protected function afterFind(){
+		if (Yii::app()->hasModule('rights')){
+			$assignedItems = Rights::getAuthorizer()->getAuthItems(CAuthItem::TYPE_ROLE, $this->getPrimaryKey());
+			$this->role = array_keys($assignedItems);
+		}
+		return parent::afterFind();
 	}
 }

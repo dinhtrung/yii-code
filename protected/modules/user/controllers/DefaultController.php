@@ -2,7 +2,7 @@
 
 class DefaultController extends WebBaseController
 {
-	
+
 	/**
 	 * Lists all models.
 	 */
@@ -20,6 +20,10 @@ class DefaultController extends WebBaseController
 		$this->render('/user/index',array(
 			'dataProvider'=>$dataProvider,
 		));
+	}
+
+	public function actionSignin(){
+		$this->render('/user/login');
 	}
 
 }

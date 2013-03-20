@@ -17,7 +17,7 @@ $this->breadcrumbs=array(
 		'lastvisit:datetime',
 		array(
 			'name' => 'role',
-			'value' => Yii::t('rights', $model->role, array(), 'dbmessages'),
+			'value' => Yii::t('rights', implode(', ', $model->role), array(), 'dbmessages'),
 		),
 		array(
 			'name' => 'status',
