@@ -1,5 +1,5 @@
 <?php
-$this->primary['rights'] = array(
+$this->mainMenu['rights'] = array(
 	'label' => Yii::t('rights', 'Rights'),
 	'items'=>array(
 		array(

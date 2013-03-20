@@ -9,6 +9,7 @@
 class RightsFilter extends CFilter
 {
 	protected $_allowedActions = array();
+	public $authItem = '';
 
 	/**
 	* Performs the pre-action filtering.
@@ -28,25 +29,22 @@ class RightsFilter extends CFilter
 		// Check if the action should be allowed
 		if( $this->_allowedActions!=='*' && in_array($action->id, $this->_allowedActions)===false )
 		{
-			// Initialize the authorization item as an empty string
-			$authItem = '';
-
 			// Append the module id to the authorization item name
 			// in case the controller called belongs to a module
 			if( ($module = $controller->getModule())!==null )
-				$authItem .= ucfirst($module->id).'.';
+				$this->authItem .= ucfirst($module->id).'.';
 
 			// Append the controller id to the authorization item name
-			$authItem .= ucfirst($controller->id);
+			$this->authItem .= ucfirst($controller->id);
 
 			// Check if user has access to the controller
-			if( $user->checkAccess($authItem.'.*')!==true )
+			if( $user->checkAccess($this->authItem.'.*')!==true )
 			{
 				// Append the action id to the authorization item name
-				$authItem .= '.'.ucfirst($action->id);
+				$this->authItem .= '.'.ucfirst($action->id);
 
 				// Check if the user has access to the controller action
-				if( $user->checkAccess($authItem)!==true )
+				if( $user->checkAccess($this->authItem)!==true )
 					$allow = false;
 			}
 		}
