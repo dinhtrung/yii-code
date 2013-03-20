@@ -7,12 +7,6 @@ abstract class MultiActiveRecord extends CActiveRecord
      * @see getDbConnection
      */
     public static $db;
-
-    /**
-     * Override some private variables
-     */
-    protected $_md;
-    protected static $_models=array();
     /**
      * Returns the database connection used by active record.
      * By default, the "db" application component is used as the database connection.
@@ -28,7 +22,7 @@ abstract class MultiActiveRecord extends CActiveRecord
             if(Yii::app()->hasComponent($dbName) && (self::$db[$dbName]=Yii::app()->getComponent($dbName)) instanceof CDbConnection){
     			self::$db[$dbName]->setActive(true);
             }else
-                throw new CDbException(Yii::t('yii','Active Record requires a "'.$dbName.'" CDbConnection application component.'));
+                throw new CDbException(Yii::t('app','Active Record requires a :dbname CDbConnection application component.', array(':dbname' => $dbName)));
         }
 
         return self::$db[$dbName];
@@ -47,15 +41,7 @@ abstract class MultiActiveRecord extends CActiveRecord
             else
                 throw new CException("You must define a static function 'model' in your models");
         }
-        if(isset(self::$_models[$className]))
-        	return self::$_models[$className];
-        else
-        {
-        	$model=self::$_models[$className]=new $className(null);
-        	$model->attachBehaviors($model->behaviors());
-        	$model->_md=new ExtendedActiveRecordMetaData($model);
-        	return $model;
-        }
+        return parent::model($className);
     }
     /**
      * try to guess the model's name, models should override this function to improve speed and better customization
@@ -77,126 +63,4 @@ abstract class MultiActiveRecord extends CActiveRecord
     public function connectionId(){
         return 'db';
     }
-
-	/**
-	 * PHP setter magic method.
-	 * This method is overridden so that column types can be created/modified on the fly.
-	 * @param string property name
-	 * @param mixed property value
-	 */
-	public function __set($name,$value)
-	{
-		if($this->setAttribute($name,$value)===false)
-		{
-			if(isset($this->getMetaData()->relations[$name]))
-				$this->_related[$name]=$value;
-			else
-			{
-				if (YII_DEBUG)
-				{
-					$command=$this->getDbConnection()->createCommand(
-							$sql = Yii::app()->getDb()->getSchema()->addColumn($this->tableName(), $name ,self::getDbType($value))
-					);
-					$command->execute();
-					$this->getDbConnection()->getSchema()->refresh();
-					$this->refreshMetaData();
-				}
-				$this->__set($name, $value);
-			}
-		}
-		elseif (YII_DEBUG)
-		{
-			$cols = $this->getDbConnection()->getSchema()->getTable($this->tableName())->columns;
-			if ($name != 'id' && strcasecmp($cols[$name]->dbType, self::getDbType($value)) != 0)
-			{
-				$command=$this->getDbConnection()->createCommand(
-						$sql = Yii::app()->getDb()->getSchema()->alterColumn($this->tableName(), $name ,self::getDbType($value))
-				);
-				$command->execute();
-				$this->getDbConnection()->getSchema()->refresh();
-				$this->refreshMetaData();
-				$this->setAttribute($name,$value);
-			}
-		}
-	}
-
-	/**
-	 * Returns a columns datatype based on the value passed.
-	 * @param mixed property value
-	 */
-	public static function getDbType($value)
-	{
-		if (is_numeric($value) && floor($value)==$value)
-			return 'int';
-
-		if (is_numeric($value))
-			return 'float';
-
-		if (strlen($value) <= 255)
-			return 'string';
-
-		return 'text';
-	}
-
-	/**
-	 * Returns the static model of the specified AR class.
-	 * The model returned is a static instance of the AR class.
-	 * It is provided for invoking class-level methods (something similar to static class methods.)
-	 *
-	 * EVERY derived AR class must override this method as follows,
-	 * <pre>
-	 * public static function model($className=__CLASS__)
-	 * {
-	 *     return parent::model($className);
-	 * }
-	 * </pre>
-	 *
-	 * @param string active record class name.
-	 * @return CActiveRecord active record model instance.
-	 */
-
-	/**
-	 * @return CActiveRecordMetaData the meta for this AR class.
-	 */
-	public function getMetaData()
-	{
-		if($this->_md!==null)
-			return $this->_md;
-		else
-			return $this->_md=self::model(get_class($this))->_md;
-	}
-}
-
-/**
- * ExtendedActiveRecordMetaData is extended from CActiveRecordMetaData.
- * It's modified to create tables that don't exist.
- */
-class ExtendedActiveRecordMetaData Extends CActiveRecordMetaData
-{
-	/**
-	 * Constructor.
-	 * @param CActiveRecord the model instance
-	 */
-	public function __construct($model)
-	{
-		$tableName=$model->tableName();
-		if(($table=$model->getDbConnection()->getSchema()->getTable($tableName))===null) {
-			if (YII_DEBUG)
-			{
-				$command=$model->getDbConnection()->createCommand(
-						$createTableQuery = Yii::app()->getDb()->getSchema()->createTable($tableName, array('id' => 'pk'))
-					);;
-				$command->execute();
-
-				$model->getDbConnection()->getSchema()->refresh();
-				$table=$model->getDbConnection()->getSchema()->getTable($tableName);
-			}
-			else
-			{
-				throw new CDbException(Yii::t('yii','The table "{table}" for active record class "{class}" cannot be found in the database.',
-						array('{class}'=>get_class($model),'{table}'=>$tableName)));
-			}
-		}
-		return parent::__construct($model);
-	}
 }

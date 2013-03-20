@@ -13,6 +13,10 @@ abstract class WebBaseController extends BaseController
 	/**
 	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
 	 */
+	public $mainMenu=array();
+	/**
+	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
+	 */
 	public $menu=array();
 	/**
 	 * @var array the breadcrumbs of the current page. The value of this property will
@@ -41,21 +45,45 @@ abstract class WebBaseController extends BaseController
 	 */
 	public $page = array();
 
+	/*
+	 * @var The permission string of current action
+	 */
+	public $authItem;
+
 	/* (non-PHPdoc)
 	 * @see CController::init()
 	 */
 	public function init() {
 		parent::init();
+		/*
+		 * Global settings
+		 */
 		$this->siteName = Yii::app()->setting->get('web', 'siteName', Yii::app()->params['name']);
 		$this->siteSlogan = Yii::app()->setting->get('web', 'siteSlogan');
 		Yii::app()->setHomeUrl(Yii::app()->setting->get('web', 'homeUrl', 'core/node'));
 
 		$this->layout = Yii::app()->setting->get('web', 'layout', '//layouts/column2');
 		Yii::app()->theme = Yii::app()->setting->get('web', 'theme', 'classic');
+
+
+		/*
+		 * Load all modules/views/layouts/_menu files to render the global file
+		 */
+		$this->mainMenu = array();
+		$modules = Yii::app()->getModules();
+		foreach ($modules as $m => $info){
+			try {
+				Yii::app()->getController()->renderPartial("//../modules/$m/views/layouts/_menu");
+			} catch (CException $e){
+				Yii::log('Catch error while loading module menu: '.$e->getMessage(), 'debug');
+			}
+		}
+
 		$themeinfo = Webtheme::getThemeInfo();
 		foreach ($themeinfo["region"] as $region => $name){
 			$this->page[$region] = "";
 		}
+
 		if (($img = Yii::app()->setting->get('web', 'siteLogo')) && file_exists(Yii::getPathOfAlias("webroot.images") . DIRECTORY_SEPARATOR . $img)){
 			$this->siteLogo = CHtml::image(Yii::app()->request->baseUrl . '/images/' . $img, 'siteLogo');
 		}
@@ -80,6 +108,7 @@ abstract class WebBaseController extends BaseController
 		$filter = new RightsFilter;
 		$filter->allowedActions = $this->allowedActions();
 		$filter->filter($filterChain);
+		$this->authItem = $filter->authItem;
 	}
 	/**
 	 * Choose the correct language by lang parameters
@@ -125,7 +154,6 @@ abstract class WebBaseController extends BaseController
 			Yii::app()->end();
 		}
 	}
-/*
 	function render($view, $data = NULL, $return = FALSE, $renderBlock = TRUE) {
 		if ($renderBlock){
 			$this->renderBlocks();
@@ -142,7 +170,6 @@ abstract class WebBaseController extends BaseController
 			$this->page[$block->region] .= $block->owner->render();
 		}
 	}
-*/
 	/**
 	 * Load Model, based on the Primary key
 	 * @param string $model  The model class name
