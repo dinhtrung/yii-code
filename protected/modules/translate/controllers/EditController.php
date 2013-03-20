@@ -1,6 +1,6 @@
 <?php
 
-class EditController extends TranslateBaseController
+class EditController extends WebBaseController
 {
     public $defaultAction='admin';
     /**
@@ -13,7 +13,7 @@ class EditController extends TranslateBaseController
 		$model=new Message('create');
         $model->id=$id;
         $model->language=$language;
-        
+
 		if(isset($_POST['Message'])){
 			$model->attributes=$_POST['Message'];
 			if($model->save())
@@ -57,7 +57,7 @@ class EditController extends TranslateBaseController
             }
         }else
             throw new CHttpException(400);
-        
+
 	}
 
 	/**
@@ -75,17 +75,17 @@ class EditController extends TranslateBaseController
 		));
 	}
     /**
-	 * 
+	 *
 	 */
 	public function actionMissing()
 	{
 		$model=new MessageSource('search');
 		$model->unsetAttributes();  // clear any default values
-        
+
 		if(isset($_GET['MessageSource']))
 			$model->attributes=$_GET['MessageSource'];
-        
-        $model->language=TranslateModule::translator()->getLanguage();    
+
+        $model->language=TranslateModule::translator()->getLanguage();
 
 		$this->render('missing',array(
 			'model'=>$model,
@@ -109,7 +109,7 @@ class EditController extends TranslateBaseController
             }
         }else
             throw new CHttpException(400);
-        
+
 	}
 
 	/**

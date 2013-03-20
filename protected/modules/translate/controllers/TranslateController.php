@@ -1,5 +1,5 @@
 <?php
-class TranslateController extends TranslateBaseController{
+class TranslateController extends WebBaseController {
 	public function actionIndex(){
         if(isset($_POST['Message'])){
             foreach($_POST['Message'] as $id=>$message){
