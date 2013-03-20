@@ -2,6 +2,11 @@
 /* @var $this CdrController */
 /* @var $model Cdr */
 /* @var $form CActiveForm */
+$this->breadcrumbs=array(
+		Yii::t('opencode', 'Opencode') => array('default/index'),
+		$model->cpid,
+		Yii::t('opencode', 'View')
+);
 $types = array('' => '--- Xuất báo cáo ---',
 		'Excel5'	=>	'File Excel',
 		'CSV'		=>	'File CSV',

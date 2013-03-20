@@ -20,4 +20,16 @@ class Cdrlog extends BaseActiveRecord
 	public function tableName() {
 		return '{{cdrlog}}';
 	}
+
+	protected function createTable() {
+		$columns = array(
+				'filename'	=>	'string',
+		);
+		$this->getDbConnection()->createCommand(
+			Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+			Yii::app()->getDb()->getSchema()->createIndex('filename', $this->tableName(), 'filename', TRUE)
+		)->execute();
+	}
 }

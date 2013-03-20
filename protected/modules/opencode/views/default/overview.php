@@ -2,6 +2,9 @@
 /* @var $this CdrController */
 /* @var $model Cdr */
 /* @var $form CActiveForm */
+$this->breadcrumbs=array(
+		Yii::t('opencode', 'Opencode')
+);
 Yii::import('zii.widgets.grid.CGridView');
 $types = array('' => '--- Xuất báo cáo ---',
 		'Excel5'	=>	'File Excel',

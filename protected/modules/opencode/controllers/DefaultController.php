@@ -19,7 +19,8 @@ class DefaultController extends WebBaseController
 		return array(
 			'admin'	=>	array(
 					'class' => 'ext.actions.AdminAction',
-					'model'	=>	new Cdrlog('search'),
+					'_model'	=>	new Cdrlog('search'),
+					'defaultView'	=>	'cdrlog',
 			),
 		);
 	}
