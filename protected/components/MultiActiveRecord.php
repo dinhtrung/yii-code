@@ -79,6 +79,66 @@ abstract class MultiActiveRecord extends CActiveRecord
     }
 
 	/**
+	 * PHP setter magic method.
+	 * This method is overridden so that column types can be created/modified on the fly.
+	 * @param string property name
+	 * @param mixed property value
+	 */
+	public function __set($name,$value)
+	{
+		if($this->setAttribute($name,$value)===false)
+		{
+			if(isset($this->getMetaData()->relations[$name]))
+				$this->_related[$name]=$value;
+			else
+			{
+				if (YII_DEBUG)
+				{
+					$command=$this->getDbConnection()->createCommand(
+							$sql = Yii::app()->getDb()->getSchema()->addColumn($this->tableName(), $name ,self::getDbType($value))
+					);
+					$command->execute();
+					$this->getDbConnection()->getSchema()->refresh();
+					$this->refreshMetaData();
+				}
+				$this->__set($name, $value);
+			}
+		}
+		elseif (YII_DEBUG)
+		{
+			$cols = $this->getDbConnection()->getSchema()->getTable($this->tableName())->columns;
+			if ($name != 'id' && strcasecmp($cols[$name]->dbType, self::getDbType($value)) != 0)
+			{
+				$command=$this->getDbConnection()->createCommand(
+						$sql = Yii::app()->getDb()->getSchema()->alterColumn($this->tableName(), $name ,self::getDbType($value))
+				);
+				$command->execute();
+				$this->getDbConnection()->getSchema()->refresh();
+				$this->refreshMetaData();
+				$this->setAttribute($name,$value);
+			}
+		}
+	}
+
+	/**
+	 * Returns a columns datatype based on the value passed.
+	 * @param mixed property value
+	 */
+	public static function getDbType($value)
+	{
+		if (is_numeric($value) && floor($value)==$value)
+			return 'int';
+
+		if (is_numeric($value))
+			return 'float';
+
+		if (strlen($value) <= 255)
+			return 'string';
+
+		return 'text';
+	}
+
+	/**
 	 * Returns the static model of the specified AR class.
 	 * The model returned is a static instance of the AR class.
 	 * It is provided for invoking class-level methods (something similar to static class methods.)

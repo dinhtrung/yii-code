@@ -62,6 +62,7 @@ return array(
 		// Extra message source
 		'messages' => array(
 			'class'	=>	'CPhpMessageSource',
+			'onMissingTranslation'	=>	array('CPhpMessageTranslator', 'appendMessage'),
 		),
 		// Extra message source
 		'dbmessages' => array(
