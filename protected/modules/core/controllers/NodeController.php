@@ -78,7 +78,6 @@ class NodeController extends WebBaseController
 		return array(
 			"index"	=>	array(
 				"class"	=>	"ext.actions.BrowseAction",
-				"modelClass"	=>	new Node(),
 			),
 			"search"	=>	array(
 				"class"	=>	"ext.actions.AdminAction",
