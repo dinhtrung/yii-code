@@ -95,43 +95,19 @@ class File extends BaseActiveRecord{
     public function attributeLabels()
     {
         return array(
-            'id' => Yii::t('file', 'ID'),
-            'title' => Yii::t('file', 'Title'),
-            'description' => Yii::t('file', 'Description'),
-            'name' => Yii::t('file', 'Name'),
-            'path' => Yii::t('file', 'Path'),
-            'ext' => Yii::t('file', 'Ext'),
-            'size' => Yii::t('file', 'Size'),
-            'type' => Yii::t('file', 'Type'),
-            'entity' => Yii::t('file', 'Entity'),
-            'pkey' => Yii::t('file', 'Pkey'),
-            'createtime' => Yii::t('file', 'Createtime'),
-            'updatetime' => Yii::t('file', 'Updatetime'),
+            'id' => Yii::t('core', 'ID'),
+            'title' => Yii::t('core', 'Title'),
+            'description' => Yii::t('core', 'Description'),
+            'name' => Yii::t('core', 'Name'),
+            'path' => Yii::t('core', 'Path'),
+            'ext' => Yii::t('core', 'Ext'),
+            'size' => Yii::t('core', 'Size'),
+            'type' => Yii::t('core', 'Type'),
+            'entity' => Yii::t('core', 'Entity'),
+            'pkey' => Yii::t('core', 'Pkey'),
+            'createtime' => Yii::t('core', 'Createtime'),
+            'updatetime' => Yii::t('core', 'Updatetime'),
         );
-    }
-    /**
-    * Which attribute are safe for search
-    */
-    public function search()
-    {
-        $criteria=new CDbCriteria;
-
-        $criteria->compare('id', $this->id, TRUE);
-        $criteria->compare('title', $this->title, TRUE);
-        $criteria->compare('description', $this->description, TRUE);
-        $criteria->compare('name', $this->name, TRUE);
-        $criteria->compare('path', $this->path, TRUE);
-        $criteria->compare('ext', $this->ext, TRUE);
-        $criteria->compare('size', $this->size, TRUE);
-        $criteria->compare('type', $this->type, TRUE);
-        $criteria->compare('entity', $this->entity, TRUE);
-        $criteria->compare('pkey', $this->pkey, TRUE);
-        $criteria->compare('createtime', $this->createtime, TRUE);
-        $criteria->compare('updatetime', $this->updatetime, TRUE);
-
-        return new CActiveDataProvider(get_class($this), array(
-            'criteria'=>$criteria,
-        ));
     }
     /**
     * Provide default sorting and optional condition
@@ -227,7 +203,7 @@ class File extends BaseActiveRecord{
 				return CHtml::link(CHtml::encode($this->name),
 					Yii::app()->getAssetManager()->publish($file)
 				);
-			} else return Yii::t('file', "The file :file is removed.", array(":file" => $this->name));
+			} else return Yii::t('core', "The file :file is removed.", array(":file" => $this->name));
 		} else return parent::getLink($action);
 
 	}

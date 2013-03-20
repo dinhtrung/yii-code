@@ -1,6 +1,6 @@
 <div class="form">
 <p class="note">
-<?php echo Yii::t('app','Fields with <span class="required">*</span> are required.');?>
+<?php echo Yii::t('core','Fields with <span class="required">*</span> are required.');?>
 </p>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -14,7 +14,7 @@
 <?php echo $form->labelEx($model,'title'); ?>
 <?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>255)); ?>
 <?php echo $form->error($model,'title'); ?>
-<p class="hint"><?php if('_HINT_Node.title' != $hint = Yii::t('node', '_HINT_Node.title')) echo $hint; ?></p>
+<p class="hint"><?php if('_HINT_Node.title' != $hint = Yii::t('core', '_HINT_Node.title')) echo $hint; ?></p>
 </div>
 
 <div class="row">
@@ -30,23 +30,23 @@ $this->widget('ext.widgets.editor.CKkceditor',array(
     ));
 ?>
 <?php echo $form->error($model,'body'); ?>
-<p class="hint"><?php if('_HINT_Node.body' != $hint = Yii::t('node', '_HINT_Node.body')) echo $hint; ?></p>
+<p class="hint"><?php if('_HINT_Node.body' != $hint = Yii::t('core', '_HINT_Node.body')) echo $hint; ?></p>
 </div>
 
 <div class="row">
 <?php echo $form->labelEx($model,'status'); ?>
 <?php echo $form->dropDownList($model,'status', Node::statusOption()); ?>
 <?php echo $form->error($model,'category'); ?>
-<p class="hint"><?php if('_HINT_Node.category' != $hint = Yii::t('node', '_HINT_Node.category')) echo $hint; ?></p>
+<p class="hint"><?php if('_HINT_Node.category' != $hint = Yii::t('core', '_HINT_Node.category')) echo $hint; ?></p>
 </div>
 
 
 <div class="row">
 <?php echo $form->labelEx($model,'cid'); ?>
 <?php echo $form->dropDownList($model,'cid',
-	array('' => Yii::t('node', '--- Select Parent Category ---')) + Category::getOption(Yii::app()->setting->get("Node", "cid", 1))); ?>
+	array('' => Yii::t('core', '--- Select Parent Category ---')) + Category::getOption(Yii::app()->setting->get("Node", "cid", 1))); ?>
 <?php echo $form->error($model,'category'); ?>
-<p class="hint"><?php if('_HINT_Node.category' != $hint = Yii::t('node', '_HINT_Node.category')) echo $hint; ?></p>
+<p class="hint"><?php if('_HINT_Node.category' != $hint = Yii::t('core', '_HINT_Node.category')) echo $hint; ?></p>
 </div>
 
 <div class="row">
@@ -63,12 +63,12 @@ $this->widget('CAutoComplete', array(
 	'htmlOptions' => array('size'=>60,'maxlength'=>255),
 )) ?>
 <?php echo $form->error($model,'tags'); ?>
-<p class="hint"><?php if('_HINT_Node.tags' != $hint = Yii::t('node', '_HINT_Node.tags')) echo $hint; ?></p>
+<p class="hint"><?php if('_HINT_Node.tags' != $hint = Yii::t('core', '_HINT_Node.tags')) echo $hint; ?></p>
 </div>
 
 
 <?php
-echo CHtml::Button(Yii::t('app', 'Cancel'), array( 'submit' => Yii::app()->getUser()->getReturnUrl()));
-echo CHtml::submitButton(Yii::t('app', 'Save'));
+echo CHtml::Button(Yii::t('core', 'Cancel'), array( 'submit' => Yii::app()->getUser()->getReturnUrl()));
+echo CHtml::submitButton(Yii::t('core', 'Save'));
 $this->endWidget(); ?>
 </div> <!-- form -->

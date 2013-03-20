@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 if(empty($this->menu))
 $this->menu=array(
 	array('label'=>Yii::t('core', 'List') . ' File', 'url'=>array('index')),
-	array('label'=>Yii::t('app', 'Manage') . ' File', 'url'=>array('admin')),
+	array('label'=>Yii::t('core', 'Manage') . ' File', 'url'=>array('admin')),
 );
 ?>
 
@@ -16,7 +16,7 @@ $this->menu=array(
 
 <div class="form">
 <p class="note">
-<?php echo Yii::t('app','Fields with <span class="required">*</span> are required.');?>
+<?php echo Yii::t('core','Fields with <span class="required">*</span> are required.');?>
 </p>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -52,8 +52,8 @@ $this->widget('ext.multimodelform.MultiModelForm',array(
 ?>
 
 <?php
-echo CHtml::Button(Yii::t('app', 'Cancel'), array(
+echo CHtml::Button(Yii::t('core', 'Cancel'), array(
             'submit' => array('file/admin')));
-echo CHtml::submitButton(Yii::t('app', 'Save'));
+echo CHtml::submitButton(Yii::t('core', 'Save'));
 $this->endWidget(); ?>
 </div> <!-- form -->

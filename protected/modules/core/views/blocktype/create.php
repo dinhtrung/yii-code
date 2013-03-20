@@ -1,15 +1,15 @@
 <?php
 
 $this->breadcrumbs=array(
-	'Blocktypes'=>array(Yii::t('app', 'index')),
-	Yii::t('app', 'Create'),
+	'Blocktypes'=>array(Yii::t('core', 'index')),
+	Yii::t('core', 'Create'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Blocktype'));
 ?>
 
 <h1>
-	<?php echo $this->pageTitle = Yii::t('app', 'Create') . ' ' . Yii::t('blocktype', 'Blocktypes'); ?>
+	<?php echo $this->pageTitle = Yii::t('core', 'Create') . ' ' . Yii::t('core', 'Blocktypes'); ?>
 </h1>
 
 <?php

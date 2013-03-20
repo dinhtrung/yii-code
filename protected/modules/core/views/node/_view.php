@@ -4,7 +4,7 @@
 		<h3><?php echo CHtml::link(CHtml::encode($data), array('view', 'id'=>$data->id)); ?></h3>
 	</div>
 	<div class="author small">
-		<?php echo Yii::t('node', "Posted by <strong>%user</strong> on <time>%pubdate</time>", array(
+		<?php echo Yii::t('core', "Posted by <strong>%user</strong> on <time>%pubdate</time>", array(
 			'%user'		=>	$data->user->username,
 			'%pubdate'	=>	Yii::app()->getLocale()->getDateFormatter()->formatDateTime($data->createtime, 'long', NULL),
 		)); ?>
@@ -17,10 +17,10 @@
 			foreach ($data->getTags() as $t)
 				$tags[] = CHtml::link($t, array("tags", "name" => $t));
 		?>
-		<strong><?php echo Yii::t('node', "Tags: %tags", array('%tags' => implode(', ', $tags))); ?></strong>
+		<strong><?php echo Yii::t('core', "Tags: %tags", array('%tags' => implode(', ', $tags))); ?></strong>
 		<br/>
 		<?php echo CHtml::link('Permalink', array('view', 'alias' => $data->alias)); ?> |
-		<?php echo Yii::t('node', "Last updated on %update", array(
+		<?php echo Yii::t('core', "Last updated on %update", array(
 				'%update' => Yii::app()->getLocale()->getDateFormatter()->formatDateTime($data->updatetime, 'long', NULL),
 			)
 		); ?>

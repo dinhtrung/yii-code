@@ -1,8 +1,8 @@
 <?php
 if(empty($this->breadcrumbs))
 $this->breadcrumbs=array(
-	Yii::t('tags', 'Tags')=>array('index'),
-	Yii::t('app', 'Create'),
+	Yii::t('core', 'Tags')=>array('index'),
+	Yii::t('core', 'Create'),
 );
 
 ?>

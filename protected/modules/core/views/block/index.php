@@ -3,7 +3,7 @@
 
 $this->breadcrumbs = array(
 	'Blocks',
-	Yii::t('app', 'Index'),
+	Yii::t('core', 'Index'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Blocks'));

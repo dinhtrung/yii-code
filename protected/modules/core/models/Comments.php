@@ -70,13 +70,13 @@ class Comments extends BaseActiveRecord{
 	public function attributeLabels()
 	{
 		return array(
-			'id' => Yii::t('app', 'ID'),
-			'entity' => Yii::t('app', 'Entity'),
-			'pkey' => Yii::t('app', 'Pkey'),
-			'uid' => Yii::t('app', 'Uid'),
-			'createtime' => Yii::t('app', 'Createtime'),
-			'visible' => Yii::t('app', 'Visible'),
-			'comment' => Yii::t('app', 'Comment'),
+			'id' => Yii::t('core', 'ID'),
+			'entity' => Yii::t('core', 'Entity'),
+			'pkey' => Yii::t('core', 'Pkey'),
+			'uid' => Yii::t('core', 'Uid'),
+			'createtime' => Yii::t('core', 'Createtime'),
+			'visible' => Yii::t('core', 'Visible'),
+			'comment' => Yii::t('core', 'Comment'),
 		);
 	}
 	/**

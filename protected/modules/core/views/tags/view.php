@@ -2,13 +2,13 @@
 if(empty($this->breadcrumbs))
 
 $this->breadcrumbs=array(
-	Yii::t('tags', 'Tags')=>array('index'),
+	Yii::t('core', 'Tags')=>array('index'),
 	$model->name,
 	);
 
 ?>
 
-<h1><?php echo Yii::t('app', 'View');?> <?php echo Yii::t('tags', 'Tags');?> #<?php echo $model; ?></h1>
+<h1><?php echo Yii::t('core', 'View');?> <?php echo Yii::t('core', 'Tags');?> #<?php echo $model; ?></h1>
 
 <?php
 $locale = CLocale::getInstance(Yii::app()->language);

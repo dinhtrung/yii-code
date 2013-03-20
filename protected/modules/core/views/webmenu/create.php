@@ -1,15 +1,15 @@
 <?php
 
 $this->breadcrumbs=array(
-	'Web Menus'=>array(Yii::t('app', 'index')),
-	Yii::t('app', 'Create'),
+	'Web Menus'=>array(Yii::t('core', 'index')),
+	Yii::t('core', 'Create'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Web Menus'));
 ?>
 
 <h1>
-	<?php echo $this->pageTitle = Yii::t('app', 'Create') . ' ' . Yii::t('Webmenu', 'Web Menus'); ?> 
+	<?php echo $this->pageTitle = Yii::t('core', 'Create') . ' ' . Yii::t('core', 'Web Menus'); ?> 
 </h1>
 
 <?php

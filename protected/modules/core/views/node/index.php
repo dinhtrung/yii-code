@@ -2,14 +2,14 @@
 
 
 $this->breadcrumbs = array(
-	Yii::t('node', "Nodes"),
-	Yii::t('app', 'Index'),
+	Yii::t('core', "Nodes"),
+	Yii::t('core', 'Index'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Node'));
 ?>
 
-<h1><?php echo $this->pageTitle = Yii::t('node', "Nodes"); ?></h1>
+<h1><?php echo $this->pageTitle = Yii::t('core', "Nodes"); ?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

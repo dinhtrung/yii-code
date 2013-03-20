@@ -2,7 +2,7 @@
 
 
 $this->breadcrumbs=array(
-	Yii::t('node', "Nodes") =>array('index'),
+	Yii::t('core', "Nodes") =>array('index'),
 	$model->title,
 	);
 
@@ -19,7 +19,7 @@ Yii::app()->clientScript->registerMetaTag($model->Taggable->toString(), 'keyword
 		<h2><?php echo $this->pageTitle = CHtml::encode($model); ?></h2>
 	</div>
 	<div class="author small">
-		<?php echo Yii::t('node', "Posted by <strong>%user</strong> on <time>%pubdate</time>", array(
+		<?php echo Yii::t('core', "Posted by <strong>%user</strong> on <time>%pubdate</time>", array(
 			'%user'		=>	$model->user->username,
 			'%pubdate'	=>	Yii::app()->getLocale()->getDateFormatter()->formatDateTime($model->createtime, 'long', 'short'),
 		)); ?>
@@ -35,15 +35,15 @@ Yii::app()->clientScript->registerMetaTag($model->Taggable->toString(), 'keyword
 			foreach ($model->getTags() as $t)
 				$tags[] = CHtml::link($t, array("tags", "name" => $t));
 		?>
-			<strong><?php echo Yii::t('node', "Tags: %tags", array('%tags' => implode(', ', $tags))); ?></strong>
+			<strong><?php echo Yii::t('core', "Tags: %tags", array('%tags' => implode(', ', $tags))); ?></strong>
 			<br/>
 		<?php if (! is_null($model->category)): ?>
-			<strong><?php echo Yii::t('node', "Category: %category", array('%category' => CHtml::link($model->category, array('category', 'id' => $model->category->id)))); ?></strong>
+			<strong><?php echo Yii::t('core', "Category: %category", array('%category' => CHtml::link($model->category, array('category', 'id' => $model->category->id)))); ?></strong>
 			<br/>
 		<?php endif; ?>
 		<?php echo CHtml::link('Permalink', array('view', 'alias' => $model->alias)); ?> |
 		<?php echo CHtml::link("Export PDF", array("view", "id" => $model->id, "view" => "pdf")); ?> |
-		<?php echo Yii::t('node', "Last updated on %update", array('%update' => date('F j, Y',$model->updatetime))); ?>
+		<?php echo Yii::t('core', "Last updated on %update", array('%update' => date('F j, Y',$model->updatetime))); ?>
 	</div>
 </div>
 

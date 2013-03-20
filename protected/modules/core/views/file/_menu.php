@@ -5,7 +5,7 @@ if (! is_null($controller->getModule())) $resource[] = ucfirst($controller->getM
 $resource[] = ucfirst($controller->getId());
 $resource = implode('.', $resource) . '.';
 $current = $controller->getAction()->getId();
-$tmp = array('index', 'preview', 'sort', 'create');
+$tmp = array('index', 'create', 'admin');
 foreach ($tmp as $actionId){
 	$this->menu[$actionId] = array(
 		'label'		=>	Yii::t('core', ucfirst($actionId)) . ' ' . Yii::t('core', ucfirst($modelClass)),
@@ -16,7 +16,7 @@ foreach ($tmp as $actionId){
 }
 
 if (! empty($model) && ! empty($primaryKey)){
-	$tmp = array('view', 'configure', 'theme', 'duplicate', 'update', 'delete');
+	$tmp = array('view', 'update', 'delete');
 	foreach ($tmp as $actionId){
 		$this->menu[$actionId] = array(
 			'label'		=>	Yii::t('core', ucfirst($actionId)) . ' ' . Yii::t('core', ucfirst($modelClass)),
@@ -27,6 +27,6 @@ if (! empty($model) && ! empty($primaryKey)){
 	}
 	$this->menu['delete']['linkOptions']	=	array(
 		'submit'	=>	array('delete','id'	=>	$model->$primaryKey),
-		'confirm'	=>	Yii::t('core', 'Are you sure you want to delete this block?')
+		'confirm'=>'Are you sure you want to delete this item?'
 	);
 }

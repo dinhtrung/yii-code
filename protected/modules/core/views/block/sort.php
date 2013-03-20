@@ -1,21 +1,21 @@
 <?php
 if(empty($this->breadcrumbs))
 $this->breadcrumbs = array(
-	Yii::t('block', 'Blocks') => array('index'),
-	Yii::t('block', 'Sort'),
+	Yii::t('core', 'Blocks') => 'index',
+	Yii::t('core', 'Sort'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Block'));
 ?>
 
-<h1><?php echo $this->pageTitle = Yii::t('block', "Sort Blocks"); ?></h1>
+<h1><?php echo $this->pageTitle = Yii::t('core', "Sort Blocks"); ?></h1>
 
 <div id="message"></div>
 
 <?php
 $items = array();
 foreach ($model as $block){
-	$items[$block->region][$block->id] = Yii::t('block', '<strong>%title</strong>: %desc', array(
+	$items[$block->region][$block->id] = Yii::t('core', '<strong>%title</strong>: %desc', array(
 	    		'%title'	=>	$block->owner->title,
 	    		'%desc'		=>	$block->owner->description,
 	));
@@ -28,7 +28,7 @@ foreach ($items as $region => $listData){
 	        'items' => $listData,
 	));
 	// Add a Submit button to send data to the controller
-	echo CHtml::ajaxButton(Yii::t('app', 'Save'), '', array(
+	echo CHtml::ajaxButton(Yii::t('core', 'Save'), '', array(
 	        'type' => 'POST',
 	        'data' => array(
 	// Turn the Javascript array into a PHP-friendly string

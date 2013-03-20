@@ -21,7 +21,7 @@
         </div>
 
         <div class="row buttons">
-                <?php echo CHtml::submitButton(Yii::t('block', 'Search')); ?>
+                <?php echo CHtml::submitButton(Yii::t('core', 'Search')); ?>
         </div>
 
 <?php $this->endWidget(); ?>

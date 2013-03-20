@@ -81,12 +81,12 @@ class Node extends BaseActiveRecord{
 	public function attributeLabels()
 	{
 		return array(
-			'title' => Yii::t('node', 'Title'),
-			'body' => Yii::t('node', 'Body'),
-			'createtime' => Yii::t('node', 'Createtime'),
-			'updatetime' => Yii::t('node', 'Updatetime'),
-			'cid' => Yii::t('node', 'Category'),
-			'tags' => Yii::t('node', 'Tags'),
+			'title' => Yii::t('core', 'Title'),
+			'body' => Yii::t('core', 'Body'),
+			'createtime' => Yii::t('core', 'Createtime'),
+			'updatetime' => Yii::t('core', 'Updatetime'),
+			'cid' => Yii::t('core', 'Category'),
+			'tags' => Yii::t('core', 'Tags'),
 		);
 	}
 	/**
@@ -174,9 +174,9 @@ class Node extends BaseActiveRecord{
 	const STATUS_DRAFT = 0;
 	public static function statusOption($param = NULL) {
 		$options = array(
-			self::STATUS_ARCHIVED	=>	Yii::t('node', "Archived"),
-			self::STATUS_DRAFT		=>	Yii::t('app', "Draft"),
-			self::STATUS_PUBLISHED	=>	Yii::t('app', "Published"),
+			self::STATUS_ARCHIVED	=>	Yii::t('core', "Archived"),
+			self::STATUS_DRAFT		=>	Yii::t('core', "Draft"),
+			self::STATUS_PUBLISHED	=>	Yii::t('core', "Published"),
 		);
 		if (is_null($param)) return $options;
 		elseif (array_key_exists((string) $param, $options)) return $options[(string) $param];

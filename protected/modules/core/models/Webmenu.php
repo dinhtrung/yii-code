@@ -37,7 +37,7 @@ class Webmenu extends BaseActiveRecord{
 	* @return string representing the object
 	*/
 	public function __toString() {
-		return (string) Yii::t('Webmenu', $this->label, array(), 'dbmessages');
+		return (string) Yii::t('core', $this->label, array(), 'dbmessages');
 	}
 	/**
 	* @return string name of the class table
@@ -51,59 +51,21 @@ class Webmenu extends BaseActiveRecord{
 	*/
 	public function rules()
 	{
-		return array(
+		return array_merge( parent::rules(), array(
 			array('visible', 'boolean'),
 			array('icon', 'file', 'on' => 'insert, update', 'types' => File::IMAGETYPES, 'allowEmpty' => true),
-			array('icon, url, task', 'default', 'setOnEmpty' => TRUE, 'value' => ''),
-			array('label', 'required'),
-			array('root, visible, template', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('root, lft, rgt, level', 'unsafe', 'on'=>'insert, update'),
-			array('root, lft, rgt, level', 'safe', 'on'=>'settings, block'),
-			array('root, lft, rgt, level', 'numerical', 'integerOnly'=>true),
-			array('label, url, template', 'length', 'max'=>255),
-			array('description, url, label', 'safe', 'on' => 'insert, update'),
-			array('label, description, url', 'safe', 'on'=>'search'),
-		);
-	}
-	/**
-	* Relation to other models
-	*/
-	public function relations()
-	{
-		return array(
-		);
-	}
-	/**
-	* Attribute labels
-	*/
-	public function attributeLabels()
-	{
-		return array(
-			'id' 	=> Yii::t('webmenu', 'ID'),
-			'root' 	=> Yii::t('webmenu', 'Root'),
-			'lft' 	=> Yii::t('webmenu', 'Lft'),
-			'rgt'	=> Yii::t('webmenu', 'Rgt'),
-			'level' => Yii::t('webmenu', 'Level'),
-			'label' => Yii::t('webmenu', 'Label'),
-			'description' 	=> Yii::t('webmenu', 'Description'),
-			'url' 	=> Yii::t('webmenu', 'Url'),
-			'template' 	=> Yii::t('webmenu', 'Template'),
-			'visible' 	=> Yii::t('webmenu', 'Visible'),
-		);
-	}
-	/**
-	* Which attribute are safe for search
-	*/
-	public function search()
-	{
-		$criteria=new CDbCriteria;
-		$criteria->compare('label', $this->label, true);
-		$criteria->compare('description', $this->description, true);
-		$criteria->compare('url', $this->url, true);
 
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
+		)
+// 			array('icon, url, task', 'default', 'setOnEmpty' => TRUE, 'value' => ''),
+// 			array('label', 'required'),
+// 			array('root, visible, template', 'default', 'setOnEmpty' => true, 'value' => null),
+// 			array('root, lft, rgt, level', 'unsafe', 'on'=>'insert, update'),
+// 			array('root, lft, rgt, level', 'safe', 'on'=>'settings, block'),
+// 			array('root, lft, rgt, level', 'numerical', 'integerOnly'=>true),
+// 			array('label, url, template', 'length', 'max'=>255),
+// 			array('description, url, label', 'safe', 'on' => 'insert, update'),
+// 			array('label, description, url', 'safe', 'on'=>'search'),
+		);
 	}
 	/**
 	* Provide default sorting and optional condition
@@ -112,43 +74,6 @@ class Webmenu extends BaseActiveRecord{
 		return array(
 			'order' => 'root ASC, lft ASC, label ASC',
 		);
-	}
-	/**
-	* Run before validate()
-	*/
-	protected function beforeValidate() {
-		return parent::beforeValidate();
-	}
-	/**
-	* Run after validate()
-	*/
-	protected function afterValidate() {
-		return parent::afterValidate();
-	}
-	/**
-	* Run before save()
-	*/
-	protected function beforeSave() {
-		$this->url = TextHelper::utf2ascii($this->url, TRUE, '-');
-		return parent::beforeSave();
-	}
-	/**
-	* Run after save()
-	*/
-	protected function afterSave() {
-		return parent::afterSave();
-	}
-	/**
-	* Run before delete()
-	*/
-	protected function beforeDelete() {
-		return parent::beforeDelete();
-	}
-	/**
-	* Run after delete()
-	*/
-	protected function afterDelete() {
-		return parent::afterDelete();
 	}
 	/**
 	* Configure additional behaviors
@@ -234,8 +159,8 @@ class Webmenu extends BaseActiveRecord{
 	 */
 	public static function getMenuConfig(){
 		return array (
-			'title'	=>	Yii::t('webmenu', "Menu Portlet Configuration"),
-			'description'	=>	Yii::t('webMenu', "Configuration for Menu Portlet."),
+			'title'	=>	Yii::t('core', "Menu Portlet Configuration"),
+			'description'	=>	Yii::t('core', "Configuration for Menu Portlet."),
 		  	'elements' => array (
 			    'root' => array (
 		      		'type' => 'dropdownlist',
@@ -292,8 +217,8 @@ class Webmenu extends BaseActiveRecord{
 	 */
 	public static function getTreeMenuConfig(){
 		return array (
-			'title'	=>	Yii::t('webmenu', "Menu Portlet Configuration"),
-			'description'	=>	Yii::t('webMenu', "Configuration for Menu Portlet."),
+			'title'	=>	Yii::t('core', "Menu Portlet Configuration"),
+			'description'	=>	Yii::t('core', "Configuration for Menu Portlet."),
 		  	'elements' => array (
 			    'root' => array (
 		      		'type' => 'dropdownlist',
@@ -323,8 +248,8 @@ class Webmenu extends BaseActiveRecord{
 	 */
 	public static function getChildrenConfig(){
 		return array (
-				'title'	=>	Yii::t('webmenu', "Menu Portlet Configuration"),
-				'description'	=>	Yii::t('webMenu', "Please select the root elements."),
+				'title'	=>	Yii::t('core', "Menu Portlet Configuration"),
+				'description'	=>	Yii::t('core', "Please select the root elements."),
 			  	'elements' => array (
 				    'root' => array (
 			      		'type' => 'dropdownlist',

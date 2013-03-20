@@ -2,8 +2,8 @@
 
 
 $this->breadcrumbs=array(
-	Yii::t('file', 'Files')  =>	array('index'),
-	Yii::t('app', 'Manage'),
+	Yii::t('core', 'Files')  =>	array('index'),
+	Yii::t('core', 'Manage'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'File'));
@@ -23,10 +23,10 @@ if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'File
 		?>
 
 <h1>
-<?php echo $this->pageTitle = Yii::t('app', 'Manage') . ' ' . Yii::t('file', 'Files'); ?> 
+<?php echo $this->pageTitle = Yii::t('core', 'Manage') . ' ' . Yii::t('core', 'Files'); ?> 
 </h1>
 
-<?php echo CHtml::link(Yii::t('app', 'Advanced Search'),'#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link(Yii::t('core', 'Advanced Search'),'#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,

@@ -30,7 +30,7 @@ class Webtheme extends CFormModel
 	function validView($attribute,$params) {
 		if(!$this->hasErrors()){
 			if (! Yii::app()->getController()->getLayoutFile($this->layout)){
-				$this->addError($attribute, Yii::t('layout', "Layout :view does not valid.", array(':view' => $this->layout)));
+				$this->addError($attribute, Yii::t('core', "Layout :view does not valid.", array(':view' => $this->layout)));
 			}
 		}
 	}
@@ -44,14 +44,14 @@ class Webtheme extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'perPage'		=>	Yii::t('webtheme', 'Records per Page'),
-			'serverEmail'	=>	Yii::t('webtheme', 'Server Email'),
-			'contactEmail'	=>	Yii::t('webtheme', 'Contact Email'),
-			'theme'			=>	Yii::t('webtheme', 'Website Theme'),
-			'layout'		=>	($this->getScenario() != "block")?Yii::t('webtheme', 'Website Layout'):Yii::t('webtheme', 'Content'),
-			'siteSlogan'	=>	Yii::t('webtheme', 'Site Slogan'),
-			'siteLogo'		=>	Yii::t('webtheme', 'Site Logo'),
-			'siteName'		=>	Yii::t('webtheme', 'Site Name'),
+			'perPage'		=>	Yii::t('core', 'Records per Page'),
+			'serverEmail'	=>	Yii::t('core', 'Server Email'),
+			'contactEmail'	=>	Yii::t('core', 'Contact Email'),
+			'theme'			=>	Yii::t('core', 'Website Theme'),
+			'layout'		=>	($this->getScenario() != "block")?Yii::t('core', 'Website Layout'):Yii::t('core', 'Content'),
+			'siteSlogan'	=>	Yii::t('core', 'Site Slogan'),
+			'siteLogo'		=>	Yii::t('core', 'Site Logo'),
+			'siteName'		=>	Yii::t('core', 'Site Name'),
 		);
 	}
 
@@ -88,7 +88,7 @@ class Webtheme extends CFormModel
 			return array(
 				'information' => array(
 					"name" => $theme,
-					"description" => Yii::t('webtheme', 'No description available'),
+					"description" => Yii::t('core', 'No description available'),
 				),
 				'region' => array(),
 			);
@@ -100,11 +100,11 @@ class Webtheme extends CFormModel
 	public static function getBlockConfig() {
 		$path = DirectoryHelper::safe_directory(Yii::getPathOfAlias( "webroot") . DIRECTORY_SEPARATOR . Yii::app()->setting->get("File", "path", "files"));
 		return array (
-			'description'	=>	Yii::t('webtheme', "Configuration for Custom Content."),
+			'description'	=>	Yii::t('core', "Configuration for Custom Content."),
 		  	'elements' => array (
 			    'perPage' => array (
 		      		'type' 	=> 'ext.widgets.editor.CKkceditor',
-					'hint'	=>	Yii::t('gallery', "Content of the block."),
+					'hint'	=>	Yii::t('core', "Content of the block."),
 					"height"=>'400px',
 			        "width"=>'100%',
 			       	"filespath"	=>	$path,
@@ -121,11 +121,11 @@ class Webtheme extends CFormModel
 	 */
 	public static function setLayoutConfig() {
 		return array (
-			'description'	=>	Yii::t('webtheme', "Configuration for Custom Content."),
+			'description'	=>	Yii::t('core', "Configuration for Custom Content."),
 		  	'elements' => array (
 			    'layout' => array (
 		      		'type' 	=> 'text',
-		      		'label'	=>	Yii::t('webtheme', 'Choose the layout to use'),
+		      		'label'	=>	Yii::t('core', 'Choose the layout to use'),
 		      		'required'	=>	TRUE,
 			    ),
 			)

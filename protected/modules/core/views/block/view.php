@@ -1,16 +1,14 @@
 <?php
-
-
 $this->breadcrumbs=array(
-'Blocks'=>array('index'),
+	Yii::t('core', 'Blocks')	=>	'index',
 	$model->title,
-	);
+);
 
 if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'modelClass' => 'Blocks', 'primaryKey' => 'bid'));
 ?>
 
 <h1>
-<?php echo $this->pageTitle = Yii::t('app', 'View') . ' ' . Yii::t('block', 'Blocks :name', array(':name' => CHtml::encode($model))); ?>
+<?php echo $this->pageTitle = Yii::t('core', 'View') . ' ' . Yii::t('core', 'Blocks :name', array(':name' => CHtml::encode($model))); ?>
 </h1>
 
 <div>
@@ -48,7 +46,7 @@ $this->widget('zii.widgets.CDetailView', array(
 
 
 
-<h2><?php echo Yii::t('block', "Usage")?></h2>
+<h2><?php echo Yii::t('core', "Usage")?></h2>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 					'id'=>'blocktheme-grid',
 					'dataProvider'=> $model->getDataProvider('themes'),
@@ -58,7 +56,7 @@ $this->widget('zii.widgets.CDetailView', array(
 					),
 				)); ?>
 
-<h2><?php echo Yii::t('block', "Block Preview") ?></h2>
+<h2><?php echo Yii::t('core', "Block Preview") ?></h2>
 
 <div>
 <?php

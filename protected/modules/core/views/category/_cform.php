@@ -8,19 +8,19 @@ return array (
     array (
       'type' => 'text',
       'size' => 20,
-	  'hint' => Yii::t('category', "_HINT_Category.title"),
+	  'hint' => Yii::t('core', "_HINT_Category.title"),
     ),
     'description' =>
     array (
       'type' => 'text',
       'size' => 20,
-	  'hint' => Yii::t('category', "_HINT_Category.description"),
+	  'hint' => Yii::t('core', "_HINT_Category.description"),
     ),
     'root' =>
     array (
       'type' => 'text',
       'size' => 20,
-	  'hint' => Yii::t('category', "_HINT_Category.root"),
+	  'hint' => Yii::t('core', "_HINT_Category.root"),
     ),
   ),
 );

@@ -1,14 +1,14 @@
 <?php
 if(empty($this->breadcrumbs))
 $this->breadcrumbs=array(
-	Yii::t('file', 'Files') =>array('index'),
-	Yii::t('app', 'Create'),
+	Yii::t('core', 'Files') =>array('index'),
+	Yii::t('core', 'Create'),
 );
 
 if(empty($this->menu))
 $this->menu=array(
-	array('label'=>Yii::t('app', 'List') . ' File', 'url'=>array('index')),
-	array('label'=>Yii::t('app', 'Manage') . ' File', 'url'=>array('admin')),
+	array('label'=>Yii::t('core', 'List') . ' File', 'url'=>array('index')),
+	array('label'=>Yii::t('core', 'Manage') . ' File', 'url'=>array('admin')),
 );
 ?>
 

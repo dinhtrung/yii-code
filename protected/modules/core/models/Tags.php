@@ -65,8 +65,8 @@ class Tags extends BaseActiveRecord{
 	public function attributeLabels()
 	{
 		return array(
-			'name' => Yii::t('tags', 'Name'),
-			'frequency' => Yii::t('tags', 'Frequency'),
+			'name' => Yii::t('core', 'Name'),
+			'frequency' => Yii::t('core', 'Frequency'),
 		);
 	}
 	/**

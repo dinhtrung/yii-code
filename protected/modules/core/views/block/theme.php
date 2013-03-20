@@ -1,20 +1,18 @@
 <?php
-if(empty($this->breadcrumbs))
-
 $this->breadcrumbs=array(
-	'Blocks'=>array('index'),
+	Yii::t('core', 'Blocks')	=>	'index',
 	$model->title=>array('view','id'=>$model->bid),
-	Yii::t('app', 'Update'),
+	Yii::t('core', 'Update'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Blocks'));
 ?>
 
-<h1><?php echo $this->pageTitle = Yii::t('block', 'Theme Configure for Block :block', array(':block' => $model));?></h1>
+<h1><?php echo $this->pageTitle = Yii::t('core', 'Theme Configure for Block :block', array(':block' => $model));?></h1>
 
 <div class="form">
 	<p class="note">
-		<?php echo Yii::t('block','Fields with');?> <span class="required">*</span> <?php echo Yii::t('block','are required');?>.
+		<?php echo Yii::t('core','Fields with');?> <span class="required">*</span> <?php echo Yii::t('core','are required');?>.
 	</p>
 
 <?php
@@ -31,14 +29,14 @@ echo CHtml::errorSummary($item);
 
 	<?php $this->beginWidget('CClipWidget', array('id'=>	$theme)); ?>
 		<div class="row">
-		<?php echo CHtml::label(Yii::t("block", "Region in :theme", array(":theme" => $name)), "region[$theme]"); ?>
+		<?php echo CHtml::label(Yii::t('core', "Region in :theme", array(":theme" => $name)), "region[$theme]"); ?>
 		<?php echo CHtml::dropDownList("Blocktheme[$theme][region]", $item[$theme]->region,
-		array("" => Yii::t('block', "-- Select region --")) + Webtheme::regionOption($theme)); ?><br>
-		<?php echo Yii::t("block", "The region in theme :theme", array(":theme" => $name)); ?>
+		array("" => Yii::t('core', "-- Select region --")) + Webtheme::regionOption($theme)); ?><br>
+		<?php echo Yii::t('core', "The region in theme :theme", array(":theme" => $name)); ?>
 		</div>
 
 		<div class="row">
-		<?php echo CHtml::label(Yii::t("block", "Weight in :theme", array(":theme" => $name)), "weight"); ?>
+		<?php echo CHtml::label(Yii::t('core', "Weight in :theme", array(":theme" => $name)), "weight"); ?>
 		<?php $this->widget('CStarRating',array(
 			'id'	=>	"weight-$theme",
 			'name'		=>	"Blocktheme[$theme][weight]",
@@ -47,7 +45,7 @@ echo CHtml::errorSummary($item);
 			'allowEmpty'=>	FALSE,
 			'starCount'	=> 5
 		)); ?><br>
-		<?php echo Yii::t("block", "Position of the Portlet displayed in theme :theme", array(":theme" => $name)); ?>
+		<?php echo Yii::t('core', "Position of the Portlet displayed in theme :theme", array(":theme" => $name)); ?>
 		</div>
 	<?php $this->endWidget(); ?>
 <?php endforeach; ?>
@@ -67,8 +65,8 @@ $this->widget('system.web.widgets.CTabView', array(
 )); ?>
 
 <?php
-echo CHtml::Button(Yii::t('app', 'Cancel'), array(
+echo CHtml::Button(Yii::t('core', 'Cancel'), array(
 			'submit' => array('block/admin')));
-echo CHtml::submitButton(Yii::t('app', 'Save'));
+echo CHtml::submitButton(Yii::t('core', 'Save'));
 echo CHtml::endForm(); ?>
 </div> <!-- form -->

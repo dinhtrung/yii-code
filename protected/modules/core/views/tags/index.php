@@ -3,13 +3,13 @@ if(empty($this->breadcrumbs))
 
 $this->breadcrumbs = array(
 	'Tags',
-	Yii::t('app', 'Index'),
+	Yii::t('core', 'Index'),
 );
 
 if(empty($this->menu))
 $this->menu=array(
-	array('label'=>Yii::t('app', 'Create') . ' Tags', 'url'=>array('create')),
-	array('label'=>Yii::t('app', 'Manage') . ' Tags', 'url'=>array('admin')),
+	array('label'=>Yii::t('core', 'Create') . ' Tags', 'url'=>array('create')),
+	array('label'=>Yii::t('core', 'Manage') . ' Tags', 'url'=>array('admin')),
 );
 ?>
 

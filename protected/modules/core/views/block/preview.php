@@ -1,15 +1,13 @@
 <?php
-if(empty($this->breadcrumbs))
-
-$this->breadcrumbs = array(
-	'Blocks',
-	Yii::t('app', 'Index'),
+$this->breadcrumbs=array(
+	Yii::t('core', 'Blocks')	=>	'index',
+	Yii::t('core', 'Preview'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Blocks'));
 ?>
 
-<h1><?php echo $this->pageTitle = Yii::t('app', 'Preview') . ' ' . Yii::t('block', "Blocks"); ?></h1>
+<h1><?php echo $this->pageTitle = Yii::t('core', 'Preview') . ' ' . Yii::t('core', "Blocks"); ?></h1>
 
 <?php foreach ($model as $block){
 	if (array_key_exists($block->region, $this->page)) $this->page[$block->region] = "";

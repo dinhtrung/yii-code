@@ -1,7 +1,7 @@
 <?php
 /** Display the Taggable Widget **/
 $this->beginWidget('zii.widgets.CPortlet', array(
-	'title'=> Yii::t('node', "Tags for Node"),
+	'title'=> Yii::t('core', "Tags for Node"),
 ));
 $this->widget("ext.yiiext.behaviors.model.taggable.ETagListWidget", array(
 	"model" => new Node,

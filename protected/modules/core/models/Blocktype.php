@@ -37,46 +37,26 @@ class Blocktype extends BaseActiveRecord
 			try {
 				Yii::import($this->component);
 			} catch (Exception $e) {
-				$this->addError($attribute, Yii::t('blocktype', "Component :comp does not valid.", array(':comp' => $this->component)));
+				$this->addError($attribute, Yii::t('core', "Component :comp does not valid.", array(':comp' => $this->component)));
 			}
 		}
 	}
 	function validViewfile($attribute,$params) {
 		if(!$this->hasErrors()){
 			if (! Yii::app()->getController()->getViewFile($this->viewfile)){
-				$this->addError($attribute, Yii::t('blocktype', "Viewfile :view does not valid.", array(':view' => $this->viewfile)));
+				$this->addError($attribute, Yii::t('core', "Viewfile :view does not valid.", array(':view' => $this->viewfile)));
 			}
 		}
 	}
 
 	public function attributeLabels()
 	{
-		return array(
-			'btid' => Yii::t('blockType', 'Btid'),
-			'title' => Yii::t('blockType', 'Title'),
-			'description' => Yii::t('blockType', 'Description'),
-			'component' => Yii::t('blockType', 'Component'),
-			'callback' => Yii::t('blockType', 'Callback'),
-			'viewfile' => Yii::t('blockType', 'Viewfile'),
-		);
-	}
-
-
-	public function search()
-	{
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('btid', $this->btid, true);
-		$criteria->compare('title', $this->title, true);
-		$criteria->compare('description', $this->description, true);
-		$criteria->compare('component', $this->component, true);
-		$criteria->compare('callback', $this->callback, true);
-		$criteria->compare('viewfile', $this->viewfile, true);
-
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
+		return array_merge(parent::attributeLabels(), array(
+			"blocks"	=>	Yii::t('core', "Blocks"),
 		));
 	}
+
+
 
 	public function __toString() {
 		return (string) $this->title;

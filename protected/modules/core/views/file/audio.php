@@ -9,6 +9,6 @@ $this->widget('ext.widgets.audioplayer.AiiAudioPlayer' ,
             	'soundFile' 	=> 	$name ,
         		'titles' 		=> $title,
                 'artists' 		=> $description,
-            	'alternative' 	=> 	Yii::t('file', "Missing audio file: %file", array('%file' => $name)) ),
+            	'alternative' 	=> 	Yii::t('core', "Missing audio file: %file", array('%file' => $name)) ),
             'flashPlayerOptions' => array( 'width' => 350 ),
     ) );

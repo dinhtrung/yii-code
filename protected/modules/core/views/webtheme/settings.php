@@ -1,14 +1,14 @@
 <?php
 $this->breadcrumbs=array(
-	Yii::t('webtheme', 'Available Webtheme') => array('index'),
-	Yii::t('webtheme', 'Configure Webtheme'),
+	Yii::t('core', 'Available Webtheme') => array('index'),
+	Yii::t('core', 'Configure Webtheme'),
 );?>
 <?php if(empty($this->menu))
 	$this->menu=array(
-		array('label'=>Yii::t('webtheme', 'Available Webtheme'),
+		array('label'=>Yii::t('core', 'Available Webtheme'),
 			'url'=>array('index')),
 	);?>
-<h1><?php echo $this->pageTitle = Yii::t('webtheme', "Configure Theme Settings"); ?></h1>
+<h1><?php echo $this->pageTitle = Yii::t('core', "Configure Theme Settings"); ?></h1>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
 )); ?>
 
 	<p class="note">
-	<?php echo Yii::t('webtheme','Fields with <span class="required">*</span> are required');?>.
+	<?php echo Yii::t('core','Fields with <span class="required">*</span> are required');?>.
 	</p>
 
 	<?php echo $form->errorSummary($model); ?>
@@ -27,64 +27,64 @@ $this->breadcrumbs=array(
 		<?php echo $form->labelEx($model,'siteName'); ?>
 		<?php echo $form->textField($model,'siteName'); ?>
 		<?php echo $form->error($model,'siteName'); ?>
-		<p class="hint"><?php if('_HINT_Webtheme.siteName' != $hint = Yii::t('webtheme', '_HINT_Webtheme.siteName')) echo $hint; ?></p>
+		<p class="hint"><?php if('_HINT_Webtheme.siteName' != $hint = Yii::t('core', '_HINT_Webtheme.siteName')) echo $hint; ?></p>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'siteSlogan'); ?>
 		<?php echo $form->textField($model,'siteSlogan'); ?>
 		<?php echo $form->error($model,'siteSlogan'); ?>
-		<p class="hint"><?php if('_HINT_Webtheme.siteSlogan' != $hint = Yii::t('webtheme', '_HINT_Webtheme.siteSlogan')) echo $hint; ?></p>
+		<p class="hint"><?php if('_HINT_Webtheme.siteSlogan' != $hint = Yii::t('core', '_HINT_Webtheme.siteSlogan')) echo $hint; ?></p>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'siteLogo'); ?>
 		<?php echo $form->fileField($model,'siteLogo'); ?>
 		<?php echo $form->error($model,'siteLogo'); ?>
-		<p class="hint"><?php if('_HINT_Webtheme.siteLogo' != $hint = Yii::t('webtheme', '_HINT_Webtheme.siteLogo')) echo $hint; ?></p>
+		<p class="hint"><?php if('_HINT_Webtheme.siteLogo' != $hint = Yii::t('core', '_HINT_Webtheme.siteLogo')) echo $hint; ?></p>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'theme'); ?>
 		<?php echo $form->dropDownList($model,'theme', Webtheme::themeOptions()); ?>
 		<?php echo $form->error($model,'theme'); ?>
-		<p class="hint"><?php if('_HINT_Webtheme.theme' != $hint = Yii::t('webtheme', '_HINT_Webtheme.theme')) echo $hint; ?></p>
+		<p class="hint"><?php if('_HINT_Webtheme.theme' != $hint = Yii::t('core', '_HINT_Webtheme.theme')) echo $hint; ?></p>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'serverEmail'); ?>
 		<?php echo $form->textField($model,'serverEmail'); ?>
 		<?php echo $form->error($model,'serverEmail'); ?>
-		<p class="hint"><?php if('_HINT_Webtheme.serverEmail' != $hint = Yii::t('webtheme', '_HINT_Webtheme.serverEmail')) echo $hint; ?></p>
+		<p class="hint"><?php if('_HINT_Webtheme.serverEmail' != $hint = Yii::t('core', '_HINT_Webtheme.serverEmail')) echo $hint; ?></p>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'contactEmail'); ?>
 		<?php echo $form->textField($model,'contactEmail'); ?>
 		<?php echo $form->error($model,'contactEmail'); ?>
-		<p class="hint"><?php if('_HINT_Webtheme.contactEmail' != $hint = Yii::t('webtheme', '_HINT_Webtheme.contactEmail')) echo $hint; ?></p>
+		<p class="hint"><?php if('_HINT_Webtheme.contactEmail' != $hint = Yii::t('core', '_HINT_Webtheme.contactEmail')) echo $hint; ?></p>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'homeUrl'); ?>
 		<?php echo $form->textField($model,'homeUrl'); ?>
 		<?php echo $form->error($model,'homeUrl'); ?>
-		<p class="hint"><?php if('_HINT_Webtheme.homeUrl' != $hint = Yii::t('webtheme', '_HINT_Webtheme.homeUrl')) echo $hint; ?></p>
+		<p class="hint"><?php if('_HINT_Webtheme.homeUrl' != $hint = Yii::t('core', '_HINT_Webtheme.homeUrl')) echo $hint; ?></p>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'perPage'); ?>
 		<?php echo $form->textField($model,'perPage'); ?>
 		<?php echo $form->error($model,'perPage'); ?>
-		<p class="hint"><?php if('_HINT_Webtheme.perPage' != $hint = Yii::t('webtheme', '_HINT_Webtheme.perPage')) echo $hint; ?></p>
+		<p class="hint"><?php if('_HINT_Webtheme.perPage' != $hint = Yii::t('core', '_HINT_Webtheme.perPage')) echo $hint; ?></p>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'layout'); ?>
 		<?php echo $form->textField($model,'layout'); ?>
 		<?php echo $form->error($model,'layout'); ?>
-		<p class="hint"><?php if('_HINT_Webtheme.layout' != $hint = Yii::t('webtheme', '_HINT_Webtheme.layout')) echo $hint; ?></p>
-		<div class="hint"><?php echo Yii::t('blocktype', "Finds a view file based on its name. The view name can be in one of the following formats:<br>
+		<p class="hint"><?php if('_HINT_Webtheme.layout' != $hint = Yii::t('core', '_HINT_Webtheme.layout')) echo $hint; ?></p>
+		<div class="hint"><?php echo Yii::t('core', "Finds a view file based on its name. The view name can be in one of the following formats:<br>
 	<ul>
 		<li><strong>absolute view within a module:</strong> the view name starts with a single slash <kbd>'/'</kbd>. In this case, the view will be searched for under the currently active module's view path. If there is no active module, the view will be searched for under the application's view path.</li>
 		<li><strong>absolute view within the application:</strong> the view name starts with double slashes <kbd>'//'</kbd>. In this case, the view will be searched for under the application's view path.</li>
@@ -95,7 +95,7 @@ $this->breadcrumbs=array(
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton(Yii::t('webtheme', 'Save')); ?>
+		<?php echo CHtml::submitButton(Yii::t('core', 'Save')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

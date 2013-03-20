@@ -1,15 +1,15 @@
 <?php
 
 $this->breadcrumbs=array(
-	'Comments'=>array(Yii::t('app', 'index')),
-	Yii::t('app', 'Create'),
+	'Comments'=>array(Yii::t('core', 'index')),
+	Yii::t('core', 'Create'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Comments'));
 ?>
 
 <h1>
-	<?php echo $this->pageTitle = Yii::t('app', 'Create') . ' ' . Yii::t('Comments', 'Comments'); ?> 
+	<?php echo $this->pageTitle = Yii::t('core', 'Create') . ' ' . Yii::t('core', 'Comments'); ?> 
 </h1>
 
 <?php

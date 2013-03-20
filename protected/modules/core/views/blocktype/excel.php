@@ -1,4 +1,4 @@
-<?php $this->pageTitle = Yii::t('app', 'Manage') . ' ' . Yii::t('blocktype', 'Blocktypes'); ?>
+<?php $this->pageTitle = Yii::t('core', 'Manage') . ' ' . Yii::t('core', 'Blocktypes'); ?>
 
 <?php
 $this->widget('ext.widgets.excelview.EExcelView', array(

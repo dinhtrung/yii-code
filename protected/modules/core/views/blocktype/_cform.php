@@ -8,36 +8,36 @@ return array (
     array (
       'type' => 'text',
       'size' => 20,
-      'label' => Yii::t('blocktype', "title"),
-      'hint' => Yii::t('blocktype', "_HINT_Blocktype.title"),
+      'label' => Yii::t('core', "title"),
+      'hint' => Yii::t('core', "_HINT_Blocktype.title"),
     ),
     'description' =>
     array (
       'type' => 'text',
       'size' => 20,
-      'label' => Yii::t('blocktype', "description"),
-      'hint' => Yii::t('blocktype', "_HINT_Blocktype.description"),
+      'label' => Yii::t('core', "description"),
+      'hint' => Yii::t('core', "_HINT_Blocktype.description"),
     ),
     'component' =>
     array (
       'type' => 'text',
       'size' => 20,
-      'label' => Yii::t('blocktype', "component"),
-      'hint' => Yii::t('blocktype', "_HINT_Blocktype.component"),
+      'label' => Yii::t('core', "component"),
+      'hint' => Yii::t('core', "_HINT_Blocktype.component"),
     ),
     'callback' =>
     array (
       'type' => 'text',
       'size' => 20,
-      'label' => Yii::t('blocktype', "callback"),
-      'hint' => Yii::t('blocktype', "_HINT_Blocktype.callback"),
+      'label' => Yii::t('core', "callback"),
+      'hint' => Yii::t('core', "_HINT_Blocktype.callback"),
     ),
     'viewfile' =>
     array (
       'type' => 'text',
       'size' => 20,
-      'label' => Yii::t('blocktype', "viewfile"),
-      'hint' => Yii::t('blocktype', "_HINT_Blocktype.viewfile"),
+      'label' => Yii::t('core', "viewfile"),
+      'hint' => Yii::t('core', "_HINT_Blocktype.viewfile"),
     ),
   ),
 );

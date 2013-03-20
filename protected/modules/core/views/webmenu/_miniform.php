@@ -74,12 +74,12 @@
 
 <?php
 echo CHtml::Button(
-	Yii::t('app', 'Cancel'),
+	Yii::t('core', 'Cancel'),
 	array(
 		'onClick' => "$('#".$relation."_dialog').dialog('close');"
 	));
 echo CHtml::Button(
-	Yii::t('app', 'Create'),
+	Yii::t('core', 'Create'),
 	array(
 		'id' => "submit_".$relation
 	));

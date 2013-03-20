@@ -10,7 +10,7 @@ if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'm
 ?>
 
 <h1>
-<?php echo $this->pageTitle = Yii::t('app', 'View') . ' ' . Yii::t('blocktype', 'Blocktypes  :name', array(':name' => CHtml::encode($model))); ?>
+<?php echo $this->pageTitle = Yii::t('core', 'View') . ' ' . Yii::t('core', 'Blocktypes  :name', array(':name' => CHtml::encode($model))); ?>
 </h1>
 
 <div>
@@ -31,7 +31,7 @@ $this->endWidget(); ?>
 
 
 
-<h2><?php echo CHtml::link(Yii::t('blocktype', 'Blocks of type :title', array(':title'	=>	$model->title)), array('/core/block'));?></h2>
+<h2><?php echo CHtml::link(Yii::t('core', 'Blocks of type :title', array(':title'	=>	$model->title)), array('/core/block'));?></h2>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 					'id'=>'block-grid',
 					'dataProvider'=> $model->getDataProvider('blocks'),

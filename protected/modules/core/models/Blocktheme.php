@@ -39,7 +39,7 @@ class Blocktheme extends BaseActiveRecord{
 	*/
 	public function tableName()
 	{
-		return 'blocktheme';
+		return '{{blocktheme}}';
 	}
 	/**
 	* Define validation rules
@@ -69,29 +69,8 @@ class Blocktheme extends BaseActiveRecord{
 	*/
 	public function attributeLabels()
 	{
-		return array(
-			'id' => Yii::t('app', 'ID'),
-			'block' => Yii::t('app', 'Block'),
-			'theme' => Yii::t('app', 'Theme'),
-			'region' => Yii::t('app', 'Region'),
-			'weight' => Yii::t('app', 'Weight'),
-		);
-	}
-	/**
-	* Which attribute are safe for search
-	*/
-	public function search()
-	{
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id', $this->id, true);
-		$criteria->compare('block', $this->block);
-		$criteria->compare('theme', $this->theme, true);
-		$criteria->compare('region', $this->region, true);
-		$criteria->compare('weight', $this->weight);
-
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
+		return array_merge(parent::attributeLabels(), array(
+				'owner'	=>	Yii::t('core', 'Owner'),
 		));
 	}
 
@@ -103,55 +82,4 @@ class Blocktheme extends BaseActiveRecord{
 			'order' => 'region ASC, weight ASC',
 		);
 	}
-	/**
-	* Run before validate()
-	*/
-	protected function beforeValidate() {
-		return parent::beforeValidate();
-	}
-	/**
-	* Run after validate()
-	*/
-	protected function afterValidate() {
-		return parent::afterValidate();
-	}
-	/**
-	* Run before save()
-	*/
-	protected function beforeSave() {
-		return parent::beforeSave();
-	}
-	/**
-	* Run after save()
-	*/
-	protected function afterSave() {
-		return parent::afterSave();
-	}
-	/**
-	* Run before delete()
-	*/
-	protected function beforeDelete() {
-		return parent::beforeDelete();
-	}
-	/**
-	* Run after delete()
-	*/
-	protected function afterDelete() {
-		return parent::afterDelete();
-	}
-	/**
-	* Configure additional behaviors
-	*
-	public function behaviors()
-	{
-		return array_merge(
-			array(
-				'BehaviourName' => array(
-					'class' => 'CWhateverBehavior'
-				)
-			),
-			parent::behaviors()
-		);
-	}
-	*/
 }

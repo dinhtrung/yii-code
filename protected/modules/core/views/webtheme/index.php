@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	Yii::t('webtheme', 'Available Webtheme'),
+	Yii::t('core', 'Available Webtheme'),
 );
 $this->menu=array(
 	array(
-		'label'	=>	Yii::t('webtheme', 'Configure Webtheme'),
+		'label'	=>	Yii::t('core', 'Configure Webtheme'),
 		'url'=>array('settings')
 	),
 );
 ?>
-<h1><?php echo $this->pageTitle = Yii::t('webtheme', "Available Webtheme"); ?></h1>
+<h1><?php echo $this->pageTitle = Yii::t('core', "Available Webtheme"); ?></h1>
 
 <?php foreach ($themes as $theme => $name):?>
 	<div class="view">
@@ -23,7 +23,7 @@ $this->menu=array(
 		?>
 		</div>
 		<?php if (! empty($themeinfo["region"])):?>
-			<h3><?php print Yii::t('webtheme', 'Available Region'); ?></h3>
+			<h3><?php print Yii::t('core', 'Available Region'); ?></h3>
 				<ul>
 				<?php foreach ($themeinfo["region"] as $k => $v):?>
 					<?php printf ("<li><strong>%s</strong>: <code>%s</code></li>", $v, $k); ?>

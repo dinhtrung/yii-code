@@ -31,7 +31,7 @@ class Block extends BaseActiveRecord
 		return '{{block}}';
 	}
 
-	public function rules()
+	/*public function rules()
 	{
 		return array(
 			array('title', 'required'),
@@ -48,15 +48,15 @@ class Block extends BaseActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'bid' => Yii::t('block', 'Bid'),
-			'title' => Yii::t('block', 'Title'),
-			'label' => Yii::t('block', 'Label'),
-			'description' => Yii::t('block', 'Description'),
-			'type' => Yii::t('block', 'Type'),
-			'option' => Yii::t('block', 'Option'),
-			'status' => Yii::t('block', 'Status'),
-			'url' => Yii::t('block', 'Url'),
-			'display' => Yii::t('block', 'Display'),
+			'bid' => Yii::t('core', 'Bid'),
+			'title' => Yii::t('core', 'Title'),
+			'label' => Yii::t('core', 'Label'),
+			'description' => Yii::t('core', 'Description'),
+			'type' => Yii::t('core', 'Type'),
+			'option' => Yii::t('core', 'Option'),
+			'status' => Yii::t('core', 'Status'),
+			'url' => Yii::t('core', 'Url'),
+			'display' => Yii::t('core', 'Display'),
 		);
 	}
 
@@ -78,7 +78,7 @@ class Block extends BaseActiveRecord
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria'=>$criteria,
 		));
-	}
+	}*/
 
 	public function init()
 	{
@@ -96,6 +96,13 @@ class Block extends BaseActiveRecord
 			'blocktype' => array(self::BELONGS_TO, 'Blocktype', 'type'),
 			'themes' => array(self::HAS_MANY, 'Blocktheme', 'block'),
 		);
+	}
+
+	public function attributeLabels(){
+		return array_merge(parent::attributeLabels(),array(
+			'blocktype'	=>	Yii::t('core', 'Blocktype'),
+			'themes'	=>	Yii::t('core', 'Themes'),
+		));
 	}
 
 	public function behaviors()
@@ -120,8 +127,8 @@ class Block extends BaseActiveRecord
 	const DISPLAY_ONLY 		= 1;
 	public static function displayOption($param = NULL) {
 		$options = array(
-			self::DISPLAY_EXCEPT	=>	Yii::t('block', "All pages except those listed "),
-			self::DISPLAY_ONLY		=>	Yii::t('block', "Only the listed pages"),
+			self::DISPLAY_EXCEPT	=>	Yii::t('core', "All pages except those listed "),
+			self::DISPLAY_ONLY		=>	Yii::t('core', "Only the listed pages"),
 		);
 		if (is_null($param)) return $options;
 		elseif (array_key_exists((string) $param, $options)) return $options[(string) $param];

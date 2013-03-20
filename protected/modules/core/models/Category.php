@@ -32,7 +32,7 @@ class Category extends BaseActiveRecord{
 	* @return string representing the object
 	*/
 	public function __toString() {
-		return (string) Yii::t('category', $this->title, array(), 'dbmessages');
+		return (string) Yii::t('core', $this->title, array(), 'dbmessages');
 
 	}
 	/**
@@ -69,23 +69,10 @@ class Category extends BaseActiveRecord{
 	public function attributeLabels()
 	{
 		return array(
-			'root' => Yii::t('category', 'Root'),
-			'title' => Yii::t('category', 'Title'),
-			'description' => Yii::t('category', 'Description'),
+			'root' => Yii::t('core', 'Root'),
+			'title' => Yii::t('core', 'Title'),
+			'description' => Yii::t('core', 'Description'),
 		);
-	}
-	/**
-	* Which attribute are safe for search
-	*/
-	public function search()
-	{
-		$criteria=new CDbCriteria;
-		$criteria->compare('title', $this->title, true);
-		$criteria->compare('description', $this->description, true);
-
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
 	}
 	/**
 	* Provide default sorting and optional condition
@@ -159,20 +146,20 @@ class Category extends BaseActiveRecord{
 		if (is_null($rid)) {
 			$categorys = self::model()->roots()->findAll();
 			foreach ($categorys as $n => $category){
-				$output[$category->id] = Yii::t('webmenu', $category->title, array(), 'dbmessages');
+				$output[$category->id] = Yii::t('core', $category->title, array(), 'dbmessages');
 				$categories = $category->descendants()->findAll();
 				foreach ($categories as $cat){
-					$output[$cat->id] = str_repeat('-', $cat->level) . Yii::t('webmenu', $cat->title, array(), 'dbmessages');
+					$output[$cat->id] = str_repeat('-', $cat->level) . Yii::t('core', $cat->title, array(), 'dbmessages');
 				}
 			}
 		} else {
 			$category = self::model()->findByPk($rid);
 			if (is_null($category)) return array();
 			$output = array();
-			$output[$category->id] = Yii::t('webmenu', $category->title, array(), 'dbmessages');
+			$output[$category->id] = Yii::t('core', $category->title, array(), 'dbmessages');
 			$categories = $category->descendants()->findAll();
 			foreach ($categories as $cat){
-				$output[$cat->id] = str_repeat('-', $cat->level) . Yii::t('webmenu', $cat->title, array(), 'dbmessages');;
+				$output[$cat->id] = str_repeat('-', $cat->level) . Yii::t('core', $cat->title, array(), 'dbmessages');;
 			}
 		}
 		return $output;
@@ -188,8 +175,8 @@ class Category extends BaseActiveRecord{
 	*/
 	public static function getTreeConfig(){
 		return array (
-				'title'	=>	Yii::t('category', "Get Tree configuration"),
-				'description'	=>	Yii::t('category', "Select a Category to use as root, and the level of depth for recursive."),
+				'title'	=>	Yii::t('core', "Get Tree configuration"),
+				'description'	=>	Yii::t('core', "Select a Category to use as root, and the level of depth for recursive."),
 			  	'elements' => array (
 				    'root' => array (
 			      		'type' => 'dropdownlist',

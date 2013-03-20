@@ -1,11 +1,11 @@
 <?php
 $this->breadcrumbs=array(
-	Yii::t('webTheme', 'Available Webtheme') => array('index'),
-	Yii::t('webTheme', 'Configure Webtheme'),
+	Yii::t('core', 'Available Webtheme') => array('index'),
+	Yii::t('core', 'Configure Webtheme'),
 );?>
 <?php if(empty($this->menu))
 	$this->menu=array(
-		array('label'=>Yii::t('webTheme', 'Available Webtheme'),
+		array('label'=>Yii::t('core', 'Available Webtheme'),
 			'url'=>array('index')),
 	);?>
 <?php

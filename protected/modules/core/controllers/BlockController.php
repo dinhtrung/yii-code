@@ -85,7 +85,7 @@ class BlockController extends WebBaseController
 				}
 			}
 			echo "<div class='flash-success'>";
-			echo Yii::t('category', 'Sucessfully update order.');
+			echo Yii::t('core', 'Sucessfully update order.');
 			echo "</div>";
 			Yii::app()->end();
 		} else {
@@ -99,7 +99,7 @@ class BlockController extends WebBaseController
 	**/
 	public function actionConfigure(){
 		$model = $this->loadModel();
-		if (! $model->blocktype->component) throw new CHttpException(200, Yii::t('block', "The block :block has no configuration.", array(':block' => CHtml::encode($model->blocktype))));
+		if (! $model->blocktype->component) throw new CHttpException(200, Yii::t('core', "The block :block has no configuration.", array(':block' => CHtml::encode($model->blocktype))));
 		$component = Yii::import($model->blocktype->component);
 		if(!empty($_POST[$component])) {
 			$model->option = $_POST[$component];
@@ -110,12 +110,12 @@ class BlockController extends WebBaseController
 		// Check to see if this component exists;
 		$callback = $model->blocktype->callback . 'Config';
 		$config = call_user_func(array($component, $callback));
-		$config['title'] = Yii::t('block', "Configuration for block :block", array(":block" => $model->title));
+		$config['title'] = Yii::t('core', "Configuration for block :block", array(":block" => $model->title));
 		$config['showErrorSummary'] = TRUE;
 		$config['buttons'] = array(
 				'submit' => array(
 				'type' => 'submit',
-				'value' => Yii::t('block', 'Save'))
+				'value' => Yii::t('core', 'Save'))
 		);
 		$component = new $component("block");
 		$component->setAttributes($model->option, FALSE);

@@ -2,24 +2,24 @@
 
 
 $this->breadcrumbs = array(
-	Yii::t('node', "Nodes"),
-	Yii::t('app', 'Index'),
+	Yii::t('core', "Nodes"),
+	Yii::t('core', 'Index'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Node'));
 ?>
 
-<h1><?php echo $this->pageTitle = Yii::t('app', "Search Results for") . ' ' . Yii::t('node', "Nodes"); ?></h1>
+<h1><?php echo $this->pageTitle = Yii::t('core', "Search Results for") . ' ' . Yii::t('core', "Nodes"); ?></h1>
 
 <?php echo CHtml::beginForm(); ?>
 
 <div class="row">
-	<?php echo CHtml::label('keyword', Yii::t('app', 'Keyword')); ?>
+	<?php echo CHtml::label('keyword', Yii::t('core', 'Keyword')); ?>
 	<?php echo CHtml::textField('q', (isset($_POST['q'])?$_POST['q']:''),array('size'=>60,'maxlength'=>255)); ?>
 </div>
 
 <?php 
-echo CHtml::submitButton(Yii::t('app', 'Search'));
+echo CHtml::submitButton(Yii::t('core', 'Search'));
 echo CHtml::endForm(); ?>
 
 <?php if (! is_null($model)) {

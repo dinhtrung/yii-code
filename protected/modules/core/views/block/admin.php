@@ -1,9 +1,7 @@
 <?php
-
-
 $this->breadcrumbs=array(
-	'Blocks'	=>	array('index'),
-	Yii::t('app', 'Manage'),
+	Yii::t('core', 'Blocks')	=>	array('index'),
+	Yii::t('core', 'Manage'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Blocks'));
@@ -23,10 +21,10 @@ if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Bloc
 		?>
 
 <h1>
-<?php echo $this->pageTitle = Yii::t('app', 'Manage') . ' ' . Yii::t('Block', 'Blocks'); ?>
+<?php echo $this->pageTitle = Yii::t('core', 'Manage') . ' ' . Yii::t('core', 'Blocks'); ?>
 </h1>
 
-<?php echo CHtml::link(Yii::t('block', 'Advanced Search'),'#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link(Yii::t('core', 'Advanced Search'),'#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -48,17 +46,17 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'class'=>'EButtonColumnWithClearFilters',
 			'buttons'	=>	array(
 				'duplicate' => array(
-					'label'	=>	Yii::t('app', "Duplicate"),
+					'label'	=>	Yii::t('core', "Duplicate"),
 					'url'	=>	'Yii::app()->controller->createUrl("sort",array("id"=>$data->primaryKey))',
 					'imageUrl'	=> Yii::app()->baseUrl . "/images/icons/blue-document-copy.png",
 				),
 				'configure'	=>	array(
- 					'label'	=> 	Yii::t('app', 'Configure'),
+ 					'label'	=> 	Yii::t('core', 'Configure'),
      				'url'	=>	'Yii::app()->controller->createUrl("configure",array("id"=>$data->primaryKey))',
      				'imageUrl'	=>	Yii::app()->getBaseUrl() . '/images/icons/block--pencil.png',
 				),
 				'theme'	=>	array(
- 					'label'	=> 	Yii::t('app', 'Theme'),
+ 					'label'	=> 	Yii::t('core', 'Theme'),
      				'url'	=>	'Yii::app()->controller->createUrl("theme",array("id"=>$data->primaryKey))',
      				'imageUrl'	=>	Yii::app()->getBaseUrl() . '/images/icons/block--arrow.png',
 				),
