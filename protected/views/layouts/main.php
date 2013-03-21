@@ -1,75 +1,68 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 
+	<title><?php echo CHtml::encode($this->pageTitle); ?> | <?php echo CHtml::encode(Yii::app()->name); ?></title>
 	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/screen.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/print.css" media="print" />
 	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/ie.css" media="screen, projection" />
 	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/form.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/main.css" media="screen, projection" />
+</head>
 
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-
-	<title><?php echo CHtml::encode($this->pageTitle); ?> | <?php echo CHtml::encode(Yii::app()->name); ?> </title>
-
-	</head>
 <body>
 
 <div class="container" id="page">
-
-	<div id="header" class="span-24 last">
-		<h1 class="span-14 prepend-top"><?php echo CHtml::encode(Yii::app()->name); ?></h1>
-		<div class="span-10 last prepend-top">
-			<?php if (Yii::app()->getUser()->isGuest):?>
-			<p class="flash-warning">Vui lòng <?php echo CHtml::link(
-					Yii::t('user', 'Login'),
-					Yii::app()->createUrl('user/login')
-					); ?> vào hệ thống</p>
-			<?php else: ?>
-			<p class="flash-success">Xin chào, <?php echo CHtml::link(
-					Yii::app()->getUser()->name,
-					Yii::app()->createUrl('user/profile')
-					); ?> |
-					<?php echo CHtml::link(
-					Yii::t('user', 'Logout'),
-					Yii::app()->createUrl('user/logout')
-					); ?>
-			</p>
-			<?php endif; ?>
+	<div id="topnav">
+		<div class="topnav_text right prepend-top append-1">
+			<?php echo CHtml::link(Yii::t('app', 'Hello, ') . ' <strong>' .Yii::app()->getUser()->getName().'</strong>', array('/user/profile')); ?> |
+			<?php echo CHtml::link(Yii::t('app', 'Logout'), array('/user/logout')); ?>
 		</div>
-	</div><!-- header -->
-	<hr class="clearfix">
-	<div id="mainMbMenu">
-		<?php
-		$menuitems =  array(
-				array('label'=>'Báo cáo', 'url'=>array('/site/index')),
-				array('label' => 'Người dùng',
-					'items' => array(
-						array('label' => 'Đăng nhập', 'url' => array('/user/login'), 'visible' => (Yii::app()->getUser()->isGuest)),
-						array('label' => 'Hồ sơ', 'url' => array('/user/profile'), 'visible' => ! (Yii::app()->getUser()->isGuest)),
-						array('label' => 'Quản lý người dùng', 'url' => array('/user/admin'), 'visible' => (Yii::app()->getUser()->checkAccess('User.Admin.*'))),
-					),
-				)
-			);
-		$this->widget('ext.widgets.mbmenu.MbMenu',array(
-			'items'=> $menuitems,
-		)); ?>
-	</div><!-- mainmenu -->
+	</div>
+	<div id="header">
+		<h1 class="loud"><?php echo CHtml::encode(Yii::app()->name); ?></h1>
+	</div>
+	<!-- header -->
+
+<div id="mainMbMenu">
+<?php if (! empty($this->mainMenu)) $this->widget('ext.widgets.mbmenu.MbMenu',array(
+            'items'=> $this->mainMenu,
+    ));?>
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 
+	<?php foreach (Yii::app()->getUser()->getFlashes() as $key => $message):?>
+		<div class='right flash-<?php echo $key; ?>'><?php echo $message; ?></div>
+	<?php endforeach;?>
+
 	<?php echo $content; ?>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> VMS Mobifone.<br/>
-		All Rights Reserved.<br/>
+		<?php //shortcut
+$translate=Yii::app()->dbtranslate;
+//in your layout add
+echo $translate->dropdown();
+//adn this
+if($translate->hasMessages()){
+  //generates a to the page where you translate the missing translations found in this page
+  echo $translate->translateLink('Translate');
+  //or a dialog
+  echo $translate->translateDialogLink('Translate','Translate page title');
+}
+//link to the page where you edit the translations
+echo $translate->editLink('Edit translations page');
+//link to the page where you check for all unstranslated messages of the system
+echo $translate->missingLink('Missing translations page');
+
+?>
 	</div><!-- footer -->
 
 </div><!-- page -->

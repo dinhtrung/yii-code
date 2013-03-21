@@ -17,5 +17,8 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'User' => '',
+  '0-9' => '',
+  'All' => '',
+  'Go to letter: ' => '',
+  'There is no value set for "attribute". You must set the model attribute the pagination condition should be applied to.' => '',
 );

@@ -2,7 +2,6 @@
 	Yii::t('rights', 'Rights') =>Rights::getBaseUrl(),
 	Yii::t('rights', 'Tasks'),
 ); ?>
-
 <div id="tasks">
 
 	<h1><?php echo $this->pageTitle = Yii::t('rights', 'Tasks'); ?></h1>

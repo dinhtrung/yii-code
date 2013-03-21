@@ -35,7 +35,7 @@ class User extends BaseActiveRecord
 	 */
 	public function tableName()
 	{
-		return Yii::app()->getModule('user')->tableUsers;
+		return '{{users}}';
 	}
 
 	/**

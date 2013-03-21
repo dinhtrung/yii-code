@@ -10,6 +10,7 @@
 
 class UserModule extends CWebModule
 {
+	public $defaultController='user';
 	/**
 	 * @var int
 	 * @desc items on page

@@ -2,7 +2,7 @@
 
 
 $this->breadcrumbs=array(
-	'Nodes'=>array('index'),
+	Yii::t('core', 'Nodes')	=>'index',
 	$model->title=>array('view','id'=>$model->id),
 	Yii::t('core', 'Update'),
 );
@@ -11,7 +11,7 @@ if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'm
 ?>
 
 <h1>
-	<?php echo $this->pageTitle = Yii::t('core', 'Update') . ' ' . Yii::t('core', 'Nodes :name', array(':name' => CHtml::encode($model))); ?> 
+	<?php echo $this->pageTitle = Yii::t('core', 'Update') . ' ' . Yii::t('core', 'Nodes :name', array(':name' => CHtml::encode($model))); ?>
 </h1>
 
 <?php

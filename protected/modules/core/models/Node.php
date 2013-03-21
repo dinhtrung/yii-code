@@ -47,25 +47,6 @@ class Node extends BaseActiveRecord{
 		return '{{node}}';
 	}
 	/**
-	* Define validation rules
-	*/
-	public function rules()
-	{
-		return array(
-			'type' => array('type', 'default', 'on' => 'update, insert', 'setOnEmpty' => TRUE, 'value' => 'node'),
-			array('type', 'unsafe', 'on' => 'update, insert'),
-			array('alias', 'unique'),
-			'alias' => array('alias', 'unsafe'),
-			array('status', 'in', 'on' => 'insert, update', 'range' => array_keys(self::statusOption())),
-			array('title', 'required', 'on' => 'insert, update'),
-			array('body','safe'),
-			array('createtime, updatetime, uid', 'unsafe', 'on' => 'insert, update'),
-			array('cid', 'numerical', 'integerOnly'=>true),
-			array('title, tags', 'length', 'max'=>255),
-			array('title, body, createtime, updatetime, uid, cid, tags', 'safe', 'on'=>'search'),
-		);
-	}
-	/**
 	* Relation to other models
 	*/
 	public function relations()
@@ -80,36 +61,9 @@ class Node extends BaseActiveRecord{
 	*/
 	public function attributeLabels()
 	{
-		return array(
-			'title' => Yii::t('core', 'Title'),
-			'body' => Yii::t('core', 'Body'),
-			'createtime' => Yii::t('core', 'Createtime'),
-			'updatetime' => Yii::t('core', 'Updatetime'),
-			'cid' => Yii::t('core', 'Category'),
-			'tags' => Yii::t('core', 'Tags'),
-		);
-	}
-	/**
-	* Which attribute are safe for search
-	*/
-	public function search()
-	{
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('title', $this->title, true);
-		$criteria->compare('description', $this->description, true);
-		$criteria->compare('body', $this->body, true);
-		$criteria->compare('createtime', $this->createtime);
-		$criteria->compare('updatetime', $this->updatetime);
-		$criteria->compare('status', $this->status);
-		$criteria->compare('cid', $this->cid);
-		/* FIXME: MySQL Full text search
-		 * $criteria->select = array(
-		        "MATCH (title, body) AGAINST ('*{$_GET['q']}*'  IN BOOLEAN MODE) as relevance"
-		);*/
-
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
+		return array_merge(parent::attributeLabels(), array(
+				'user'	=>	Yii::t('core', 'User'),
+				'category'	=>	Yii::t('core', 'Category'),
 		));
 	}
 	/**

@@ -22,9 +22,9 @@ class UserIdentity extends CUserIdentity
 	public function authenticate()
 	{
 		if (strpos($this->username,"@")) {
-			$user=User::model()->notsafe()->findByAttributes(array('email'=>$this->username));
+			$user=User::model()->findByAttributes(array('email'=>$this->username));
 		} else {
-			$user=User::model()->notsafe()->findByAttributes(array('username'=>$this->username));
+			$user=User::model()->findByAttributes(array('username'=>$this->username));
 		}
 		if($user===null)
 			if (strpos($this->username,"@")) {
@@ -45,7 +45,7 @@ class UserIdentity extends CUserIdentity
 		}
 		return !$this->errorCode;
 	}
-    
+
     /**
     * @return integer the ID of the user record
     */

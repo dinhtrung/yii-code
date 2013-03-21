@@ -17,5 +17,6 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'User' => '',
+  '-- Select gallery --' => '',
+  'Content of the block.' => '',
 );

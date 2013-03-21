@@ -17,5 +17,9 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'User' => '',
+  'All Translation' => 'Tất cả các bản dịch',
+  'Missing Translation' => 'Các bản dịch còn thiếu',
+  'Translate' => 'Dịch thuật',
+  'Admin' => 'Quản lý',
+  'translate' => 'dịch',
 );

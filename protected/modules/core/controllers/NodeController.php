@@ -41,35 +41,6 @@ class NodeController extends WebBaseController
 		));
 	}
 
-	public function actionSearch(){
-		$model = NULL;
-		if (isset($_POST['q'])){
-			$searchCriteria = new stdClass();
-			$pages = new CPagination();
-			$pages->pageSize = 20;
-			$searchCriteria->select = '*';
-			//$searchCriteria->filters = array();
-			$searchCriteria->query = $_POST['q'];
-			$searchCriteria->paginator = $pages;
-			//$searchCriteria->groupby = $groupby;
-			//$searchCriteria->orders = array('createtime' => 'DESC');
-			$searchCriteria->from = 'node';
-			$model = Yii::app()->sphinx->search($searchCriteria); // interator result*/
-			/*Yii::app()->search
-				//->select('id')
-				->from('node')
-				->where($_POST['q'])
-				//->filters()
-				//->groupby($groupby)
-				->orderby(array('createtime' => 'DESC'))
-				->limit(0, 30);
-			$resIterator = Yii::app()->search->search();*/
-			//$resIterator = Yii::app()->search->searchRaw();
-
-		}
-		$this->render("results", array('model' => $model));
-	}
-
 	/**
 	* Configure Controller Actions
 	* Action class are stored in `ext.actions`.

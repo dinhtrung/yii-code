@@ -3,7 +3,7 @@
 	Rights::getAuthItemTypeNamePlural($model->type)=>Rights::getAuthItemRoute($model->type),
 	$model->name,
 ); ?>
-
+<?php $this->renderPartial('_menu', array('model'=>$formModel)); ?>
 <div id="updatedAuthItem">
 
 	<h1><?php echo Yii::t('rights', 'Update :name', array(

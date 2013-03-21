@@ -18,6 +18,8 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 		"ext.image.*",
 	) ,
 	'modules' => array(
+		// Translate for Database. Use: Yii::t('source', 'message', array(), 'dbmessage')
+		'core',
 		'user',
 		'rights' => array(
 			'superuserName' => 'Admin', // Name of the role with super user privileges.
@@ -29,11 +31,10 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 			'enableBizRuleData' => false, // Whether to enable data for business rules.
 			'flashSuccessKey' => 'RightsSuccess', // Key to use for setting success flash messages.
 			'flashErrorKey' => 'RightsError', // Key to use for setting error flash messages.
-			'appLayout' => 'application.views.layouts.column2', // Layout to use for displaying Rights.
 			'baseUrl' => '/rights', // Base URL for Rights. Change if module is nested.
 			'cssFile' => 'rights.css', // Style sheet file to use for Rights.
 		) ,
-		'core',
+		'translate',
 	) ,
 	// application components
 	'components' => array(
@@ -86,5 +87,13 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 		'file' => array(
 			'class' => 'ext.components.CFile',
 		) ,
+		// DB Translator
+		'dbtranslate'=>array(
+				'class'=>'translate.components.MPTranslate',
+				'acceptedLanguages'=>array(
+						'en'=>'English',
+						'vi'=>'Vietnamese',
+				),
+		),
 	) ,
 ));

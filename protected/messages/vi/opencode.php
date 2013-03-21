@@ -17,5 +17,9 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'User' => '',
+  'Opencode' => '',
+  'CDR Files processed' => 'Các file CDR đã xử lý',
+  'Filename' => 'Tên tệp',
+  'View' => '',
+  'opencode' => '0penc0de',
 );
