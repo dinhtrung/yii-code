@@ -1,7 +1,11 @@
 <?php
 
-class TaxController extends WebBaseController
+class PaymentmethodController extends Controller
 {
+	public function actionChoose() {
+		$this->render('choose', array('customer' => Shop::getCustomer()));
+	}
+
 	public function actions(){
 		return array(
 			'index'	=>	'ext.actions.AdminAction',
@@ -11,5 +15,4 @@ class TaxController extends WebBaseController
 			'view'	=>	'ext.actions.ViewAction',
 		);
 	}
-
 }

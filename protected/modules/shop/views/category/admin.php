@@ -11,11 +11,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		array(
 			'class'=>'CButtonColumn', 
 			'viewButtonUrl' => 'Yii::app()->createUrl("/shop/category/view",
-			array("id" => $data->category_id))',
+			array("id" => $data->getPrimaryKey()))',
 			'updateButtonUrl' => 'Yii::app()->createUrl("/shop/category/update",
-			array("id" => $data->category_id))',
+			array("id" => $data->getPrimaryKey()))',
 			'deleteButtonUrl' => 'Yii::app()->createUrl("/shop/category/delete",
-			array("id" => $data->category_id))',
+			array("id" => $data->getPrimaryKey()))',
 		),
 	),
 )); 

@@ -2,11 +2,11 @@
 
 class InstallController extends Controller
 {
-	public function actionInstall() 
+	public function actionInstall()
 	{
-		if($this->module->debug) 
+		if($this->module->debug)
 		{
-			if(Yii::app()->request->isPostRequest) 
+			if(Yii::app()->request->isPostRequest)
 			{
 				if($db = Yii::app()->db) {
 						$transaction = $db->beginTransaction();
@@ -30,8 +30,8 @@ class InstallController extends Controller
 						$db->createCommand($sql)->execute();
 
 						$db->createCommand(sprintf('drop table if exists %s, %s, %s, %s, %s, %s, %s, `%s`, %s, %s',
-									$categoryTable, 
-									$productsTable, 
+									$categoryTable,
+									$productsTable,
 									$orderTable,
 									$customerTable,
 									$imageTable,
@@ -48,7 +48,7 @@ class InstallController extends Controller
 							`is_user_input` tinyint(1),
 							`required` tinyint(1),
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+								) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
 						$db->createCommand($sql)->execute();
 
 						$sql = "CREATE TABLE IF NOT EXISTS `".$variationTable."` (
@@ -59,7 +59,7 @@ class InstallController extends Controller
 							`title` varchar(255) NOT NULL,
 							`price_adjustion` float NOT NULL,
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1";
+								) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
 
 						$db->createCommand($sql)->execute();
 
@@ -68,7 +68,7 @@ class InstallController extends Controller
 							`title` varchar(255) NOT NULL,
 							`percent` int(11) NOT NULL,
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;";
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
 
 						$db->createCommand($sql)->execute();
 						$sql = "INSERT INTO `shop_tax` (`id`, `title`, `percent`) VALUES
@@ -84,7 +84,7 @@ class InstallController extends Controller
 							`tax_id` int(11) NOT NULL,
 							`price` double NOT NULL,
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ; ";
 
 						$db->createCommand($sql)->execute();
 						$sql = "INSERT INTO `shop_shipping_method` (`id`, `title`, `description`, `tax_id`, `price`) VALUES
@@ -99,7 +99,7 @@ class InstallController extends Controller
 							`tax_id` int(11) NOT NULL,
 							`price` double NOT NULL,
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ; ";
 
 						$db->createCommand($sql)->execute();
 
@@ -196,7 +196,7 @@ class InstallController extends Controller
 							`amount` int(11) NOT NULL,
 							`specifications` text NOT NULL,
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ; ";
 
 						$db->createCommand($sql)->execute();
 
@@ -209,7 +209,7 @@ class InstallController extends Controller
 							`city` varchar(255) NOT NULL,
 							`country` varchar(255) NOT NULL,
 							PRIMARY KEY (`id`)
-								) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+								) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
 
 						$db->createCommand($sql)->execute();
 
@@ -255,7 +255,7 @@ class InstallController extends Controller
 
 						$db->createCommand($sql)->execute();
 
-						if($this->module->installDemoData) 
+						if($this->module->installDemoData)
 						{
 							$sql = "INSERT INTO `".$categoryTable."` (`category_id`, `parent_id`, `title`) VALUES
 								(1, 0, 'Primary Articles'),
@@ -266,10 +266,10 @@ class InstallController extends Controller
 
 							$db->createCommand($sql)->execute();
 
-							$sql = "INSERT INTO `".$productsTable."` 
-(`product_id`, `tax_id`, `title`, `description`, `price`, `category_id`) VALUES 
+							$sql = "INSERT INTO `".$productsTable."`
+(`product_id`, `tax_id`, `title`, `description`, `price`, `category_id`) VALUES
 (1, 1, 'Demonstration of Article with variations', 'Hello, World!', '19.99', 1),
-(2, 2, 'Another Demo Article with less Tax', '!!', '29.99', 1), 
+(2, 2, 'Another Demo Article with less Tax', '!!', '29.99', 1),
 (3, 1, 'Demo3', '', '', 2), (4, 1, 'Demo4', '', '7, 55', 4); ";
 
 
@@ -302,14 +302,14 @@ class InstallController extends Controller
 						// Victory
 						$this->render('success');
 				} else {
-					throw new CException(Yii::t('ShopModule.shop', 'Database Connection is not working'));	
+					throw new CException(Yii::t('ShopModule.shop', 'Database Connection is not working'));
 				}
 			}
 			else {
 				$this->render('start');
 			}
 		} else {
-			throw new CException(Yii::t('ShopModule.shop', 'Webshop is not in Debug Mode'));	
+			throw new CException(Yii::t('ShopModule.shop', 'Webshop is not in Debug Mode'));
 		}
 		}
 

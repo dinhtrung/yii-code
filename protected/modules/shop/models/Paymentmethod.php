@@ -10,7 +10,7 @@
  * @property integer $tax_id
  * @property double $price
  */
-class PaymentMethod extends BaseActiveRecord
+class Paymentmethod extends BaseActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
