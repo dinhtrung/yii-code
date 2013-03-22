@@ -30,9 +30,9 @@ class BaseActiveRecord extends MultiActiveRecord {
 			       	 'class' => 'ext.behaviors.CAdvancedArBehavior'
 				),
 				// 	Update  Timestamp for columns named `updatetime` and `createtime`
-				'TimestampBehavior' => array(
-					'class' => 'TimestampBehavior'
-				),
+// 				'TimestampBehavior' => array(
+// 					'class' => 'TimestampBehavior'
+// 				),
 				// Remember Filter Behavior
 				'RememberFiltersBehavior' => array(
 	               'class' 					=> 'ext.behaviors.ERememberFiltersBehavior',
@@ -183,6 +183,22 @@ class BaseActiveRecord extends MultiActiveRecord {
      * Create the table if needed
      */
     protected function createTable(){
+    	/*
+    	 * $columns = array(
+				'id'	=>	'pk',
+				'title'	=>	'string',
+				'body'	=>	'text',
+				'status'	=>	'boolean',
+				'comment_cnt'	=>	'int',
+				'rating'		=>	'float',
+		);
+		$this->getDbConnection()->createCommand(
+			Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+			Yii::app()->getDb()->getSchema()->createIndex('title', $this->tableName(), 'time')
+		)->execute();
+    	 */
     	return FALSE;
     }
 }
