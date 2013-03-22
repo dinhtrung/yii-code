@@ -2,31 +2,30 @@
 
 class OrderController extends WebBaseController
 {
-	public $_model;
-
-	public function filters()
-	{
+	public function actions(){
 		return array(
-			'accessControl',
+				'index'	=>	'ext.actions.BrowseAction',
+				'admin'	=>	'ext.actions.AdminAction',
+				'view'	=>	'ext.actions.ViewAction',
+				'success'	=>	array(
+						'class' => 'CViewAction',
+						'defaultView'	=>	'success',
+				),
+				'failure'	=>	array(
+						'class' => 'CViewAction',
+						'defaultView'	=>	'failure',
+				),
+// 				public function actionSuccess()
+// 				{
+// 					$this->render('/order/success');
+// 				}
+
+// 				public function actionFailure()
+// 				{
+// 					$this->render('/order/failure');
+// 				}
 		);
-	}	
-
-	public function accessRules() {
-		return array(
-				array('allow',
-					'actions'=>array('view', 'create', 'confirm', 'success', 'failure'),
-					'users' => array('*'),
-					),
-				array('allow',
-					'actions'=>array('admin','delete', 'view', 'slip', 'invoice'),
-					'users' => array('admin'),
-					),
-				array('deny',  // deny all other users
-						'users'=>array('*'),
-						),
-				);
 	}
-
 	public function actionSlip($id) {
 		if($model = $this->loadModel($id))
 			$this->render(Shop::module()->slipView, array('model' => $model));
@@ -39,36 +38,23 @@ class OrderController extends WebBaseController
 
 
 
-	public function beforeAction($action) {
-		$this->layout = Shop::module()->layout;
-		return parent::beforeAction($action);
-	}
-
-
-	public function actionView()
-	{
-		$this->render('view',array(
-					'model'=>$this->loadModel(),
-					));
-	}
-
-	/** Creation of a new Order 
+	/** Creation of a new Order
 	 * Before we create a new order, we need to gather Customer information.
 	 * If the user is logged in, we check if we already have customer information.
 	 * If so, we go directly to the Order confirmation page with the data passed
 	 * over. Otherwise we need the user to enter his data, and depending on
-	 * whether he is logged in into the system it is saved with his user 
-	 * account or once just for this order.	
+	 * whether he is logged in into the system it is saved with his user
+	 * account or once just for this order.
 	 */
 	public function actionCreate(
 			$customer = null,
 			$payment_method = null,
 			$shipping_method = null) {
 
-		if(isset($_POST['ShippingMethod'])) 
+		if(isset($_POST['ShippingMethod']))
 			Yii::app()->user->setState('shipping_method', $_POST['ShippingMethod']);
 
-		if(isset($_POST['PaymentMethod'])) 
+		if(isset($_POST['PaymentMethod']))
 			Yii::app()->user->setState('payment_method', $_POST['PaymentMethod']);
 
 
@@ -196,7 +182,7 @@ class OrderController extends WebBaseController
 				}
 				Shop::mailNotification($order);
 				$this->redirect(Shop::module()->successAction);
-			} else 
+			} else
 				$this->redirect(Shop::module()->failureAction);
 		} else {
 			Shop::setFlash(
@@ -205,39 +191,4 @@ class OrderController extends WebBaseController
 			$this->redirect(array('//shop/order/create'));
 		}
 	}
-
-	public function actionSuccess()
-	{
-		$this->render('/order/success');
-	}
-
-	public function actionFailure()
-	{
-		$this->render('/order/failure');
-	}
-
-
-	public function actionAdmin()
-	{
-		$model=new Order('search');
-		if(isset($_GET['Order']))
-			$model->attributes=$_GET['Order'];
-
-		$this->render('admin',array(
-					'model'=>$model,
-					));
-	}
-
-	public function loadModel()
-	{
-		if($this->_model===null)
-		{
-			if(isset($_GET['id']))
-				$this->_model=Order::model()->findbyPk($_GET['id']);
-			if($this->_model===null)
-				throw new CHttpException(404,'The requested page does not exist.');
-		}
-		return $this->_model;
-	}
-
 }

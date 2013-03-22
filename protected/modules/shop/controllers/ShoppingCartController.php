@@ -26,14 +26,14 @@ class ShoppingCartController extends WebBaseController
 					throw new CException('Wrong amount');
 				$position = explode('_', $key);
 				$position = $position[1];
-				
+
 				if(isset($cart[$position]['amount']))
 					$cart[$position]['amount'] = $value;
 					$product = Products::model()->findByPk($cart[$position]['product_id']);
 					echo Shop::priceFormat(
 							@$product->getPrice($cart[$position]['Variations'], $value));
 					return Shop::setCartContent($cart);
-			}	
+			}
 		}
 
 }
@@ -44,7 +44,7 @@ class ShoppingCartController extends WebBaseController
 	{
 		if(!is_numeric($_POST['amount']) || $_POST['amount'] <= 0) {
 			Shop::setFlash(Shop::t('Illegal amount given'));
-			$this->redirect(array( 
+			$this->redirect(array(
 							'//shop/products/view', 'id' => $_POST['product_id']));
 		}
 		if(isset($_POST['Variations']))
@@ -69,7 +69,7 @@ class ShoppingCartController extends WebBaseController
 			unset($_POST['yt1']);
 
 		$cart[] = $_POST;
-	
+
 		Shop::setCartcontent($cart);
 		Shop::setFlash(Shop::t('The product has been added to the shopping cart'));
 		$this->redirect(array('//shop/products/index'));
@@ -92,7 +92,7 @@ class ShoppingCartController extends WebBaseController
 			$carts = ShoppingCart::model()->findAll('cartowner = :cartowner', array(':cartowner' => $_SESSION['cartowner']));
 
 			$this->render('index',array( 'carts'=>$carts,));
-		} 
+		}
 	}
 
 	public function actionAdmin()
@@ -105,26 +105,5 @@ class ShoppingCartController extends WebBaseController
 		$this->render('admin',array(
 			'model'=>$model,
 		));
-	}
-
-	public function loadModel()
-	{
-		if($this->_model===null)
-		{
-			if(isset($_GET['id']))
-				$this->_model=ShoppingCart::model()->findbyPk($_GET['id']);
-			if($this->_model===null)
-				throw new CHttpException(404,'The requested page does not exist.');
-		}
-		return $this->_model;
-	}
-
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='shopping cart-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
 	}
 }

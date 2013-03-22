@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 );
 
 ?>
-<?php 
+<?php
 
 $model = new Order();
 
@@ -17,10 +17,9 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'order_id',
 		'customer.address.firstname',
 		'customer.address.lastname',
-		array('name' => 'ordering_date',
-			'value' => 'date("M j, Y", $data->ordering_date)'),
+		'ordering_date:datetime',
 		array(
-			'class'=>'CButtonColumn', 
+			'class'=>'CButtonColumn',
 			'template' => '{view}',
 		),
 

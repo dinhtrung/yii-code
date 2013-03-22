@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 	$model->title,
 );
 
-$this->menu=array(
+$this->menu['shoppingCart'] =array(
 	array('label'=>'List ProductSpecification', 'url'=>array('index')),
 	array('label'=>'Create ProductSpecification', 'url'=>array('create')),
 	array('label'=>'Update ProductSpecification', 'url'=>array('update', 'id'=>$model->id)),
