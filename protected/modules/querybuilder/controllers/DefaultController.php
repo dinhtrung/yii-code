@@ -2,8 +2,9 @@
 
 class DefaultController extends Controller
 {
-	public function actionIndex()
-	{
-		$this->render('index');
+	function actionIndex(){
+		$model = GenericTable::model('authassignment');
+		$dataProvider = new CActiveDataProvider($model);
+		$this->render('index', array('model' => $model, 'dataProvider' => $dataProvider));
 	}
 }
