@@ -10,7 +10,7 @@
  * @property integer $amount
  * @property string $specifications
  */
-class OrderPosition extends CActiveRecord
+class OrderPosition extends BaseActiveRecord
 {
 	public static function model($className=__CLASS__)
 	{
@@ -60,7 +60,7 @@ class OrderPosition extends CActiveRecord
 					$value = @ProductVariation::model()->findByPk($specification[0])->title;
 			$string .= sprintf('<tr><td>%s</td><td>%s</td></tr>',
 				$model->title,
-				$value	
+				$value
 				);
 		}
 		$string .= '</table>';
@@ -70,8 +70,8 @@ class OrderPosition extends CActiveRecord
 	public function listSpecifications() {
 		if(!$specs = $this->getSpecifications())
 			return '';
-	
-		$str = '(';	
+
+		$str = '(';
 		foreach($specs as $key => $specification) {
 			if($model = ProductSpecification::model()->findByPk($key))
 				if($model->is_user_input)
@@ -92,46 +92,29 @@ class OrderPosition extends CActiveRecord
 		$price = $this->product->price;
 
 		if($this->specifications)
-			foreach($this->getSpecifications() as $key => $spec) 
+			foreach($this->getSpecifications() as $key => $spec)
 				$price += @ProductVariation::model()->findByPk(@$spec[0])->price_adjustion;
 
 		return $this->amount * $price;
 	}
 
 
-	/**
-	 * @return array customized attribute labels (name=>label)
+	/*
+	 * create Table:  category_id 	parent_id 	title 	description 	language
 	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'ID',
-			'order_id' => Shop::t('Order'),
-			'product_id' => Shop::t('Product'),
-			'amount' => Shop::t('Amount'),
-			'specifications' => Shop::t('Specifications'),
+	protected function createTable(){
+		$columns = array(
+				'id'	=>	'pk',
+				'order_id'	=>	'int',
+				'product_id'	=>	'int',
+				'amount'	=>	'int',
+				'specifications'	=>	'text',
 		);
-	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('order_id',$this->order_id);
-		$criteria->compare('product_id',$this->product_id);
-		$criteria->compare('amount',$this->amount);
-		$criteria->compare('specifications',$this->specifications,true);
-
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('order', $this->tableName(), 'order_id')
+		)->execute();
 	}
 }

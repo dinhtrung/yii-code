@@ -10,7 +10,7 @@
  * @property string $city
  * @property string $country
  */
-class Address extends CActiveRecord
+class Address extends BaseActiveRecord
 {
 	public static function model($className=__CLASS__)
 	{
@@ -18,11 +18,11 @@ class Address extends CActiveRecord
 	}
 
 	public static function isEmpty($vars) {
-		return 
-			$vars['street'] == '' 
-			|| $vars['zipcode'] == '' 
-			|| $vars['city'] == '' 
-			|| $vars['country'] == ''; 
+		return
+			$vars['street'] == ''
+			|| $vars['zipcode'] == ''
+			|| $vars['city'] == ''
+			|| $vars['country'] == '';
 	}
 
 	public function renderAddress() {
@@ -34,17 +34,9 @@ class Address extends CActiveRecord
 
 	public function tableName()
 	{
-		return 'shop_address';
+		return '{{shop_address}}';
 	}
 
-	public function rules()
-	{
-		return array(
-			array('firstname, lastname, street, zipcode, city, country', 'required'),
-			array('firstname, lastname, street, zipcode, city, country', 'length', 'max'=>255),
-			array('id, firstname, lastname, street, zipcode, city, country', 'safe', 'on'=>'search'),
-		);
-	}
 
 	/**
 	 * @return array relational rules.
@@ -57,41 +49,19 @@ class Address extends CActiveRecord
 		);
 	}
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'ID',
-			'firstname' => Yii::t('ShopModule.shop', 'Firstname'),
-			'lastname' => Yii::t('ShopModule.shop', 'Lastname'),
-			'street' => Shop::t('Street'),
-			'zipcode' =>Shop::t('Zipcode'),
-			'city' => Shop::t('City'),
-			'country' => Shop::t('Country'),
+	protected function createTable(){
+		$columns = array(
+				'id'	=>	'pk',
+				'firstname'	=>	'string',
+				'lastname'	=>	'string',
+				'street'	=>	'string',
+				'zipcode'	=>	'string',
+				'city'	=>	'string',
+				'country'	=>	'string',
 		);
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
 	}
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('street',$this->street,true);
-		$criteria->compare('zipcode',$this->zipcode,true);
-		$criteria->compare('city',$this->city,true);
-		$criteria->compare('country',$this->country,true);
-
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
-	}
 }

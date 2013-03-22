@@ -1,6 +1,6 @@
 <?php
 
-class ShoppingCart extends CActiveRecord
+class ShoppingCart extends BaseActiveRecord
 {
 	public static function model($className=__CLASS__)
 	{

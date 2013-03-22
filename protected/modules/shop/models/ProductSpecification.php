@@ -7,7 +7,7 @@
  * @property integer $id
  * @property string $title
  */
-class ProductSpecification extends CActiveRecord
+class ProductSpecification extends BaseActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -54,37 +54,25 @@ class ProductSpecification extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'variations' => array(self::HAS_MANY, 'ProductVariation', 'specification_id') 
+			'variations' => array(self::HAS_MANY, 'ProductVariation', 'specification_id')
 		);
 	}
 
-	/**
-	 * @return array customized attribute labels (name=>label)
+	/*
+	 * create Table:  id 	title 	is_user_input 	required
 	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'ID',
-			'title' => 'Title',
+	protected function createTable(){
+		$columns = array(
+				'id'	=>	'pk',
+				'title'		=>	'string',
+				'is_user_input'	=>	'boolean',
+				'required'		=>	'boolean',
 		);
-	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('title',$this->title,true);
-
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('title', $this->tableName(), 'title')
+		)->execute();
 	}
 }

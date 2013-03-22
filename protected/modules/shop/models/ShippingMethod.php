@@ -9,7 +9,7 @@
  * @property integer $tax_id
  * @property double $price
  */
-class ShippingMethod extends CActiveRecord
+class ShippingMethod extends BaseActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -58,38 +58,22 @@ class ShippingMethod extends CActiveRecord
 		);
 	}
 
-	/**
-	 * @return array customized attribute labels (name=>label)
+	/*
+	 * create Table:  category_id 	parent_id 	title 	description 	language
 	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => Shop::t('ID'),
-			'title' => Shop::t('Title'),
-			'description' => Shop::t('Description'),
-			'tax_id' => Shop::t('Tax'),
-			'price' => Shop::t('Price'),
+	protected function createTable(){
+		$columns = array(
+				'id'	=>	'pk',
+				'title'		=>	'string',
+				'description'	=>	'text',
+				'tax_id'	=>	'int',
+				'price'		=>	'float',
 		);
-	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('tax_id',$this->tax_id);
-		$criteria->compare('price',$this->price);
-
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('tax', $this->tableName(), 'tax_id')
+		)->execute();
 	}
 }

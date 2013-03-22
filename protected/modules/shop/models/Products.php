@@ -1,6 +1,6 @@
 <?php
 
-class Products extends CActiveRecord
+class Products extends BaseActiveRecord
 {
 	public static function model($className=__CLASS__)
 	{
@@ -10,24 +10,6 @@ class Products extends CActiveRecord
 	public function tableName()
 	{
 		return Shop::module()->productsTable;
-	}
-
-	public function beforeValidate() {
-		if(Yii::app()->language == 'de')
-			$this->price = str_replace(',', '.', $this->price);
-		
-		return parent::beforeValidate();
-	}
-
-	public function rules()
-	{
-		return array(
-			array('title, category_id', 'required'),
-			array('product_id, category_id', 'numerical', 'integerOnly'=>true),
-			array('title, price, language', 'length', 'max'=>45),
-			array('description, specifications', 'safe'),
-			array('product_id, title, description, price, category_id', 'safe', 'on'=>'search'),
-		);
 	}
 
 	public function relations()
@@ -55,7 +37,7 @@ class Products extends CActiveRecord
 		if(isset($this->images[$image]))
 			return Yii::app()->controller->renderPartial('/image/view', array(
 				'model' => $this->images[$image],
-				'thumb' => $thumb), true); 
+				'thumb' => $thumb), true);
 	}
 
 	public function getSpecifications() {
@@ -83,8 +65,8 @@ class Products extends CActiveRecord
 					':product_id' => $this->product_id));
 
 		foreach($variations as $key => $value) {
-			if($value['specification_id'] 
-					&& isset($value['title']) 
+			if($value['specification_id']
+					&& isset($value['title'])
 					&& $value['title'] != '') {
 
 				if(isset($value['sign']) && $value['sign'] == '-')
@@ -97,7 +79,7 @@ class Products extends CActiveRecord
 							'position' => @$value['position'] ?: 0,
 							'title' => $value['title'],
 							'price_adjustion' => @$value['price_adjustion'] ?: 0,
-							));	
+							));
 			}
 		}
 	}
@@ -106,26 +88,15 @@ class Products extends CActiveRecord
 		$variations = array();
 		foreach($this->variations as $variation) {
 			$variations[$variation->specification_id][] = $variation;
-		}		
+		}
 
 		return $variations;
 	}
 
 
-	public function attributeLabels()
-	{
-		return array(
-			'product_id' => Yii::t('ShopModule.shop', 'Product'),
-			'title' => Yii::t('ShopModule.shop', 'Title'),
-			'description' => Yii::t('ShopModule.shop', 'Description'),
-			'price' => Yii::t('ShopModule.shop', 'Price'),
-			'category_id' => Yii::t('ShopModule.shop', 'Category'),
-		);
-	}
-
-	public function getTaxRate($variations = null, $amount = 1) { 
+	public function getTaxRate($variations = null, $amount = 1) {
 		if($this->tax) {
-			$taxrate = $this->tax->percent;	
+			$taxrate = $this->tax->percent;
 			$price = (float) $this->price;
 			if($variations)
 				foreach($variations as $key => $variation) {
@@ -153,19 +124,26 @@ class Products extends CActiveRecord
 		return $price;
 	}
 
-	public function search()
-	{
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('product_id',$this->product_id);
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('price',$this->price,true);
-		$criteria->compare('category_id',$this->category_id);
-
-		return new CActiveDataProvider('Products', array(
-			'criteria'=>$criteria,
-		));
+	/*
+	 *   id 	category_id 	tax_id 	title 	description 	price 	language 	specifications
+	 */
+	protected function createTable(){
+		$columns = array(
+				'id'	=>	'pk',
+				'title'		=>	'string',
+				'description'		=>	'text',
+				'price'		=>	'float',
+				'category_id'	=>	'int',
+				'tax_id'	=>	'int',
+				'language'	=>	'string',
+				'specifications'	=>	'text',
+		);
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('title', $this->tableName(), 'title')
+		)->execute();
+		//@TODO: Add foreign key for me...
 	}
 }

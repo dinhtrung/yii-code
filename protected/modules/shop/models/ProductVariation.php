@@ -10,7 +10,7 @@
  * @property string $title
  * @property double $price_adjustion
  */
-class ProductVariation extends CActiveRecord
+class ProductVariation extends BaseActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -24,8 +24,8 @@ class ProductVariation extends CActiveRecord
 	public static function listData($variations) {
 		$var = array();
 
-		foreach($variations as $id => $variation) 
-			if($variation->price_adjustion == 0) 
+		foreach($variations as $id => $variation)
+			if($variation->price_adjustion == 0)
 				$var[$variation->id] = sprintf('%s', $variation->title);
 			else
 				$var[$variation->id] = sprintf('%s (%s%s)',
@@ -45,7 +45,7 @@ class ProductVariation extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'shop_product_variation';
+		return '{{shop_product_variation}}';
 	}
 
 	/**
@@ -77,39 +77,26 @@ class ProductVariation extends CActiveRecord
 		);
 	}
 
-	/**
-	 * @return array customized attribute labels (name=>label)
+	/*
+	 *  product_id 	specification_id 	position 	title 	price_adjustion 	id
 	 */
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'ID',
-			'product_id' => 'Product',
-			'specification_id' => 'Specification',
-			'title' => 'Title',
-			'price_adjustion' => 'Price Adjustion',
+	protected function createTable(){
+		$columns = array(
+				'id'	=>	'pk',
+				'title'		=>	'string',
+				'product_id'	=>	'int',
+				'specification_id'	=>	'int',
+				'position'	=>	'int',
+				'price_adjustion'	=>	'int',
 		);
-	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('product_id',$this->product_id);
-		$criteria->compare('specification_id',$this->specification_id);
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('price_adjustion',$this->price_adjustion);
-
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('product', $this->tableName(), 'product_id')
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('specification', $this->tableName(), 'specification_id')
+		)->execute();
 	}
 }

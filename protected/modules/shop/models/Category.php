@@ -1,6 +1,6 @@
 <?php
 
-class Category extends CActiveRecord
+class Category extends BaseActiveRecord
 {
 	public static function model($className=__CLASS__)
 	{
@@ -24,15 +24,6 @@ class Category extends CActiveRecord
 		return Yii::app()->getModule('shop')->categoryTable;
 	}
 
-	public function rules()
-	{
-		return array(
-			array('category_id, parent_id', 'numerical', 'integerOnly'=>true),
-			array('title, description, language', 'length', 'max'=>45),
-			array('title', 'required'),
-			array('category_id, parent_id, title, description, language', 'safe', 'on'=>'search'),
-		);
-	}
 
 	public static function getListed() {
 		$subitems = array();
@@ -53,30 +44,23 @@ class Category extends CActiveRecord
 		);
 	}
 
-	public function attributeLabels()
-	{
-		return array(
-			'category_id' => '#',
-			'parent_id' => Yii::t('ShopModule.shop', 'Parent'),
-			'title' => Yii::t('ShopModule.shop', 'Category'),
+	/*
+	 * create Table:  category_id 	parent_id 	title 	description 	language
+	 */
+	protected function createTable(){
+		$columns = array(
+				'id'	=>	'pk',
+				'parent_id'	=>	'int',
+				'title'		=>	'string',
+				'description'	=>	'text',
+				'language'		=>	'string',
 		);
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('pid', $this->tableName(), 'parent_id')
+		)->execute();
 	}
 
-	public function search()
-	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('category_id',$this->category_id);
-
-		$criteria->compare('parent_id',$this->parent_id);
-
-		$criteria->compare('title',$this->title,true);
-
-		return new CActiveDataProvider('Category', array(
-			'criteria'=>$criteria,
-		));
-	}
 }

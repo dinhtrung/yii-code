@@ -1,6 +1,6 @@
 <?php
 
-class Customer extends CActiveRecord
+class Customer extends BaseActiveRecord
 {
 	public $terms_accepted = null;
 
@@ -35,30 +35,32 @@ class Customer extends CActiveRecord
 		);
 	}
 
-	public function attributeLabels()
-	{
-		return array(
-			'customer_id' => Yii::t('ShopModule.shop', 'Customer'),
-			'user_id' => Yii::t('ShopModule.shop', 'Userid'),
-			'address_id' => Yii::t('ShopModule.shop', 'Address'),
-			'billing_address_id' => Yii::t('ShopModule.shop', 'Billing Address'),
-			'delivery_address_id' => Yii::t('ShopModule.shop', 'Delivery Address'),
-			'email' => Yii::t('ShopModule.shop', 'Email'),
+	/*
+	 * create Table:  category_id 	parent_id 	title 	description 	language
+	 */
+	protected function createTable(){
+		$columns = array(
+				'id'	=>	'pk',
+				'email'		=>	'string',
+				'user_id'	=>	'int',
+				'address_id'	=>	'int',
+				'delivery_address_id'	=>	'int',
+				'billing_address_id'	=>	'int',
 		);
-	}
-
-	public function search()
-	{
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('customer_id',$this->customer_id);
-
-		$criteria->compare('user_id',$this->user_id);
-
-		$criteria->compare('email',$this->email,true);
-
-		return new CActiveDataProvider('Customer', array(
-			'criteria'=>$criteria,
-		));
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('user', $this->tableName(), 'user_id')
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('address', $this->tableName(), 'address_id')
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('delivery', $this->tableName(), 'delivery_address_id')
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('billing', $this->tableName(), 'billing_address_id')
+		)->execute();
 	}
 }

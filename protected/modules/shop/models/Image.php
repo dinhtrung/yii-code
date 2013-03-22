@@ -1,6 +1,6 @@
 <?php
 
-class Image extends CActiveRecord
+class Image extends BaseActiveRecord
 {
 	public static function model($className=__CLASS__)
 	{
@@ -30,30 +30,21 @@ class Image extends CActiveRecord
 		);
 	}
 
-	public function attributeLabels()
-	{
-		return array(
-			'id' => 'Id',
-			'title' => Yii::t('shop', 'Title'),
-			'filename' => Yii::t('shop', 'Filename'),
-			'product_id' => Yii::t('shop', 'Product'),
+/*
+	 * create Table:  category_id 	parent_id 	title 	description 	language
+	 */
+	protected function createTable(){
+		$columns = array(
+				'id'	=>	'pk',
+				'product_id'	=>	'int',
+				'title'		=>	'string',
+				'filename'	=>	'string',
 		);
-	}
-
-	public function search()
-	{
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-
-		$criteria->compare('title',$this->title,true);
-
-		$criteria->compare('filename',$this->filename,true);
-
-		$criteria->compare('product_id',$this->product_id);
-
-		return new CActiveDataProvider('Image', array(
-			'criteria'=>$criteria,
-		));
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('product', $this->tableName(), 'product_id')
+		)->execute();
 	}
 }

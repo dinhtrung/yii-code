@@ -1,6 +1,6 @@
 <?php
 
-class Order extends CActiveRecord
+class Order extends BaseActiveRecord
 {
 	public static function model($className=__CLASS__)
 	{
@@ -35,16 +35,6 @@ class Order extends CActiveRecord
 		);
 	}
 
-	public function attributeLabels()
-	{
-		return array(
-			'order_id' => Shop::t('Order number'),
-			'customer_id' => Shop::t('Customer number'),
-			'ordering_date' => Shop::t('Ordering Date'),
-			'ordering_done' => Shop::t('Ordering Done'),
-			'ordering_confirmed' => Shop::t('Ordering Confirmed'),
-		);
-	}
 
 	public function getTotalPrice() {
 		$price = 0;
@@ -58,16 +48,27 @@ class Order extends CActiveRecord
 		return $price;
 	}
 
-	public function search()
-	{
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('order_id',$this->order_id);
-		$criteria->compare('customer_id',$this->customer_id);
-		$criteria->compare('ordering_date',$this->ordering_date,true);
-		$criteria->compare('ordering_done',$this->ordering_done);
-		$criteria->compare('ordering_confirmed',$this->ordering_confirmed);
-
-		return new CActiveDataProvider('Order', array( 'criteria'=>$criteria,));
+/*
+	 * create Table:  category_id 	parent_id 	title 	description 	language
+	 */
+	protected function createTable(){
+		$columns = array(
+				'id'	=>	'pk',
+				'customer_id'	=>	'int',
+				'billing_address_id'	=>	'int',
+				'delivery_address_id'	=>	'int',
+				'ordering_date'	=>	'datetime',
+				'ordering_done'	=>	'boolean',
+				'ordering_confirmed'	=>	'boolean',
+				'payment_method'	=>	'int',
+				'shipping_method'	=>	'int',
+				'comment'	=>	'text',
+		);
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('customer', $this->tableName(), 'customer_id')
+		)->execute();
 	}
 }
