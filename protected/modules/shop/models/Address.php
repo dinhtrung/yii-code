@@ -32,6 +32,13 @@ class Address extends BaseActiveRecord
 		echo $this->country;
 	}
 
+	/*
+	 * Display in CGridView
+	*/
+	public function __toString(){
+		return Yii::t('shop', "firstname lastname, street - city, country (zipcode)", $this->getAttributes());
+	}
+
 	public function tableName()
 	{
 		return '{{shop_address}}';

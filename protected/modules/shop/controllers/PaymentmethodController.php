@@ -1,6 +1,6 @@
 <?php
 
-class PaymentmethodController extends Controller
+class PaymentmethodController extends WebBaseController
 {
 	public function actionChoose() {
 		$this->render('choose', array('customer' => Shop::getCustomer()));

@@ -48,7 +48,11 @@ class Order extends BaseActiveRecord
 		return $price;
 	}
 
-/*
+	public function __toString(){
+		return $this->getPrimaryKey();
+	}
+
+	/*
 	 * create Table:  category_id 	parent_id 	title 	description 	language
 	 */
 	protected function createTable(){

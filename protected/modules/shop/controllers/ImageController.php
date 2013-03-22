@@ -1,19 +1,14 @@
 <?php
 
-class ImageController extends Controller
+class ImageController extends WebBaseController
 {
-	public $_model;
-
-	public function beforeAction($action) {
-		$this->layout = Shop::module()->layout;
-		return parent::beforeAction($action);
-	}
-
-	public function actionView()
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel(),
-		));
+	public function actions(){
+		return array(
+				'index'	=>	'ext.actions.BrowseAction',
+				'update'	=>	'ext.actions.UpdateAction',
+				'delete'	=>	'ext.actions.DeleteAction',
+				'view'	=>	'ext.actions.ViewAction',
+		);
 	}
 
 	public function actionCreate()
@@ -25,7 +20,7 @@ class ImageController extends Controller
 			$model->attributes=$_POST['Image'];
 			$model->filename = CUploadedFile::getInstance($model, 'filename');
 			if($model->save()) {
-				$folder = Yii::app()->controller->module->productImagesFolder; 
+				$folder = Yii::app()->controller->module->productImagesFolder;
 				$model->filename->saveAs($folder . '/' . $model->filename);
 				$this->redirect(array('//shop/products/admin'));
 			}
@@ -36,42 +31,6 @@ class ImageController extends Controller
 		));
 	}
 
-	public function actionUpdate()
-	{
-		$model=$this->loadModel();
-
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Image']))
-		{
-			$model->attributes=$_POST['Image'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
-	}
-
-	public function actionDelete()
-	{
-			$this->loadModel()->delete();
-
-			if(!isset($_POST['ajax']))
-				$this->redirect(array('//shop/products/admin'));
-	}
-
-	/**
-	 * Lists all models.
-	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Image');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
 
 	public function actionAdmin()
 	{
@@ -82,32 +41,4 @@ class ImageController extends Controller
 		$this->render('admin',array( 'images'=>$images, 'product' => $product));
 	}
 
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 */
-	public function loadModel()
-	{
-		if($this->_model===null)
-		{
-			if(isset($_GET['id']))
-				$this->_model=Image::model()->findbyPk($_GET['id']);
-			if($this->_model===null)
-				throw new CHttpException(404,'The requested page does not exist.');
-		}
-		return $this->_model;
-	}
-
-	/**
-	 * Performs the AJAX validation.
-	 * @param CModel the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='image-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-	}
 }

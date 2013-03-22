@@ -1,6 +1,6 @@
 <?php
 
-class ShoppingCartController extends Controller
+class ShoppingCartController extends WebBaseController
 {
 	public function actionView()
 	{

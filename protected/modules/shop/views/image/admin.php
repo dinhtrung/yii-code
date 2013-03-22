@@ -3,15 +3,14 @@ $this->breadcrumbs=array(
 	Yii::t('ShopModule.shop', 'Images') =>array('index'),
 	Yii::t('ShopModule.shop', 'Manage'),
 );
-
 ?>
 
 <div id="shopcontent">
 
-<h1> 
-<?php 
-echo Yii::t('ShopModule.shop', 'Images for'); 
-echo '&nbsp;' . $product->title; 
+<h1>
+<?php
+echo Yii::t('ShopModule.shop', 'Images for');
+echo '&nbsp;' . $product->title;
 ?>
 </h1>
 

@@ -18,9 +18,8 @@ $this->menu=array(
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
 		'title',
-		'tax_id',
+		'tax',
 		'price',
 		array(
 			'class'=>'CButtonColumn',

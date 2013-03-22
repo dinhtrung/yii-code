@@ -28,20 +28,14 @@ $('.search-form form').submit(function(){
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php
+$columns = array();
+foreach ($model->relations() as $attr => $related){
+	if ($related[0] == CActiveRecord::BELONGS_TO) $columns[] = $attr;
+}
+$this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'customer-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
-	'columns'=>array(
-		'customer_id',
-		'userid',
-		'address',
-		'zipcode',
-		'city',
-		'country',
-		'email',
-		array(
-			'class'=>'CButtonColumn',
-		),
-	),
+	'columns'	=>	$columns,
 )); ?>

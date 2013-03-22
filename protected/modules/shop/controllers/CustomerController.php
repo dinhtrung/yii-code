@@ -1,24 +1,10 @@
 <?php
 
-class CustomerController extends Controller
+class CustomerController extends WebBaseController
 {
-	public $_model;
-
-	public function beforeAction($action) {
-		$this->layout = Shop::module()->layout;
-		return parent::beforeAction($action);
-	}
-
-	public function actionView()
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel(),
-		));
-	}
-
 	public function actionCreate()
 	{
-		if($model = Shop::getCustomer()) 
+		if($model = Shop::getCustomer())
 			$address = $model->address;
 		else
 			$model = new Customer;
@@ -76,10 +62,10 @@ class CustomerController extends Controller
 				else
 					$this->redirect(array('view','id'=>$model->customer_id));
 			}
-		} 
+		}
 		$address = $model->address;
 		$deliveryAddress = $model->deliveryAddress;
-		$billingAddress = $model->billingAddress;	
+		$billingAddress = $model->billingAddress;
 
 		$this->render('update',array(
 			'customer'=>$model,
@@ -90,60 +76,13 @@ class CustomerController extends Controller
 		));
 	}
 
-	public function actionDelete()
-	{
-		if(Yii::app()->request->isPostRequest)
-		{
-			$this->loadModel()->delete();
-
-			if(!isset($_POST['ajax']))
-				$this->redirect(array('index'));
-		}
-		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+	public function actions(){
+		return array(
+				'index'	=>	'ext.actions.IndexAction',
+				'admin'	=>	'ext.actions.AdminAction',
+				'delete'	=>	'ext.actions.DeleteAction',
+				'view'	=>	'ext.actions.ViewAction',
+		);
 	}
 
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Customer');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
-
-	public function actionAdmin()
-	{
-		$model=new Customer('search');
-		if(isset($_GET['Customer']))
-			$model->attributes=$_GET['Customer'];
-
-		$this->render('admin',array(
-			'model'=>$model,
-		));
-	}
-
-	public function loadModel()
-	{
-		if($this->_model===null)
-		{
-			if(isset($_GET['id']))
-				$this->_model=Customer::model()->findbyPk($_GET['id']);
-			if($this->_model===null)
-				throw new CHttpException(404,'The requested page does not exist.');
-		}
-		return $this->_model;
-	}
-
-	/**
-	 * Performs the AJAX validation.
-	 * @param CModel the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='customer-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-	}
 }

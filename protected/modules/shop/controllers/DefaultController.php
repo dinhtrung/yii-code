@@ -1,5 +1,5 @@
 <?php
-class DefaultController extends Controller {
+class DefaultController extends WebBaseController {
 	public function actionIndex() {
    		 $this->redirect(array('shop/index'));
 	}

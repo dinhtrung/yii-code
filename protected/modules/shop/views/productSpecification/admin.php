@@ -19,8 +19,8 @@ $this->menu=array(
 	'filter'=>$model,
 	'columns'=>array(
 		'title',
-		'is_user_input',
-		'required',
+		'is_user_input:boolean',
+		'required:boolean',
 		array(
 			'class'=>'CButtonColumn',
 		),

@@ -1,6 +1,6 @@
 <?php
 
-class InstallController extends Controller
+class InstallController extends WebBaseController
 {
 	public function actionInstall()
 	{

@@ -27,6 +27,13 @@ class Tax extends BaseActiveRecord
 		return '{{shop_tax}}';
 	}
 
+	/*
+	 * Display in CGridView
+	 */
+	public function __toString(){
+		return $this->title;
+	}
+
 
 	protected function createTable(){
 		$columns = array(
