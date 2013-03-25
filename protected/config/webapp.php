@@ -35,6 +35,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 			'cssFile' => 'rights.css', // Style sheet file to use for Rights.
 		) ,
 		'translate',
+		'querybuilder',
 	) ,
 	// application components
 	'components' => array(
