@@ -63,4 +63,7 @@ abstract class MultiActiveRecord extends CActiveRecord
     public function connectionId(){
         return 'db';
     }
+
+
+
 }

@@ -77,6 +77,9 @@ class BaseActiveRecord extends MultiActiveRecord {
 	    return TRUE;
 	}
 
+	/*
+	 * On application component configuration, specify a component named '[moduleId]db' that is a CDbConnection class for access this properties directly
+	 */
 	public function connectionId(){
 		if (!is_null(Yii::app()->getController()) && ! is_null(Yii::app()->getController()->getModule())){
 			$moduledb = ((string) Yii::app()->getController()->getModule()->getId()) . 'db';

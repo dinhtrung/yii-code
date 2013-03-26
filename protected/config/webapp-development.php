@@ -17,7 +17,6 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'weba
 				'ext.gtc',
 			)
 		) ,
-		'opencode',
 	) ,
 	'components' => array(
 		'translate'=>array(//if you name your component something else change TranslateModule
