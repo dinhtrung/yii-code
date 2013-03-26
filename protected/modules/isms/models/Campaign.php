@@ -534,4 +534,31 @@ class Campaign extends BaseActiveRecord
 		}
 		else return self::LIMIT_AVAILABLE;
 	}
+
+
+	protected function createTable(){
+
+		$columns = array(
+		 		'id'	=>	'pk',
+		 		'title'	=>	'string',
+		 		'description'	=>	'text',
+		 		'status'	=>	'boolean',
+		 		'approved'	=>	'boolean',
+		 		'active'	=>	'boolean',
+		 		'ready'	=>	'boolean',
+		 		'limit_exceeded'	=>	'boolean',
+		 		'priority'	=>	'int',
+		 		'velocity'	=>	'int',
+		 		'throughput'	=>	'int',
+		 		'col'	=>	'int',
+		 		'isdncol'	=>	'int',
+		 		'template'	=>	'string',
+		 );
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('title', $this->tableName(), 'title')
+		)->execute();
+	}
 }

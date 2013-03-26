@@ -1,6 +1,6 @@
 <?php
 $tmp = array('Blacklist', 'Whitelist', 'Template', 'Worktime');
-$this->primary['campaign'] = array(
+$this->mainMenu['campaign'] = array(
 		'label' => Yii::t('isms', 'Campaigns'),
 		'items'=>array(
 				array('label' => Yii::t('isms', 'Manage'), 'url'=>array('/isms/campaign'), 'visible'=>Yii::app()->getUser()->checkAccess('Isms.Campaign.Index')),
@@ -16,7 +16,7 @@ $this->primary['campaign'] = array(
 				array('label' => Yii::t('isms', 'Sentsms'), 'url'=>array('/isms/sentsms'), 'visible'=>Yii::app()->getUser()->checkAccess('Isms.Sentsms.*')),
 		),
 );
-$this->primary['filter'] = array(
+$this->mainMenu['filter'] = array(
 		'label'	=>	Yii::t('isms', 'Filter'),
 		'items'	=>	array(
 				array('label' => Yii::t('isms', 'Manage'), 'url'=>array('/isms/filter'), 'visible'=>Yii::app()->getUser()->checkAccess('Isms.Filter.Index')),
