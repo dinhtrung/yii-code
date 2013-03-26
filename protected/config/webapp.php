@@ -52,8 +52,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 			'class' => 'CLogRouter',
 			'routes' => array(
 				array(
-					'class' => 'ext.yiidebugtb.XWebDebugRouter',
-					'config' => 'alignRight, yamlStyle',
+					'class' => 'CWebLogRoute',
 					'levels' => 'error, warning, trace, profile, info',
 					'enabled' => YII_DEBUG,
 				) ,
