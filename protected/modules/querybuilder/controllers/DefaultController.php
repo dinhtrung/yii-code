@@ -6,6 +6,7 @@ class DefaultController extends Controller
 		$model = GenericTable::model('authassignment');
 		$dataProvider = new CActiveDataProvider($model);
 		$this->render('index', array('model' => $model, 'dataProvider' => $dataProvider));
+<<<<<<< HEAD
 	}
 
 	function actionTest(){
@@ -70,5 +71,7 @@ class EFormatter extends CFormatter {
 			return $output;
 		}
 		else return parent::formatText($value);
+=======
+>>>>>>> querybuilder
 	}
 }
