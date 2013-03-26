@@ -15,7 +15,7 @@ if (! empty($_SERVER['HTTP_HOST'])){
 } elseif (! empty($_SERVER['SERVER_ADDR'])) {
 	$config = $_SERVER['SERVER_ADDR'];
 }
-$config = 'webapp-shop';
+$config = 'webapp-development';
 
 $yii=dirname(__FILE__).'/../framework/yii.php';
 $config=dirname(__FILE__).'/protected/config/'.$config.'.php';
