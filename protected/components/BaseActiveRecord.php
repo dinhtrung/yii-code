@@ -82,7 +82,7 @@ class BaseActiveRecord extends MultiActiveRecord {
 	 */
 	public function connectionId(){
 		if (!is_null(Yii::app()->getController()) && ! is_null(Yii::app()->getController()->getModule())){
-			$moduledb = ((string) Yii::app()->getController()->getModule()->getId()) . 'db';
+			$moduledb = ((string) Yii::app()->getController()->getModule()->getId()) . 'Db';
 			try {
 				if (Yii::app()->$moduledb instanceof CDbConnection)
 				return $moduledb;
