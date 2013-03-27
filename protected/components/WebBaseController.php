@@ -155,14 +155,13 @@ abstract class WebBaseController extends BaseController
 		}
 	}
 	function render($view, $data = NULL, $return = FALSE, $renderBlock = TRUE) {
-		if ($renderBlock){
+		if ($renderBlock && Yii::app()->hasModule('core')){
 			$this->renderBlocks();
 		}
 		parent::render($view, $data, $return);
 	}
 
 	protected function renderBlocks() {
-		return;
 		$blocks = Blocktheme::model()->with('owner')->findAllByAttributes(
 				array("theme" => Yii::app()->setting->get("web", "theme", "classic"))
 			);
