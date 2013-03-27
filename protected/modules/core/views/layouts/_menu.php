@@ -28,9 +28,9 @@ $this->mainMenu['core'] = array(
 				'visible' => Yii::app()->user->checkAccess('Core.Webmenu.Index')
 			),
 		array(
-				'label' => Yii::t('core', 'Webtheme'),
-				'url'=>array('/core/webtheme'),
-				'visible' => Yii::app()->user->checkAccess('Core.Webtheme.Index')
+				'label' => Yii::t('core', 'Website'),
+				'url'=>array('/core/website'),
+				'visible' => Yii::app()->user->checkAccess('Core.Website.Index')
 			),
 	),
 );

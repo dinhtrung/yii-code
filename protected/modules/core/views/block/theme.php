@@ -25,13 +25,13 @@ echo CHtml::beginForm();
 echo CHtml::errorSummary($item);
 ?>
 
-<?php foreach (Webtheme::themeOptions() as $theme => $name):?>
+<?php foreach (Website::themeOptions() as $theme => $name):?>
 
 	<?php $this->beginWidget('CClipWidget', array('id'=>	$theme)); ?>
 		<div class="row">
 		<?php echo CHtml::label(Yii::t('core', "Region in :theme", array(":theme" => $name)), "region[$theme]"); ?>
 		<?php echo CHtml::dropDownList("Blocktheme[$theme][region]", $item[$theme]->region,
-		array("" => Yii::t('core', "-- Select region --")) + Webtheme::regionOption($theme)); ?><br>
+		array("" => Yii::t('core', "-- Select region --")) + Website::regionOption($theme)); ?><br>
 		<?php echo Yii::t('core', "The region in theme :theme", array(":theme" => $name)); ?>
 		</div>
 
@@ -61,7 +61,7 @@ foreach($this->clips as $key=>$clip){
 <?php
 $this->widget('system.web.widgets.CTabView', array(
 	'tabs'	=>	$tabParameters,
-	'activeTab'	=>	Yii::app()->setting->get("Webtheme", "theme", "classic"),
+	'activeTab'	=>	Yii::app()->setting->get("Website", "theme", "classic"),
 )); ?>
 
 <?php

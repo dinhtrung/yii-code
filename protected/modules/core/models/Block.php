@@ -152,7 +152,7 @@ class Block extends BaseActiveRecord
 	function render(){
 		if (! $this->status) return;
 		$requestUrl = Yii::app()->getRequest()->getPathInfo();
-		if (! $requestUrl) $requestUrl = Yii::app()->setting->get('Webtheme', 'homeUrl', '/site/index');
+		if (! $requestUrl) $requestUrl = Yii::app()->setting->get('Website', 'homeUrl', '/site/index');
 		if ($this->display == self::DISPLAY_ONLY){
 			if (! self::matchPath($requestUrl, $this->url)){
 				if (YII_DEBUG) return "<p class='highlight'>BLOCK {$this->title} NOT SHOWING HERE.</p>";
@@ -195,7 +195,7 @@ class Block extends BaseActiveRecord
 		$replacements = array(
 		  '|',
 		  '.*',
-		  '\1' . preg_quote(Yii::app()->setting->get('Webtheme', 'homeUrl', '/site/index'), '/') . '\2',
+		  '\1' . preg_quote(Yii::app()->setting->get('Website', 'homeUrl', '/site/index'), '/') . '\2',
 		);
 		$patterns_quoted = preg_quote($patterns, '/');
 		$regexp = '/^(' . preg_replace($to_replace, $replacements, $patterns_quoted) . ')$/';

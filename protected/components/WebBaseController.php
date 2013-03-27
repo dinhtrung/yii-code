@@ -79,7 +79,7 @@ abstract class WebBaseController extends BaseController
 			}
 		}
 
-		$themeinfo = Webtheme::getThemeInfo();
+		$themeinfo = Website::getThemeInfo();
 		foreach ($themeinfo["region"] as $region => $name){
 			$this->page[$region] = "";
 		}
@@ -91,6 +91,7 @@ abstract class WebBaseController extends BaseController
 
 	function filters() {
 		return array(
+			"Language",
 			"Rights",
 			array(
             	"ext.components.ESetReturnUrlFilter + index, admin, view",
@@ -111,10 +112,10 @@ abstract class WebBaseController extends BaseController
 		$this->authItem = $filter->authItem;
 	}
 	/**
-	 * Choose the correct language by lang parameters
+	 * Choose the correct language stored in user session...
 	 */
 	public function filterLanguage($filterChain){
-		Yii::app()->lang->init();
+		Yii::app()->setLanguage(Yii::app()->getUser()->getState("language", Yii::app()->language));
 		$filterChain->run();
 	}
 
@@ -155,14 +156,14 @@ abstract class WebBaseController extends BaseController
 		}
 	}
 	function render($view, $data = NULL, $return = FALSE, $renderBlock = TRUE) {
-		if ($renderBlock){
+		if ($renderBlock && Yii::app()->hasModule('core')){
 			$this->renderBlocks();
 		}
+
 		parent::render($view, $data, $return);
 	}
 
 	protected function renderBlocks() {
-		return;
 		$blocks = Blocktheme::model()->with('owner')->findAllByAttributes(
 				array("theme" => Yii::app()->setting->get("web", "theme", "classic"))
 			);

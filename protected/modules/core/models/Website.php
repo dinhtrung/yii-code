@@ -1,10 +1,11 @@
 <?php
-class Webtheme extends CFormModel
+class Website extends CFormModel
 {
 	public $perPage;
 	public $serverEmail;
 	public $contactEmail;
 	public $theme;
+	public $availableLanguages;
 	public $layout;
 	public $siteName;
 	public $siteSlogan;
@@ -80,7 +81,7 @@ class Webtheme extends CFormModel
 	}
 
 	public static function getThemeInfo($theme = NULL){
-		if (is_null($theme)) $theme = Yii::app()->setting->get('Webtheme', 'theme', 'classic');
+		if (is_null($theme)) $theme = Yii::app()->setting->get('Website', 'theme', 'classic');
 		$path = Yii::app()->getThemeManager()->getBasePath() . DIRECTORY_SEPARATOR . $theme . DIRECTORY_SEPARATOR . "theme.ini";
 		if (file_exists($path)){
 			return parse_ini_file($path, TRUE);
@@ -133,5 +134,19 @@ class Webtheme extends CFormModel
 	}
 	public static function setLayoutData($layout = '//layouts/column2') {
 		return array("layout" => $layout);
+	}
+
+
+	public static function availableLanguagesOptions(){
+		$availableLanguages = array();
+		foreach (Yii::app()->locale->getLocaleIDs() as $id)
+			$availableLanguages[] = Yii::app()->locale->getLanguageID($id);
+		$availableLanguages = array_unique($availableLanguages);
+		$items = array();
+		foreach ($availableLanguages as $lang){
+			$items[$lang] = Yii::t('site', $lang, NULL, 'dbmessage');
+		}
+		unset($availableLanguages);
+		return $items;
 	}
 }
