@@ -20,8 +20,9 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'weba
 		'opencode',
 	) ,
 	'components' => array(
-		'OpencodeDb' => array(
-			'connectionString' => 'mysql:host=localhost;dbname=yii_dev',
+		'opencodeDb' => array(
+			'class'	=>	'CDbConnection',
+			'connectionString' => 'mysql:host=localhost;dbname=yii_core',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'myroot',

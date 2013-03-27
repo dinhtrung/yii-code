@@ -39,7 +39,7 @@ TABLEHEADER;
 
 }
 ?>
-
+<h1><?php echo $this->pageTitle = Yii::t('opencode', "Overview Reports for USSD Gateway System"); ?></h1>
 <div class="form wide">
 
 <?php $form=$this->beginWidget('CActiveForm', array(

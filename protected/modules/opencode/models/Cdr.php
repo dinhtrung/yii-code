@@ -24,6 +24,7 @@ class Cdr extends BaseActiveRecord
 	public $khongtrucuoc;
 	public $sanluong;
 	public $doanhthu;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -99,6 +100,5 @@ class Cdr extends BaseActiveRecord
 		$this->getDbConnection()->createCommand(
 			$this->getDbConnection()->getSchema()->createIndex('cpid', $this->tableName(), 'cpid')
 		)->execute();
-
 	}
 }

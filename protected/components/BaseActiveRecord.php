@@ -87,7 +87,7 @@ class BaseActiveRecord extends MultiActiveRecord {
 				if (Yii::app()->$moduledb instanceof CDbConnection)
 				return $moduledb;
 			} catch (Exception $e) {
-		      	return 'db';
+				Yii::trace("Cannot load application component: " . $moduledb);
 			}
 		}
       	return 'db';

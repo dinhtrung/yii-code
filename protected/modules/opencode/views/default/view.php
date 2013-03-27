@@ -14,6 +14,9 @@ $types = array('' => '--- Xuất báo cáo ---',
 );
 $exportType = Yii::app()->request->getParam('export', '');
 ?>
+
+<h1><?php echo $this->pageTitle = Yii::t('opencode', "Detail Reports for USSD Gateway System - CPID: %cpid", array('%cpid' => $model->cpid)); ?></h1>
+
 <div class="form wide">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
