@@ -19,8 +19,8 @@ class WorktimeController extends WebBaseController
 	function actions() {
 		return array(
 			'index'		=>	'ext.actions.AdminAction',// public function actionAdmin()
-			'create'	=>	array('class' => 'ext.actions.CreateAction',  'returnAction' => 'index'), // public function actionCreate()
-			'update'	=>	array('class' => 'ext.actions.UpdateAction', 'returnAction' => 'index'), // public function actionUpdate()
+			'create'	=>	array('class' => 'ext.actions.CreateAction', 'returnMethod'	=>	'index'),
+			'update'	=>	array('class' => 'ext.actions.UpdateAction', 'returnMethod'	=>	'index'),
 			'delete'	=>	'ext.actions.DeleteAction',  // public function actionDelete()
 		);
 	}

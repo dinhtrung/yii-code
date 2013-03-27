@@ -25,4 +25,10 @@ return array (
   'Recovery' => '',
   'Register' => '',
   'User' => '',
+  'Fields with <span class="required">*</span> are required.' => '',
+  'Lost Password?' => '',
+  'Please fill out the following form with your login credentials:' => '',
+  'Remember me next time' => '',
+  'password' => '',
+  'username or email' => '',
 );

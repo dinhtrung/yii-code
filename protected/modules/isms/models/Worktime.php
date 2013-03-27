@@ -12,9 +12,7 @@
  * @property Cpworktime[] $cpworktimes
  */
 class Worktime extends BaseActiveRecord{
-	public function connectionId() {
-		return IsmsModule::getDbComponent();
-	}
+
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -61,4 +59,49 @@ class Worktime extends BaseActiveRecord{
 			'order' => 'start ASC',
 		);
 	}
+
+	/**
+	 * Extra rules for validation
+	 */
+	public function rules()
+	{
+		return array_merge(parent::rules(), array(
+				array('*', 'uniqueKeys'),
+		));
+	}
+
+	/*
+	 * Add UniqueKey behaviors
+	 */
+	public function uniqueKeys() {
+		$this->validateCompositeUniqueKeys();
+	}
+	public function behaviors() {
+		return array_merge(parent::behaviors() , array(
+				'ECompositeUniqueKeyValidatable' => array(
+						'class' => 'ext.behaviors.ECompositeUniqueKeyValidatable',
+						'uniqueKeys' => array(
+								'attributes' => 'start, end',
+								'errorMessage' => Yii::t('isms', 'This work time is already defined.') ,
+						)
+				) ,
+		));
+	}
+
+	/*
+	 *
+	 */
+	protected function createTable(){
+		$columns = array(
+		 		'start'	=>	'string',
+		 		'end'	=>	'string',
+		 );
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addPrimaryKey('start_end', $this->tableName(), 'start,end')
+		)->execute();
+	}
+
 }

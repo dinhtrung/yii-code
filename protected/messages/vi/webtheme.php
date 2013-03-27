@@ -17,15 +17,5 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Hello, ' => '',
-  'Logout' => '',
-  'Clear Filters' => '',
-  'Create' => '',
-  'Data deleted!' => '',
-  'Data saved!' => '',
-  'Delete' => '',
-  'Manage' => '',
-  'The requested page does not exist.' => '',
-  'Update' => '',
-  'You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b> or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.' => '',
+  'Elements Demonstration' => '',
 );
