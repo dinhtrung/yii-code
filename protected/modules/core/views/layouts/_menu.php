@@ -13,16 +13,6 @@ $this->mainMenu['core'] = array(
 				'visible' => Yii::app()->user->checkAccess('Core.Blocktype.Index')
 			),
 		array(
-				'label' => Yii::t('core', 'Category'),
-				'url'=>array('/core/category'),
-				'visible' => Yii::app()->user->checkAccess('Core.Category.Index')
-			),
-		array(
-				'label' => Yii::t('core', 'File'),
-				'url'=>array('/core/file'),
-				'visible' => Yii::app()->user->checkAccess('Core.File.Index')
-			),
-		array(
 				'label' => Yii::t('core', 'Webmenu'),
 				'url'=>array('/core/webmenu'),
 				'visible' => Yii::app()->user->checkAccess('Core.Webmenu.Index')
