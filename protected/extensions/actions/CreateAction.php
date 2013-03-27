@@ -23,6 +23,10 @@ class CreateAction extends BaseAction
 	 */
 	public $fileAttributes = array();
 
+	/**
+	 * Return method after create
+	 */
+	public $returnMethod = "view";
     /**
      * Load the model by modelClass specified
      */
@@ -49,12 +53,24 @@ class CreateAction extends BaseAction
 				else $this->_model->$attribute = $files;
 			}
 			if ($this->_model->save()){
-				if (is_array($pk = $this->_model->getPrimaryKey())){
-					$redirect = array_merge(array("view"), $pk);
+				/*
+				 * Handle AJAX request
+				 */
+				if( Yii::app()->request->isAjaxRequest ) {
+					Yii::app()->clientScript->scriptMap['jquery.js'] = false;
+					echo CJSON::encode( array(
+							'status' => 'success',
+							'content' => 'ModelName successfully created',
+					));
+					exit;
 				} else {
-					$redirect = array("view", "id" => $pk);
+					if (is_array($pk = $this->_model->getPrimaryKey())){
+						$redirect = array_merge(array($this->returnMethod), $pk);
+					} else {
+						$redirect = array($this->returnMethod, "id" => $pk);
+					}
+					$this->getController()->redirect($redirect);
 				}
-				$this->getController()->redirect($redirect);
 			}
 		}
     }
