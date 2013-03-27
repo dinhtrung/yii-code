@@ -32,6 +32,10 @@ class Webmenu extends BaseActiveRecord{
 	{
 		return parent::init();
 	}
+
+	public function connectionId(){
+		return 'db';
+	}
 	/**
 	* This magic method is used for setting a string value for the object. It will be used if the object is used as a string.
 	* @return string representing the object
@@ -55,17 +59,7 @@ class Webmenu extends BaseActiveRecord{
 			array('visible', 'boolean'),
 			array('icon', 'file', 'on' => 'insert, update', 'types' => File::IMAGETYPES, 'allowEmpty' => true),
 
-		)
-// 			array('icon, url, task', 'default', 'setOnEmpty' => TRUE, 'value' => ''),
-// 			array('label', 'required'),
-// 			array('root, visible, template', 'default', 'setOnEmpty' => true, 'value' => null),
-// 			array('root, lft, rgt, level', 'unsafe', 'on'=>'insert, update'),
-// 			array('root, lft, rgt, level', 'safe', 'on'=>'settings, block'),
-// 			array('root, lft, rgt, level', 'numerical', 'integerOnly'=>true),
-// 			array('label, url, template', 'length', 'max'=>255),
-// 			array('description, url, label', 'safe', 'on' => 'insert, update'),
-// 			array('label, description, url', 'safe', 'on'=>'search'),
-		);
+		));
 	}
 	/**
 	* Provide default sorting and optional condition

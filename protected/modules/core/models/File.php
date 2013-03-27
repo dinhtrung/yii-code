@@ -49,7 +49,7 @@ class File extends BaseActiveRecord{
 	*/
 	public function tableName()
 	{
-		return 'file';
+		return '{{file}}';
 	}
 	/**
 	* Define validation rules
@@ -234,21 +234,4 @@ class File extends BaseActiveRecord{
 		$this->size		= filesize($path);
 		$this->type		= CFileHelper::getMimeType($path);
 	}
-
-
-	/**
-	* Configure additional behaviors
-	*
-	public function behaviors()
-	{
-		return array_merge(
-			array(
-				'BehaviourName' => array(
-					'class' => 'CWhateverBehavior'
-				)
-			),
-			parent::behaviors()
-		);
-	}
-	*/
 }

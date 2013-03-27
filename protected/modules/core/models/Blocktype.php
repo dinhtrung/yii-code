@@ -18,18 +18,17 @@ class Blocktype extends BaseActiveRecord
 		return '{{blocktype}}';
 	}
 
+	public function connectionId(){
+		return 'db';
+	}
+
 	public function rules()
 	{
-		return array(
+		return array_merge(parent::rules(), array(
+
 			array('component', 'validComponent'),
 			array('viewfile', 'validViewfile'),
-			array('title, viewfile', 'required'),
-			array('title, description, component, callback, viewfile', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('title', 'length', 'max'=>100),
-			array('component, callback, viewfile', 'length', 'max'=>255),
-			array('description', 'safe'),
-			array('btid, title, description, component, callback, viewfile', 'safe', 'on'=>'search'),
-		);
+		) );
 	}
 
 	function validComponent($attribute,$params) {
