@@ -27,6 +27,10 @@ class UpdateAction extends BaseAction
 	*/
 	public $fileAttributes = array();
 
+	/**
+	 * Return Method
+	 */
+	public $returnMethod = "view";
     /**
     * Load the model by modelClass specified
     */
