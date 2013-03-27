@@ -12,9 +12,7 @@
  * @property Campaign $c
  */
 class Ftpfilename extends BaseActiveRecord{
-	public function connectionId() {
-		return IsmsModule::getDbComponent();
-	}
+
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -107,5 +105,25 @@ class Ftpfilename extends BaseActiveRecord{
 		)
 		) ,
 		));
+	}
+
+	/*
+	 CREATE TABLE IF NOT EXISTS `ftpfilename` (
+  `cid` int(11) NOT NULL COMMENT 'Campaign.id',
+  `filename` varchar(255) NOT NULL COMMENT 'Ten tep tin can tim kiem',
+  `status` int(1) NOT NULL COMMENT '0:chua xu ly, 1:da xu ly',
+  PRIMARY KEY (`cid`,`filename`),
+  KEY `cid` (`cid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	*/
+	protected function createTable() {
+		$columns = array(
+				'cid'	=>	'int',
+				'filename'	=>	'string',
+				'status'	=>	'boolean',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
 	}
 }

@@ -52,4 +52,22 @@ class Organization extends BaseActiveRecord {
 			'order' => 'title ASC',
 		);
 	}
+	/*
+	CREATE TABLE IF NOT EXISTS `organization` (
+	`id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'bearerbox_id',
+	`title` varchar(255) NOT NULL COMMENT 'Ten trung tam',
+	`description` text NOT NULL COMMENT 'Mo ta di kem',
+	PRIMARY KEY (`id`)
+	) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+	*/
+	protected function createTable() {
+		$columns = array(
+				'id'	=>	'pk',
+				'title'	=>	'string',
+				'description'	=>	'text',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+	}
 }

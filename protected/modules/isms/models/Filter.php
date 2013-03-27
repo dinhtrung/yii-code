@@ -57,16 +57,9 @@ class Filter extends BaseActiveRecord {
 	 * Define validation rules
 	 */
 	public function rules() {
-		return array(
-			array( 'whiteSyntax, blackSyntax', 'safe', 'on' => 'update, insert' ) ,
-			array( 'title, accept_count, refuse_count, ftpblack, ftpwhite', 'length', 'max' => 20 ) ,
-			array( 'reply_refuse, reply_accept, reply_false_syntax, description, ftpblackfile, ftpwhitefile', 'length', 'max' => 256 ) ,
-			array(
-				'id, title, reply_refuse, reply_accept, reply_false_syntax, description',
-				'safe',
-				'on' => 'search'
-			) ,
-		);
+		return array_merge(parent::rules(), array(
+				array( 'whiteSyntax, blackSyntax', 'safe', 'on' => 'update, insert' ) ,
+		));
 	}
 
 	/**
@@ -132,5 +125,32 @@ class Filter extends BaseActiveRecord {
 			}
 		}
 		return parent::afterSave();
+	}
+
+	/*
+	CREATE TABLE IF NOT EXISTS `filter` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
+	`title` varchar(20) DEFAULT NULL COMMENT 'Ten cua bo loc tin nhan',
+	`reply_refuse` varchar(256) DEFAULT 'Ban da tu choi thanh cong dich vu' COMMENT 'Noi dung tin nhan tra loi khi khach hang dang ky tu choi tin nhan qua bo loc nay',
+	`reply_accept` varchar(256) DEFAULT 'Ban da chap nhan thanh cong dich vu' COMMENT 'Noi dung tin nhan tra loi khi khach hang dang ky nhan tin nhan qua bo loc nay',
+	`reply_false_syntax` varchar(256) DEFAULT 'Ban da nhap sai cu phap',
+	`description` varchar(256) DEFAULT NULL COMMENT 'Mo ta cho bo loc tin nhan nay',
+	PRIMARY KEY (`id`)
+	) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+	*/
+	protected function createTable() {
+		$columns = array(
+				'id'	=>	'pk',
+				'title'	=>	'string',
+				'description' => 'text',
+				'reply_refuse' => 'string',
+				'reply_accept' => 'string',
+// 				'reply_refuse' => 'string',
+// 				'reply_refuse' => 'string',
+// 				'tid'	=>	'int',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
 	}
 }

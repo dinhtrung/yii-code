@@ -93,4 +93,26 @@ class Cporder extends BaseActiveRecord{
 			'order' => 'cid ASC',
 		);
 	}
+
+	/*
+	 * CREATE TABLE IF NOT EXISTS `cpworktime` (
+	 		`cid` int(11) NOT NULL COMMENT 'Campaign.id',
+	 		`tid` int(11) NOT NULL COMMENT 'Worktime.id',
+	 		PRIMARY KEY (`cid`,`tid`),
+	 		KEY `cid` (`cid`),
+	 		KEY `tid` (`tid`)
+	 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	*/
+	protected function createTable() {
+		$columns = array(
+				'cid'	=>	'int',
+				'oid'	=>	'int',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addPrimaryKey('cid_oid', $this->tableName(), 'cid,oid')
+		)->execute();
+	}
 }

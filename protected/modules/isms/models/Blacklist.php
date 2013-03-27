@@ -84,4 +84,27 @@ class Blacklist extends BaseActiveRecord {
 			) ,
 		));
 	}
+
+
+	/*
+	 * CREATE TABLE IF NOT EXISTS `blacklist` (
+  `fid` int(11) NOT NULL COMMENT 'filter.id',
+  `isdn` varchar(20) NOT NULL DEFAULT '' COMMENT 'Phone number of the customer',
+  PRIMARY KEY (`fid`,`isdn`),
+  KEY `phonenumber` (`isdn`),
+  KEY `fid` (`fid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	 */
+	protected function createTable() {
+		$columns = array(
+		 		'fid'	=>	'int',
+		 		'isdn'	=>	'int',
+		 );
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addPrimaryKey('fid_isdn', $this->tableName(), 'fid,isdn')
+		)->execute();
+	}
 }

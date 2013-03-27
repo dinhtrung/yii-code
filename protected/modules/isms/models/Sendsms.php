@@ -90,4 +90,52 @@ class Sendsms extends BaseActiveRecord {
 			)
 		);
 	}
+
+
+	/*!50100 PARTITION BY HASH (campaign_id)
+	CREATE TABLE IF NOT EXISTS `sent_sms` (
+	`momt` enum('MO','MT','DLR','3rd') DEFAULT NULL,
+	`sender` varchar(20) DEFAULT NULL,
+	`receiver` varchar(20) NOT NULL DEFAULT '',
+	`udhdata` blob,
+	`msgdata` text,
+	`time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	`smsc_id` varchar(255) DEFAULT NULL,
+	`service` varchar(255) DEFAULT NULL,
+	`account` varchar(255) DEFAULT NULL,
+	`id` bigint(20) DEFAULT NULL,
+	`sms_type` bigint(20) DEFAULT NULL,
+	`mclass` bigint(20) DEFAULT NULL,
+	`mwi` bigint(20) DEFAULT NULL,
+	`coding` bigint(20) DEFAULT NULL,
+	`compress` bigint(20) DEFAULT NULL,
+	`validity` bigint(20) DEFAULT NULL,
+	`deferred` bigint(20) DEFAULT NULL,
+	`dlr_mask` bigint(20) DEFAULT NULL,
+	`dlr_url` varchar(255) DEFAULT NULL,
+	`pid` bigint(20) DEFAULT NULL,
+	`alt_dcs` bigint(20) DEFAULT NULL,
+	`rpi` bigint(20) DEFAULT NULL,
+	`charset` varchar(255) DEFAULT NULL,
+	`boxc_id` varchar(255) DEFAULT NULL,
+	`binfo` varchar(255) DEFAULT NULL,
+	`campaign_id` int(9) NOT NULL DEFAULT '0',
+	`bearerbox_id` varchar(20) DEFAULT NULL,
+	PRIMARY KEY (`campaign_id`,`receiver`)
+	*/
+	protected function createTable() {
+		$columns = array(
+				'time'	=>	'datetime',
+				'sender'	=>	'string',
+				'receiver'	=>	'int',
+				'msgdata'	=>	'text',
+				'campaign_id'	=>	'int',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createIndex('sms_campaign', $this->tableName(), 'campaign_id,sender,receiver', TRUE)
+		)->execute();
+	}
 }

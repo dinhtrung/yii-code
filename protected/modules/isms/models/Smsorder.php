@@ -99,4 +99,23 @@ class Smsorder extends BaseActiveRecord
 		if (array_key_exists((string) $param, $options)) return $options[(string) $param];
 		else return NULL;
 	}
+
+	/*
+	*/
+	protected function createTable() {
+		$columns = array(
+				'id'	=>	'pk',
+				'title'	=>	'string',
+				'description'	=>	'text',
+				'status'	=>	'boolean',
+				'createtime'	=>	'int',
+				'updatetime'	=>	'int',
+				'userid'	=>	'int',
+				'expired'	=>	'datetime',
+				'smscount'	=>	'int',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+	}
 }

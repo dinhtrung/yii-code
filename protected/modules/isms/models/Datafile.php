@@ -164,4 +164,45 @@ class Datafile extends BaseActiveRecord {
 		Cpfile::model()->deleteAllByAttributes(array('fid' => $this->getPrimaryKey()));
 		return parent::beforeDelete();
 	}
+
+	/*
+	 * CREATE TABLE IF NOT EXISTS `datafile` (
+  `fid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'File ID.',
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `createtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'The users.uid of the user who is associated with the file.',
+  `filename` varchar(255) NOT NULL DEFAULT '' COMMENT 'Name of the file with no path components. This may differ from the basename of the URI if the file is renamed to avoid overwriting an existing file.',
+  `uri` varchar(255) NOT NULL DEFAULT '' COMMENT 'The URI to access the file (either local or remote).',
+  `filemime` varchar(255) NOT NULL DEFAULT '' COMMENT 'The file’s MIME type.',
+  `filesize` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'The size of the file in bytes.',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'A field indicating the status of the file. Two status are defined in core: temporary (0) and permanent (1). Temporary files older than DRUPAL_MAXIMUM_TEMP_FILE_AGE will be removed during a cron run.',
+  `updatetime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'UNIX timestamp for when the file was added.',
+  PRIMARY KEY (`fid`),
+  UNIQUE KEY `uri` (`uri`),
+  KEY `uid` (`createtime`),
+  KEY `status` (`status`),
+  KEY `timestamp` (`updatetime`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Stores information for uploaded files.';
+
+	*/
+	protected function createTable() {
+		$columns = array(
+				'fid'	=>	'pk',
+				'title'	=>	'string',
+				'description'	=>	'text',
+				'createtime'	=>	'int',
+				'updatetime'	=>	'int',
+				'filename'	=>	'string',
+				'uri'	=>	'string',
+				'filemime'	=>	'string',
+				'filesize'	=>	'int',
+				'status'	=>	'boolean',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createIndex('uri', $this->tableName(), 'uri', TRUE)
+		)->execute();
+	}
 }

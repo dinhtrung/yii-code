@@ -10,9 +10,6 @@
  * There are no model relations.
  */
 class Template extends BaseActiveRecord {
-	public function connectionId() {
-		return IsmsModule::getDbComponent();
-	}
 	public static function model($className = __CLASS__) {
 		return parent::model($className);
 	}
@@ -42,5 +39,18 @@ class Template extends BaseActiveRecord {
 		return array(
 			'order' => 'title ASC',
 		);
+	}
+
+	/*
+	 */
+	protected function createTable() {
+		$columns = array(
+				'id'	=>	'pk',
+				'title'	=>	'string',
+				'body'	=>	'text',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
 	}
 }

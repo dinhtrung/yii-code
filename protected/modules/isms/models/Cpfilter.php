@@ -84,4 +84,28 @@ class Cpfilter extends BaseActiveRecord {
 			) ,
 		));
 	}
+
+	/*
+	 * CREATE TABLE IF NOT EXISTS `cpfilter` (
+  `cid` int(11) NOT NULL COMMENT 'Campaign.id',
+  `fid` int(11) NOT NULL COMMENT 'Filter.id',
+  `type` int(1) NOT NULL COMMENT '0:blacklist, 1:whitelist',
+  PRIMARY KEY (`cid`,`fid`),
+  KEY `fid` (`fid`),
+  KEY `cid` (`cid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	*/
+	protected function createTable() {
+		$columns = array(
+				'cid'	=>	'int',
+				'fid'	=>	'int',
+				'type'	=>	'boolean',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addPrimaryKey('cid_fid', $this->tableName(), 'fid,cid')
+		)->execute();
+	}
 }

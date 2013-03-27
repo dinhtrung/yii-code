@@ -82,4 +82,17 @@ class Syntax extends BaseActiveRecord {
 		elseif (array_key_exists((string) $param, $options)) return $options[(string) $param];
 		else return NULL;
 	}
+
+	/*
+	 */
+	protected function createTable() {
+		$columns = array(
+				'fid'	=>	'int',
+				'syntax'	=>	'string',
+				'type'	=>	'boolean',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+	}
 }

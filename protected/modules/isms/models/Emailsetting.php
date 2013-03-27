@@ -122,4 +122,27 @@ class Emailsetting extends BaseActiveRecord{
 		}
 		return $this->username;
 	}
+
+	/*
+	 * CREATE TABLE IF NOT EXISTS `emailsetting` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hostname` varchar(40) NOT NULL COMMENT 'IP hoac hostname cua mail server',
+  `email` varchar(255) NOT NULL COMMENT 'Dia chi Email',
+  `password` varchar(255) NOT NULL COMMENT 'Mat khau dang nhap',
+  `option` varchar(255) NOT NULL COMMENT 'Cac tham so cua imap_open',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+	*/
+	protected function createTable() {
+		$columns = array(
+				'id'	=>	'pk',
+				'hostname'	=>	'string',
+				'email'	=>	'string',
+				'password'	=>	'string',
+				'option'	=>	'text',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+	}
 }

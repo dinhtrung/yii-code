@@ -110,4 +110,28 @@ class Cpfile extends BaseActiveRecord {
 	function getStatus(){
 		return self::statusOption($this->status);
 	}
+
+	/*
+	 * CREATE TABLE IF NOT EXISTS `cpfile` (
+  `cid` int(11) NOT NULL COMMENT 'Campaign.id',
+  `fid` int(11) NOT NULL COMMENT 'Datafile.id',
+  `status` int(1) NOT NULL COMMENT '0:chua xu ly,1:dang xu ly, 2:da xu ly',
+  PRIMARY KEY (`cid`,`fid`),
+  KEY `cid` (`cid`),
+  KEY `fid` (`fid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	*/
+	protected function createTable() {
+		$columns = array(
+				'cid'	=>	'int',
+				'fid'	=>	'int',
+				'status'	=>	'boolean',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addPrimaryKey('cid_fid', $this->tableName(), 'fid,cid')
+		)->execute();
+	}
 }
