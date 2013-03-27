@@ -32,19 +32,20 @@ class UpdateAction extends BaseAction
     */
     public function model() {
     	if (is_null($this->_model) AND is_string($this->modelClass)) {
+    		$classname = $this->modelClass;
 			if(isset($_GET['id'])){
-				$this->_model = CActiveRecord::model($this->modelClass)->findbyPk(urldecode($_GET['id']));
+				$this->_model = $classname::model($this->modelClass)->findbyPk(urldecode($_GET['id']));
 			} else {
-				$pkeys = CActiveRecord::model($this->modelClass)->getTableSchema()->primaryKey;
+				$pkeys = $classname::model($this->modelClass)->getTableSchema()->primaryKey;
 				if (is_string($pkeys) && isset($_GET[$pkeys])){
-					$this->_model = CActiveRecord::model($this->modelClass)->findbyPk(urldecode($_GET[$pkeys]));
+					$this->_model = $classname::model($this->modelClass)->findbyPk(urldecode($_GET[$pkeys]));
 				} elseif (is_array($pkeys)){
 					$tmp = array_flip($pkeys);
 					foreach ($pkeys as $field) {
 						if (isset($_GET[$field])) $tmp[$field] = urldecode($_GET[$field]);
 						else { $tmp = NULL; break; }
 					}
-					if (! is_null($tmp)) $this->_model = $this->_model->findbyPk($tmp);
+					if (! is_null($tmp)) $this->_model = $classname::model($this->modelClass)->findbyPk($tmp);
 				}
 			}
 		}
@@ -70,16 +71,16 @@ class UpdateAction extends BaseAction
     				Yii::app()->clientScript->scriptMap['jquery.js'] = false;
     				echo CJSON::encode( array(
     			          'status' => 'success',
-    			          'content' => 'ModelName successfully created',
+    			          'content' => 'ModelName successfully updated.',
     				));
     				exit;
     			} else {
-    				$this->getController()->redirect(
-	    				array(
-	    						"view",
-	    						"id"	=>	$this->_model->{$this->_model->getTableSchema()->primaryKey},
-	    				)
-	    			);
+    				if (is_array($pk = $this->_model->getPrimaryKey())){
+						$redirect = array_merge(array($this->returnMethod), $pk);
+					} else {
+						$redirect = array($this->returnMethod, "id" => $pk);
+					}
+					$this->getController()->redirect($redirect);
     			}
     		}
     	}

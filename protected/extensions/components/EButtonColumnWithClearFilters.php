@@ -8,7 +8,7 @@
  */
 
 /* The EButtonColumnWithClearFilters extension adds up some functionality to the default
-* possibilites of zii´s CButtonColumn implementation.
+* possibilites of ziiï¿½s CButtonColumn implementation.
 *
 * An image will be placed in the top column(on same line of AJAX filters). When clicked
 * the filters will be cleared, the content will be refreshed with all items available.
@@ -222,10 +222,10 @@ $.fn.clearFields = $.fn.clearInputs = function() {
         }
     });
 };
-        
+
 function cbcwr_clearFields() {
     try
-    {    
+    {
         $('#{$this->grid->id} :input').clearFields(); // this will clear all input in the current grid
         {$_beforeAjax} $('#{$this->grid->id} :input').first().trigger('change');// to submit the form
         return false;
@@ -241,6 +241,16 @@ HTMLEND;
         // call parent to initialize other buttons
         parent::init();
 }
+
+protected function initDefaultButtons()
+{
+	$modelClass=$this->grid->dataProvider->modelClass;
+	if(is_array($modelClass::model()->primaryKey))
+	foreach(array('view','update','delete') as $id)
+		$this->{$id.'ButtonUrl'}='Yii::app()->controller->createUrl("'.$id.'",$data->primaryKey)';
+	parent::initDefaultButtons();
+}
+
 
 
 public function renderFilterCell()
