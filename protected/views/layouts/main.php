@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 
-	<title><?php echo CHtml::encode($this->pageTitle); ?> | <?php echo CHtml::encode(Yii::app()->name); ?></title>
+	<title><?php echo CHtml::encode($this->pageTitle); ?> | <?php echo CHtml::encode($this->siteName); ?></title>
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/screen.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/print.css" media="print" />
@@ -25,7 +25,8 @@
 		</div>
 	</div>
 	<div id="header">
-		<h1 class="loud"><?php echo CHtml::encode(Yii::app()->name); ?></h1>
+		<h1 class="loud" id="site-name"><?php echo CHtml::encode($this->siteName); ?></h1>
+		<h6 class="alt" id="slogan"><?php echo CHtml::encode($this->siteSlogan); ?></h6>
 	</div>
 	<!-- header -->
 

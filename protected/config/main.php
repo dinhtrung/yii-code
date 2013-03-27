@@ -46,6 +46,16 @@ return array(
 			'enableParamLogging' => TRUE,
 			'enableProfiling' => TRUE
 		),
+		'coreDb'=>array(
+			'connectionString' => 'mysql:host=localhost;dbname=yii_dev',
+			'emulatePrepare' => true,
+			'username' => 'root',
+			'password' => 'myroot',
+			'charset' => 'utf8',
+			'tablePrefix' => 'core_',
+			'enableParamLogging' => TRUE,
+			'enableProfiling' => TRUE
+		),
 		'errorHandler' => array(
 			// use 'site/error' action to display errors
 			'errorAction' => 'site/error',
