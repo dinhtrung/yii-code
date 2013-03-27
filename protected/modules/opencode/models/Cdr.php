@@ -43,59 +43,9 @@ class Cdr extends BaseActiveRecord
 	}
 
 	/**
-	 * @return array validation rules for model attributes.
+	 * Summary reports
+	 * @return CActiveDataProvider
 	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('status', 'numerical', 'integerOnly'=>true),
-			array('a_number, b_number, eventid, cpid, contentid, cost', 'length', 'max'=>20),
-			array('channeltype', 'length', 'max'=>255),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('time, time_start, time_end, a_number, b_number, eventid, cpid, contentid, status, cost, channeltype, information', 'safe', 'on'=>'search'),
-		);
-	}
-
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		return array();
-	}
-
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'time' => 'Thời gian',
-			'time_start' => 'Thời gian bắt đầu',
-			'time_end' => 'Thời gian kết thúc',
-			'a_number' => 'Số thuê bao',
-			'b_number' => 'Mã dịch vụ',
-			'eventid' => 'Mã sự kiện',
-			'cpid' => 'Mã CP',
-			'contentid' => 'Mã nội dung',
-			'status' => 'Trạng thái',
-			'cost' => 'Cước',
-			'channeltype' => 'Loại kênh',
-			'information' => 'Thông tin khác',
-			// Custom properties
-				'phatsinhcuoc' => 'Phát sinh cước',
-				'khongphatsinhcuoc' => 'Không phát sinh cước',
-				'khongtrucuoc'	=>	'Không trừ cước',
-				'sanluong'	=>	'Sản lượng',
-				'doanhthu'	=>	'Doanh thu',
-		);
-	}
-
-
-
 	public function summary(){
 		$criteria=new CDbCriteria;
 
@@ -120,6 +70,10 @@ class Cdr extends BaseActiveRecord
 
 	}
 
+	/**
+	 * Table structure
+	 * @see BaseActiveRecord::createTable()
+	 */
 	protected function createTable(){
 		$columns = array(
 				'time'	=>	'datetime',
@@ -134,16 +88,16 @@ class Cdr extends BaseActiveRecord
 				'information'	=>	'string',
 		);
 		$this->getDbConnection()->createCommand(
-			Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
 		)->execute();
 		$this->getDbConnection()->createCommand(
-			Yii::app()->getDb()->getSchema()->createIndex('time', $this->tableName(), 'time')
+			$this->getDbConnection()->getSchema()->createIndex('time', $this->tableName(), 'time')
 		)->execute();
 		$this->getDbConnection()->createCommand(
-			Yii::app()->getDb()->getSchema()->createIndex('b_number', $this->tableName(), 'b_number')
+			$this->getDbConnection()->getSchema()->createIndex('b_number', $this->tableName(), 'b_number')
 		)->execute();
 		$this->getDbConnection()->createCommand(
-			Yii::app()->getDb()->getSchema()->createIndex('cpid', $this->tableName(), 'cpid')
+			$this->getDbConnection()->getSchema()->createIndex('cpid', $this->tableName(), 'cpid')
 		)->execute();
 
 	}

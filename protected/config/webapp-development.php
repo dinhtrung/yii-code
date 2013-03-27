@@ -17,8 +17,19 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'weba
 				'ext.gtc',
 			)
 		) ,
+		'opencode',
 	) ,
 	'components' => array(
+		'OpencodeDb' => array(
+			'connectionString' => 'mysql:host=localhost;dbname=yii_dev',
+			'emulatePrepare' => true,
+			'username' => 'root',
+			'password' => 'myroot',
+			'charset' => 'utf8',
+			'tablePrefix' => 'opencode_',
+			'enableParamLogging' => TRUE,
+			'enableProfiling' => TRUE
+		),
 		'translate'=>array(//if you name your component something else change TranslateModule
 				'class'=>'translate.components.MPTranslate',
 				//any avaliable options here

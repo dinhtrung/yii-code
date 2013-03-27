@@ -26,10 +26,10 @@ class Cdrlog extends BaseActiveRecord
 				'filename'	=>	'string',
 		);
 		$this->getDbConnection()->createCommand(
-			Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
 		)->execute();
 		$this->getDbConnection()->createCommand(
-			Yii::app()->getDb()->getSchema()->createIndex('filename', $this->tableName(), 'filename', TRUE)
+			$this->getDbConnection()->getSchema()->createIndex('filename', $this->tableName(), 'filename', TRUE)
 		)->execute();
 	}
 }

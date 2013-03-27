@@ -196,10 +196,10 @@ class BaseActiveRecord extends MultiActiveRecord {
 				'rating'		=>	'float',
 		);
 		$this->getDbConnection()->createCommand(
-			Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
 		)->execute();
 		$this->getDbConnection()->createCommand(
-			Yii::app()->getDb()->getSchema()->createIndex('title', $this->tableName(), 'time')
+			$this->getDbConnection()->getSchema()->createIndex('title', $this->tableName(), 'time')
 		)->execute();
     	 */
     	return FALSE;
