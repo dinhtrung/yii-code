@@ -24,7 +24,16 @@ class DeleteAction extends UpdateAction
 	function process() {
 		if (Yii::app()->request->isPostRequest){
 			$this->_model->delete();
-			$this->getController()->redirect(array('index'));
+			if( Yii::app()->request->isAjaxRequest ) {
+				Yii::app()->clientScript->scriptMap['jquery.js'] = false;
+				echo CJSON::encode( array(
+						'status' => 'success',
+						'content' => 'ModelName successfully deleted.',
+				));
+				exit;
+			} else {
+				$this->getController()->redirect(Yii::app()->getUser()->getReturnUrl());
+			}
 		}
 	}
 
