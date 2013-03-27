@@ -137,7 +137,7 @@ class Webmenu extends BaseActiveRecord{
 				$t['htmlOptions'] = array('title' => $menuitem->description);
 				if ($t['url'] && ! strpos($t['url'], '://') && ! ($t['url'][0] == '#')){
 					if (Yii::app()->getRequest()->getRequestUri() == Yii::app()->getController()->createUrl($t['url'])) $t['active'] = TRUE;
-					if (($t['url'] == Yii::app()->setting->get('Webtheme', 'homeUrl', 'site/index')) && (! Yii::app()->getRequest()->getRequestUri())) $t['active'] = TRUE;
+					if (($t['url'] == Yii::app()->setting->get('Website', 'homeUrl', 'site/index')) && (! Yii::app()->getRequest()->getRequestUri())) $t['active'] = TRUE;
 					if (! is_array($t['url'])) $t['url'] = array($t['url']);
 				}
 				$tmp = self::getMenuData($menuitem, $level - 1);

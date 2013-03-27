@@ -1,6 +1,6 @@
 <?php
 
-class WebthemeController extends WebBaseController
+class WebsiteController extends WebBaseController
 {
 	function actions() {
 		return array(
@@ -14,7 +14,7 @@ class WebthemeController extends WebBaseController
 	 */
 	public function actionIndex()
 	{
-		$this->render('index', array('themes' => Webtheme::themeOptions()));
+		$this->render('index', array('themes' => Website::themeOptions()));
 	}
 	/**
 	 * View detail information for a theme

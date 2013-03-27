@@ -1,19 +1,19 @@
 <?php
 $this->breadcrumbs=array(
-	Yii::t('core', 'Available Webtheme'),
+	Yii::t('core', 'Available Website'),
 );
 $this->menu=array(
 	array(
-		'label'	=>	Yii::t('core', 'Configure Webtheme'),
+		'label'	=>	Yii::t('core', 'Configure Website'),
 		'url'=>array('settings')
 	),
 );
 ?>
-<h1><?php echo $this->pageTitle = Yii::t('core', "Available Webtheme"); ?></h1>
+<h1><?php echo $this->pageTitle = Yii::t('core', "Available Website"); ?></h1>
 
 <?php foreach ($themes as $theme => $name):?>
 	<div class="view">
-		<?php $themeinfo = Webtheme::getThemeInfo($theme);?>
+		<?php $themeinfo = Website::getThemeInfo($theme);?>
 		<h2><?php print CHtml::link($themeinfo["information"]["name"], array('view', 'theme' => $theme)); ?></h2>
 		<div>
 		<?php

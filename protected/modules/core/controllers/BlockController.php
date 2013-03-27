@@ -36,7 +36,7 @@ class BlockController extends WebBaseController
 			$item[$v->theme] = $v;
 			unset($item[$k]);
 		}
-		foreach (Webtheme::themeOptions() as $theme => $name) {
+		foreach (Website::themeOptions() as $theme => $name) {
 			if (empty($item[$theme])) {
 				$item[$theme] = new Blocktheme();
 			}
@@ -62,7 +62,7 @@ class BlockController extends WebBaseController
 	 * TODO: Add drag and drop support
 	 */
 	function actionPreview() {
-		$model = Blocktheme::model()->with("owner")->findAllByAttributes(array("theme" => Yii::app()->setting->get("Webtheme", "theme")));
+		$model = Blocktheme::model()->with("owner")->findAllByAttributes(array("theme" => Yii::app()->setting->get("Website", "theme")));
 		$this->render("preview", array("model" => $model), FALSE, FALSE);
 	}
 
@@ -89,7 +89,7 @@ class BlockController extends WebBaseController
 			echo "</div>";
 			Yii::app()->end();
 		} else {
-			$model = Blocktheme::model()->with("owner")->findAllByAttributes(array("theme" => Yii::app()->setting->get("Webtheme", "theme")));
+			$model = Blocktheme::model()->with("owner")->findAllByAttributes(array("theme" => Yii::app()->setting->get("Website", "theme")));
 			$this->render("sort", array('model' => $model), FALSE, FALSE);
 		}
 	}
