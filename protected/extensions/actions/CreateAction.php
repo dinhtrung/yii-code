@@ -49,12 +49,12 @@ class CreateAction extends BaseAction
 				else $this->_model->$attribute = $files;
 			}
 			if ($this->_model->save()){
-				$this->getController()->redirect(
-					array(
-						"view",
-						"id"	=>	$this->_model->{$this->_model->getTableSchema()->primaryKey},
-					)
-				);
+				if (is_array($pk = $this->_model->getPrimaryKey())){
+					$redirect = array_merge(array("view"), $pk);
+				} else {
+					$redirect = array("view", "id" => $pk);
+				}
+				$this->getController()->redirect($redirect);
 			}
 		}
     }

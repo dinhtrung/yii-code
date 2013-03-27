@@ -44,7 +44,7 @@ class UpdateAction extends BaseAction
 						if (isset($_GET[$field])) $tmp[$field] = urldecode($_GET[$field]);
 						else { $tmp = NULL; break; }
 					}
-					if (! is_null($tmp)) $this->_model = $this->_model->findbyPk($tmp);
+					if (! is_null($tmp)) $this->_model = CActiveRecord::model($this->modelClass)->findbyPk($tmp);
 				}
 			}
 		}
