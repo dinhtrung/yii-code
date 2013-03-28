@@ -38,6 +38,10 @@ class User extends BaseActiveRecord
 		return '{{users}}';
 	}
 
+	public function connectionId(){
+		return 'db';
+	}
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */

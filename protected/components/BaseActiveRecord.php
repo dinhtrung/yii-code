@@ -12,6 +12,15 @@ class BaseActiveRecord extends MultiActiveRecord {
 		}
 	}
 
+	public static function model($className = __CLASS__){
+		try {
+			return parent::model($className);
+		} catch (CDbException $e){
+			if (! $this->createTable()) throw $e;
+			return parent::model($className);
+		}
+	}
+
 	public function tableName(){
 		if (empty($this->dbtable))
 			$this->dbtable = parent::tableName();
@@ -87,7 +96,7 @@ class BaseActiveRecord extends MultiActiveRecord {
 				if (Yii::app()->$moduledb instanceof CDbConnection)
 				return $moduledb;
 			} catch (Exception $e) {
-				Yii::trace("Cannot load application component: " . $moduledb);
+		      	return 'db';
 			}
 		}
       	return 'db';
@@ -178,6 +187,8 @@ class BaseActiveRecord extends MultiActiveRecord {
     	if($safe!==array())
     		$rules[]=array(implode(', ',$safe), 'safe');
 
+    	// Relation Attribute must be set to safe to use CArAdvancedRelationBehavior
+    	$rules[]=array(implode(', ',array_keys($this->relations)), 'safe', 'on' => 'insert,update');
     	return $rules;
     }
 
@@ -196,10 +207,10 @@ class BaseActiveRecord extends MultiActiveRecord {
 				'rating'		=>	'float',
 		);
 		$this->getDbConnection()->createCommand(
-			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+			Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
 		)->execute();
 		$this->getDbConnection()->createCommand(
-			$this->getDbConnection()->getSchema()->createIndex('title', $this->tableName(), 'time')
+			Yii::app()->getDb()->getSchema()->createIndex('title', $this->tableName(), 'time')
 		)->execute();
     	 */
     	return FALSE;
