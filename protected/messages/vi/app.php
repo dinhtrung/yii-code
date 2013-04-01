@@ -17,8 +17,12 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Hello, ' => 'Xin chào, ',
-  'Logout' => 'Đăng xuất',
+  'Attached' => '',
+  'Name' => '',
+  'Rules' => '',
+  'Type' => '',
+  'Viewfile' => '',
+  'Widget' => '',
   'Admin' => 'Quản lý',
   'Advanced Search' => 'Tìm kiếm nâng cao',
   'Cancel' => 'Hủy bỏ',
@@ -34,9 +38,11 @@ return array (
   'Duplicate' => 'Sao chép',
   'Export :type' => 'Xuất :type',
   'Fields with <span class="required">*</span> are required.' => 'Các trường với dấu <span class="required">*</span> không được phép rỗng.',
+  'Hello, ' => 'Xin chào, ',
   'Home' => 'Trang chủ',
   'Index' => 'Danh mục',
   'List' => 'Danh sách',
+  'Logout' => 'Đăng xuất',
   'Manage' => 'Quản lý',
   'No' => 'Không',
   'Preview' => 'Xem thử',

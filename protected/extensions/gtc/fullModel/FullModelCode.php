@@ -3,7 +3,7 @@ Yii::import('system.gii.generators.model.ModelCode');
 Yii::import('ext.gtc.components.*');
 
 class FullModelCode extends ModelCode {
-	public $baseClass = 'GActiveRecord';
+	public $baseClass = 'BaseActiveRecord';
 
 	public function init() {
 		parent::init();
@@ -18,7 +18,6 @@ class FullModelCode extends ModelCode {
 	}
 
 	public function prepare() {
-		parent::prepare();
 
 		$templatePath = $this->templatePath;
 
@@ -43,34 +42,31 @@ class FullModelCode extends ModelCode {
 
 		$this->relations = $this->generateRelations();
 
+		$module = explode('.', $this->modelPath);
+		if ($k = array_search('modules', $module))$module = $module[$k + 1];
+		else $module = '';
+
+		$this->files = array();
 		foreach ($tables as $table) {
 			$tableName = $this->removePrefix($table->name);
 			$className = $this->generateClassName($table->name);
 			$params = array(
 					'tableName' => $schema === '' ? $tableName : $schema . '.' . $tableName,
 					'modelClass' => $className,
+					'module' => $module,
 					'columns' => $table->columns,
 					'labels' => $this->generateLabels($table),
 					'rules' => $this->generateRules($table),
 					'relations' => isset($this->relations[$className]) ? $this->relations[$className] : array(),
 					);
-
-		if($this->template != 'singlefile')
-			$this->files[] = new CCodeFile(
-					Yii::getPathOfAlias($this->modelPath) . '/' . 'Base' . $className . '.php',
-					$this->render($templatePath . '/basemodel.php', $params)
+			foreach (CFileHelper::findFiles($templatePath) as $templateFile){
+				$templateName = basename($templateFile, '.php');
+				$this->files[] = new CCodeFile(
+					Yii::getPathOfAlias($this->modelPath) . '/' . str_replace('model', $className, $templateName) . '.php',
+					$this->render($templatePath . '/' . $templateName . '.php', $params)
 					);
+			}
 		}
-	}
-
-	public function requiredTemplates() {
-		if($this->template == 'singlefile')
-			return array('model.php');
-		else
-			return array(
-					'model.php',
-					'basemodel.php',
-					);
 	}
 
 	public function generateRules($table)

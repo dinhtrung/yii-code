@@ -43,7 +43,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'description:ntext',
 		'url:ntext',
 		array(
-			'class'=>'EButtonColumnWithClearFilters',
+			'class'=>'EButtonColumn',
 			'buttons'	=>	array(
 				'sort' => array(
 					'label'	=>	Yii::t('core', "Sort"),
