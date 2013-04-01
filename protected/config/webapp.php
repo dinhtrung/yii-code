@@ -82,7 +82,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 			'rightsTable'	=>	'rights',
 		) ,
 		'setting' => array(
-			'class' => 'ext.components.Settings',
+			'class' => 'Settings',
 		) ,
 		'file' => array(
 			'class' => 'ext.components.CFile',
