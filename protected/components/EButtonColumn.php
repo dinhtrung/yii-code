@@ -74,7 +74,7 @@
 
 Yii::import('zii.widgets.grid.CButtonColumn');
 
-class EButtonColumnWithClearFilters extends CButtonColumn {
+class EButtonColumn extends CButtonColumn {
 
     /**
      * Private member to store internally the button definition
