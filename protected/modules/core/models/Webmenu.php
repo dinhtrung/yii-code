@@ -21,6 +21,10 @@ class Webmenu extends BaseActiveRecord{
 
 	private $path = "files/webmenu/icons";
 	public $icon;
+
+	public function connectionId(){
+		return Yii::app()->hasComponent('coreDb')?'coreDb':'db';
+	}
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -31,10 +35,6 @@ class Webmenu extends BaseActiveRecord{
 	public function init()
 	{
 		return parent::init();
-	}
-
-	public function connectionId(){
-		return 'db';
 	}
 	/**
 	* This magic method is used for setting a string value for the object. It will be used if the object is used as a string.

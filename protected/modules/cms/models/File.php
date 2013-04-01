@@ -32,10 +32,6 @@ class File extends BaseActiveRecord{
 	/**
 	* Initializes this model.
 	*/
-	public function init()
-	{
-		parent::init();
-	}
 	/**
 	* This magic method is used for setting a string value for the object. It will be used if the object is used as a string.
 	* @return string representing the object
@@ -76,33 +72,6 @@ class File extends BaseActiveRecord{
 			}
 		}
 	}
-	/**
-	* Relation to other models
-	*/
-	public function relations()
-	{
-		return array();
-	}
-	/**
-    * Attribute labels
-    */
-    public function attributeLabels()
-    {
-        return array(
-            'id' => Yii::t('cms', 'ID'),
-            'title' => Yii::t('cms', 'Title'),
-            'description' => Yii::t('cms', 'Description'),
-            'name' => Yii::t('cms', 'Name'),
-            'path' => Yii::t('cms', 'Path'),
-            'ext' => Yii::t('cms', 'Ext'),
-            'size' => Yii::t('cms', 'Size'),
-            'type' => Yii::t('cms', 'Type'),
-            'entity' => Yii::t('cms', 'Entity'),
-            'pkey' => Yii::t('cms', 'Pkey'),
-            'createtime' => Yii::t('cms', 'Createtime'),
-            'updatetime' => Yii::t('cms', 'Updatetime'),
-        );
-    }
     /**
     * Provide default sorting and optional condition
     */

@@ -16,10 +16,8 @@
 class Blocktheme extends BaseActiveRecord{
 
 	public function connectionId(){
-		return 'db';
+		return Yii::app()->hasComponent('coreDb')?'coreDb':'db';
 	}
-
-
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
