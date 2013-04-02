@@ -43,7 +43,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'description',
 		"blocktype.link:raw:$type",
 		array(
-			'class'=>'EButtonColumnWithClearFilters',
+			'class'=>'EButtonColumn',
 			'buttons'	=>	array(
 				'duplicate' => array(
 					'label'	=>	Yii::t('core', "Duplicate"),

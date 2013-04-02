@@ -19,7 +19,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 	) ,
 	'modules' => array(
 		// Translate for Database. Use: Yii::t('source', 'message', array(), 'dbmessage')
-		'core',
+		'translate',
 		'user',
 		'rights' => array(
 			'superuserName' => 'Admin', // Name of the role with super user privileges.
@@ -34,8 +34,9 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 			'baseUrl' => '/rights', // Base URL for Rights. Change if module is nested.
 			'cssFile' => 'rights.css', // Style sheet file to use for Rights.
 		) ,
-		'translate',
-		'querybuilder',
+		'core',
+		'cms',
+		'casestudy',
 	) ,
 	// application components
 	'components' => array(
@@ -82,7 +83,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 			'rightsTable'	=>	'rights',
 		) ,
 		'setting' => array(
-			'class' => 'ext.components.Settings',
+			'class' => 'application.components.Settings',
 		) ,
 		'file' => array(
 			'class' => 'ext.components.CFile',

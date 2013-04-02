@@ -2,7 +2,7 @@
 
 
 $this->breadcrumbs=array(
-	Yii::t('core', "Nodes") =>array('index'),
+	Yii::t('cms', "Nodes") =>array('index'),
 	$model->title,
 	);
 
@@ -16,10 +16,10 @@ Yii::app()->clientScript->registerMetaTag($model->Taggable->toString(), 'keyword
 <div class="view post">
 
 	<div class="title">
-		<h2><?php echo $this->pageTitle = CHtml::encode($model); ?></h2>
+		<h2><?php echo $this->pageTitle = CHtml::encode($model->title); ?></h2>
 	</div>
 	<div class="author small">
-		<?php echo Yii::t('core', "Posted by <strong>%user</strong> on <time>%pubdate</time>", array(
+		<?php echo Yii::t('cms', "Posted by <strong>%user</strong> on <time>%pubdate</time>", array(
 			'%user'		=>	$model->user->username,
 			'%pubdate'	=>	Yii::app()->getLocale()->getDateFormatter()->formatDateTime($model->createtime, 'long', 'short'),
 		)); ?>
@@ -35,15 +35,15 @@ Yii::app()->clientScript->registerMetaTag($model->Taggable->toString(), 'keyword
 			foreach ($model->getTags() as $t)
 				$tags[] = CHtml::link($t, array("tags", "name" => $t));
 		?>
-			<strong><?php echo Yii::t('core', "Tags: %tags", array('%tags' => implode(', ', $tags))); ?></strong>
+			<strong><?php echo Yii::t('cms', "Tags: %tags", array('%tags' => implode(', ', $tags))); ?></strong>
 			<br/>
 		<?php if (! is_null($model->category)): ?>
-			<strong><?php echo Yii::t('core', "Category: %category", array('%category' => CHtml::link($model->category, array('category', 'id' => $model->category->id)))); ?></strong>
+			<strong><?php echo Yii::t('cms', "Category: %category", array('%category' => CHtml::link($model->category, array('category', 'id' => $model->category->id)))); ?></strong>
 			<br/>
 		<?php endif; ?>
 		<?php echo CHtml::link('Permalink', array('view', 'alias' => $model->alias)); ?> |
 		<?php echo CHtml::link("Export PDF", array("view", "id" => $model->id, "view" => "pdf")); ?> |
-		<?php echo Yii::t('core', "Last updated on %update", array('%update' => date('F j, Y',$model->updatetime))); ?>
+		<?php echo Yii::t('cms', "Last updated on %update", array('%update' => date('F j, Y',$model->updatetime))); ?>
 	</div>
 </div>
 

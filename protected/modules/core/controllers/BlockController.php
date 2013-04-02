@@ -16,8 +16,8 @@ class BlockController extends WebBaseController
 	 */
 	function actions() {
 		return array(
-			'view'	=>	'ext.actions.ViewAction',
-			'index'	=>	'ext.actions.AdminAction',
+			'view'		=>	'ext.actions.ViewAction',
+			'index'		=>	'ext.actions.AdminAction',
 			'create'	=>	'ext.actions.CreateAction',
 			'duplicate'	=>	'ext.actions.DuplicateAction',
 			'update'	=>	'ext.actions.UpdateAction',

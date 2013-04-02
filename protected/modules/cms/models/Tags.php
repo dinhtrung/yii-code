@@ -36,51 +36,7 @@ class Tags extends BaseActiveRecord{
 	*/
 	public function tableName()
 	{
-		return 'tags';
-	}
-	/**
-	* Define validation rules
-	*/
-	public function rules()
-	{
-		return array(
-			array('name', 'required'),
-			array('frequency', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('frequency', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>128),
-			array('name, frequency', 'safe', 'on'=>'search'),
-		);
-	}
-	/**
-	* Relation to other models
-	*/
-	public function relations()
-	{
-		return array(
-		);
-	}
-	/**
-	* Attribute labels
-	*/
-	public function attributeLabels()
-	{
-		return array(
-			'name' => Yii::t('core', 'Name'),
-			'frequency' => Yii::t('core', 'Frequency'),
-		);
-	}
-	/**
-	* Which attribute are safe for search
-	*/
-	public function search()
-	{
-		$criteria=new CDbCriteria;
-		$criteria->compare('name', $this->name, true);
-		$criteria->compare('frequency', $this->frequency);
-
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
+		return '{{tags}}';
 	}
 	/**
 	* Provide default sorting and optional condition
@@ -89,65 +45,6 @@ class Tags extends BaseActiveRecord{
 		return array(
 			'order' => 'name ASC',
 		);
-	}
-	/**
-	* Run before validate()
-	*/
-	protected function beforeValidate() {
-		return parent::beforeValidate();
-	}
-	/**
-	* Run after validate()
-	*/
-	protected function afterValidate() {
-		return parent::afterValidate();
-	}
-	/**
-	* Run before save()
-	*/
-	protected function beforeSave() {
-		return parent::beforeSave();
-	}
-	/**
-	* Run after save()
-	*/
-	protected function afterSave() {
-		return parent::afterSave();
-	}
-	/**
-	* Run before delete()
-	*/
-	protected function beforeDelete() {
-		return parent::beforeDelete();
-	}
-	/**
-	* Run after delete()
-	*/
-	protected function afterDelete() {
-		return parent::afterDelete();
-	}
-	/**
-	* Configure additional behaviors
-	*
-	public function behaviors()
-	{
-		return array_merge(
-			array(
-				'BehaviourName' => array(
-					'class' => 'CWhateverBehavior'
-				)
-			),
-			parent::behaviors()
-		);
-	}
-	*/
-
-	/**
-	 * Helper function for Tags
-	 */
-	function getLink($method = "view") {
-		return CHtml::link($this->name, array("/core/tags/view", "id" => $this->id),
-			array("title" => CHtml::encode($this->name)));
 	}
 	/**
 	 * Suggests a list of existing tags matching the specified keyword.
@@ -169,5 +66,37 @@ class Tags extends BaseActiveRecord{
 		foreach($tags as $tag)
 			$names[]=$tag->name;
 		return $names;
+	}
+
+	/**
+	 * Create the table if needed
+	 */
+	protected function createTable(){
+		$columns = array(
+				'id'	=>	'pk',
+				'name'	=>	'string',
+				'frequency'	=>	'int',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$columns = array(
+				'nid'	=>	'int',
+				'tid'	=>	'int',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable('{{node_tag}}', $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addPrimaryKey('nid_tid', '{{node_tag}}', 'nid,tid')
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addForeignKey('node', '{{node_tag}}', 'nid', '{{node}}', 'id')
+		)->execute();
+
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addForeignKey('tags', '{{node_tag}}', 'tid', '{{tags}}', 'id')
+		)->execute();
+
 	}
 }

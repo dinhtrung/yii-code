@@ -2,8 +2,8 @@
 
 
 $this->breadcrumbs=array(
-	Yii::t('core', 'Categories') => array('index'),
-	Yii::t('core', 'Manage'),
+	Yii::t('cms', 'Categories') => array('index'),
+	Yii::t('cms', 'Manage'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Categories'));
@@ -23,10 +23,10 @@ if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Cate
 		?>
 
 <h1>
-<?php echo $this->pageTitle = Yii::t('core', 'Manage') . ' ' . Yii::t('core', 'Categories'); ?>
+<?php echo $this->pageTitle = Yii::t('cms', 'Manage') . ' ' . Yii::t('cms', 'Categories'); ?>
 </h1>
 
-<?php echo CHtml::link(Yii::t('core', 'Advanced Search'),'#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link(Yii::t('cms', 'Advanced Search'),'#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -47,12 +47,12 @@ $locale = CLocale::getInstance(Yii::app()->language);
 			'class'=>'EButtonColumnWithClearFilters',
 			'buttons'	=>	array(
 				'sort' => array(
-					'label'	=>	Yii::t('core', "Sort"),
+					'label'	=>	Yii::t('cms', "Sort"),
 					'url'	=>	'Yii::app()->controller->createUrl("sort",array("id"=>$data->primaryKey))',
 					'imageUrl'	=> Yii::app()->baseUrl . "/images/icons/arrow-retweet.png",
 				),
 				'duplicate' => array(
-					'label'	=>	Yii::t('core', "Duplicate"),
+					'label'	=>	Yii::t('cms', "Duplicate"),
 					'url'	=>	'Yii::app()->controller->createUrl("sort",array("id"=>$data->primaryKey))',
 					'imageUrl'	=> Yii::app()->baseUrl . "/images/icons/blue-document-copy.png",
 				),

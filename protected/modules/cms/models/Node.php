@@ -32,14 +32,6 @@ class Node extends BaseActiveRecord{
 		return parent::init();
 	}
 	/**
-	* This magic method is used for setting a string value for the object. It will be used if the object is used as a string.
-	* @return string representing the object
-	*/
-	public function __toString() {
-		return (string) $this->title;
-
-	}
-	/**
 	* @return string name of the class table
 	*/
 	public function tableName()
@@ -56,14 +48,20 @@ class Node extends BaseActiveRecord{
 			'user'		=> array(self::BELONGS_TO, 'User', 'uid'),
 		);
 	}
+
+	public function rules(){
+		return array_merge(parent::rules(), array(
+			array('user,category,tags', 'safe', 'on' => 'insert,update'),
+		));
+	}
 	/**
 	* Attribute labels
 	*/
 	public function attributeLabels()
 	{
 		return array_merge(parent::attributeLabels(), array(
-				'user'	=>	Yii::t('core', 'User'),
-				'category'	=>	Yii::t('core', 'Category'),
+				'user'	=>	Yii::t('cms', 'User'),
+				'category'	=>	Yii::t('cms', 'Category'),
 		));
 	}
 	/**
@@ -82,12 +80,6 @@ class Node extends BaseActiveRecord{
 		return parent::beforeValidate();
 	}
 	/**
-	* Run after validate()
-	*/
-	protected function afterValidate() {
-		return parent::afterValidate();
-	}
-	/**
 	* Run before save()
 	*/
 	protected function beforeSave() {
@@ -99,12 +91,6 @@ class Node extends BaseActiveRecord{
 		return parent::beforeSave();
 	}
 	/**
-	* Run after save()
-	*/
-	protected function afterSave() {
-		return parent::afterSave();
-	}
-	/**
 	* Run before delete()
 	*/
 	protected function beforeDelete() {
@@ -112,12 +98,6 @@ class Node extends BaseActiveRecord{
 		$this->Taggable->removeAllTags();
 		$this->save();
 		return parent::beforeDelete();
-	}
-	/**
-	* Run after delete()
-	*/
-	protected function afterDelete() {
-		return parent::afterDelete();
 	}
 
 	/**
@@ -128,9 +108,9 @@ class Node extends BaseActiveRecord{
 	const STATUS_DRAFT = 0;
 	public static function statusOption($param = NULL) {
 		$options = array(
-			self::STATUS_ARCHIVED	=>	Yii::t('core', "Archived"),
-			self::STATUS_DRAFT		=>	Yii::t('core', "Draft"),
-			self::STATUS_PUBLISHED	=>	Yii::t('core', "Published"),
+			self::STATUS_ARCHIVED	=>	Yii::t('cms', "Archived"),
+			self::STATUS_DRAFT		=>	Yii::t('cms', "Draft"),
+			self::STATUS_PUBLISHED	=>	Yii::t('cms', "Published"),
 		);
 		if (is_null($param)) return $options;
 		elseif (array_key_exists((string) $param, $options)) return $options[(string) $param];
@@ -141,13 +121,13 @@ class Node extends BaseActiveRecord{
 	*/
 	public function behaviors()
 	{
-		return array_merge(
+		return array_merge(parent::behaviors(),
 			array(
 				'Taggable' => array(
 					'class' => 'ext.yiiext.behaviors.model.taggable.EARTaggableBehavior',
-					'tagTable' => 'tags',
+					'tagTable' => '{{tags}}',
 					'tagModel' => 'Tags',
-					'tagBindingTable' => 'node_tag',
+					'tagBindingTable' => '{{node_tag}}',
 					'modelTableFk' => 'nid',
 					'tagTablePk' => 'id',
 					'tagTableName' => 'name',
@@ -158,9 +138,30 @@ class Node extends BaseActiveRecord{
 					'scope' => array(),
 					'insertValues' => array(),
 				),
-			),
-			parent::behaviors()
+			)
+
 		);
+	}
+
+	/**
+	 * Create the table if needed
+	 */
+	protected function createTable(){
+		$columns = array(
+				'id'	=>	'pk',
+				'title'	=>	'string',
+				'alias'	=>	'string',
+				'description'	=>	'text',
+				'body'	=>	'text',
+				'createtime'	=>	'int',
+				'updatetime'	=>	'int',
+				'status'	=>	'boolean',
+				'uid'	=>	'int',
+				'cid'	=>	'int',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
 	}
 
 }

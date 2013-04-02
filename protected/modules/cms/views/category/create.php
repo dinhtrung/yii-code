@@ -1,15 +1,15 @@
 <?php
 
 $this->breadcrumbs=array(
-	Yii::t('core', 'Categories') => array('index'),
-	Yii::t('core', 'Create'),
+	Yii::t('cms', 'Categories') => array('index'),
+	Yii::t('cms', 'Create'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Categories'));
 ?>
 
 <h1>
-	<?php echo $this->pageTitle = Yii::t('core', 'Create') . ' ' . Yii::t('core', 'Categories'); ?>
+	<?php echo $this->pageTitle = Yii::t('cms', 'Create') . ' ' . Yii::t('cms', 'Categories'); ?>
 </h1>
 
 <?php

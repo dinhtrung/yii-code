@@ -2,7 +2,9 @@
 
 class Blocktype extends BaseActiveRecord
 {
-	// Add your model-specific methods here. This file will not be overriden by gtc except you force it.
+	public function connectionId(){
+		return Yii::app()->hasComponent('coreDb')?'coreDb':'db';
+	}
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -20,16 +22,11 @@ class Blocktype extends BaseActiveRecord
 
 	public function rules()
 	{
-		return array(
+		return array_merge(parent::rules(), array(
+
 			array('component', 'validComponent'),
 			array('viewfile', 'validViewfile'),
-			array('title, viewfile', 'required'),
-			array('title, description, component, callback, viewfile', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('title', 'length', 'max'=>100),
-			array('component, callback, viewfile', 'length', 'max'=>255),
-			array('description', 'safe'),
-			array('btid, title, description, component, callback, viewfile', 'safe', 'on'=>'search'),
-		);
+		) );
 	}
 
 	function validComponent($attribute,$params) {

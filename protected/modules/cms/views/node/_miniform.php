@@ -50,12 +50,12 @@
 
 <?php
 echo CHtml::Button(
-	Yii::t('core', 'Cancel'),
+	Yii::t('cms', 'Cancel'),
 	array(
 		'onClick' => "$('#".$relation."_dialog').dialog('close');"
 	));
 echo CHtml::Button(
-	Yii::t('core', 'Create'),
+	Yii::t('cms', 'Create'),
 	array(
 		'id' => "submit_".$relation
 	));

@@ -15,6 +15,9 @@
  */
 class Blocktheme extends BaseActiveRecord{
 
+	public function connectionId(){
+		return Yii::app()->hasComponent('coreDb')?'coreDb':'db';
+	}
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -81,5 +84,24 @@ class Blocktheme extends BaseActiveRecord{
 		return array(
 			'order' => 'region ASC, weight ASC',
 		);
+	}
+
+	/**
+	 * Create the table if needed
+	 */
+	protected function createTable(){
+		 $columns = array(
+					'block'	=>	'int',
+					'theme'	=>	'string',
+					'region'	=>	'string',
+					'weight'	=>	'int',
+			);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addPrimaryKey('btr', $this->tableName(), 'block,theme,region')
+		)->execute();
+		return FALSE;
 	}
 }

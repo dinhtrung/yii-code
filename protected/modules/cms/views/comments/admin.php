@@ -2,8 +2,8 @@
 
 
 $this->breadcrumbs=array(
-	'Comments'=>array(Yii::t('core', 'index')),
-	Yii::t('core', 'Manage'),
+	'Comments'=>array(Yii::t('cms', 'index')),
+	Yii::t('cms', 'Manage'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Comments'));
@@ -23,10 +23,10 @@ if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Comm
 		?>
 
 <h1>
-<?php echo $this->pageTitle = Yii::t('core', 'Manage') . ' ' . Yii::t('core', 'Comments'); ?>
+<?php echo $this->pageTitle = Yii::t('cms', 'Manage') . ' ' . Yii::t('cms', 'Comments'); ?>
 </h1>
 
-<?php echo CHtml::link(Yii::t('core', 'Advanced Search'),'#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link(Yii::t('cms', 'Advanced Search'),'#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,

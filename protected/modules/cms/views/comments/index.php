@@ -3,7 +3,7 @@
 
 $this->breadcrumbs = array(
 	'Comments',
-	Yii::t('core', 'Index'),
+	Yii::t('cms', 'Index'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Comments'));

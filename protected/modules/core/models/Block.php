@@ -20,8 +20,9 @@
 */
 class Block extends BaseActiveRecord
 {
-	// Add your model-specific methods here. This file will not be overriden by gtc except you force it.
-	public static function model($className=__CLASS__)
+	public function connectionId(){
+		return Yii::app()->hasComponent('coreDb')?'coreDb':'db';
+	}	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
@@ -29,65 +30,6 @@ class Block extends BaseActiveRecord
 	public function tableName()
 	{
 		return '{{block}}';
-	}
-
-	/*public function rules()
-	{
-		return array(
-			array('title', 'required'),
-			array('title, type, option, status, url, display', 'default', 'setOnEmpty' => true, 'value' => null),
-			array('status, display', 'numerical', 'integerOnly'=>true),
-			array('title', 'length', 'max'=>100),
-			array('label', 'length', 'max'=>255),
-			array('type', 'length', 'max'=>11),
-			array('option, url, description', 'safe'),
-			array('title, label, description', 'safe', 'on'=>'search'),
-		);
-	}
-
-	public function attributeLabels()
-	{
-		return array(
-			'bid' => Yii::t('core', 'Bid'),
-			'title' => Yii::t('core', 'Title'),
-			'label' => Yii::t('core', 'Label'),
-			'description' => Yii::t('core', 'Description'),
-			'type' => Yii::t('core', 'Type'),
-			'option' => Yii::t('core', 'Option'),
-			'status' => Yii::t('core', 'Status'),
-			'url' => Yii::t('core', 'Url'),
-			'display' => Yii::t('core', 'Display'),
-		);
-	}
-
-
-	public function search()
-	{
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('bid', $this->bid, true);
-		$criteria->compare('title', $this->title, true);
-		$criteria->compare('label', $this->label, true);
-		$criteria->compare('description', $this->description, true);
-		$criteria->compare('type', $this->type);
-		$criteria->compare('option', $this->option, true);
-		$criteria->compare('status', $this->status);
-		$criteria->compare('url', $this->url, true);
-		$criteria->compare('display', $this->display);
-
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
-	}*/
-
-	public function init()
-	{
-		return parent::init();
-	}
-
-	public function __toString() {
-		return (string) $this->title;
-
 	}
 
 	public function relations()

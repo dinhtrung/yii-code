@@ -2,8 +2,8 @@
 if(empty($this->breadcrumbs))
 
 $this->breadcrumbs=array(
-	Yii::t('core', 'Tags')=>array('index'),
-	Yii::t('core', 'Manage'),
+	Yii::t('cms', 'Tags')=>array('index'),
+	Yii::t('cms', 'Manage'),
 );
 
 
@@ -21,9 +21,9 @@ $this->breadcrumbs=array(
 			");
 		?>
 
-<h1> <?php echo Yii::t('core', 'Manage'); ?> Tags</h1>
+<h1> <?php echo Yii::t('cms', 'Manage'); ?> Tags</h1>
 
-<?php echo CHtml::link(Yii::t('core', 'Advanced Search'),'#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link(Yii::t('cms', 'Advanced Search'),'#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,

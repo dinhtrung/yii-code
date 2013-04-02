@@ -21,6 +21,10 @@ class Webmenu extends BaseActiveRecord{
 
 	private $path = "files/webmenu/icons";
 	public $icon;
+
+	public function connectionId(){
+		return Yii::app()->hasComponent('coreDb')?'coreDb':'db';
+	}
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -55,17 +59,7 @@ class Webmenu extends BaseActiveRecord{
 			array('visible', 'boolean'),
 			array('icon', 'file', 'on' => 'insert, update', 'types' => File::IMAGETYPES, 'allowEmpty' => true),
 
-		)
-// 			array('icon, url, task', 'default', 'setOnEmpty' => TRUE, 'value' => ''),
-// 			array('label', 'required'),
-// 			array('root, visible, template', 'default', 'setOnEmpty' => true, 'value' => null),
-// 			array('root, lft, rgt, level', 'unsafe', 'on'=>'insert, update'),
-// 			array('root, lft, rgt, level', 'safe', 'on'=>'settings, block'),
-// 			array('root, lft, rgt, level', 'numerical', 'integerOnly'=>true),
-// 			array('label, url, template', 'length', 'max'=>255),
-// 			array('description, url, label', 'safe', 'on' => 'insert, update'),
-// 			array('label, description, url', 'safe', 'on'=>'search'),
-		);
+		));
 	}
 	/**
 	* Provide default sorting and optional condition

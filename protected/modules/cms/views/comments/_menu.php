@@ -10,7 +10,7 @@ $current = $controller->getAction()->getId();
 $tmp = array('index', 'create', 'admin');
 foreach ($tmp as $actionId){
 	$this->menu[$actionId] = array(
-		'label'		=>	Yii::t('core', ucfirst($actionId)) . ' ' . Yii::t($modelClass, ucfirst($modelClass)),
+		'label'		=>	Yii::t('cms', ucfirst($actionId)) . ' ' . Yii::t($modelClass, ucfirst($modelClass)),
 		'url'		=>	array($actionId),
 		'visible'	=>	Yii::app()->getUser()->checkAccess($resource . ucfirst($actionId)),
 		'active'	=>	($current == $actionId),
@@ -21,7 +21,7 @@ if (! empty($model) && ! empty($primaryKey)){
 	$tmp = array('view', 'update', 'delete');
 	foreach ($tmp as $actionId){
 		$this->menu[$actionId] = array(
-			'label'		=>	Yii::t('core', ucfirst($actionId)) . ' ' . Yii::t($modelClass, ucfirst($modelClass)),
+			'label'		=>	Yii::t('cms', ucfirst($actionId)) . ' ' . Yii::t($modelClass, ucfirst($modelClass)),
 			'url'		=>	array($actionId, 'id' => $model->$primaryKey),
 			'visible'	=>	Yii::app()->getUser()->checkAccess($resource . ucfirst($actionId)),
 			'active'	=>	($current == $actionId),

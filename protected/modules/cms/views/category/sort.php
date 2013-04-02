@@ -2,20 +2,20 @@
 if(empty($this->breadcrumbs))
 
 $this->breadcrumbs = array(
-	Yii::t('core', 'Categories') =>array('index'),
-	Yii::t('core', 'Sort') =>array('sort', 'id' => $model->id),
+	Yii::t('cms', 'Categories') =>array('index'),
+	Yii::t('cms', 'Sort') =>array('sort', 'id' => $model->id),
 );
 
 if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'modelClass' => 'Category', 'primaryKey' => 'id'));
 ?>
-<h1><?php echo $this->pageTitle = Yii::t('core', 'Sort Category :title', array('title' => $model->title)); ?></h1>
+<h1><?php echo $this->pageTitle = Yii::t('cms', 'Sort Category :title', array('title' => $model->title)); ?></h1>
 
 <div id="message"></div>
 <?php
     // Organize the dataProvider data into a Zii-friendly array
     $items = array();
     foreach ($model->children()->findAll() as $k => $v) {
-    	$items[$v->id] = Yii::t('core', '<strong>%title</strong>: %desc', array(
+    	$items[$v->id] = Yii::t('cms', '<strong>%title</strong>: %desc', array(
     		'%title'	=>	$v->title,
     		'%desc'		=>	$v->description,
     	));
@@ -26,7 +26,7 @@ if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'm
         'items' => $items,
     ));
     // Add a Submit button to send data to the controller
-    echo CHtml::ajaxButton(Yii::t('core', 'Submit Changes'), '', array(
+    echo CHtml::ajaxButton(Yii::t('cms', 'Submit Changes'), '', array(
         'type' => 'POST',
         'data' => array(
             // Turn the Javascript array into a PHP-friendly string

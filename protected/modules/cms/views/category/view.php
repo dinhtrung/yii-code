@@ -2,7 +2,7 @@
 if(empty($this->breadcrumbs))
 
 $this->breadcrumbs=array(
-	Yii::t('core', 'Categories') =>array('index'),
+	Yii::t('cms', 'Categories') =>array('index'),
 	$model->title,
 	);
 
@@ -10,7 +10,7 @@ if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'm
 ?>
 
 <h1>
-	<?php echo $this->pageTitle = Yii::t('core', 'View') . ' ' . Yii::t('core', 'Category :name', array(':name' => CHtml::encode($model))); ?>
+	<?php echo $this->pageTitle = Yii::t('cms', 'View') . ' ' . Yii::t('cms', 'Category :name', array(':name' => CHtml::encode($model))); ?>
 </h1>
 
 <div>
@@ -21,7 +21,7 @@ if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'm
 ?>
 </div>
 <?php // TODO: List all relation here ?>
-<h3><?php echo Yii::t('core', 'Children category of :category', array(':category' => $model->title));?></h3>
+<h3><?php echo Yii::t('cms', 'Children category of :category', array(':category' => $model->title));?></h3>
 
 <?php
 $descendants = $model->children()->findAll();

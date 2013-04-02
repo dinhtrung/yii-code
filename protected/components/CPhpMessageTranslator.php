@@ -25,7 +25,7 @@ class CPhpMessageTranslator extends CApplicationComponent{
     			if(is_file($fileName))
     			{
     				$translated=require($fileName);
-    				ksort($translated);
+    				if (is_array($translated)) ksort($translated); else $translated = array();
     				$merged = array_merge($untranslated, $translated);
     			}
     			$array=str_replace("\r",'',var_export($merged,true));

@@ -2,8 +2,8 @@
 
 
 $this->breadcrumbs=array(
-	'Nodes'=>array(Yii::t('core', 'index')),
-	Yii::t('core', 'Manage'),
+	'Nodes'=>array(Yii::t('cms', 'index')),
+	Yii::t('cms', 'Manage'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Node'));
@@ -23,10 +23,10 @@ if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Node
 		?>
 
 <h1>
-<?php echo $this->pageTitle = Yii::t('core', 'Manage') . ' ' . Yii::t('core', 'Nodes'); ?>
+<?php echo $this->pageTitle = Yii::t('cms', 'Manage') . ' ' . Yii::t('cms', 'Nodes'); ?>
 </h1>
 
-<?php echo CHtml::link(Yii::t('core', 'Advanced Search'),'#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link(Yii::t('cms', 'Advanced Search'),'#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,

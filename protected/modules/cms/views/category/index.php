@@ -2,13 +2,13 @@
 
 
 $this->breadcrumbs = array(
-	Yii::t('core', 'Categories'),
+	Yii::t('cms', 'Categories'),
 );
 
 if(empty($this->menu)) $this->renderPartial('_menu', array('modelClass' => 'Categories'));
 ?>
 
-<h1><?php echo $this->pageTitle = Yii::t('core', 'Categories'); ?></h1>
+<h1><?php echo $this->pageTitle = Yii::t('cms', 'Categories'); ?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

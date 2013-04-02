@@ -21,18 +21,11 @@ class Category extends BaseActiveRecord{
 		return parent::model($className);
 	}
 	/**
-	* Initializes this model.
-	*/
-	public function init()
-	{
-		return parent::init();
-	}
-	/**
 	* This magic method is used for setting a string value for the object. It will be used if the object is used as a string.
 	* @return string representing the object
 	*/
-	public function __toString() {
-		return (string) Yii::t('core', $this->title, array(), 'dbmessages');
+	public function getTitle() {
+		return (string) Yii::t('cms', $this->title, array(), 'dbmessages');
 
 	}
 	/**
@@ -43,80 +36,12 @@ class Category extends BaseActiveRecord{
 		return '{{category}}';
 	}
 	/**
-	* Define validation rules
-	*/
-	public function rules()
-	{
-		return array(
-			array('title', 'required'),
-			array('title, description', 'safe'),
-			array('title', 'length', 'max'=>255),
-			array('root, lft, rgt, level', 'unsafe', 'on' => 'insert, update, delete'),
-			array('root, lft, rgt, level', 'numerical', 'integerOnly'=>true),
-		);
-	}
-	/**
-	* Relation to other models
-	*/
-	public function relations()
-	{
-		return array(
-		);
-	}
-	/**
-	* Attribute labels
-	*/
-	public function attributeLabels()
-	{
-		return array(
-			'root' => Yii::t('core', 'Root'),
-			'title' => Yii::t('core', 'Title'),
-			'description' => Yii::t('core', 'Description'),
-		);
-	}
-	/**
 	* Provide default sorting and optional condition
 	*/
 	public function defaultScope() {
 		return array(
 			'order' => 'root ASC, lft ASC',
 		);
-	}
-	/**
-	* Run before validate()
-	*/
-	protected function beforeValidate() {
-		return parent::beforeValidate();
-	}
-	/**
-	* Run after validate()
-	*/
-	protected function afterValidate() {
-		return parent::afterValidate();
-	}
-	/**
-	* Run before save()
-	*/
-	protected function beforeSave() {
-		return parent::beforeSave();
-	}
-	/**
-	* Run after save()
-	*/
-	protected function afterSave() {
-		return parent::afterSave();
-	}
-	/**
-	* Run before delete()
-	*/
-	protected function beforeDelete() {
-		return parent::beforeDelete();
-	}
-	/**
-	* Run after delete()
-	*/
-	protected function afterDelete() {
-		return parent::afterDelete();
 	}
 	/**
 	* Configure additional behaviors
@@ -146,20 +71,20 @@ class Category extends BaseActiveRecord{
 		if (is_null($rid)) {
 			$categorys = self::model()->roots()->findAll();
 			foreach ($categorys as $n => $category){
-				$output[$category->id] = Yii::t('core', $category->title, array(), 'dbmessages');
+				$output[$category->id] = Yii::t('cms', $category->title, array(), 'dbmessages');
 				$categories = $category->descendants()->findAll();
 				foreach ($categories as $cat){
-					$output[$cat->id] = str_repeat('-', $cat->level) . Yii::t('core', $cat->title, array(), 'dbmessages');
+					$output[$cat->id] = str_repeat('-', $cat->level) . Yii::t('cms', $cat->title, array(), 'dbmessages');
 				}
 			}
 		} else {
 			$category = self::model()->findByPk($rid);
 			if (is_null($category)) return array();
 			$output = array();
-			$output[$category->id] = Yii::t('core', $category->title, array(), 'dbmessages');
+			$output[$category->id] = Yii::t('cms', $category->title, array(), 'dbmessages');
 			$categories = $category->descendants()->findAll();
 			foreach ($categories as $cat){
-				$output[$cat->id] = str_repeat('-', $cat->level) . Yii::t('core', $cat->title, array(), 'dbmessages');;
+				$output[$cat->id] = str_repeat('-', $cat->level) . Yii::t('cms', $cat->title, array(), 'dbmessages');;
 			}
 		}
 		return $output;
@@ -175,8 +100,8 @@ class Category extends BaseActiveRecord{
 	*/
 	public static function getTreeConfig(){
 		return array (
-				'title'	=>	Yii::t('core', "Get Tree configuration"),
-				'description'	=>	Yii::t('core', "Select a Category to use as root, and the level of depth for recursive."),
+				'title'	=>	Yii::t('cms', "Get Tree configuration"),
+				'description'	=>	Yii::t('cms', "Select a Category to use as root, and the level of depth for recursive."),
 			  	'elements' => array (
 				    'root' => array (
 			      		'type' => 'dropdownlist',
@@ -212,5 +137,26 @@ class Category extends BaseActiveRecord{
 			$output['children'] = $children;
 		}
 		return $output;
+	}
+
+	/**
+	 * Create the table if needed
+	 */
+	protected function createTable(){
+		$columns = array(
+				'id'	=>	'pk',
+				'root'	=>	'int',
+				'lft'	=>	'int',
+				'rgt'	=>	'int',
+				'level'	=>	'int',
+				'title'	=>	'string',
+				'description'	=>	'text',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createIndex('pos', $this->tableName(), 'root,lft,rgt,level')
+		)->execute();
 	}
 }
