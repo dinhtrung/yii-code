@@ -17,8 +17,9 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Bizrule' => '',
-  'Create Role' => '',
+  'Business rule' => 'Luật áp dụng',
+  'Code that will be executed when performing access checking.' => 'Mã sẽ được thực thi khi kiểm tra truy cập',
+  'Create Role' => 'Tạo vai trò',
   'A role is group of permissions to perform a variety of tasks and operations, for example the authenticated user.' => 'Mỗi vai trò được phép thực hiện nhiều hành động.',
   'A task is a permission to perform multiple operations, for example accessing a group of controller action.' => 'Một tác vụ bao gồm nhiều hành động.',
   'An operation is a permission to perform a single operation, for example accessing a certain controller action.' => 'Mỗi hành động cho phép thực hiện 1 thao tác',
@@ -30,9 +31,8 @@ return array (
   'Assignments for :username' => 'Gán quyền cho :username',
   'AuthItem' => 'Quyền',
   'Authorization items can be managed under {roleLink}, {taskLink} and {operationLink}.' => '',
-  'Business rule' => '',
+  'Bizrule' => '',
   'Cancel' => 'Thôi',
-  'Code that will be executed when performing access checking.' => '',
   'Create :type' => 'Tạo :type',
   'Create a new operation' => 'Tạo thao tác',
   'Create a new role' => 'Tạo vai trò mới',
