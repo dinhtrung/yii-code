@@ -65,6 +65,13 @@ class Authitem extends BaseActiveRecord
 		));
 		$this->setIsNewRecord(TRUE);
 		$this->save();
+	}
 
+	/* Getter and Setter for bizrule column */
+	public function getBizRule(){
+		return $this->bizrule;
+	}
+	public function setBizRule($val){
+		$this->bizrule = $val;
 	}
 }
