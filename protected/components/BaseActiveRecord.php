@@ -8,6 +8,7 @@ class BaseActiveRecord extends MultiActiveRecord {
 			return parent::__construct($scenario);
 		} catch (CDbException $e){
 			if (! $this->createTable()) throw $e;
+			$this->refreshMetaData();
 			return parent::__construct($scenario);
 		}
 	}
@@ -167,7 +168,7 @@ class BaseActiveRecord extends MultiActiveRecord {
     		$rules[]=array(implode(', ',$safe), 'safe');
 
     	// Relation Attribute must be set to safe to use CArAdvancedRelationBehavior
-    	$rules[]=array(implode(', ',array_keys($this->relations)), 'safe', 'on' => 'insert,update');
+    	$rules[]=array(implode(', ',array_keys($this->relations())), 'safe', 'on' => 'insert,update');
     	return $rules;
     }
 

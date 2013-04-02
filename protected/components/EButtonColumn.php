@@ -192,12 +192,12 @@ class EButtonColumn extends CButtonColumn {
 
         // define the button structure to be used
         $this->_clearButton = array(
-        'label'=>$_label,     // text label of the button
-        'url'=>$_url,       // a PHP expression for generating the URL of the button
-        'imageUrl'=>$_clearButtonImageUrl,  // image URL of the button. If not set or false, a text link is used
-        'options'=>$_options, // HTML options for the button tag
-        'click'=>$_click,     // a JS function to be invoked when the button is clicked
-        'visible'=>$_visible,   // a PHP expression for determining whether the button is visible
+	        'label'=>$_label,     // text label of the button
+	        'url'=>$_url,       // a PHP expression for generating the URL of the button
+	        'imageUrl'=>$_clearButtonImageUrl,  // image URL of the button. If not set or false, a text link is used
+	        'options'=>$_options, // HTML options for the button tag
+	        'click'=>$_click,     // a JS function to be invoked when the button is clicked
+	        'visible'=>$_visible,   // a PHP expression for determining whether the button is visible
         );
 
 
