@@ -16,11 +16,6 @@ $this->mainMenu['core'] = array(
 				'visible' => Yii::app()->user->checkAccess('Core.Blocktype.Index')
 			),
 		array(
-				'label' => Yii::t('core', 'Webmenu'),
-				'url'=>array('/core/webmenu'),
-				'visible' => Yii::app()->user->checkAccess('Core.Webmenu.Index')
-			),
-		array(
 				'label' => Yii::t('core', 'Website'),
 				'url'=>array('/core/website'),
 				'visible' => Yii::app()->user->checkAccess('Core.Website.Index')

@@ -5,6 +5,11 @@ $this->mainMenu['cms'] = array(
 	'visible' => Yii::app()->user->checkAccess('Cms.Node.Index'),
 	'items'=>array(
 		array(
+				'label' => Yii::t('cms', 'Menu'),
+				'url'=>array('/cms/webmenu'),
+				'visible' => Yii::app()->user->checkAccess('Cms.Webmenu.Index')
+			),
+		array(
 				'label' => Yii::t('cms', 'Category'),
 				'url'=>array('/cms/category'),
 				'visible' => Yii::app()->user->checkAccess('Cms.Category.Index')
