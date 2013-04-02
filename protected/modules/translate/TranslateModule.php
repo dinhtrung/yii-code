@@ -9,7 +9,7 @@ class TranslateModule extends CWebModule
     static $translateComponentId='translate';
 	/**
 	 * TranslateModule::init()
-	 * 
+	 *
 	 * @return
 	 */
 	public function init(){
@@ -19,11 +19,13 @@ class TranslateModule extends CWebModule
             'translate.controllers.*',
             'translate.components.*',
         ));
+		$msg = new Message();
+		$src = new MessageSource();
         return parent::init();
 	}
     /**
      * get the translate component
-     * 
+     *
      * @return MPTranslate
      */
     static function translator(){
@@ -40,7 +42,7 @@ class TranslateModule extends CWebModule
     }
     /**
      * translate some message using the module configuration
-     * 
+     *
      * @param string $message
      * @param array $params
      * @return string translated message

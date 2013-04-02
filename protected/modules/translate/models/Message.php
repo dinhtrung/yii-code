@@ -34,7 +34,6 @@ class Message extends BaseActiveRecord{
 		);
 	 */
 	protected function createTable(){
-		$ref = new MessageSource();
 		$columns = array(
 				'id'	=>	'int',
 				'language'	=>	'string',
@@ -46,6 +45,7 @@ class Message extends BaseActiveRecord{
 		$this->getDbConnection()->createCommand(
 			Yii::app()->getDb()->getSchema()->addPrimaryKey('id_lang', $this->tableName(), 'id,language')
 		)->execute();
+		$ref = new MessageSource();
 		$this->getDbConnection()->createCommand(
 			Yii::app()->getDb()->getSchema()->addForeignKey('fk_message_sourcemessage', $this->tableName(), 'id', $ref->tableName(), 'id')
 		)->execute();
