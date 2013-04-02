@@ -36,6 +36,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 		) ,
 		'core',
 		'cms',
+		'casestudy',
 	) ,
 	// application components
 	'components' => array(

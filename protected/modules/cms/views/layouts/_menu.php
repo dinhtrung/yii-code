@@ -1,12 +1,9 @@
 <?php
 $this->mainMenu['cms'] = array(
 	'label' => Yii::t('cms', 'Contents'),
+	'url'=>array('/cms/node'),
+	'visible' => Yii::app()->user->checkAccess('Cms.Node.Index'),
 	'items'=>array(
-		array(
-				'label' => Yii::t('cms', 'Content'),
-				'url'=>array('/cms/node'),
-				'visible' => Yii::app()->user->checkAccess('Cms.Node.Index')
-			),
 		array(
 				'label' => Yii::t('cms', 'Category'),
 				'url'=>array('/cms/category'),

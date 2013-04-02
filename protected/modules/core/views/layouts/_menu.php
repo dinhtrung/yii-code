@@ -1,6 +1,9 @@
 <?php
+if (Yii::app()->user->checkAccess('Core.*.*'))
 $this->mainMenu['core'] = array(
 	'label' => Yii::t('core', 'Core'),
+	'url'=>array('/core/block'),
+	'visible' => Yii::app()->user->checkAccess('Core.Block.Index'),
 	'items'=>array(
 		array(
 				'label' => Yii::t('core', 'Block'),
