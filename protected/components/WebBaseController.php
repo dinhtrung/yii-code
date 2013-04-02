@@ -164,7 +164,10 @@ abstract class WebBaseController extends BaseController
 	}
 
 	protected function renderBlocks() {
-		$blocks = Blocktheme::model()->with('owner')->findAllByAttributes(
+		$blockTypes = new Blocktype('search');
+		$blocks = new Block('search');
+		$blockTheme = new Blocktheme('search');
+		$blocks = $blockTheme->with('owner')->findAllByAttributes(
 				array("theme" => Yii::app()->setting->get("web", "theme", "classic"))
 			);
 		foreach ($blocks as $block){

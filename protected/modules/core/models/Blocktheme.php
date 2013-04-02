@@ -23,11 +23,22 @@ class Blocktheme extends BaseActiveRecord{
 		return parent::model($className);
 	}
 	/**
-	* Initializes this model.
-	*/
-	public function init()
-	{
-		return parent::init();
+	 * Create the table if needed
+	 */
+	protected function createTable(){
+		 $columns = array(
+					'block'	=>	'int',
+					'theme'	=>	'string',
+					'region'	=>	'string',
+					'weight'	=>	'int',
+			);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addPrimaryKey('btr', $this->tableName(), 'block,theme,region')
+		)->execute();
+		return FALSE;
 	}
 	/**
 	* This magic method is used for setting a string value for the object. It will be used if the object is used as a string.
@@ -84,24 +95,5 @@ class Blocktheme extends BaseActiveRecord{
 		return array(
 			'order' => 'region ASC, weight ASC',
 		);
-	}
-
-	/**
-	 * Create the table if needed
-	 */
-	protected function createTable(){
-		 $columns = array(
-					'block'	=>	'int',
-					'theme'	=>	'string',
-					'region'	=>	'string',
-					'weight'	=>	'int',
-			);
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->addPrimaryKey('btr', $this->tableName(), 'block,theme,region')
-		)->execute();
-		return FALSE;
 	}
 }

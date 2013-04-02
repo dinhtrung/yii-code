@@ -10,14 +10,40 @@ class Blocktype extends BaseActiveRecord
 		return parent::model($className);
 	}
 
-	public function init()
-	{
-		return parent::init();
-	}
-
 	public function tableName()
 	{
 		return '{{blocktype}}';
+	}
+	/*
+	 * CREATE TABLE IF NOT EXISTS `blocktype` (
+		  `btid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `title` varchar(100) DEFAULT NULL,
+		  `description` text,
+		  `component` varchar(255) DEFAULT NULL,
+		  `callback` varchar(255) DEFAULT NULL,
+		  `viewfile` varchar(255) DEFAULT NULL,
+		  PRIMARY KEY (`btid`)
+		) ENGINE=InnoDB  DEFAULT CHARSET=utf8
+	 */
+	protected function createTable(){
+		$ref = new Block();
+		$columns = array(
+				'btid'	=>	'pk',
+				'title'	=>	'string',
+				'description'	=>	'text',
+				'component'	=>	'string',
+				'callback'	=>	'string',
+				'viewfile'	=>	'string',
+		);
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('ccv', $this->tableName(), 'component,callback,viewfile')
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->addForeignKey('fk_blocktype_block', $this->tableName(), 'btid', $ref->tableName(), 'type')
+		)->execute();
 	}
 
 	public function rules()
@@ -52,14 +78,6 @@ class Blocktype extends BaseActiveRecord
 			"blocks"	=>	Yii::t('core', "Blocks"),
 		));
 	}
-
-
-
-	public function __toString() {
-		return (string) $this->title;
-
-	}
-
 
 	public function relations()
 	{

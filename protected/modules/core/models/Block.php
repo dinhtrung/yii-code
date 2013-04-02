@@ -31,6 +31,44 @@ class Block extends BaseActiveRecord
 	{
 		return '{{block}}';
 	}
+	/*
+	 * CREATE TABLE IF NOT EXISTS `block` (
+		  `bid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `title` varchar(100) DEFAULT NULL,
+		  `label` varchar(255) NOT NULL,
+		  `description` text NOT NULL,
+		  `type` int(11) unsigned DEFAULT NULL,
+		  `option` text,
+		  `status` tinyint(1) DEFAULT '1',
+		  `url` text,
+		  `display` tinyint(1) unsigned NOT NULL DEFAULT '0',
+		  PRIMARY KEY (`bid`),
+		  KEY `type` (`type`)
+		) ENGINE=InnoDB  DEFAULT CHARSET=utf8
+	 */
+	protected function createTable(){
+		$ref = new Blocktheme();
+		$columns = array(
+				'bid'	=>	'pk',
+				'title'	=>	'string',
+				'label'	=>	'string',
+				'description'	=>	'text',
+				'type'	=>	'int',
+				'option'	=>	'text',
+				'status'	=>	'boolean',
+				'url'	=>	'text',
+				'display'	=>	'boolean',
+		);
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->addPrimaryKey('id_lang', $this->tableName(), 'id,language')
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->addForeignKey('fk_block_blocktheme', $this->tableName(), 'bid', $ref->tableName(), 'block')
+		)->execute();
+	}
 
 	public function relations()
 	{

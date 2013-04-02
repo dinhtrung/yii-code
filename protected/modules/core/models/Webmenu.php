@@ -30,17 +30,10 @@ class Webmenu extends BaseActiveRecord{
 		return parent::model($className);
 	}
 	/**
-	* Initializes this model.
-	*/
-	public function init()
-	{
-		return parent::init();
-	}
-	/**
 	* This magic method is used for setting a string value for the object. It will be used if the object is used as a string.
 	* @return string representing the object
 	*/
-	public function __toString() {
+	public function getLabel() {
 		return (string) Yii::t('core', $this->label, array(), 'dbmessages');
 	}
 	/**
@@ -49,6 +42,52 @@ class Webmenu extends BaseActiveRecord{
 	public function tableName()
 	{
 		return '{{menu}}';
+	}
+
+	/*
+	 * Create Table:
+	 * CREATE TABLE IF NOT EXISTS `menu` (
+		  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `root` int(10) unsigned DEFAULT NULL,
+		  `lft` int(10) unsigned NOT NULL,
+		  `rgt` int(10) unsigned NOT NULL,
+		  `level` smallint(5) unsigned NOT NULL,
+		  `label` varchar(255) NOT NULL,
+		  `description` text NOT NULL,
+		  `url` varchar(255) NOT NULL,
+		  `template` varchar(255) DEFAULT NULL,
+		  `visible` tinyint(1) NOT NULL DEFAULT '1',
+		  `icon` varchar(255) NOT NULL,
+		  `task` varchar(255) NOT NULL,
+		  PRIMARY KEY (`id`),
+		  KEY `root` (`root`),
+		  KEY `lft` (`lft`),
+		  KEY `rgt` (`rgt`),
+		  KEY `level` (`level`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+	 */
+	protected function createTable(){
+		$ref = new Block();
+		$columns = array(
+				'id'	=>	'pk',
+				'root'	=>	'int',
+				'lft'	=>	'int',
+				'rgt'	=>	'int',
+				'level'	=>	'int',
+				'label'	=>	'string',
+				'description'	=>	'text',
+				'url'	=>	'string',
+				'template'	=>	'string',
+				'visible'	=>	'boolean',
+				'icon'	=>	'string',
+				'task'	=>	'string',
+		);
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('rlrl', $this->tableName(), 'root,lft,rgt,level')
+		)->execute();
 	}
 	/**
 	* Define validation rules
