@@ -58,12 +58,12 @@ class AssignmentController extends WebBaseController
 		$assignSelectOptions = Rights::getAuthItemSelectOptions(null, $assignments);
 		if( $assignSelectOptions!==array() )
 		{
-			$formModel = new AssignmentForm();
+			$formModel = new Authassignment();
 
 		    // Form is submitted and data is valid, redirect the user
-		    if( isset($_POST['AssignmentForm'])===true )
+		    if( isset($_POST['Authassignment'])===true )
 			{
-				$formModel->attributes = $_POST['AssignmentForm'];
+				$formModel->attributes = $_POST['Authassignment'];
 				if( $formModel->validate()===true )
 				{
 					// Update and redirect

@@ -91,6 +91,10 @@ class RightsModule extends CWebModule
 			'rights.models.*',
 		));
 
+		$rights = new Rights();
+		$authassignment = new Authassignment();
+		$authitem = new Authitem();
+		$authitemchild = new Authitemchild();
 		// Set the required components.
 		$this->setComponents(array(
 			'authorizer'=>array(

@@ -8,7 +8,7 @@
 * @copyright Copyright &copy; 2010 Christoffer Niska
 * @since 0.9.1
 */
-class Rights
+class Rights extends BaseActiveRecord
 {
 	const PERM_NONE = 0;
 	const PERM_DIRECT = 1;
@@ -17,6 +17,46 @@ class Rights
 	private static $_m;
 	private static $_a;
 
+
+	public function connectionId(){
+		return Yii::app()->hasComponent('rightsDb')?'rightsDb':'db';
+	}
+
+	public function tableName(){
+		return '{{rights}}';
+	}
+
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+	/**
+	 * Create the table if needed
+	 * CREATE TABLE IF NOT EXISTS `rights` (
+		  `itemname` varchar(64) NOT NULL,
+		  `type` int(11) NOT NULL,
+		  `weight` int(11) NOT NULL,
+		  PRIMARY KEY (`itemname`)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+	 */
+	protected function createTable(){
+		$columns = array(
+				'itemname'	=>	'string',
+				'type'		=>	'int',
+				'weight'	=>	'int',
+		);
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addPrimaryKey('itemname', $this->tableName(), 'itemname')
+		)->execute();
+
+		$ref = new Authitem();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->addForeignKey('assigned', $this->tableName(), 'itemname', $ref->tableName(), 'child')
+		)->execute();
+	}
 	/**
 	* Assigns an authorization item to a specific user.
 	* @param string $itemName the name of the item to assign.
@@ -70,7 +110,7 @@ class Rights
 		$module = self::module();
 		return Yii::app()->createUrl($module->baseUrl);
 	}
-	
+
 	/**
 	* Returns the list of authorization item types.
 	* @return array the list of types.
@@ -204,9 +244,9 @@ class Rights
 
 		return $selectOptions;
 	}
-	
+
 	/**
-	* Returns the cross-site request forgery parameter 
+	* Returns the cross-site request forgery parameter
 	* to be placed in the data of Ajax-requests.
 	* An empty string is returned if csrf-validation is disabled.
 	* @return string the csrf parameter.

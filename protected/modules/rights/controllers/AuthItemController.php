@@ -217,11 +217,11 @@ class AuthItemController extends WebBaseController
 		$type = $this->getType();
 
 		// Create the authorization item form
-		$formModel = new AuthItemForm('create');
+		$formModel = new Authitem('insert');
 
-		if( isset($_POST['AuthItemForm'])===true )
+		if( isset($_POST['Authitem'])===true )
 		{
-			$formModel->attributes = $_POST['AuthItemForm'];
+			$formModel->attributes = $_POST['Authitem'];
 			if( $formModel->validate()===true )
 			{
 				// Create the item
@@ -254,11 +254,11 @@ class AuthItemController extends WebBaseController
 		$itemName = $model->getName();
 
 		// Create the authorization item form
-		$formModel = new AuthItemForm('update');
+		$formModel = new Authitem('update');
 
-		if( isset($_POST['AuthItemForm'])===true )
+		if( isset($_POST['Authitem'])===true )
 		{
-			$formModel->attributes = $_POST['AuthItemForm'];
+			$formModel->attributes = $_POST['Authitem'];
 			if( $formModel->validate()===true )
 			{
 				// Update the item and load it
@@ -282,12 +282,12 @@ class AuthItemController extends WebBaseController
 
 		if( $childSelectOptions!==array() )
 		{
-			$childFormModel = new AuthChildForm();
+			$childFormModel = new Authitemchild();
 
 			// Child form is submitted and data is valid
-			if( isset($_POST['AuthChildForm'])===true )
+			if( isset($_POST['Authitemchild'])===true )
 			{
-				$childFormModel->attributes = $_POST['AuthChildForm'];
+				$childFormModel->attributes = $_POST['Authitemchild'];
 				if( $childFormModel->validate()===true )
 				{
 					// Add the child and load it
