@@ -27,7 +27,7 @@ class BrowseAction extends BaseAction
     		$this->pagination->setPageSize(Yii::app()->setting->get("Webtheme", "pageSize", 10));
     	}
     	if (is_null($this->_model) AND is_string($this->modelClass)){
-    		$this->_model = new CActiveDataProvider($this->modelClass, array(
+    		$this->_model = new CActiveDataProvider(new $this->modelClass, array(
     			'criteria'		=>	$this->criteria,
     			'pagination'	=>	$this->pagination,
     			'sort'			=>	$this->sort,
