@@ -47,6 +47,7 @@ return array(
 			'enableProfiling' => TRUE
 		),
 		'coreDb'=>array(
+			'class'	=>	'CDbConnection',
 			'connectionString' => 'mysql:host=localhost;dbname=yii_dev',
 			'emulatePrepare' => true,
 			'username' => 'root',
