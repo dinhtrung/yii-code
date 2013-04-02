@@ -26,7 +26,7 @@
 
 	<div class="row">
 		<?php echo CHtml::activeLabelEx($model,'role'); ?>
-		<?php echo CHtml::activeDropDownList($model,'role',Rights::getAuthItemSelectOptions(CAuthItem::TYPE_ROLE)); ?>
+		<?php echo CHtml::activeCheckBoxList($model, 'role',Rights::getAuthItemSelectOptions(CAuthItem::TYPE_ROLE)); ?>
 		<?php echo CHtml::error($model,'role'); ?>
 	</div>
 

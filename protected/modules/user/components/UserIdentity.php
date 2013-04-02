@@ -21,10 +21,11 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
+		$mdl = new User();
 		if (strpos($this->username,"@")) {
-			$user=User::model()->findByAttributes(array('email'=>$this->username));
+			$user=$mdl->findByAttributes(array('email'=>$this->username));
 		} else {
-			$user=User::model()->findByAttributes(array('username'=>$this->username));
+			$user=$mdl->findByAttributes(array('username'=>$this->username));
 		}
 		if($user===null)
 			if (strpos($this->username,"@")) {

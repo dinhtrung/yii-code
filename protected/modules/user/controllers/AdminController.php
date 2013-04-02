@@ -7,31 +7,23 @@ class AdminController extends WebBaseController
 	/**
 	 * Manages all models.
 	 */
-	public function actionAdmin()
+	public function actions()
 	{
-		$dataProvider=new CActiveDataProvider('User');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		return array(
+			'view'		=>	array('class' => 'ext.actions.ViewAction', 'modelClass' => 'User'),
+			'admin'		=>	array('class' => 'ext.actions.AdminAction', 'modelClass' => 'User'),
+			'create'	=>	array('class' => 'ext.actions.CreateAction', 'modelClass' => 'User'),
+			'update'	=>	array('class' => 'ext.actions.UpdateAction', 'modelClass' => 'User'),
+			'delete'	=>	array('class' => 'ext.actions.DeleteAction', 'modelClass' => 'User'),
+		);
 	}
 
-
-	/**
-	 * Displays a particular model.
-	 */
-	public function actionView()
-	{
-		$model = $this->loadModel('User');
-		$this->render('view',array(
-			'model'=>$model,
-		));
-	}
 
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
+	public function actionCreateA()
 	{
 		$model=new User;
 		$this->performAjaxValidation($model, 'user-form');
@@ -46,7 +38,7 @@ class AdminController extends WebBaseController
 			$model->attributes=$_POST['User'];
 			$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
 			$model->createtime=time();
-			$model->lastvisit=time();
+			$model->updatetime=time();
 			if($model->validate()) {
 				$model->password=Yii::app()->controller->module->encrypting($model->password);
 				if($model->save()) {
@@ -68,7 +60,7 @@ class AdminController extends WebBaseController
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionUpdate()
+	public function actionUpdateOld()
 	{
 		$model=$this->loadModel('User');
 		$this->performAjaxValidation($model, 'user-form');

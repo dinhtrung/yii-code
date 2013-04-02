@@ -16,9 +16,6 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'value' => 'CHtml::link(CHtml::encode($data->username),array("user/view","id"=>$data->id))',
 		),
 		'createtime:datetime',
-		array(
-			'name' => 'lastvisit',
-			'value' => '(($data->lastvisit)?date("d.m.Y H:i:s",$data->lastvisit):Yii::t('user', "Not visited"))',
-		),
+		'updatetime:datetime',
 	),
 )); ?>

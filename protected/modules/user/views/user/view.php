@@ -9,7 +9,7 @@
 	$attributes = array(
 			'username',
 			'createtime:datetime',
-			'lastvisit:datetime',
+			'updatetime:datetime',
 	);
 
 	$this->widget('zii.widgets.CDetailView', array(

@@ -6,7 +6,7 @@ class User extends BaseActiveRecord
 	const STATUS_ACTIVE=1;
 	const STATUS_BANED=-1;
 
-	public $role;
+	public $role = array();
 
 	/**
 	 * The followings are the available columns in table 'users':
@@ -16,7 +16,7 @@ class User extends BaseActiveRecord
 	 * @var string $email
 	 * @var string $activkey
 	 * @var integer $createtime
-	 * @var integer $lastvisit
+	 * @var integer $updatetime
 	 * @var string $role
 	 * @var integer $status
 	 */
@@ -39,7 +39,56 @@ class User extends BaseActiveRecord
 	}
 
 	public function connectionId(){
-		return 'db';
+		return Yii::app()->hasComponent('userDb')?'userDb':'db';
+	}
+
+	/*
+	 * CREATE TABLE IF NOT EXISTS `users` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `username` varchar(20) NOT NULL,
+	  `password` varchar(128) NOT NULL,
+	  `email` varchar(128) NOT NULL,
+	  `activkey` varchar(128) NOT NULL DEFAULT '',
+	  `createtime` int(10) NOT NULL DEFAULT '0',
+	  `updatetime` int(10) NOT NULL DEFAULT '0',
+	  `status` int(1) NOT NULL DEFAULT '0',
+	  PRIMARY KEY (`id`),
+	  UNIQUE KEY `username` (`username`),
+	  UNIQUE KEY `email` (`email`),
+	  KEY `status` (`status`),
+	  KEY `superuser` (`superuser`)
+	) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+	*/
+	protected function createTable(){
+		$columns = array(
+				'id'		=>	'pk',
+				'username'	=>	'string',
+				'password'	=>	'string',
+				'email'		=>	'string',
+				'activkey'	=>	'string',
+				'createtime'	=>	'int',
+				'updatetime'	=>	'int',
+				'status'	=>	'boolean',
+		);
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('username', $this->tableName(), 'username', TRUE)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createIndex('email', $this->tableName(), 'email', TRUE)
+		)->execute();
+		$this->refreshMetaData();
+		/* Create default user */
+		$this->setAttributes(array(
+				'username' => 'admin',
+				'password' => 'admin',
+				'email' => 'admin@example.com',
+				'status'	=>	self::STATUS_ACTIVE,
+		));
+		$this->setIsNewRecord(TRUE);
+		$this->save();
 	}
 
 	/**
@@ -47,12 +96,7 @@ class User extends BaseActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		$columns = $this->getTableSchema()->getColumnNames();
-
 		if (Yii::app()->user->id==$this->id) $rules = array(
-			array('username, email', 'required'),
 			array('username', 'length', 'max'=>20, 'min' => 3,'message' => Yii::t('user', "Incorrect username (length between 3 and 20 characters).")),
 			array('email', 'email'),
 			array('username', 'unique', 'message' => Yii::t('user', "This user's name already exists.")),
@@ -60,7 +104,6 @@ class User extends BaseActiveRecord
 			array('email', 'unique', 'message' => Yii::t('user', "This user's email address already exists.")),
 		);
 		else $rules = array(
-			array('username, email', 'required'),
 			array('password', 'required', 'on' => 'insert'),
 			array('password, role', 'safe'),
 			array('username', 'length', 'max'=>20, 'min' => 3,'message' => Yii::t('user', "Incorrect username (length between 3 and 20 characters).")),
@@ -70,12 +113,10 @@ class User extends BaseActiveRecord
 			array('email', 'unique', 'message' => Yii::t('user', "This user's email address already exists.")),
 			array('username', 'match', 'pattern' => '/^[A-Za-z0-9_]+$/u','message' => Yii::t('user', "Incorrect symbols (A-z0-9).")),
 			array('status', 'in', 'range'=>array(self::STATUS_NOACTIVE,self::STATUS_ACTIVE,self::STATUS_BANED)),
-			array('username, email, createtime, lastvisit, role, status', 'required'),
-			array('createtime, lastvisit, status', 'numerical', 'integerOnly'=>true),
+			array('username, email, status', 'required'),
+			array('status', 'numerical', 'integerOnly'=>true),
 		);
-		return array_merge($rules, array(
-			array(implode(',', $columns), 'safe'),
-		));
+		return array_merge(parent::rules(), $rules);
 	}
 
 	/**
@@ -104,14 +145,8 @@ class User extends BaseActiveRecord
                 'condition'=>'role=1',
             ),
             'notsafe'=>array(
-            	'select' => 'id, username, password, email, activkey, createtime, lastvisit, role, status',
+            	'select' => 'id, username, password, email, activkey, createtime, updatetime, role, status',
             ),
-        );
-    }
-
-	public function defaultScope()
-    {
-        return array(
         );
     }
 
@@ -133,12 +168,33 @@ class User extends BaseActiveRecord
 			return isset($_items[$type]) ? $_items[$type] : false;
 	}
 
-
+	/*
+	 * Assign the Rights module authorizer if needed...
+	 */
 	protected function afterFind(){
 		if (Yii::app()->hasModule('rights')){
+			Rights::getAuthorizer()->attachUserBehavior($this);
 			$assignedItems = Rights::getAuthorizer()->getAuthItems(CAuthItem::TYPE_ROLE, $this->getPrimaryKey());
 			$this->role = array_keys($assignedItems);
 		}
 		return parent::afterFind();
+	}
+
+	/*
+	 * Encrypt the password
+	 */
+	protected function beforeSave(){
+		if ($this->password)
+			$this->password = UserModule::encrypting($this->password);
+		return parent::beforeSave();
+	}
+
+	protected function afterSave(){
+		foreach ($this->role as $role){
+			Rights::getAuthorizer()->authManager->assign($role, $this->getPrimaryKey());
+			$item = Rights::getAuthorizer()->authManager->getAuthItem($role);
+			$item = Rights::getAuthorizer()->attachAuthItemBehavior($item);
+		}
+		return parent::afterSave();
 	}
 }

@@ -14,15 +14,9 @@ $this->breadcrumbs=array(
 		'email',
 		'activkey',
 		'createtime:datetime',
-		'lastvisit:datetime',
-		array(
-			'name' => 'role',
-			'value' => Yii::t('rights', implode(', ', $model->role), array(), 'dbmessages'),
-		),
-		array(
-			'name' => 'status',
-			'value' => User::itemAlias("UserStatus",$model->status),
-		)
+		'updatetime:datetime',
+		'role',
+		'status:boolean',
 	);
 
 	$this->widget('zii.widgets.CDetailView', array(

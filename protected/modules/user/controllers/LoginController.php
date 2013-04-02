@@ -35,8 +35,7 @@ class LoginController extends WebBaseController
 
 	private function lastViset() {
 		$lastVisit = User::model()->findByPk(Yii::app()->user->id);
-		$lastVisit->lastvisit = time();
-		$lastVisit->save();
+		$lastVisit->saveAttributes(array('updatetime' => time()));
 	}
 
 }

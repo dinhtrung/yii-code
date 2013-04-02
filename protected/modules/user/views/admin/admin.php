@@ -12,7 +12,7 @@ $this->breadcrumbs=array(
 ?>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'dataProvider'=>$dataProvider,
+	'dataProvider'=>$model->search(),
 	'columns'=>array(
 		array(
 			'name' => 'username',
@@ -25,17 +25,14 @@ $this->breadcrumbs=array(
 			'value'=>'CHtml::link(CHtml::encode($data->email), "mailto:".$data->email)',
 		),
 		'createtime:datetime',
-		'lastvisit:datetime',
+		'updatetime:datetime',
 		array(
 			'name'=>'status',
 			'value'=>'User::itemAlias("UserStatus",$data->status)',
 		),
+		'role',
 		array(
-			'name'=>'role',
-			'value'=>'Yii::t("user", implode(", ", $data->role), array(), "dbmessages")',
-		),
-		array(
-			'class'=>'CButtonColumn',
+			'class'=>'EButtonColumn',
 		),
 	),
 )); ?>
