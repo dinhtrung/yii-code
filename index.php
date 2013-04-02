@@ -17,7 +17,7 @@ if (! empty($_SERVER['HTTP_HOST'])){
 }
 $config = 'webapp-development';
 
-$yii=dirname(__FILE__).'/../framework/yii.php';
+$yii=dirname(__FILE__).'/../yii/framework/yii.php';
 $config=dirname(__FILE__).'/protected/config/'.$config.'.php';
 
 // remove the following lines when in production mode

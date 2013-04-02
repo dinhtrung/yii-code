@@ -142,21 +142,23 @@ class MbMenu extends CMenu
 
 	  protected function renderMenuRecursive($items)
 	  {
+	  	  $output = '';
 	  	  foreach($items as $item)
 	  	  {
-	  	  	echo CHtml::openTag('li', isset($item['itemOptions']) ? $item['itemOptions'] : array());
+	  	  	$output .= CHtml::openTag('li', isset($item['itemOptions']) ? $item['itemOptions'] : array());
 	  	  	if(isset($item['url']))
-	  	  		echo CHtml::link('<span>'.$item['label'].'</span>',$item['url'],isset($item['linkOptions']) ? $item['linkOptions'] : array());
+	  	  		$output .= CHtml::link('<span>'.$item['label'].'</span>',$item['url'],isset($item['linkOptions']) ? $item['linkOptions'] : array());
 	  	  	else
-	  	  		echo CHtml::link('<span>'.$item['label'].'</span>',"javascript:void(0);",isset($item['linkOptions']) ? $item['linkOptions'] : array());
-	  	  	if(isset($item['items']) && count($item['items']))
+	  	  		$output .= CHtml::link('<span>'.$item['label'].'</span>',"javascript:void(0);",isset($item['linkOptions']) ? $item['linkOptions'] : array());
+	  	  	if(isset($item['items']) && count($item['items']) && ($child = $this->renderMenuRecursive($item['items'])))
 	  	  	{
-	  	  		echo "\n".CHtml::openTag('ul',$this->submenuHtmlOptions)."\n";
-	  	  		$this->renderMenuRecursive($item['items']);
-	  	  		echo CHtml::closeTag('ul')."\n";
+	  	  		$output .= "\n".CHtml::openTag('ul',$this->submenuHtmlOptions)."\n";
+	  	  		$output .= $child;
+	  	  		$output .= CHtml::closeTag('ul')."\n";
 	  	  	}
-	  	  	echo CHtml::closeTag('li')."\n";
+	  	  	$output .= CHtml::closeTag('li')."\n";
 	  	  }
+	  	  return $output;
 	  }
 
 	  protected function normalizeItems($items,$route,&$active, $ischild=0)
@@ -212,6 +214,21 @@ class MbMenu extends CMenu
           parent::run();
           echo CHtml::closeTag('div');
           echo CHtml::closeTag('div');
+    }
+
+    /**
+     * Renders the menu items.
+     * @param array $items menu items. Each menu item will be an array with at least two elements: 'label' and 'active'.
+     * It may have three other optional elements: 'items', 'linkOptions' and 'itemOptions'.
+     */
+    protected function renderMenu($items)
+    {
+    	if(count($items))
+    	{
+    		echo CHtml::openTag('ul',$this->htmlOptions)."\n";
+    		echo $this->renderMenuRecursive($items);
+    		echo CHtml::closeTag('ul');
+    	}
     }
 
 }

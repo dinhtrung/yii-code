@@ -22,7 +22,7 @@ foreach ($columns as $colname => $coldata){
 ?>
 <?php echo "<?php\n"; ?>
 
-class <?php echo $modelClass; ?> extends <?php echo $modelClass."\n"; ?>
+class <?php echo $modelClass; ?> extends <?php echo $this->baseClass."\n"; ?>
 {
 	public function connectionId(){
 <?php if ($module): ?>
