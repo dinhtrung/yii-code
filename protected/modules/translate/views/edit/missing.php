@@ -1,20 +1,13 @@
 <h1><?php echo TranslateModule::t('Missing Translations')." - ".TranslateModule::translator()->acceptedLanguages[Yii::app()->getLanguage()]?></h1>
-<?php 
+<?php
 $source=MessageSource::model()->findAll();
 $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'message-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
-        array(
-            'name'=>'message',
-            'filter'=>CHtml::listData($source,'message','message'),
-        ),
-        array(
-            'name'=>'category',
-            'filter'=>CHtml::listData($source,'category','category'),
-        ),
+		'message',
+        'category',
         array(
             'class'=>'CButtonColumn',
             'template'=>'{create}{delete}',
@@ -22,7 +15,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'buttons'=>array(
                 'create'=>array(
                     'label'=>TranslateModule::t('Create'),
-                    'url'=>'Yii::app()->getController()->createUrl("create",array("id"=>$data->id,"language"=>Yii::app()->getLanguage()))'
+                    'url'=>'Yii::app()->getController()->createUrl("create",array("id"=>$data->id,"language"=>Yii::app()->getLanguage()))',
+                	'imageUrl'	=> Yii::app()->baseUrl . "/images/icons/add.png",
                 )
             ),
             'header'=>TranslateModule::translator()->dropdown(),

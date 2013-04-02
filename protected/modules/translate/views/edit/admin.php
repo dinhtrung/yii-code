@@ -10,22 +10,9 @@ $this->widget('zii.widgets.grid.CGridView', array(
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		array(
-            'name'=>'id',
-            'filter'=>CHtml::listData($source,'id','id'),
-        ),
-        array(
-            'name'=>'message',
-            'filter'=>CHtml::listData($source,'message','message'),
-        ),
-        array(
-            'name'=>'category',
-            'filter'=>CHtml::listData($source,'category','category'),
-        ),
-        array(
-            'name'=>'language',
-            'filter'=>CHtml::listData($model->findAll(new CDbCriteria(array('group'=>'language'))),'language','language')
-        ),
+		'category',
+		'message',
+		'language',
         'translation',
         array(
             'class'=>'CButtonColumn',

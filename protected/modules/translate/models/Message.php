@@ -1,21 +1,18 @@
 <?php
-class Message extends CActiveRecord{
+class Message extends BaseActiveRecord{
 
     public $message,$category;
 
-	static function model($className=__CLASS__){return parent::model($className);}
-	function tableName(){
-		return Yii::app()->dbmessages->translatedMessageTable;
+    public function connectionId(){
+    	return Yii::app()->hasComponent('translateDb')?'translateDb':'db';
+    }
+
+	static function model($className=__CLASS__){
+		return parent::model($className);
 	}
 
-	function rules(){
-		return array(
-            array('id,language,translation','required'),
-			array('id', 'numerical', 'integerOnly'=>true),
-			array('language', 'length', 'max'=>16),
-			array('translation', 'safe'),
-			array('id, language, translation, category, message', 'safe', 'on'=>'search'),
-		);
+	function tableName(){
+		return '{{message}}';
 	}
 
 	function relations(){
@@ -23,30 +20,34 @@ class Message extends CActiveRecord{
             'source'=>array(self::BELONGS_TO,'MessageSource','id'),
 		);
 	}
-	function attributeLabels(){
-		return array(
-			'id'=> TranslateModule::t('ID'),
-			'language'=> TranslateModule::t('Language'),
-			'translation'=> TranslateModule::t('Translation'),
-            'category'=> MessageSource::model()->getAttributeLabel('category'),
-            'message'=> MessageSource::model()->getAttributeLabel('message'),
+
+
+	/*
+	 * CREATE TABLE Message
+		(
+		    id INTEGER,
+		    language VARCHAR(16),
+		    translation TEXT,
+		    PRIMARY KEY (id, language),
+		    CONSTRAINT FK_Message_SourceMessage FOREIGN KEY (id)
+		         REFERENCES SourceMessage (id) ON DELETE CASCADE ON UPDATE RESTRICT
 		);
+	 */
+	protected function createTable(){
+		$ref = new MessageSource();
+		$columns = array(
+				'id'	=>	'int',
+				'language'	=>	'string',
+				'translation'	=>	'text',
+		);
+		$this->getDbConnection()->createCommand(
+			Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+			Yii::app()->getDb()->getSchema()->addPrimaryKey('id_lang', $this->tableName(), 'id,language')
+		)->execute();
+		$this->getDbConnection()->createCommand(
+			Yii::app()->getDb()->getSchema()->addForeignKey('fk_message_sourcemessage', $this->tableName(), 'id', $ref->tableName(), 'id')
+		)->execute();
 	}
-
-	function search(){
-		$criteria=new CDbCriteria;
-        $criteria->select='t.*,source.message as message,source.category as category';
-        $criteria->with=array('source');
-
-		$criteria->compare('t.id',$this->id);
-		$criteria->compare('t.language',$this->language,true);
-		$criteria->compare('t.translation',$this->translation,true);
-        $criteria->compare('source.category',$this->category,true);
-        $criteria->compare('source.message',$this->message,true);
-
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
-	}
-
 }
