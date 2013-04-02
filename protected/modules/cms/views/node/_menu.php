@@ -5,7 +5,7 @@ if (! is_null($controller->getModule())) $resource[] = ucfirst($controller->getM
 $resource[] = ucfirst($controller->getId());
 $resource = implode('.', $resource) . '.';
 $current = $controller->getAction()->getId();
-$tmp = array('index', 'search', 'create', 'admin');
+$tmp = array('index', 'search', 'create', 'admin', 'settings');
 foreach ($tmp as $actionId){
 	$this->menu[$actionId] = array(
 		'label'		=>	Yii::t('cms', ucfirst($actionId)) . ' ' . Yii::t('cms', ucfirst($modelClass)),

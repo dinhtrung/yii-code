@@ -46,7 +46,7 @@ $locale = CLocale::getInstance(Yii::app()->language);
 		'status:boolean',
 		'createtime:datetime',
 		array(
-			'class'=>'EButtonColumnWithClearFilters',
+			'class'=>'EButtonColumn',
 		),
 	),
 )); ?>

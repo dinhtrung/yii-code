@@ -44,7 +44,7 @@ $locale = CLocale::getInstance(Yii::app()->language);
 		'title',
 		'description',
 		array(
-			'class'=>'EButtonColumnWithClearFilters',
+			'class'=>'EButtonColumn',
 			'buttons'	=>	array(
 				'sort' => array(
 					'label'	=>	Yii::t('cms', "Sort"),

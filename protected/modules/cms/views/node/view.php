@@ -38,7 +38,7 @@ Yii::app()->clientScript->registerMetaTag($model->Taggable->toString(), 'keyword
 			<strong><?php echo Yii::t('cms', "Tags: %tags", array('%tags' => implode(', ', $tags))); ?></strong>
 			<br/>
 		<?php if (! is_null($model->category)): ?>
-			<strong><?php echo Yii::t('cms', "Category: %category", array('%category' => CHtml::link($model->category, array('category', 'id' => $model->category->id)))); ?></strong>
+			<strong><?php echo Yii::t('cms', "Category: %category", array('%category' => CHtml::link($model->category->title, array('category', 'id' => $model->category->id)))); ?></strong>
 			<br/>
 		<?php endif; ?>
 		<?php echo CHtml::link('Permalink', array('view', 'alias' => $model->alias)); ?> |

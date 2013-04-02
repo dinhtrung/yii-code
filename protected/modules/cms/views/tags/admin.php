@@ -41,7 +41,7 @@ $locale = CLocale::getInstance(Yii::app()->language);
 		'name',
 		'frequency:number',
 		array(
-			'class'=>'EButtonColumnWithClearFilters',
+			'class'=>'EButtonColumn',
 			'updateButtonImageUrl'	=>	Yii::app()->baseUrl . "/images/icons/update.png",
 			'deleteButtonImageUrl'	=>	Yii::app()->baseUrl . "/images/icons/delete.png",
 			'viewButtonImageUrl'	=>	Yii::app()->baseUrl . "/images/icons/view.png",

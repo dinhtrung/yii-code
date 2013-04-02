@@ -1,6 +1,4 @@
 <?php
-$this->widget( 'ext.widgets.ajaxcrud.EUpdateDialog');
-
 $controller = Yii::app()->getController();
 $resource = array();
 if (! is_null($controller->getModule())) $resource[] = ucfirst($controller->getModule()->getId());

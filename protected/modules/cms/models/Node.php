@@ -162,6 +162,18 @@ class Node extends BaseActiveRecord{
 		$this->getDbConnection()->createCommand(
 				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
 		)->execute();
+		// Tags
+		$ref = new Tags();
+		// Category relation
+		$ref = new Category();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->addForeignKey('node_cid', $this->tableName(), 'cid', $ref->tableName(), 'id')
+		)->execute();
+		// User relation
+		$ref = new User();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->addForeignKey('node_author', $this->tableName(), 'uid', $ref->tableName(), 'id')
+		)->execute();
 	}
 
 }

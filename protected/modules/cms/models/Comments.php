@@ -59,5 +59,14 @@ class Comments extends BaseActiveRecord{
 		$this->getDbConnection()->createCommand(
 				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
 		)->execute();
+		// Node relation
+		$ref = new Node();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->addForeignKey('node', $this->tableName(), 'pkey', $ref->tableName(), 'id')
+		)->execute();
+		$ref = new User();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->addForeignKey('author', $this->tableName(), 'uid', $ref->tableName(), 'id')
+		)->execute();
 	}
 }
