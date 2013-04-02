@@ -17,7 +17,7 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Incorrect symbols (A-z0-9).' => '',
+  'Updatetime' => 'Cập nhật',
   'Activation' => 'Kích hoạt',
   'Active' => 'Đang hoạt động',
   'Activkey' => 'Mã kích hoạt',
@@ -61,6 +61,7 @@ return array (
   'Incorrect password (minimal length 4 symbols).' => 'Sai mật khẩu (ít nhất 4 ký tự)',
   'Incorrect recovery link.' => 'Liên kết khôi phục tài khoản không hợp lệ',
   'Incorrect symbol\'s. (A-z0-9)' => 'Ký tự đã nhập không hợp lệ. Chỉ cho phép các ký tự (A-z0-9)',
+  'Incorrect symbols (A-z0-9).' => '',
   'Incorrect username (length between 3 and 20 characters).' => 'Sai tên đăng nhập (gồm 3 tới 20 ký tự)',
   'JSON string (example: {example}).' => 'Chuỗi JSON (ví dụ: {example}).',
   'Last Name' => 'Họ & đệm',
