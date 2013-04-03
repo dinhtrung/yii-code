@@ -51,7 +51,7 @@ class Category extends BaseActiveRecord{
 		return array_merge(
 			array(
 				'nestedSet' => array(
-				'class'=>'ext.yiiext.behaviors.model.trees.NestedSetBehavior',
+				'class'=>'ext.behaviors.NestedSetBehavior',
 				'hasManyRoots'	=>	TRUE,
 				'leftAttribute'=>'lft',
 				'rightAttribute'=>'rgt',

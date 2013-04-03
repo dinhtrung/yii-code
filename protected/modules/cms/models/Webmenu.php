@@ -17,7 +17,6 @@
  *
  * There are no model relations.
  */
-Yii::import('cms.models.File');
 class Webmenu extends BaseActiveRecord{
 
 	private $path = "files/webmenu/icons";
@@ -119,7 +118,7 @@ class Webmenu extends BaseActiveRecord{
 		DirectoryHelper::safe_directory(Yii::getPathOfAlias("webroot") . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $this->path));
 		return array_merge( array(
 				'nestedSet' => array(
-						'class'=>'ext.yiiext.behaviors.model.trees.NestedSetBehavior',
+						'class'=>'ext.behaviors.NestedSetBehavior',
 						'hasManyRoots'	=>	TRUE,
 						'leftAttribute'=>'lft',
 						'rightAttribute'=>'rgt',
