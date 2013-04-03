@@ -25,25 +25,32 @@ class CreateAction extends BaseAction
 
 	/**
 	 * Return method after create
-	 */
+	*/
 	public $returnMethod = "view";
-    /**
-     * Load the model by modelClass specified
-     */
-    public function model() {
-	    if(is_null($this->_model) AND is_string($this->modelClass))
+	/**
+	 * use $_GET to provide default
+	 */
+	public $useDefault = TRUE;
+	/**
+	 * Load the model by modelClass specified
+	 */
+	public function model() {
+		if(is_null($this->_model) AND is_string($this->modelClass))
 		{
 			$this->_model=new $this->modelClass;
 		}
 		if (is_null($this->_model) OR !($this->_model instanceof CModel))
 			throw new CException("Please specify the modelClass attribute", 500);
-    }
-    /**
-     * Process the create request
-     */
-    function process() {
+		if ($this->useDefault && isset($_GET)){
+			$this->_model->setAttributes($_GET);
+		}
+	}
+	/**
+	 * Process the create request
+	 */
+	function process() {
 		$this->_model->setScenario("insert");
-    	$this->ajaxValidate();
+		$this->ajaxValidate();
 		if (! Yii::app()->request->isAjaxRequest && isset($_POST[$this->modelClass])) {
 			$this->_model->setAttributes($_POST[$this->modelClass]);
 			foreach ($this->fileAttributes as $attribute){
@@ -55,7 +62,7 @@ class CreateAction extends BaseAction
 			if ($this->_model->save()){
 				/*
 				 * Handle AJAX request
-				 */
+				*/
 				if( Yii::app()->request->isAjaxRequest ) {
 					Yii::app()->clientScript->scriptMap['jquery.js'] = false;
 					echo CJSON::encode( array(
@@ -73,5 +80,5 @@ class CreateAction extends BaseAction
 				}
 			}
 		}
-    }
+	}
 }
