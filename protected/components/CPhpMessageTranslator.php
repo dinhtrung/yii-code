@@ -1,35 +1,39 @@
 <?php
+/*
+ * Automatically generate missing translation into category translate file for CPhpMessageSource
+ * @author Nguyen Dinh Trung <nguyendinhtrung141@gmail.com>
+ */
 class CPhpMessageTranslator extends CApplicationComponent{
 	public static $message = array();
 	public static $init = FALSE;
-    public static function appendMessage(CMissingTranslationEvent $event){
-    	self::$message[$event->language][$event->category][$event->message] = '';
-    	if (! self::$init){
-    		Yii::app()->attachEventHandler('onEndRequest', array('CPhpMessageTranslator', 'writeMessage'));
-    		self::$init = TRUE;
-    	}
-    }
-    public static function writeMessage(){
-    	$overwrite = TRUE;
-    	$removeOld = TRUE;
-    	$sort = TRUE;
+	public static function appendMessage(CMissingTranslationEvent $event){
+		self::$message[$event->language][$event->category][$event->message] = '';
+		if (! self::$init){
+			Yii::app()->attachEventHandler('onEndRequest', array('CPhpMessageTranslator', 'writeMessage'));
+			self::$init = TRUE;
+		}
+	}
+	public static function writeMessage(){
+		$overwrite = TRUE;
+		$removeOld = TRUE;
+		$sort = TRUE;
 
-    	foreach (self::$message as $lang => $data){
-    		$dir = Yii::getPathOfAlias('application.messages') . DIRECTORY_SEPARATOR . $lang;
-    		if (! is_dir($dir)) mkdir($dir, 0777, TRUE);
-    		foreach ($data as $category => $untranslated){
-    			$fileName = $dir . DIRECTORY_SEPARATOR . $category . '.php';
-   				ksort($untranslated);
+		foreach (self::$message as $lang => $data){
+			$dir = Yii::getPathOfAlias('application.messages') . DIRECTORY_SEPARATOR . $lang;
+			if (! is_dir($dir)) mkdir($dir, 0777, TRUE);
+			foreach ($data as $category => $untranslated){
+				$fileName = $dir . DIRECTORY_SEPARATOR . $category . '.php';
+				ksort($untranslated);
 				$merged = $untranslated;
 
-    			if(is_file($fileName))
-    			{
-    				$translated=require($fileName);
-    				if (is_array($translated)) ksort($translated); else $translated = array();
-    				$merged = array_merge($untranslated, $translated);
-    			}
-    			$array=str_replace("\r",'',var_export($merged,true));
-    			$content=<<<EOD
+				if(is_file($fileName))
+				{
+					$translated=require($fileName);
+					if (is_array($translated)) ksort($translated); else $translated = array();
+					$merged = array_merge($untranslated, $translated);
+				}
+				$array=str_replace("\r",'',var_export($merged,true));
+				$content=<<<EOD
 <?php
 /**
  * Message translations.
@@ -51,8 +55,8 @@ class CPhpMessageTranslator extends CApplicationComponent{
 return $array;
 
 EOD;
-    			file_put_contents($fileName, $content);
-    		}
-    	}
-    }
+				file_put_contents($fileName, $content);
+			}
+		}
+	}
 }

@@ -56,10 +56,6 @@ class Website extends CFormModel
 		);
 	}
 
-	function init() {
-		parent::init();
-	}
-
 	public static function themeOptions($param = NULL) {
 		$themes = Yii::app()->getThemeManager()->getThemeNames();
 		$themes = array_combine($themes, $themes);
