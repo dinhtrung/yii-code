@@ -24,39 +24,39 @@
  *	}
  * </pre>
  *
-*/
+ */
 class CSerializeBehavior extends CActiveRecordBehavior {
 	/**
-	* @var array The name of the attribute(s) to serialize/unserialize
-	*/
-    public $serialAttributes = array();
+	 * @var array The name of the attribute(s) to serialize/unserialize
+	 */
+	public $serialAttributes = array();
 
 	/**
-	* Responds to {@link CModel::onBeforeSave} event.
-	* Sets the values of the creation or modified attributes as configured
-	*
-	* @param CModelEvent event parameter
+	 * Responds to {@link CModel::onBeforeSave} event.
+	 * Sets the values of the creation or modified attributes as configured
+	 *
+	 * @param CModelEvent event parameter
 	*/
 	public function beforeSave($event) {
-        if (count($this->serialAttributes)) {
-            foreach($this->serialAttributes as $attribute) {
-                $_att = $this->getOwner()->$attribute;
+		if (count($this->serialAttributes)) {
+			foreach($this->serialAttributes as $attribute) {
+				$_att = $this->getOwner()->$attribute;
 
-                // check if the attribute is an array, and serialize it
-                if(is_array($_att)) {
-                    $this->getOwner()->$attribute = serialize($_att);
-                } else {
-                    // if its a string, lets see if its unserializable, if not
-                    // fuck it set it to null
-                    if(is_scalar($_att)) {
-                        $a = @unserialize($_att);
-                        if($a === false) {
-                            $this->getOwner()->$attribute = null;
-                        }
-                    }
-                }
-            }
-        }
+				// check if the attribute is an array, and serialize it
+				if(is_array($_att)) {
+					$this->getOwner()->$attribute = serialize($_att);
+				} else {
+					// if its a string, lets see if its unserializable, if not
+					// fuck it set it to null
+					if(is_scalar($_att)) {
+						$a = @unserialize($_att);
+						if($a === false) {
+							$this->getOwner()->$attribute = null;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/** convert the saved as a serialized string back into an array, cause
@@ -68,7 +68,7 @@ class CSerializeBehavior extends CActiveRecordBehavior {
 			foreach($this->serialAttributes as $attribute) {
 				$_att = $this->getOwner()->$attribute;
 				if(!empty($_att)
-				   && is_scalar($_att)) {
+				&& is_scalar($_att)) {
 					$a = @unserialize($_att);
 					if($a !== false) {
 						$this->getOwner()->$attribute = $a;
@@ -80,21 +80,21 @@ class CSerializeBehavior extends CActiveRecordBehavior {
 		}
 	}
 
-    public function afterFind($event)
-    {
-        if(count($this->serialAttributes)) {
-            foreach($this->serialAttributes as $attribute) {
-                $_att = $this->getOwner()->$attribute;
-                if(!empty($_att)
-                   && is_scalar($_att)) {
-                    $a = @unserialize($_att);
-                    if($a !== false) {
-                        $this->getOwner()->$attribute = $a;
-                    } else {
+	public function afterFind($event)
+	{
+		if(count($this->serialAttributes)) {
+			foreach($this->serialAttributes as $attribute) {
+				$_att = $this->getOwner()->$attribute;
+				if(!empty($_att)
+				&& is_scalar($_att)) {
+					$a = @unserialize($_att);
+					if($a !== false) {
+						$this->getOwner()->$attribute = $a;
+					} else {
 						$this->getOwner()->$attribute = array();
 					}
-                }
-            }
-        }
-    }
+				}
+			}
+		}
+	}
 }

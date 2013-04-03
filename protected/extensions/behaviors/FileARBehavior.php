@@ -62,7 +62,7 @@ class FileARBehavior extends CActiveRecordBehavior {
 	 * Must at least have a constructor with one parameter (the temp file path) and one
 	 * method save() wich takes an argument, the new file path.
 	 * Every function in the class could then be invoked from the 'process' key of a given format.
-	 */
+	*/
 	public $processor;
 
 	/**
@@ -150,14 +150,14 @@ class FileARBehavior extends CActiveRecordBehavior {
 
 	/*
 	 * get existing files matching fname in path $path whith glob (and GLOB_BRACE).
-	 */
+	*/
 	protected function getExistingFilesName($path, $fname) {
 		return glob($path.DIRECTORY_SEPARATOR.$fname.'.{'.str_replace(' ', '', $this->extension).'}', GLOB_NOSORT | GLOB_BRACE);
 	}
 
 	/*
 	 * get existing files matching fname with all suffixes
-	 */
+	*/
 	protected function getAnyExistingFilesName($path, $fname) {
 		$suffixes = array();
 		foreach ($this->formats as $f) {

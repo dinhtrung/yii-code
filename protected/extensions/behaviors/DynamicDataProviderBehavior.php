@@ -20,7 +20,7 @@ class DynamicDataProviderBehavior extends CActiveRecordBehavior {
 		$relations = $this->owner->relations();
 		if(!isset($relations[$relation])){
 			throw new CDbException(Yii::t('yii','{class} does not have relation "{name}".',
-				array('{class}'=>get_class($this->owner), '{name}'=>$name)));
+					array('{class}'=>get_class($this->owner), '{name}'=>$name)));
 		}
 		$config = array();
 
