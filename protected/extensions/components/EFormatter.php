@@ -7,7 +7,13 @@ class EFormatter extends CFormatter {
 			foreach ($value as $subval){
 				$out[] = $this->format($subval, $type);
 			}
-			return (Yii::app() instanceof CWebApplication)?"<ul><li>".implode("</li><li>", $out) . "</li></ul>":implode(', ', $out);
+			if (Yii::app() instanceof CWebApplication){
+				if (count($out)) return "<ul><li>".implode("</li><li>", $out) . "</li></ul>";
+			} elseif (Yii::app() instanceof CConsoleApplication){
+				return implode(', ', $out);
+			} else {
+				return CVarDumper::dumpAsString($out);
+			}
 		} else return parent::format($value, $type);
 	}
 }
