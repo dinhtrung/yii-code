@@ -18,30 +18,30 @@ class AdminAction extends BaseAction
 	public $defaultView = "admin";
 
 	/**
-	* Place your logic here.
-	*/
-    public function process()
-    {
-    	$this->_model->setScenario('search');
-    	$this->_model->setRememberScenario('search');
-    	if (intval(Yii::app()->request->getParam('clearFilters'))==1) {
-   			EButtonColumnWithClearFilters::clearFilters($this->getController(),$this->_model);
-   		}
-   	}
-   	/**
-   	* Override the loading of model if needed.
-   	* @see BaseAction::model()
-   	*/
-   	public function model(){
-   		if (is_null($this->_model) AND is_string($this->modelClass)){
-	   		$this->_model=new $this->modelClass;
-   		}
-   	}
-   	/**
-   	* Override the render process needed.
-   	* @see BaseAction::render()
-   	*/
-   	public function render(){
-   		$this->getController()->render($this->view,array( 'model'=>$this->_model, ));
-   	}
+	 * Place your logic here.
+	 */
+	public function process()
+	{
+		$this->_model->setScenario('search');
+		$this->_model->setRememberScenario('search');
+		if (intval(Yii::app()->request->getParam('clearFilters'))==1) {
+			EButtonColumnWithClearFilters::clearFilters($this->getController(),$this->_model);
+		}
+	}
+	/**
+	 * Override the loading of model if needed.
+	 * @see BaseAction::model()
+	 */
+	public function model(){
+		if (is_null($this->_model) AND is_string($this->modelClass)){
+			$this->_model=new $this->modelClass;
+		}
+	}
+	/**
+	 * Override the render process needed.
+	 * @see BaseAction::render()
+	 */
+	public function render(){
+		$this->getController()->render($this->view,array( 'model'=>$this->_model, ));
+	}
 }

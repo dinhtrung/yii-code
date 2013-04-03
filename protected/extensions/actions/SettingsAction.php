@@ -28,9 +28,10 @@ class SettingsAction extends CreateAction
 	 */
 	public $defaultView = "settings";
 
-    public function process()
-    {
+	public function process()
+	{
 		$this->_model->setScenario("settings");
+		$this->_model->setAttributes(Yii::app()->setting->get($this->modelClass));
 		if (isset($_POST[$this->modelClass])) {
 			$this->_model->setAttributes($_POST[$this->modelClass]);
 			if ($this->_model->validate()){
@@ -41,5 +42,5 @@ class SettingsAction extends CreateAction
 		} else {
 			$this->_model->setAttributes(Yii::app()->setting->get($this->modelClass));
 		}
-    }
+	}
 }

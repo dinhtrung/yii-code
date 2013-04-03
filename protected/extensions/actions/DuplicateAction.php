@@ -27,33 +27,33 @@ class DuplicateAction extends UpdateAction
 	 */
 	public $removeAttributes = array();
 
-    /**
-    * Load the model by modelClass specified
-    */
-    public function model() {
+	/**
+	 * Load the model by modelClass specified
+	*/
+	public function model() {
 		parent::model();
 		$primaryKey = $this->_model->getTableSchema()->primaryKey;
 		if (is_string($primaryKey)) $primaryKey = array($primaryKey);
 		$this->removeAttributes = array_merge($this->removeAttributes, $primaryKey);
 		$this->_model->unsetAttributes($this->removeAttributes);
 		$this->_model->setIsNewRecord(TRUE);
-    }
-    /**
-     * Process the create request
-     */
-    public function process() {
-    	$this->_model->setScenario("insert");
-    	$this->ajaxValidate();
-    	if (isset($_POST[$this->modelClass])) {
-    		$this->_model->setAttributes($_POST[$this->modelClass]);
-    		if ($this->_model->save()){
-    			$this->getController()->redirect(
-    				array(
-    						"view",
-    						"id"	=>	$this->_model->{$this->_model->getTableSchema()->primaryKey},
-    				)
-    			);
-    		}
-    	}
-    }
+	}
+	/**
+	 * Process the create request
+	 */
+	public function process() {
+		$this->_model->setScenario("insert");
+		$this->ajaxValidate();
+		if (isset($_POST[$this->modelClass])) {
+			$this->_model->setAttributes($_POST[$this->modelClass]);
+			if ($this->_model->save()){
+				$this->getController()->redirect(
+						array(
+								"view",
+								"id"	=>	$this->_model->{$this->_model->getTableSchema()->primaryKey},
+				)
+				);
+			}
+		}
+	}
 }

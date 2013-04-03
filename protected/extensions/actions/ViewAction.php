@@ -18,7 +18,8 @@ class ViewAction extends UpdateAction
 	 * @var unknown_type
 	 */
 	public $aliasAttribute = NULL;
-	public function process(){}
+	public function process(){
+	}
 	public function model(){
 		if (is_null($this->_model) AND is_string($this->modelClass) AND $this->aliasAttribute AND isset($_GET[$this->aliasAttribute])){
 			$this->_model = CActiveRecord::model($this->modelClass)->findByAttributes(array($this->aliasAttribute => $_GET[$this->aliasAttribute]));

@@ -45,9 +45,9 @@ abstract class BaseAction extends CViewAction
 			$this->modelClass = ucfirst($this->getController()->getId());
 		}
 	}
-    public function run()
-    {
-	    $this->model();
+	public function run()
+	{
+		$this->model();
 		$this->process();
 		$this->resolveView($this->getRequestedView());
 		if($this->layout!==null)
@@ -61,32 +61,33 @@ abstract class BaseAction extends CViewAction
 			$this->onAfterRender(new CEvent($this));
 		}
 		if($this->layout!==null) $this->getController()->layout=$layout;
-    }
+	}
 
-    /**
-     * Process request from user.
-     * Place your main logic here
-     */
-    public function process() {}
+	/**
+	 * Process request from user.
+	 * Place your main logic here
+	 */
+	public function process() {
+	}
 
-    /**
-     * Render different view based on Request type.
-     */
-    public function render(){
+	/**
+	 * Render different view based on Request type.
+	 */
+	public function render(){
 		if( Yii::app()->request->isAjaxRequest ) {
-		    // Stop jQuery from re-initialization
-	    	Yii::app()->clientScript->scriptMap['jquery.js'] = false;
-	        echo CJSON::encode( array(
-		        	'status' => 'failure',
-		        	'content' => $this->getController()->renderPartial( $this->view, array(
-		          	'model' => $this->_model
-	        	),
-	        	true, true ),
+			// Stop jQuery from re-initialization
+			Yii::app()->clientScript->scriptMap['jquery.js'] = false;
+			echo CJSON::encode( array(
+					'status' => 'failure',
+					'content' => $this->getController()->renderPartial( $this->view, array(
+							'model' => $this->_model
+					),
+							true, true ),
 			));
-	      	Yii::app()->end();
-	    } else {
-	    	$this->getController()->render($this->view, array('model' => $this->_model));
-	    }
+			Yii::app()->end();
+		} else {
+			$this->getController()->render($this->view, array('model' => $this->_model));
+		}
 	}
 	/**
 	 * Load the model specified in modelClass into class _model variables
@@ -94,7 +95,7 @@ abstract class BaseAction extends CViewAction
 	 */
 	public function model(){
 		if(is_null($this->_model) OR !($this->_model instanceof CActiveRecord))
-				throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
+			throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
 	}
 
 	/**
