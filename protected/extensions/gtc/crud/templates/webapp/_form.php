@@ -22,6 +22,7 @@
 	<?php echo "<?php echo \$form->errorSummary(\$model); ?>\n"; ?>
 
 <?php
+echo '<?php $this->beginClip("' . $this->class2id($this->modelClass) . '"); ?>';
 foreach($this->tableSchema->columns as $column)
 {
 	if($column->autoIncrement)
@@ -36,6 +37,19 @@ foreach($this->tableSchema->columns as $column)
 
 <?php
 }
+echo '<?php $this->endClip();';
+
+
+echo '<?php
+$this->widget("CTabView", array(
+	"tabs"	=>	array(
+	    "'.$this->class2id($this->modelClass).'"=>array(
+	          "title"	=>	Yii::t("app", "' . $this->class2id($this->modelClass) . '"),
+	          "content"	=>	$this->clips["'.$this->class2id($this->modelClass).'"],
+	    ),
+	)
+));
+?>';
 ?>
 	<div class="row buttons">
 		<?php echo "<?php echo CHtml::submitButton(Yii::t('app', 'Save')); ?>\n"; ?>
