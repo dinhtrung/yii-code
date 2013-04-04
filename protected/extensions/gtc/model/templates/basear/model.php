@@ -1,4 +1,4 @@
-<?php
+<?php echo '<?php';
 /**
  * This is the template for generating the model class of a specified table.
  * - $this: the ModelCode object
@@ -14,6 +14,7 @@ $moduleId = (explode('.', $this->modelPath));
 $moduleId = $moduleId[0];
 $relationAttributes = array_keys($relations);
 ?>
+
 /**
  * This is the model class for table "<?php echo $tableName; ?>".
  *
@@ -87,5 +88,22 @@ class <?php echo $modelClass; ?> extends BaseActiveRecord
 			<?php echo "'$name' => Yii::t('$moduleId', '$name'),\n"; ?>
 <?php endforeach; ?>
 		));
+	}
+
+	/**
+	 * Automatically create the table if needed...
+	 */
+	protected function createTable(){
+		$columns = array(
+<?php $pkeys = array(); foreach ($columns as $name => $dbcol):?>
+			'<?php echo $name; ?>' => '<?php echo $dbcol->type; ?>',	// <?php echo $dbcol->comment; ?>
+<?php if ($dbcol->isPrimaryKey) $pkeys[] = $name; endforeach; ?>
+		);
+		$this->getDbConnection()->createCommand(
+			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+		)->execute();
+		$this->getDbConnection()->createCommand(
+			$this->getDbConnection()->getSchema()->addPrimaryKey('<?php echo implode('_', $pkeys); ?>', $this->tableName(), '<?php echo implode(', ', $pkeys); ?>')
+		)->execute();
 	}
 }

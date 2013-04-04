@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# This file is a BASH script, contain all command used by iSMS.
+# It should be put in the correct crontab.
+# To run a command once a minute, use */1 as the hour parameter of crontab.
+
+PREFIX=/var/www/isms/protected
+$PREFIX/yiic smsimport
+$PREFIX/yiic campaignswitch
+$PREFIX/yiic campaignemail
