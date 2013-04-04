@@ -76,6 +76,9 @@ return array(
 		'cache' => array(
 			'class' => (YII_DEBUG)?'system.caching.CDummyCache':'system.caching.CFileCache',
 		) ,
+		'format'	=>	array(
+			'class'	=>	'ext.components.EFormatter',
+		),
 
 /*		Un-comment if using YiiMail to send mail instead of PHP default mailer
 		'mail' => array(
