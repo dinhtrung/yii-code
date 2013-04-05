@@ -1,5 +1,10 @@
 <?php
+
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+
+
 return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main.php') , array(
+	'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
 	// autoloading model and component classes
 	'import' => array(
 		// Rights
@@ -36,7 +41,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 		) ,
 		'core',
 		'cms',
-		'casestudy',
+		'media',
 	) ,
 	// application components
 	'components' => array(
@@ -48,6 +53,9 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 			'cleanPost' => true,
 			'cleanGet' => true,
 		) ,
+		'bootstrap'=>array(
+				'class'=>'bootstrap.components.Bootstrap',
+		),
 		// Add XWebDebugRouter for Yii
 		'log' => array(
 			'class' => 'CLogRouter',

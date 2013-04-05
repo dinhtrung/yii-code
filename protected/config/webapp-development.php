@@ -15,6 +15,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'weba
 			) ,
 			'generatorPaths' => array(
 				'ext.gtc',
+				'bootstrap.gii',
 			)
 		) ,
 		'dotproject',
