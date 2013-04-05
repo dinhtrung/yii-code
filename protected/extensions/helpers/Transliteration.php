@@ -7,7 +7,7 @@ class Transliteration
 	 * @param string $source_langcode
 	 * @return multitype:|Ambigous <mixed, string>
 	 */
-	public static function file($filename, $source_langcode = NULL) {
+	public static function file($filename, $lowercase = TRUE, $source_langcode = NULL) {
 		if (is_array($filename)) {
 			foreach ($filename as $key => $value) {
 				$filename[$key] = self::file($value, $source_langcode);
@@ -22,7 +22,7 @@ class Transliteration
 		// Remove multiple consecutive non-alphabetical characters.
 		$filename = preg_replace('/(_)_+|(\.)\.+|(-)-+/', '\\1\\2\\3', $filename);
 		// Force lowercase to prevent issues on case-insensitive file systems.
-		if (variable_get('transliteration_file_lowercase', TRUE)) {
+		if ($lowercase) {
 			$filename = strtolower($filename);
 		}
 		return $filename;
@@ -158,7 +158,7 @@ class Transliteration
 					elseif ($n <= 0xfd) {
 						$ord = ($n - 252) * 1073741824 + (ord($sequence[1]) - 128) * 16777216 + (ord($sequence[2]) - 128) * 262144 + (ord($sequence[3]) - 128) * 4096 + (ord($sequence[4]) - 128) * 64 + (ord($sequence[5]) - 128);
 					}
-					$result .= replace($ord, $unknown, $source_langcode);
+					$result .= self::replace($ord, $unknown, $source_langcode);
 					$head = '';
 				}
 				elseif ($c < "\x80") {
@@ -201,8 +201,7 @@ class Transliteration
 		static $map = array();
 
 		if (!isset($langcode)) {
-			global $language;
-			$langcode = $language->language;
+			$langcode = Yii::app()->language;
 		}
 
 		$bank = $ord >> 8;
