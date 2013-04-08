@@ -10,11 +10,11 @@ $this->breadcrumbs=array(
 if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'modelClass' => 'Blocktype', 'primaryKey' => 'btid'));
 ?>
 <h1>
-<?php echo $this->pageTitle = Yii::t('core', 'Continue Delete') . ' ' . Yii::t('core', 'Blocktypes :name', array(':name' => CHtml::encode($model))); ?>
+<?php echo $this->pageTitle = Yii::t('core', 'Continue Delete') . ' ' . Yii::t('core', 'Blocktypes :name', array(':name' => CHtml::encode($model->title))); ?>
 </h1>
 <div class="form">
 <p class="note">
-	<?php echo Yii::t('core','Are you sure you want to delete this Blocktype :name?', array(':name' => CHtml::encode($model)));?>.
+	<?php echo Yii::t('core','Are you sure you want to delete this Blocktype :name?', array(':name' => CHtml::encode($model->title)));?>.
 </p>
 
 <?php

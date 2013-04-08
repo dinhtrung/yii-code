@@ -16,7 +16,7 @@ class Blocktype extends BaseActiveRecord
 	}
 	/*
 	 * CREATE TABLE IF NOT EXISTS `blocktype` (
-		  `btid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+		  `btid` varchar(40) unsigned NOT NULL AUTO_INCREMENT,
 		  `title` varchar(100) DEFAULT NULL,
 		  `description` text,
 		  `component` varchar(255) DEFAULT NULL,
@@ -42,7 +42,6 @@ class Blocktype extends BaseActiveRecord
 				Yii::app()->getDb()->getSchema()->addPrimaryKey('btid', $this->tableName(), 'btid')
 		)->execute();
 		$this->getDbConnection()->createCommand(
-		$this->getDbConnection()->createCommand(
 				Yii::app()->getDb()->getSchema()->createIndex('ccv', $this->tableName(), 'component,callback,viewfile')
 		)->execute();
 		$this->getDbConnection()->createCommand(
@@ -52,8 +51,9 @@ class Blocktype extends BaseActiveRecord
 
 	public function rules()
 	{
-		return array_merge(parent::rules(), array(
-
+		return array_merge(
+				parent::rules(), array(
+			array('btid', 'unique'),
 			array('component', 'validComponent'),
 			array('viewfile', 'validViewfile'),
 		) );
@@ -104,5 +104,11 @@ class Blocktype extends BaseActiveRecord
 	 */
 	public static function listData(){
 		return CHtml::listData(self::model()->findAll(), 'btid', 'title');
+	}
+	protected function afterSave(){
+		$config = new BlocktypeConfig('insert', 'application.config.blocktypes');
+		$config->setAttributes($this->getAttributes());
+		$config->save();
+		return parent::afterSave();
 	}
 }

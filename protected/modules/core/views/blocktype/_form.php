@@ -11,6 +11,14 @@
 ?>
 
 <div class="row">
+	<?php echo $form->labelEx($model,'btid'); ?>
+	<?php echo $form->textField($model,'btid',array('size'=>60,'maxlength'=>100)); ?>
+	<?php echo $form->error($model,'btid'); ?>
+	<p class="hint"><?php echo Yii::t('core', "Machine name of this block type."); ?></p>
+</div>
+
+
+<div class="row">
 	<?php echo $form->labelEx($model,'title'); ?>
 	<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>100)); ?>
 	<?php echo $form->error($model,'title'); ?>
