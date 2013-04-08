@@ -55,7 +55,7 @@ class Block extends BaseActiveRecord
 				'title'	=>	'string',
 				'label'	=>	'string',
 				'description'	=>	'text',
-				'type'	=>	'int',
+				'type'	=>	'string',
 				'option'	=>	'text',
 				'status'	=>	'boolean',
 				'url'	=>	'text',

@@ -28,7 +28,7 @@ class Blocktype extends BaseActiveRecord
 	protected function createTable(){
 		$ref = new Block();
 		$columns = array(
-				'btid'	=>	'pk',
+				'btid'	=>	'string',
 				'title'	=>	'string',
 				'description'	=>	'text',
 				'component'	=>	'string',
@@ -38,6 +38,10 @@ class Blocktype extends BaseActiveRecord
 		$this->getDbConnection()->createCommand(
 				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
 		)->execute();
+		$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->addPrimaryKey('btid', $this->tableName(), 'btid')
+		)->execute();
+		$this->getDbConnection()->createCommand(
 		$this->getDbConnection()->createCommand(
 				Yii::app()->getDb()->getSchema()->createIndex('ccv', $this->tableName(), 'component,callback,viewfile')
 		)->execute();
