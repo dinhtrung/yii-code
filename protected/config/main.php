@@ -9,7 +9,7 @@ return array(
 	// Application directory
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	// Application Name
-	'name'=>'Báo cáo cho hệ thống USSD Gateway',
+	'name'=>'Yii Application Website',
 	// Application Language
 	'language'	=>	'vi',
 	'sourceLanguage'	=>	'en',
@@ -20,7 +20,7 @@ return array(
 		'application.models.*',
 		'application.components.*',
 		// SwiftMailer
-		'ext.mail.YiiMailMessage',
+// 		'ext.mail.YiiMailMessage',
 
 	),
 	// application components
@@ -37,7 +37,7 @@ return array(
 // 		),
 		// uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=yii_dev',
+			'connectionString' => 'mysql:host=localhost;dbname=yii_core',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'myroot',

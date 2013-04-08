@@ -1,10 +1,5 @@
 <?php
-
-Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
-
-
 return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main.php') , array(
-	'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
 	// autoloading model and component classes
 	'import' => array(
 		// Rights
@@ -21,6 +16,8 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 		'ext.helpers.*',
         // Image
 		"ext.image.*",
+		// Translate
+		"application.modules.translate.TranslateModule",
 	) ,
 	'modules' => array(
 		// Translate for Database. Use: Yii::t('source', 'message', array(), 'dbmessage')
@@ -41,7 +38,6 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 		) ,
 		'core',
 		'cms',
-		'media',
 	) ,
 	// application components
 	'components' => array(
@@ -53,9 +49,6 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 			'cleanPost' => true,
 			'cleanGet' => true,
 		) ,
-		'bootstrap'=>array(
-				'class'=>'bootstrap.components.Bootstrap',
-		),
 		// Add XWebDebugRouter for Yii
 		'log' => array(
 			'class' => 'CLogRouter',
@@ -93,9 +86,6 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 		'setting' => array(
 			'class' => 'application.components.Settings',
 		) ,
-		'file' => array(
-			'class' => 'ext.components.CFile',
-		) ,
 		// DB Translator
 		'dbtranslate'=>array(
 				'class'=>'translate.components.MPTranslate',
@@ -103,6 +93,40 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 						'en'=>'English',
 						'vi'=>'Vietnamese',
 				),
+		),
+		// @TODO: Move me to another preferences
+		'widgetFactory'=> array(
+				'class' => 'CWidgetFactory',
+				'widgets' => array(
+						'CGridView'=>array(
+							'itemsCssClass'=>'item-class',
+							'pagerCssClass'=>'pager-class'
+						),
+						'CJuiTabs'=>array(
+							'htmlOptions'=>array('class'=>'shadowtabs'),
+						),
+						'CJuiAccordion'=>array(
+							'htmlOptions'=>array('class'=>'shadowaccordion'),
+						),
+						'CJuiProgressBar'=>array(
+							'htmlOptions'=>array('class'=>'shadowprogressbar'),
+						),
+						'CJuiSlider'=>array(
+							'htmlOptions'=>array('class'=>'shadowslider'),
+						),
+						'CJuiSliderInput'=>array(
+							'htmlOptions'=>array('class'=>'shadowslider'),
+						),
+						'CJuiButton'=>array(
+							'htmlOptions'=>array('class'=>'shadowbutton'),
+						),
+						'CJuiButton'=>array(
+							'htmlOptions'=>array('class'=>'shadowbutton'),
+						),
+						'CJuiButton'=>array(
+							'htmlOptions'=>array('class'=>'button green'),
+						),
+				)
 		),
 	) ,
 ));
