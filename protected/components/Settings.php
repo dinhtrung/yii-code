@@ -148,7 +148,7 @@ class Settings extends CApplicationComponent
 			foreach($result AS $row)
 				$items[$row['key']] = @unserialize($row['value']);
 
-			Yii::app()->cache->add($category.'_settings', $items, $this->getCacheTime());
+			Yii::app()->cache->add($category.'_settings', $items);
 		}
 		$this->set($category, $items, '', false);
 		return $items;

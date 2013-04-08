@@ -58,12 +58,13 @@ abstract class WebBaseController extends BaseController
 		/*
 		 * Global settings
 		 */
-		$this->siteName = Yii::app()->setting->get('web', 'siteName', Yii::app()->params['name']);
-		$this->siteSlogan = Yii::app()->setting->get('web', 'siteSlogan');
-		Yii::app()->setHomeUrl(Yii::app()->setting->get('web', 'homeUrl', 'core/node'));
 
-		$this->layout = Yii::app()->setting->get('web', 'layout', '//layouts/column2');
-		Yii::app()->theme = Yii::app()->setting->get('web', 'theme', 'classic');
+		$this->siteName = Yii::app()->name = Yii::app()->setting->get('website', 'siteName', Yii::app()->name);
+		$this->siteSlogan = Yii::app()->setting->get('website', 'siteSlogan');
+		Yii::app()->setHomeUrl(Yii::app()->setting->get('website', 'homeUrl', 'core/node'));
+
+		$this->layout = Yii::app()->setting->get('website', 'layout', '//layouts/column2');
+		Yii::app()->theme = Yii::app()->setting->get('website', 'theme', 'classic');
 
 
 		/*
@@ -84,7 +85,7 @@ abstract class WebBaseController extends BaseController
 			$this->page[$region] = "";
 		}
 
-		if (($img = Yii::app()->setting->get('web', 'siteLogo')) && file_exists(Yii::getPathOfAlias("webroot.images") . DIRECTORY_SEPARATOR . $img)){
+		if (($img = Yii::app()->setting->get('website', 'siteLogo')) && file_exists(Yii::getPathOfAlias("webroot.images") . DIRECTORY_SEPARATOR . $img)){
 			$this->siteLogo = CHtml::image(Yii::app()->request->baseUrl . '/images/' . $img, 'siteLogo');
 		}
 	}

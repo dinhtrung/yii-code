@@ -17,6 +17,7 @@
  *
  * There are no model relations.
  */
+Yii::import("cms.models.File");
 class Webmenu extends BaseActiveRecord{
 
 	private $path = "files/webmenu/icons";
@@ -95,9 +96,7 @@ class Webmenu extends BaseActiveRecord{
 	public function rules()
 	{
 		return array_merge( parent::rules(), array(
-			array('visible', 'boolean'),
 			array('icon', 'file', 'on' => 'insert, update', 'types' => File::IMAGETYPES, 'allowEmpty' => true),
-
 		));
 	}
 	/**
@@ -179,7 +178,7 @@ class Webmenu extends BaseActiveRecord{
 				unset($tmp);
 				unset($t['id']);
 				unset($t['description']);
-				if (is_null($t['template'])) unset($t['template']);
+				if (empty($t['template'])) unset($t['template']);
 				$output["items"][] = $t;
 			}
 		} else throw new CException("Invalid root element.", 404);
