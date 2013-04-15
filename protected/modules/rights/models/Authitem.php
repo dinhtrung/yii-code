@@ -47,12 +47,16 @@ class Authitem extends BaseActiveRecord
 		  'bizrule' => 'string',
 		  'data' => 'string',
 		);
-		$this->getDbConnection()->createCommand(
-			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-			$this->getDbConnection()->getSchema()->addPrimaryKey('name', $this->tableName(), 'name')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addPrimaryKey('name', $this->tableName(), 'name')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 		$this->refreshMetaData();
 		/* Create default Authitem
 		 * INSERT INTO `authitem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES ('Admin', 2, NULL, NULL, 'N;')

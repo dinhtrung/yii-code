@@ -10,7 +10,7 @@ if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'm
 ?>
 
 <h1>
-	<?php echo $this->pageTitle = Yii::t('cms', 'Update') . ' ' . Yii::t('cms', 'Files :name', array(':name' => CHtml::encode($model))); ?> 
+	<?php echo $this->pageTitle = Yii::t('cms', 'Update') . ' ' . Yii::t('cms', 'Files :name', array(':name' => CHtml::encode($model->title))); ?> 
 </h1>
 
 <?php

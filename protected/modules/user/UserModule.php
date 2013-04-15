@@ -102,6 +102,7 @@ class UserModule extends CWebModule
 			'user.models.*',
 			'user.components.*',
 		));
+		$model = new User();
 	}
 
 	public function getBehaviorsFor($componentName){

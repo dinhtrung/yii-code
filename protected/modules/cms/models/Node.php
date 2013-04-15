@@ -159,21 +159,34 @@ class Node extends BaseActiveRecord{
 				'uid'	=>	'int',
 				'cid'	=>	'int',
 		);
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 		// Tags
 		$ref = new Tags();
 		// Category relation
 		$ref = new Category();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->addForeignKey('node_cid', $this->tableName(), 'cid', $ref->tableName(), 'id')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addForeignKey('node_cid', $this->tableName(), 'cid', $ref->tableName(), 'id')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 		// User relation
 		$ref = new User();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->addForeignKey('node_author', $this->tableName(), 'uid', $ref->tableName(), 'id')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addForeignKey('node_author', $this->tableName(), 'uid', $ref->tableName(), 'id')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+		$this->refreshMetaData();
 	}
 
 }

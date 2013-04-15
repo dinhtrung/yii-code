@@ -99,12 +99,12 @@ class BlockController extends WebBaseController
 	**/
 	public function actionConfigure(){
 		$model = $this->loadModel();
-		if (! $model->blocktype->component) throw new CHttpException(200, Yii::t('core', "The block :block has no configuration.", array(':block' => CHtml::encode($model->blocktype))));
+		if (! $model->blocktype->component) throw new CHttpException(200, Yii::t('core', "The block :block has no configuration.", array(':block' => CHtml::encode($model->blocktype->title))));
 		$component = Yii::import($model->blocktype->component);
 		if(!empty($_POST[$component])) {
 			$model->option = $_POST[$component];
 			if($model->save()) {
-     			$this->redirect('admin');
+     			$this->redirect(Yii::app()->getUser()->getReturnUrl());
 			}
 		}
 		// Check to see if this component exists;

@@ -83,12 +83,17 @@ class Webmenu extends BaseActiveRecord{
 				'icon'	=>	'string',
 				'task'	=>	'string',
 		);
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->createIndex('rlrl', $this->tableName(), 'root,lft,rgt,level')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->createIndex('rlrl', $this->tableName(), 'root,lft,rgt,level')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+		$this->refreshMetaData();
 	}
 	/**
 	* Define validation rules

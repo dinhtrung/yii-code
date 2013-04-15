@@ -5,7 +5,7 @@ if (! is_null($controller->getModule())) $resource[] = ucfirst($controller->getM
 $resource[] = ucfirst($controller->getId());
 $resource = implode('.', $resource) . '.';
 $current = $controller->getAction()->getId();
-$tmp = array('index', 'create');
+$tmp = array('index', 'create', 'import', 'export');
 foreach ($tmp as $actionId){
 	$this->menu[$actionId] = array(
 		'label'		=>	Yii::t('core', ucfirst($actionId)) . ' ' . Yii::t(strtolower($modelClass), $modelClass),

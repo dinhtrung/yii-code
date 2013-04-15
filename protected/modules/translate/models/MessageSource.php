@@ -29,9 +29,13 @@ class MessageSource extends BaseActiveRecord{
 				'category'	=>	'string',
 				'message'	=>	'text',
 		);
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 	}
 
 

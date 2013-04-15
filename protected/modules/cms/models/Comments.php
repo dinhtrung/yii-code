@@ -56,17 +56,30 @@ class Comments extends BaseActiveRecord{
 				'visible'	=>	'boolean',
 				'comment'	=>	'text',
 		);
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+		$this->refreshMetaData();
 		// Node relation
 		$ref = new Node();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->addForeignKey('node', $this->tableName(), 'pkey', $ref->tableName(), 'id')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addForeignKey('node', $this->tableName(), 'pkey', $ref->tableName(), 'id')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 		$ref = new User();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->addForeignKey('author', $this->tableName(), 'uid', $ref->tableName(), 'id')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addForeignKey('author', $this->tableName(), 'uid', $ref->tableName(), 'id')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 	}
 }

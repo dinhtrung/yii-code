@@ -138,6 +138,7 @@ class AuthItemController extends WebBaseController
 
 	/**
 	* Displays the generator page.
+	* @deprecated
 	*/
 	public function actionGenerate()
 	{

@@ -152,11 +152,15 @@ class Category extends BaseActiveRecord{
 				'title'	=>	'string',
 				'description'	=>	'text',
 		);
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->createIndex('pos', $this->tableName(), 'root,lft,rgt,level')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+					$this->getDbConnection()->getSchema()->createIndex('pos', $this->tableName(), 'root,lft,rgt,level')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 	}
 }

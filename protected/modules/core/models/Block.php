@@ -49,7 +49,6 @@ class Block extends BaseActiveRecord
 		) ENGINE=InnoDB  DEFAULT CHARSET=utf8
 	 */
 	protected function createTable(){
-		$ref = new Blocktheme();
 		$columns = array(
 				'bid'	=>	'pk',
 				'title'	=>	'string',
@@ -61,15 +60,21 @@ class Block extends BaseActiveRecord
 				'url'	=>	'text',
 				'display'	=>	'boolean',
 		);
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->addPrimaryKey('id_lang', $this->tableName(), 'id,language')
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->addForeignKey('fk_block_blocktheme', $this->tableName(), 'bid', $ref->tableName(), 'block')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addPrimaryKey('id_lang', $this->tableName(), 'id,language')
+			)->execute();
+			$ref = new Blocktheme();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addForeignKey('fk_block_blocktheme', $this->tableName(), 'bid', $ref->tableName(), 'block')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+		$this->refreshMetaData();
 	}
 
 	public function relations()

@@ -53,6 +53,7 @@ class BlocktypeController extends WebBaseController
 
 	/**
 	 * Import block config from module blocktypes configuration....
+	 * @TODO: Test if using exists Framework CConfiguration is okay?
 	 */
 	public function actionImport(){
 		$modules = Yii::app()->getModules();
@@ -87,5 +88,4 @@ class BlocktypeController extends WebBaseController
 
 		}
 	}
-
 }

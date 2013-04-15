@@ -6,7 +6,7 @@ class TranslateModule extends CWebModule
      * the name of the translate component
      * change this in case you dont use the default name
      * */
-    static $translateComponentId='translate';
+    static $translateComponentId='dbtranslate';
 	/**
 	 * TranslateModule::init()
 	 *

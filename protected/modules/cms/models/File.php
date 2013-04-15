@@ -218,8 +218,13 @@ class File extends BaseActiveRecord{
 				'createtime'		=>	'int',
 				'updatetime'		=>	'int',
 		);
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+		$this->refreshMetaData();
 	}
 }

@@ -28,18 +28,26 @@ class Authassignment extends BaseActiveRecord
 		  'bizrule' => 'string',
 		  'data' => 'string',
 		);
-		$this->getDbConnection()->createCommand(
-			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-			$this->getDbConnection()->getSchema()->addPrimaryKey('itemname_userid', $this->tableName(), 'itemname,userid')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addPrimaryKey('itemname_userid', $this->tableName(), 'itemname,userid')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 
 		// Relation to user
-		$ref = new Authitem();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->addForeignKey('assigned', $this->tableName(), 'itemname', $ref->tableName(), 'name')
-		)->execute();
+		try {
+			$ref = new Authitem();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addForeignKey('assigned', $this->tableName(), 'itemname', $ref->tableName(), 'name')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 		// INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES ('Admin', '1', NULL, 'N;');
 		$this->refreshMetaData();
 		/* Create default Authitem */

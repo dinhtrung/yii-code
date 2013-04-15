@@ -7,13 +7,14 @@
  */
  if (empty($title)) return;
  if (empty($items)) return;
- 
+
+ CVarDumper::dump($items, 10, TRUE);
+
 $this->beginWidget('zii.widgets.CPortlet', array(
 	'title'=> $title,
 ));
-$this->widget('zii.widgets.CMenu', array(
-	'items'=>$items,
-	'htmlOptions'=>array('class'=>'operations'),
-));
+	$this->widget('zii.widgets.CMenu', array(
+		'items'=>$items,
+	));
 $this->endWidget();
 ?>

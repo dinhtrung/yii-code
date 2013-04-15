@@ -32,13 +32,17 @@ class Blocktheme extends BaseActiveRecord{
 					'region'	=>	'string',
 					'weight'	=>	'int',
 			);
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->addPrimaryKey('btr', $this->tableName(), 'block,theme,region')
-		)->execute();
-		return FALSE;
+		 try {
+				$this->getDbConnection()->createCommand(
+						$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+				)->execute();
+				$this->getDbConnection()->createCommand(
+						$this->getDbConnection()->getSchema()->addPrimaryKey('btr', $this->tableName(), 'block,theme,region')
+				)->execute();
+		 } catch (CDbException $e){
+		 	Yii::log($e->getMessage(), 'warning');
+		 }
+		 $this->refreshMetaData();
 	}
 	/**
 	* This magic method is used for setting a string value for the object. It will be used if the object is used as a string.

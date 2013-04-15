@@ -70,15 +70,20 @@ class User extends BaseActiveRecord
 				'updatetime'	=>	'int',
 				'status'	=>	'boolean',
 		);
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->createIndex('username', $this->tableName(), 'username', TRUE)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->createIndex('email', $this->tableName(), 'email', TRUE)
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->createIndex('username', $this->tableName(), 'username', TRUE)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->createIndex('email', $this->tableName(), 'email', TRUE)
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+
 		$this->refreshMetaData();
 		/* Create default user */
 		$this->setAttributes(array(

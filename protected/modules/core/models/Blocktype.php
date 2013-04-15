@@ -26,7 +26,6 @@ class Blocktype extends BaseActiveRecord
 		) ENGINE=InnoDB  DEFAULT CHARSET=utf8
 	 */
 	protected function createTable(){
-		$ref = new Block();
 		$columns = array(
 				'btid'	=>	'string',
 				'title'	=>	'string',
@@ -35,18 +34,30 @@ class Blocktype extends BaseActiveRecord
 				'callback'	=>	'string',
 				'viewfile'	=>	'string',
 		);
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->addPrimaryKey('btid', $this->tableName(), 'btid')
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->createIndex('ccv', $this->tableName(), 'component,callback,viewfile')
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->addForeignKey('fk_blocktype_block', $this->tableName(), 'btid', $ref->tableName(), 'type')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addPrimaryKey('btid', $this->tableName(), 'btid')
+			)->execute();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->createIndex('ccv', $this->tableName(), 'component,callback,viewfile')
+			)->execute();
+
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+		$this->refreshMetaData();
+
+		try {
+			$ref = new Block();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addForeignKey('fk_blocktype_block', $this->tableName(), 'btid', $ref->tableName(), 'type')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 	}
 
 	public function rules()
@@ -74,6 +85,7 @@ class Blocktype extends BaseActiveRecord
 				$this->addError($attribute, Yii::t('core', "Viewfile :view does not valid.", array(':view' => $this->viewfile)));
 			}
 		}
+
 	}
 
 	public function attributeLabels()

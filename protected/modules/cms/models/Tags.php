@@ -77,26 +77,33 @@ class Tags extends BaseActiveRecord{
 				'name'	=>	'string',
 				'frequency'	=>	'int',
 		);
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 		$columns = array(
 				'nid'	=>	'int',
 				'tid'	=>	'int',
 		);
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->createTable('{{node_tag}}', $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->addPrimaryKey('nid_tid', '{{node_tag}}', 'nid,tid')
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->addForeignKey('node', '{{node_tag}}', 'nid', '{{node}}', 'id')
-		)->execute();
-
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->addForeignKey('tags', '{{node_tag}}', 'tid', '{{tags}}', 'id')
-		)->execute();
-
+		try {
+			$this->getDbConnection()->createCommand(
+					$this->getDbConnection()->getSchema()->createTable('{{node_tag}}', $columns)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+					$this->getDbConnection()->getSchema()->addPrimaryKey('nid_tid', '{{node_tag}}', 'nid,tid')
+			)->execute();
+			$this->getDbConnection()->createCommand(
+					$this->getDbConnection()->getSchema()->addForeignKey('node', '{{node_tag}}', 'nid', '{{node}}', 'id')
+			)->execute();
+			$this->getDbConnection()->createCommand(
+					$this->getDbConnection()->getSchema()->addForeignKey('tags', '{{node_tag}}', 'tid', '{{tags}}', 'id')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+		$this->refreshMetaData();
 	}
 }

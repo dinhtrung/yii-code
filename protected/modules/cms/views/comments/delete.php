@@ -10,11 +10,11 @@ $this->breadcrumbs=array(
 if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'modelClass' => 'Comments', 'primaryKey' => 'id'));
 ?>
 <h1>
-<?php echo $this->pageTitle = Yii::t('cms', 'Continue Delete ') . ' ' . Yii::t('cms', 'Comments :name', array(':name' => CHtml::encode($model))); ?> 
+<?php echo $this->pageTitle = Yii::t('cms', 'Continue Delete ') . ' ' . Yii::t('cms', 'Comments :name', array(':name' => CHtml::encode($model->title))); ?> 
 </h1>
 <div class="form">
 <p class="note">
-	<?php echo Yii::t('cms','Are you sure you want to delete this Comments :name?', array(':name' => CHtml::encode($model));?>.
+	<?php echo Yii::t('cms','Are you sure you want to delete this Comments :name?', array(':name' => CHtml::encode($model->title));?>.
 </p>
 
 <?php

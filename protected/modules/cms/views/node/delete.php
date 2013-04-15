@@ -10,7 +10,7 @@ $this->breadcrumbs=array(
 if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'modelClass' => 'Node', 'primaryKey' => 'id'));
 ?>
 <h1>
-<?php echo $this->pageTitle = Yii::t('cms', 'Continue Delete ') . ' ' . Yii::t('cms', 'Nodes :name', array(':name' => CHtml::encode($model))); ?> 
+<?php echo $this->pageTitle = Yii::t('cms', 'Continue Delete ') . ' ' . Yii::t('cms', 'Nodes :name', array(':name' => CHtml::encode($model->title))); ?> 
 </h1>
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -20,7 +20,7 @@ if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'm
 )); 
 	echo $form->errorSummary($model);
 ?><p class="note">
-	<?php echo Yii::t('cms','Are you sure you want to delete this Node :name?', array(':name' => CHtml::encode($model)));?>.
+	<?php echo Yii::t('cms','Are you sure you want to delete this Node :name?', array(':name' => CHtml::encode($model->title)));?>.
 </p>
 
 <?php

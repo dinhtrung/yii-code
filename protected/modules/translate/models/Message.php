@@ -39,15 +39,19 @@ class Message extends BaseActiveRecord{
 				'language'	=>	'string',
 				'translation'	=>	'text',
 		);
-		$this->getDbConnection()->createCommand(
-			Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-			Yii::app()->getDb()->getSchema()->addPrimaryKey('id_lang', $this->tableName(), 'id,language')
-		)->execute();
-		$ref = new MessageSource();
-		$this->getDbConnection()->createCommand(
-			Yii::app()->getDb()->getSchema()->addForeignKey('fk_message_sourcemessage', $this->tableName(), 'id', $ref->tableName(), 'id')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->addPrimaryKey('id_lang', $this->tableName(), 'id,language')
+			)->execute();
+			$ref = new MessageSource();
+			$this->getDbConnection()->createCommand(
+				Yii::app()->getDb()->getSchema()->addForeignKey('fk_message_sourcemessage', $this->tableName(), 'id', $ref->tableName(), 'id')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 	}
 }

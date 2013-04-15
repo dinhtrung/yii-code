@@ -11,17 +11,11 @@ $this->breadcrumbs=array(
 $tabs = array();
 foreach ($model->getDbConnection()->getSchema()->tableNames as $dbtable){
 	$table = $model->removePrefix($dbtable, FALSE);
-	$mdl = DefaultModel::getModel($table);
-}
-foreach ($model->getDbConnection()->getSchema()->tableNames as $dbtable){
-	$table = $model->removePrefix($dbtable, FALSE);
 
 			$this->beginClip($table);
 			$mdl = DefaultModel::getModel($table);
-			CVarDumper::dump($mdl->relations());
 			$columns = $mdl->getTableSchema()->columnNames;
 			foreach ($mdl->relations() as $k => $v) $columns[] = "$k:html";
-			CVarDumper::dump($columns);
 			$this->widget('zii.widgets.grid.CGridView', array(
 				'id'=>$table . '-grid',
 				'dataProvider'=>$mdl->search(),

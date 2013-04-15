@@ -12,6 +12,15 @@ class DpviewsModule extends CWebModule
 			'dpviews.models.*',
 			'dpviews.components.*',
 		));
+
+		/*
+		 * Cache all available model for this module...
+		 */
+		$model = new DefaultModel(NULL);
+		foreach ($model->getDbConnection()->getSchema()->tableNames as $dbtable){
+			$table = $model->removePrefix($dbtable, FALSE);
+			$mdl = DefaultModel::getModel($table);
+		}
 	}
 
 	public function beforeControllerAction($controller, $action)

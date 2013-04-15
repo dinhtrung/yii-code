@@ -30,19 +30,28 @@ class Authitemchild extends BaseActiveRecord
 		  'parent' => 'string',
 		  'child' => 'string',
 		);
-		$this->getDbConnection()->createCommand(
-			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-			$this->getDbConnection()->getSchema()->addPrimaryKey('parent_child', $this->tableName(), 'parent,child')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addPrimaryKey('parent_child', $this->tableName(), 'parent,child')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 		// Relation of child and parent
-		$ref = new Authitem();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->addForeignKey('parent_item', $this->tableName(), 'parent', $ref->tableName(), 'name')
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->addForeignKey('child_item', $this->tableName(), 'child', $ref->tableName(), 'name')
-		)->execute();
+		try {
+			$ref = new Authitem();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addForeignKey('parent_item', $this->tableName(), 'parent', $ref->tableName(), 'name')
+			)->execute();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addForeignKey('child_item', $this->tableName(), 'child', $ref->tableName(), 'name')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+		$this->refreshMetaData();
 	}
 }

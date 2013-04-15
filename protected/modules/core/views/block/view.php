@@ -8,7 +8,7 @@ if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'm
 ?>
 
 <h1>
-<?php echo $this->pageTitle = Yii::t('core', 'View') . ' ' . Yii::t('core', 'Blocks :name', array(':name' => CHtml::encode($model))); ?>
+<?php echo $this->pageTitle = Yii::t('core', 'View') . ' ' . Yii::t('core', 'Blocks :name', array(':name' => CHtml::encode($model->title))); ?>
 </h1>
 
 <div>

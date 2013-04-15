@@ -42,6 +42,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'label',
 		'description:ntext',
 		'url:ntext',
+		'visible:boolean',
 		array(
 			'class'=>'EButtonColumn',
 			'buttons'	=>	array(
