@@ -24,7 +24,7 @@ class Authassignment extends BaseActiveRecord
 	protected function createTable(){
 		$columns = array (
 		  'itemname' => 'string',
-		  'userid' => 'integer',
+		  'userid' => 'int',
 		  'bizrule' => 'string',
 		  'data' => 'string',
 		);

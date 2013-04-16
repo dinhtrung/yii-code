@@ -45,17 +45,35 @@ class Rights extends BaseActiveRecord
 				'type'		=>	'int',
 				'weight'	=>	'int',
 		);
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-				$this->getDbConnection()->getSchema()->addPrimaryKey('itemname', $this->tableName(), 'itemname')
-		)->execute();
-
-		$ref = new Authitem();
-		$this->getDbConnection()->createCommand(
-				Yii::app()->getDb()->getSchema()->addForeignKey('assigned', $this->tableName(), 'itemname', $ref->tableName(), 'child')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+					$this->getDbConnection()->getSchema()->addPrimaryKey('itemname', $this->tableName(), 'itemname')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+		try {
+			$ref = new Authassignment();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+		try {
+			$ref = new Authitemchild();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+		try {
+			$ref = new Authitem();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addForeignKey('assigned', $this->tableName(), 'itemname', $ref->tableName(), 'child')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+		$this->refreshMetaData();
 	}
 	/**
 	* Assigns an authorization item to a specific user.
