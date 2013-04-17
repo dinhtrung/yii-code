@@ -326,7 +326,7 @@ class BaseActiveRecord extends MultiActiveRecord {
     protected function generateClassName($tableName)
     {
     	if($this->tableName()===$tableName || ($pos=strrpos($this->tableName(),'.'))!==false && substr($this->tableName(),$pos+1)===$tableName)
-    		return $this->getClassName();
+    		return get_class($this);
 
     	$tableName=$this->removePrefix($tableName,false);
     	$className='';
