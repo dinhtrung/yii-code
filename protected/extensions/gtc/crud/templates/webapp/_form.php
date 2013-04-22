@@ -17,7 +17,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>\n"; ?>
 
-	<p class="note"><?php echo "<?php echo Yii::t('app', 'Fields with <span class=\"required\">*</span> are required.');"?></p>
+	<p class="note"><?php echo "<?php echo Yii::t('app', 'Fields with <span class=\"required\">*</span> are required.'); ?>"?></p>
 
 	<?php echo "<?php echo \$form->errorSummary(\$model); ?>\n"; ?>
 
@@ -37,8 +37,8 @@ foreach($this->tableSchema->columns as $column)
 
 <?php
 }
-echo '<?php $this->endClip();';
-
+echo '<?php $this->endClip(); ?>';
+echo "\n\n";
 
 echo '<?php
 $this->widget("CTabView", array(
@@ -53,6 +53,7 @@ $this->widget("CTabView", array(
 ?>
 	<div class="row buttons">
 		<?php echo "<?php echo CHtml::submitButton(Yii::t('app', 'Save')); ?>\n"; ?>
+		<?php echo "<?php echo CHtml::resetButton(Yii::t('app', 'Reset')); ?>\n"; ?>
 	</div>
 
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>

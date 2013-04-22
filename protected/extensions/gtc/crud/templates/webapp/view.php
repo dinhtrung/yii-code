@@ -26,7 +26,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View <?php echo $this->modelClass." #<?php echo \$model->{$this->tableSchema->primaryKey}; ?>"; ?></h1>
+<h1><?php echo "<?php echo \$this->pageTitle = Yii::t('app', '$this->modelClass :title Details', array(':title' => \$model->getTitle())); ?>"; ?></h1>
 
 <?php echo "<?php"; ?> $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

@@ -58,6 +58,13 @@ class BaseActiveRecord extends MultiActiveRecord {
 		}
 	}
 
+	public function getTitle(){
+		if (property_exists($this, 'title')) return $this->title;
+		elseif (YII_DEBUG){
+			return Yii::t('app', '@TODO: Please override getTitle for :class', array(':class' => get_class($this)));
+		}
+	}
+
 	protected function afterFind()
     {
         $this->setOldAttributes($this->getAttributes());
@@ -124,7 +131,7 @@ class BaseActiveRecord extends MultiActiveRecord {
     		if ($col->type == 'string') $criteria->compare($col->name, $this->{$col->name}, TRUE);
     		else $criteria->compare($col->name, $this->{$col->name});
     	}
-    	return new CActiveDataProvider(($this->className), array(
+    	return new CActiveDataProvider(get_class($this), array(
     			'criteria'=>$criteria,
     	));
     }

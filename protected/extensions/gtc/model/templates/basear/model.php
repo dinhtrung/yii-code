@@ -97,6 +97,7 @@ class <?php echo $modelClass; ?> extends BaseActiveRecord
 		$columns = array(
 <?php $pkeys = array(); foreach ($columns as $name => $dbcol):?>
 			'<?php echo $name; ?>' => '<?php echo $dbcol->type; ?>',	// <?php echo $dbcol->comment; ?>
+
 <?php if ($dbcol->isPrimaryKey) $pkeys[] = $name; endforeach; ?>
 		);
 		$this->getDbConnection()->createCommand(
