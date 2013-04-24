@@ -26,6 +26,6 @@ if(empty($this->menu)) $this->renderPartial("_menu", array('model' => $model, 'm
 <?php
 $descendants = $model->children()->findAll();
 foreach ($descendants as $data){
-	$this->renderPartial("_view", array("data" => $data));
+	$this->renderPartial("view", array("data" => $data));
 }
 ?>

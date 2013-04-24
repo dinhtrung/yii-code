@@ -161,7 +161,7 @@ class Block extends BaseActiveRecord
 				}
 			}
 			$blockdata["block"] = $this->getAttributes();
-			return Yii::app()->getController()->renderPartial($this->blocktype->viewfile, $blockdata, TRUE);
+			return @Yii::app()->getController()->renderPartial($this->blocktype->viewfile, $blockdata, TRUE);
 		} catch (CException $e) {
 			if (YII_DEBUG) return $e->getMessage();
 		}
