@@ -11,17 +11,6 @@
 class UserModule extends CWebModule
 {
 	public $defaultController='user';
-	/**
-	 * @var int
-	 * @desc items on page
-	 */
-	public $user_page_size = 10;
-
-	/**
-	 * @var int
-	 * @desc items on page
-	 */
-	public $fields_page_size = 10;
 
 	/**
 	 * @var string
@@ -52,14 +41,6 @@ class UserModule extends CWebModule
 	 * @desc login after registration (need loginNotActiv or activeAfterRegister = true)
 	 */
 	public $autoLogin=true;
-
-	public $registrationUrl = array("/user/registration");
-	public $recoveryUrl = array("/user/recovery/recovery");
-	public $loginUrl = array("/user/login");
-	public $logoutUrl = array("/user/logout");
-	public $profileUrl = array("/user/profile");
-	public $returnUrl = array("/user/profile");
-	public $returnLogoutUrl = array("/user/login");
 
 	public $fieldsMessage = '';
 
@@ -92,6 +73,8 @@ class UserModule extends CWebModule
 	 */
 	public $componentBehaviors=array();
 
+	public $userClass = "User";
+
 	public function init()
 	{
 		// this method is called when the module is being created
@@ -99,10 +82,18 @@ class UserModule extends CWebModule
 
 		// import the module-level models and components
 		$this->setImport(array(
-			'user.models.*',
 			'user.components.*',
+			'user.components.behaviors.*',
+			'user.components.dataproviders.*',
+			'user.models.*',
 		));
-		$model = new User();
+		// Set the required components.
+		$this->setComponents(array(
+				'authorizer'=>array(
+						'class'=>'RAuthorizer',
+						'superuserName'=> 'Admin',
+				),
+		));
 	}
 
 	public function getBehaviorsFor($componentName){
@@ -188,5 +179,13 @@ class UserModule extends CWebModule
 	 */
 	public function users() {
 		return User;
+	}
+
+	/**
+	 * @return RightsAuthorizer the authorizer component.
+	 */
+	public function getAuthorizer()
+	{
+		return $this->getComponent('authorizer');
 	}
 }

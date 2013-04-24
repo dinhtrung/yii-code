@@ -12,7 +12,7 @@ class LogoutController extends WebBaseController
 	public function actionLogout()
 	{
 		Yii::app()->user->logout();
-		$this->redirect(Yii::app()->controller->module->returnLogoutUrl);
+		$this->redirect(Yii::app()->setting->get('user', 'logoutUrl', '/' . Yii::app()->homeUrl));
 	}
 
 }

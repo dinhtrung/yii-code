@@ -34,7 +34,7 @@
 
 	<div class="row">
 		<p class="hint">
-		<?php echo CHtml::link(Yii::t('user', "Register"),Yii::app()->getModule('user')->registrationUrl); ?> | <?php echo CHtml::link(Yii::t('user', "Lost Password?"),Yii::app()->getModule('user')->recoveryUrl); ?>
+		<?php echo CHtml::link(Yii::t('user', "Register"),'/user/registration'); ?> | <?php echo CHtml::link(Yii::t('user', "Lost Password?"),'/user/recovery'); ?>
 		</p>
 	</div>
 
@@ -49,29 +49,3 @@
 
 <?php echo CHtml::endForm(); ?>
 </div><!-- form -->
-
-
-<?php
-$form = new CForm(array(
-    'elements'=>array(
-        'username'=>array(
-            'type'=>'text',
-            'maxlength'=>32,
-        ),
-        'password'=>array(
-            'type'=>'password',
-            'maxlength'=>32,
-        ),
-        'rememberMe'=>array(
-            'type'=>'checkbox',
-        )
-    ),
-
-    'buttons'=>array(
-        'login'=>array(
-            'type'=>'submit',
-            'label'=>'Login',
-        ),
-    ),
-), $model);
-?>

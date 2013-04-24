@@ -177,11 +177,9 @@ class User extends BaseActiveRecord
 	 * Assign the Rights module authorizer if needed...
 	 */
 	protected function afterFind(){
-		if (Yii::app()->hasModule('rights')){
-			Rights::getAuthorizer()->attachUserBehavior($this);
-			$assignedItems = Rights::getAuthorizer()->getAuthItems(CAuthItem::TYPE_ROLE, $this->getPrimaryKey());
-			$this->role = array_keys($assignedItems);
-		}
+		Yii::app()->getModule('user')->getAuthorizer()->attachUserBehavior($this);
+		$assignedItems = Yii::app()->getModule('user')->getAuthorizer()->getAuthItems(CAuthItem::TYPE_ROLE, $this->getPrimaryKey());
+		$this->role = array_keys($assignedItems);
 		return parent::afterFind();
 	}
 
@@ -195,11 +193,11 @@ class User extends BaseActiveRecord
 	}
 
 	protected function afterSave(){
-		foreach ($this->role as $role){
-			Rights::getAuthorizer()->authManager->assign($role, $this->getPrimaryKey());
-			$item = Rights::getAuthorizer()->authManager->getAuthItem($role);
-			$item = Rights::getAuthorizer()->attachAuthItemBehavior($item);
-		}
+// 		foreach ($this->role as $role){
+// 			Rights::getAuthorizer()->authManager->assign($role, $this->getPrimaryKey());
+// 			$item = Rights::getAuthorizer()->authManager->getAuthItem($role);
+// 			$item = Rights::getAuthorizer()->attachAuthItemBehavior($item);
+// 		}
 		return parent::afterSave();
 	}
 }

@@ -12,10 +12,9 @@
 <?php else: ?>
 
 <div class="form">
-<?php $form=$this->beginWidget('UActiveForm', array(
+<?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'registration-form',
 	'enableAjaxValidation'=>true,
-	'disableAjaxValidationAttributes'=>array('RegistrationForm_verifyCode'),
 )); ?>
 
 	<p class="note"><?php echo Yii::t('user', 'Fields with <span class="required">*</span> are required.'); ?></p>
@@ -52,13 +51,15 @@
 	<?php if (UserModule::doCaptcha('registration')): ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'verifyCode'); ?>
-
 		<?php $this->widget('CCaptcha'); ?>
+		<p class="hint"><?php echo Yii::t('user', "Please enter the letters as they are shown in the image above."); ?>
+		<br/><?php echo Yii::t('user', "Letters are not case-sensitive."); ?></p>
+	</div>
+	<div class="row">
+
 		<?php echo $form->textField($model,'verifyCode'); ?>
 		<?php echo $form->error($model,'verifyCode'); ?>
 
-		<p class="hint"><?php echo Yii::t('user', "Please enter the letters as they are shown in the image above."); ?>
-		<br/><?php echo Yii::t('user', "Letters are not case-sensitive."); ?></p>
 	</div>
 	<?php endif; ?>
 
