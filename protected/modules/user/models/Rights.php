@@ -126,7 +126,7 @@ class Rights extends BaseActiveRecord
 	public static function getBaseUrl()
 	{
 		$module = self::module();
-		return Yii::app()->createUrl($module->baseUrl);
+		return Yii::app()->createUrl('user');
 	}
 
 	/**
@@ -136,9 +136,9 @@ class Rights extends BaseActiveRecord
 	public static function getAuthItemOptions()
 	{
 		return array(
-			CAuthItem::TYPE_OPERATION=>Yii::t('rights', 'Operation'),
-			CAuthItem::TYPE_TASK=>Yii::t('rights', 'Task'),
-			CAuthItem::TYPE_ROLE=>Yii::t('rights', 'Role'),
+			CAuthItem::TYPE_OPERATION=>Yii::t('user', 'Operation'),
+			CAuthItem::TYPE_TASK=>Yii::t('user', 'Task'),
+			CAuthItem::TYPE_ROLE=>Yii::t('user', 'Role'),
 		);
 	}
 
@@ -153,7 +153,7 @@ class Rights extends BaseActiveRecord
 		if( isset($options[ $type ])===true )
 			return $options[ $type ];
 		else
-			throw new CException(Yii::t('rights', 'Invalid authorization item type.'));
+			throw new CException(Yii::t('user', 'Invalid authorization item type.'));
 	}
 
 	/**
@@ -165,10 +165,10 @@ class Rights extends BaseActiveRecord
 	{
 		switch( (int)$type )
 		{
-			case CAuthItem::TYPE_OPERATION: return Yii::t('rights', 'Operations');
-			case CAuthItem::TYPE_TASK: return Yii::t('rights', 'Tasks');
-			case CAuthItem::TYPE_ROLE: return Yii::t('rights', 'Roles');
-			default: throw new CException(Yii::t('rights', 'Invalid authorization item type.'));
+			case CAuthItem::TYPE_OPERATION: return Yii::t('user', 'Operations');
+			case CAuthItem::TYPE_TASK: return Yii::t('user', 'Tasks');
+			case CAuthItem::TYPE_ROLE: return Yii::t('user', 'Roles');
+			default: throw new CException(Yii::t('user', 'Invalid authorization item type.'));
 		}
 	}
 
@@ -184,7 +184,7 @@ class Rights extends BaseActiveRecord
 			case CAuthItem::TYPE_OPERATION: return array('authItem/operations');
 			case CAuthItem::TYPE_TASK: return array('authItem/tasks');
 			case CAuthItem::TYPE_ROLE: return array('authItem/roles');
-			default: throw new CException(Yii::t('rights', 'Invalid authorization item type.'));
+			default: throw new CException(Yii::t('user', 'Invalid authorization item type.'));
 		}
 	}
 
@@ -204,7 +204,7 @@ class Rights extends BaseActiveRecord
 			// Operations can consist of other operations
 			case CAuthItem::TYPE_OPERATION: return array(CAuthItem::TYPE_OPERATION);
 			// Invalid type
-			default: throw new CException(Yii::t('rights', 'Invalid authorization item type.'));
+			default: throw new CException(Yii::t('user', 'Invalid authorization item type.'));
 		}
 	}
 

@@ -38,6 +38,13 @@ class User extends BaseActiveRecord
 		return '{{users}}';
 	}
 
+	public function getTitle(){
+		if (Yii::app() instanceof CWebApplication)
+			return Yii::t('user', '<abbr title=":email">:name</abbr>', array(':name' => $this->username, ':email' =>  $this->email ));
+		else
+			return Yii::t('user', ':name <:email>', array(':name' => $this->username, ':email' =>  $this->email ));
+	}
+
 	public function connectionId(){
 		return Yii::app()->hasComponent('userDb')?'userDb':'db';
 	}

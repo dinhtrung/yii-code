@@ -72,7 +72,7 @@ class AssignmentController extends WebBaseController
 					$item = $this->_authorizer->attachAuthItemBehavior($item);
 
 					Yii::app()->user->setFlash($this->module->flashSuccessKey,
-						Yii::t('rights', 'Permission :name assigned.', array(':name'=>$item->getNameText()))
+						Yii::t('user', 'Permission :name assigned.', array(':name'=>$item->getNameText()))
 					);
 
 					$this->redirect(array('assignment/user', 'id'=>$model->getId()));
@@ -116,7 +116,7 @@ class AssignmentController extends WebBaseController
 
 			// Set flash message for revoking the item
 			Yii::app()->user->setFlash($this->module->flashSuccessKey,
-				Yii::t('rights', 'Permission :name revoked.', array(':name'=>$item->getNameText()))
+				Yii::t('user', 'Permission :name revoked.', array(':name'=>$item->getNameText()))
 			);
 
 			// if AJAX request, we should not redirect the browser
@@ -125,7 +125,7 @@ class AssignmentController extends WebBaseController
 		}
 		else
 		{
-			throw new CHttpException(400, Yii::t('rights', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('user', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 

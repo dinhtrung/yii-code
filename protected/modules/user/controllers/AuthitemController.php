@@ -6,7 +6,7 @@
 * @copyright Copyright &copy; 2010 Christoffer Niska
 * @since 0.5
 */
-class AuthItemController extends WebBaseController
+class AuthitemController extends WebBaseController
 {
 	public $defaultAction = 'permissions';
 	/**
@@ -39,7 +39,7 @@ class AuthItemController extends WebBaseController
 		$columns = array(
 			array(
     			'name'=>'description',
-	    		'header'=>Yii::t('rights', 'Item'),
+	    		'header'=>Yii::t('user', 'Item'),
 				'type'=>'raw',
     		),
 		);
@@ -83,8 +83,8 @@ class AuthItemController extends WebBaseController
 		// Render the view
 		$this->render('operations', array(
 			'dataProvider'=>$dataProvider,
-			'isBizRuleEnabled'=>$this->module->enableBizRule,
-			'isBizRuleDataEnabled'=>$this->module->enableBizRuleData,
+			'isBizRuleEnabled'=>TRUE,
+			'isBizRuleDataEnabled'=>TRUE,
 		));
 	}
 
@@ -107,8 +107,8 @@ class AuthItemController extends WebBaseController
 		// Render the view
 		$this->render('tasks', array(
 			'dataProvider'=>$dataProvider,
-			'isBizRuleEnabled'=>$this->module->enableBizRule,
-			'isBizRuleDataEnabled'=>$this->module->enableBizRuleData,
+			'isBizRuleEnabled'=>TRUE,
+			'isBizRuleDataEnabled'=>TRUE,
 		));
 	}
 
@@ -131,81 +131,8 @@ class AuthItemController extends WebBaseController
 		// Render the view
 		$this->render('roles', array(
 			'dataProvider'=>$dataProvider,
-			'isBizRuleEnabled'=>$this->module->enableBizRule,
-			'isBizRuleDataEnabled'=>$this->module->enableBizRuleData,
-		));
-	}
-
-	/**
-	* Displays the generator page.
-	* @deprecated
-	*/
-	public function actionGenerate()
-	{
-		// Get the generator and authorizer
-		$generator = $this->module->getGenerator();
-
-		// Createh the form model
-		$model = new GenerateForm();
-
-		// Form has been submitted
-		if( isset($_POST['GenerateForm'])===true )
-		{
-			// Form is valid
-			$model->attributes = $_POST['GenerateForm'];
-			if( $model->validate()===true )
-			{
-				$items = array(
-					'tasks'=>array(),
-					'operations'=>array(),
-				);
-
-				// Get the chosen items
-				foreach( $model->items as $itemname=>$value )
-				{
-					if( (bool)$value===true )
-					{
-						if( strpos($itemname, '*')!==false )
-							$items['tasks'][] = $itemname;
-						else
-							$items['operations'][] = $itemname;
-					}
-				}
-
-				// Add the items to the generator as tasks and operations and run the generator.
-				$generator->addItems($items['tasks'], CAuthItem::TYPE_TASK);
-				$generator->addItems($items['operations'], CAuthItem::TYPE_OPERATION);
-				if( ($generatedItems = $generator->run())!==false && $generatedItems!==array() )
-				{
-					Yii::app()->getUser()->setFlash($this->module->flashSuccessKey,
-						Yii::t('rights', 'Authorization items created.')
-					);
-					$this->redirect(array('authItem/permissions'));
-				}
-			}
-		}
-
-		// Get all items that are available to be generated
-		$items = $generator->getControllerActions();
-
-		// We need the existing operations for comparason
-		$authItems = $this->_authorizer->getAuthItems(array(
-			CAuthItem::TYPE_TASK,
-			CAuthItem::TYPE_OPERATION,
-		));
-		$existingItems = array();
-		foreach( $authItems as $itemName=>$item )
-			$existingItems[ $itemName ] = $itemName;
-
-		Yii::app()->clientScript->registerScript('rightsGenerateItemTableSelectRows',
-			"jQuery('.generate-item-table').rightsSelectRows();"
-		);
-
-		// Render the view
-		$this->render('generate', array(
-			'model'=>$model,
-			'items'=>$items,
-			'existingItems'=>$existingItems,
+			'isBizRuleEnabled'=>TRUE,
+			'isBizRuleDataEnabled'=>TRUE,
 		));
 	}
 
@@ -231,7 +158,7 @@ class AuthItemController extends WebBaseController
 
 				// Set a flash message for creating the item
 				Yii::app()->user->setFlash($this->module->flashSuccessKey,
-					Yii::t('rights', ':name created.', array(':name'=>$item->getNameText()))
+					Yii::t('user', ':name created.', array(':name'=>$item->getNameText()))
 				);
 
 				// Redirect to the correct destination
@@ -269,7 +196,7 @@ class AuthItemController extends WebBaseController
 
 				// Set a flash message for updating the item
 				Yii::app()->user->setFlash($this->module->flashSuccessKey,
-					Yii::t('rights', ':name updated.', array(':name'=>$item->getNameText()))
+					Yii::t('user', ':name updated.', array(':name'=>$item->getNameText()))
 				);
 
 				// Redirect to the correct destination
@@ -298,7 +225,7 @@ class AuthItemController extends WebBaseController
 
 					// Set a flash message for adding the child
 					Yii::app()->user->setFlash($this->module->flashSuccessKey,
-						Yii::t('rights', 'Child :name added.', array(':name'=>$child->getNameText()))
+						Yii::t('user', 'Child :name added.', array(':name'=>$child->getNameText()))
 					);
 
 					// Reidrect to the same page
@@ -350,7 +277,7 @@ class AuthItemController extends WebBaseController
 
 			// Set a flash message for deleting the item
 			Yii::app()->user->setFlash($this->module->flashSuccessKey,
-				Yii::t('rights', ':name deleted.', array(':name'=>$item->getNameText()))
+				Yii::t('user', ':name deleted.', array(':name'=>$item->getNameText()))
 			);
 
 			// If AJAX request, we should not redirect the browser
@@ -359,7 +286,7 @@ class AuthItemController extends WebBaseController
 		}
 		else
 		{
-			throw new CHttpException(400, Yii::t('rights', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('user', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 
@@ -381,7 +308,7 @@ class AuthItemController extends WebBaseController
 
 			// Set a flash message for removing the child
 			Yii::app()->user->setFlash($this->module->flashSuccessKey,
-				Yii::t('rights', 'Child :name removed.', array(':name'=>$child->getNameText()))
+				Yii::t('user', 'Child :name removed.', array(':name'=>$child->getNameText()))
 			);
 
 			// If AJAX request, we should not redirect the browser
@@ -390,7 +317,7 @@ class AuthItemController extends WebBaseController
 		}
 		else
 		{
-			throw new CHttpException(400, Yii::t('rights', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('user', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 
@@ -414,7 +341,7 @@ class AuthItemController extends WebBaseController
 		}
 		else
 		{
-			throw new CHttpException(400, Yii::t('rights', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('user', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 
@@ -438,7 +365,7 @@ class AuthItemController extends WebBaseController
 		}
 		else
 		{
-			throw new CHttpException(400, Yii::t('rights', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('user', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 
@@ -454,7 +381,7 @@ class AuthItemController extends WebBaseController
 		}
 		else
 		{
-			throw new CHttpException(400, Yii::t('rights', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('user', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 
@@ -485,7 +412,7 @@ class AuthItemController extends WebBaseController
 		if( in_array($type, $validTypes)===true )
 			return $type;
 		else
-			throw new CException(Yii::t('rights', 'Invalid authorization item type.'));
+			throw new CException(Yii::t('user', 'Invalid authorization item type.'));
 	}
 
 	/**
@@ -505,7 +432,7 @@ class AuthItemController extends WebBaseController
 			}
 
 			if( $this->_model===null )
-				throw new CHttpException(404, Yii::t('rights', 'The requested page does not exist.'));
+				throw new CHttpException(404, Yii::t('user', 'The requested page does not exist.'));
 		}
 
 		return $this->_model;

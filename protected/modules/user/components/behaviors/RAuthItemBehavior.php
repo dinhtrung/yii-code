@@ -38,7 +38,7 @@ class RAuthItemBehavior extends CBehavior
 	*/
 	public function getNameText()
 	{
-		return Yii::t('rights', $this->owner->name, array(), 'dbmessages');
+		return Yii::t('user', $this->owner->name, array(), 'dbmessages');
 	}
 
 	/**
@@ -106,9 +106,9 @@ class RAuthItemBehavior extends CBehavior
 	*/
 	public function getDeleteOperationLink()
 	{
-		return CHtml::linkButton(Yii::t('rights', 'Delete'), array(
-			'submit'=>array('authItem/delete', 'name'=>urlencode($this->owner->name)),
-			'confirm'=>Yii::t('rights', 'Are you sure you want to delete this operation?'),
+		return CHtml::linkButton(Yii::t('user', 'Delete'), array(
+			'submit'=>array('authitem/delete', 'name'=>urlencode($this->owner->name)),
+			'confirm'=>Yii::t('user', 'Are you sure you want to delete this operation?'),
 			'class'=>'delete-link',
 			'csrf'=>Yii::app()->request->enableCsrfValidation,
 		));
@@ -120,9 +120,9 @@ class RAuthItemBehavior extends CBehavior
 	*/
 	public function getDeleteTaskLink()
 	{
-		return CHtml::linkButton(Yii::t('rights', 'Delete'), array(
-			'submit'=>array('authItem/delete', 'name'=>urlencode($this->owner->name)),
-			'confirm'=>Yii::t('rights', 'Are you sure you want to delete this task?'),
+		return CHtml::linkButton(Yii::t('user', 'Delete'), array(
+			'submit'=>array('authitem/delete', 'name'=>urlencode($this->owner->name)),
+			'confirm'=>Yii::t('user', 'Are you sure you want to delete this task?'),
 			'class'=>'delete-link',
 			'csrf'=>Yii::app()->request->enableCsrfValidation,
 		));
@@ -134,16 +134,12 @@ class RAuthItemBehavior extends CBehavior
 	*/
 	public function getDeleteRoleLink()
 	{
-		// We do not want to show the delete link for the superuser role.
-		if( $this->owner->name!==Rights::module()->superuserName )
-		{
-			return CHtml::linkButton(Yii::t('rights', 'Delete'), array(
-				'submit'=>array('authItem/delete', 'name'=>urlencode($this->owner->name)),
-				'confirm'=>Yii::t('rights', 'Are you sure you want to delete this role?'),
-				'class'=>'delete-link',
-				'csrf'=>Yii::app()->request->enableCsrfValidation,
-			));
-		}
+		return CHtml::linkButton(Yii::t('user', 'Delete'), array(
+			'submit'=>array('authitem/delete', 'name'=>urlencode($this->owner->name)),
+			'confirm'=>Yii::t('user', 'Are you sure you want to delete this role?'),
+			'class'=>'delete-link',
+			'csrf'=>Yii::app()->request->enableCsrfValidation,
+		));
 	}
 
 	/**
@@ -152,8 +148,8 @@ class RAuthItemBehavior extends CBehavior
 	*/
 	public function getRemoveParentLink()
 	{
-		return CHtml::linkButton(Yii::t('rights', 'Remove'), array(
-			'submit'=>array('authItem/removeChild', 'name'=>urlencode($this->owner->name), 'child'=>urlencode($this->parent->name)),
+		return CHtml::linkButton(Yii::t('user', 'Remove'), array(
+			'submit'=>array('authitem/removeChild', 'name'=>urlencode($this->owner->name), 'child'=>urlencode($this->parent->name)),
 			'class'=>'remove-link',
 			'csrf'=>Yii::app()->request->enableCsrfValidation,
 		));
@@ -165,8 +161,8 @@ class RAuthItemBehavior extends CBehavior
 	*/
 	public function getRemoveChildLink()
 	{
-		return CHtml::linkButton(Yii::t('rights', 'Remove'), array(
-			'submit'=>array('authItem/removeChild', 'name'=>urlencode($this->parent->name), 'child'=>urlencode($this->owner->name)),
+		return CHtml::linkButton(Yii::t('user', 'Remove'), array(
+			'submit'=>array('authitem/removeChild', 'name'=>urlencode($this->parent->name), 'child'=>urlencode($this->owner->name)),
 			'class'=>'remove-link',
 			'csrf'=>Yii::app()->request->enableCsrfValidation,
 		));
@@ -178,7 +174,7 @@ class RAuthItemBehavior extends CBehavior
 	*/
 	public function getRevokeAssignmentLink()
 	{
-		return CHtml::linkButton(Yii::t('rights', 'Revoke'), array(
+		return CHtml::linkButton(Yii::t('user', 'Revoke'), array(
 			'submit'=>array('assignment/revoke', 'id'=>$this->userId, 'name'=>urlencode($this->owner->name)),
 			'class'=>'revoke-link',
 			'csrf'=>Yii::app()->request->enableCsrfValidation,
@@ -194,7 +190,7 @@ class RAuthItemBehavior extends CBehavior
 	{
 		$csrf = Rights::getDataCsrf();
 
-		return CHtml::link(Yii::t('rights', 'Revoke'), '#', array(
+		return CHtml::link(Yii::t('user', 'Revoke'), '#', array(
 			'onclick'=>"
 				jQuery.ajax({
 					type:'POST',
@@ -223,7 +219,7 @@ class RAuthItemBehavior extends CBehavior
 	{
 		$csrf = Rights::getDataCsrf();
 
-		return CHtml::link(Yii::t('rights', 'Assign'), '#', array(
+		return CHtml::link(Yii::t('user', 'Assign'), '#', array(
 			'onclick'=>"
 				jQuery.ajax({
 					type:'POST',
@@ -262,6 +258,6 @@ class RAuthItemBehavior extends CBehavior
 			$items[] = $itemMarkup;
 		}
 
-		return '<span class="inherited-item" title="'.implode('<br />', $items).'">'.Yii::t('rights', 'Inherited').' *</span>';
+		return '<span class="inherited-item" title="'.implode('<br />', $items).'">'.Yii::t('user', 'Inherited').' *</span>';
 	}
 }

@@ -1,12 +1,12 @@
 <?php $this->breadcrumbs = array(
-	Yii::t('rights', 'Rights')=>Rights::getBaseUrl(),
-	Yii::t('rights', 'Create :type', array(':type'=>Rights::getAuthItemTypeName($_GET['type']))),
+	Yii::t('user', 'Rights')=>Rights::getBaseUrl(),
+	Yii::t('user', 'Create :type', array(':type'=>Rights::getAuthItemTypeName($_GET['type']))),
 ); ?>
 	<?php $this->renderPartial('_menu', array('model'=>$formModel)); ?>
 
 <div class="createAuthItem">
 
-	<h1><?php echo $this->pageTitle = Yii::t('rights', 'Create :type', array(
+	<h1><?php echo $this->pageTitle = Yii::t('user', 'Create :type', array(
 		':type'=>Rights::getAuthItemTypeName($_GET['type']),
 	)); ?></h1>
 

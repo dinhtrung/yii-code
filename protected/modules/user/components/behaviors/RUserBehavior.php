@@ -16,7 +16,7 @@ class RUserBehavior extends CModelBehavior
 	* @property the name of the name column.
 	*/
 	public $nameColumn;
-	
+
 	private $_assignments;
 
 	/**
@@ -26,10 +26,7 @@ class RUserBehavior extends CModelBehavior
 	*/
 	public function getId()
 	{
-		if( $this->idColumn===null )
-			$this->idColumn = Rights::module()->userIdColumn;
-
-		return $this->owner->{$this->idColumn};
+		return $this->owner->getPrimaryKey();
 	}
 
 	/**
@@ -39,10 +36,7 @@ class RUserBehavior extends CModelBehavior
 	*/
 	public function getName()
 	{
-		if( $this->nameColumn===null )
-			$this->nameColumn = Rights::module()->userNameColumn;
-
-		return $this->owner->{$this->nameColumn};
+		return $this->owner->getTitle();
 	}
 
 	/**
@@ -53,24 +47,24 @@ class RUserBehavior extends CModelBehavior
 	{
 		return CHtml::link($this->getName(), array('assignment/user', 'id'=>$this->getId()));
 	}
-	
+
 	/**
 	 * Returns a string with names of the authorization items
 	 * of the given type that are assigned to this user.
 	 * @param integer $type the item type (0: operation, 1: task, 2: role).
-	 * @return mixed the assigned items. 
+	 * @return mixed the assigned items.
 	 */
 	public function getAssignmentsText($type)
 	{
 		$assignedItems = $this->getAssignments();
-		
+
 		if( isset($assignedItems[ $type ])===true )
 		{
 			$items = $assignedItems[ $type ];
 			$names = array();
 			foreach( $items as $itemname=>$item )
 				$names[] = $item->getNameText();
-			
+
 			return implode('<br />', $names);
 		}
 	}

@@ -35,7 +35,7 @@ class Authitem extends BaseActiveRecord
 	public function attributeLabels()
 	{
 		return array_merge(parent::attributeLabels(), array(
-			'users' => Yii::t('rights', "Users"),
+			'users' => Yii::t('user', "Users"),
 		));
 	}
 

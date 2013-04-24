@@ -53,7 +53,7 @@ class RController extends CController
 	public function accessDenied($message=null)
 	{
 		if( $message===null )
-			$message = Yii::t('rights', 'You are not authorized to perform this action.');
+			$message = Yii::t('user', 'You are not authorized to perform this action.');
 
 		$user = Yii::app()->getUser();
 		if( $user->isGuest===true )
