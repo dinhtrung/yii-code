@@ -59,10 +59,9 @@ class BaseActiveRecord extends MultiActiveRecord {
 	}
 
 	public function getTitle(){
-		if (property_exists($this, 'title')) return $this->title;
-		elseif (YII_DEBUG){
+		if (! $this->title) {
 			return Yii::t('app', '@TODO: Please override getTitle for :class', array(':class' => get_class($this)));
-		}
+		} else return $this->title;
 	}
 
 	protected function afterFind()
