@@ -1,15 +1,15 @@
 <?php
-/* @var $this DepartmentsController */
-/* @var $model Departments */
+/* @var $this ContactsController */
+/* @var $model Contacts */
 
 $this->breadcrumbs=array(
-	'Departments'=>array('index'),
+	'Contacts'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Departments', 'url'=>array('index')),
-	array('label'=>'Create Departments', 'url'=>array('create')),
+	array('label'=>'List Contacts', 'url'=>array('index')),
+	array('label'=>'Create Contacts', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#departments-grid').yiiGridView('update', {
+	$('#contacts-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Departments</h1>
+<h1>Manage Contacts</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -41,15 +41,47 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'departments-grid',
+	'id'=>'contacts-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		array('header' => 'title', 'value' => 'str_repeat("--", $data->level-1) . $data->title'),
-		'description:ntext',
+		'id',
+		'first_name',
+		'last_name',
+		'order_by',
+		'title',
+		'birthday',
+		/*
+		'job',
+		'company',
+		'department',
+		'type',
+		'email',
+		'email2',
+		'url',
 		'phone',
+		'phone2',
+		'fax',
+		'mobile',
+		'address1',
+		'address2',
+		'city',
+		'state',
+		'zip',
+		'country',
+		'jabber',
+		'icq',
+		'msn',
+		'yahoo',
+		'aol',
+		'notes',
+		'project',
+		'icon',
+		'owner',
+		'private',
+		*/
 		array(
-			'class'=>'EButtonColumn',
+			'class'=>'CButtonColumn',
 		),
 	),
 )); ?>

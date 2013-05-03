@@ -18,7 +18,7 @@
  * @property integer $department
  * @property string $url
  * @property string $demo_url
- * @property integer $author
+ * @property integer $uid
  * @property integer $editor
  * @property integer $owner
  * @property integer $createtime
@@ -54,11 +54,13 @@ class Projects extends BaseActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
-			'contacts' => array(self::HAS_MANY, 'ProjectContact', 'pid'),
+			'au'	=> array(self::BELONGS_TO, 'User', 'author'),
+			'ed'	=> array(self::BELONGS_TO, 'User', 'editor'),
+			'ow'	=> array(self::BELONGS_TO, 'User', 'owner'),
+			'contacts' 	=> array(self::HAS_MANY, 'ProjectContact', 'pid'),
 			'departments' => array(self::HAS_MANY, 'ProjectDepartment', 'pid'),
+			'events'	=>	array(self::HAS_MANY, 'Events', 'project'),
 		);
 	}
 
@@ -119,9 +121,12 @@ class Projects extends BaseActiveRecord
 
 
 	protected function beforeSave(){
-		if ($this->isNewRecord)
+		if ($this->isNewRecord){
 			$this->author = (Yii::app()->user)?Yii::app()->user->id:NULL;
+			$this->createtime = time();
+		}
 		$this->editor = (Yii::app()->user)?Yii::app()->user->id:NULL;
+		$this->updatetime = time();
 		return parent::beforeSave();
 	}
 }

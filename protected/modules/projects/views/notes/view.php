@@ -21,18 +21,14 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
-		'root',
-		'lft',
-		'rgt',
-		'level',
 		'title',
-		'body',
-		'author',
+		'body:ntext',
+		//'author',
+		'user.title:html',
 		'date',
 		'hours',
 		'code',
-		'createtime',
-		'updatetime',
+		'createtime:datetime',
+		'updatetime:datetime',
 	),
 )); ?>

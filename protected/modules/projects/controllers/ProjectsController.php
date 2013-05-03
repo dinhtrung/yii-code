@@ -29,7 +29,7 @@ class ProjectsController extends WebBaseController
 	public function actionView($id)
 	{
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$this->loadModel(),
 		));
 	}
 
@@ -47,8 +47,21 @@ class ProjectsController extends WebBaseController
 		if(isset($_POST['Projects']))
 		{
 			$model->attributes=$_POST['Projects'];
-			if($model->save())
+			if($model->save()){
+				foreach ($model->contacts as $ct){
+					$m = new ProjectContact();
+					$m->pid = $model->getPrimaryKey();
+					$m->cid = $ct;
+					$m->save();
+				}
+				foreach ($model->departments as $ct){
+					$m = new ProjectDepartment();
+					$m->pid = $model->getPrimaryKey();
+					$m->did = $ct;
+					$m->save();
+				}
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -63,7 +76,7 @@ class ProjectsController extends WebBaseController
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		$model=$this->loadModel();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model, 'projects-form');
@@ -71,8 +84,23 @@ class ProjectsController extends WebBaseController
 		if(isset($_POST['Projects']))
 		{
 			$model->attributes=$_POST['Projects'];
-			if($model->save())
+
+			if($model->save()){
+				foreach ($model->contacts as $ct){
+					$m = new ProjectContact();
+					$m->pid = $model->getPrimaryKey();
+					$m->cid = $ct;
+					$m->save();
+				}
+				foreach ($model->departments as $ct){
+					$m = new ProjectDepartment();
+					$m->pid = $model->getPrimaryKey();
+					$m->did = $ct;
+					$m->save();
+				}
+
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(
@@ -87,7 +115,7 @@ class ProjectsController extends WebBaseController
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$this->loadModel()->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

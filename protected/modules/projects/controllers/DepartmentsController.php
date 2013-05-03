@@ -3,6 +3,7 @@
 class DepartmentsController extends WebBaseController
 {
 
+
 	public function allowedActions(){
 		return '';
 	}
@@ -14,7 +15,6 @@ class DepartmentsController extends WebBaseController
 		return array(
 			'index' => 'ext.actions.BrowseAction',
 			'view' 	=> 'ext.actions.ViewAction',
-			'create' => 'ext.actions.CreateAction',
 			'update' => 'ext.actions.UpdateAction',
 			'delete' => 'ext.actions.DeleteAction',
 			'settings' => 'ext.actions.SettingsAction',
@@ -29,7 +29,7 @@ class DepartmentsController extends WebBaseController
 	public function actionView($id)
 	{
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$this->loadModel(),
 		));
 	}
 
@@ -42,15 +42,19 @@ class DepartmentsController extends WebBaseController
 		$model=new Departments;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model, 'departments-form');
+		// $this->performAjaxValidation($model, 'Departments-form');
 
-		if(isset($_POST['Departments']))
+		if(! Yii::app()->getRequest()->getIsAjaxRequest() && isset($_POST['Departments']))
 		{
-			$model->attributes=$_POST['Departments'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$model->setAttributes($_POST['Departments']);
+			if (empty($_POST['Departments']['root'])){
+				$model->saveNode();
+			} elseif  (! is_null($root = Departments::model()->findByPk($_POST['Departments']['root']))){
+				$model->appendTo($root);
+			} else throw new CHttpException(500,
+					Yii::t('app', "Invalid root node ID: %d", array('%d' => $_POST['Departments']['root'])));
+			$this->redirect(array('view','id'=>$model->id));
 		}
-
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -63,16 +67,21 @@ class DepartmentsController extends WebBaseController
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		$model=$this->loadModel();
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model, 'departments-form');
+		// $this->performAjaxValidation($model, 'Departments-form');
 
 		if(isset($_POST['Departments']))
 		{
-			$model->attributes=$_POST['Departments'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$model->setAttributes($_POST['Departments']);
+			if (empty($_POST['Departments']['root'])){
+				if (! $model->isRoot()) $model->moveAsRoot();
+			} elseif  (! is_null($root = Departments::model()->findByPk($_POST['Departments']['root']))){
+				if ($root->getPrimaryKey() != $model->getPrimaryKey()) $model->moveAsLast($root);
+			} else throw new CHttpException(500,
+					Yii::t('app', "Invalid root node ID: %d", array('%d' => $_POST['Departments']['root'])));
+			$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(

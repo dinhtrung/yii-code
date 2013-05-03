@@ -15,33 +15,7 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-<?php $this->beginClip("departments"); ?>	<div class="row">
-		<?php echo $form->labelEx($model,'root'); ?>
-		<?php echo $form->textField($model,'root'); ?>
-		<?php echo $form->error($model,'root'); ?>
-		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'lft'); ?>
-		<?php echo $form->textField($model,'lft'); ?>
-		<?php echo $form->error($model,'lft'); ?>
-		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'rgt'); ?>
-		<?php echo $form->textField($model,'rgt'); ?>
-		<?php echo $form->error($model,'rgt'); ?>
-		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'level'); ?>
-		<?php echo $form->textField($model,'level'); ?>
-		<?php echo $form->error($model,'level'); ?>
-		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
-	</div>
+<?php $this->beginClip("departments"); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'title'); ?>
@@ -54,6 +28,13 @@
 		<?php echo $form->labelEx($model,'description'); ?>
 		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'description'); ?>
+		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'root'); ?>
+		<?php echo $form->dropDownList($model,'root', array('' => Yii::t('projects', '--- Select Parent Department ---' )) + Departments::getOptions()); ?>
+		<?php echo $form->error($model,'root'); ?>
 		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
 	</div>
 
@@ -103,20 +84,6 @@
 		<?php echo $form->labelEx($model,'url'); ?>
 		<?php echo $form->textField($model,'url',array('size'=>25,'maxlength'=>25)); ?>
 		<?php echo $form->error($model,'url'); ?>
-		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'createtime'); ?>
-		<?php echo $form->textField($model,'createtime'); ?>
-		<?php echo $form->error($model,'createtime'); ?>
-		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'updatetime'); ?>
-		<?php echo $form->textField($model,'updatetime'); ?>
-		<?php echo $form->error($model,'updatetime'); ?>
 		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
 	</div>
 

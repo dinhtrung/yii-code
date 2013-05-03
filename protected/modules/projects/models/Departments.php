@@ -50,9 +50,8 @@ class Departments extends BaseActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
+			'projects'	=> array(self::HAS_MANY, 'ProjectDepartment', 'id'),
 		);
 	}
 
@@ -71,8 +70,52 @@ class Departments extends BaseActiveRecord
 	 */
 	public function attributeLabels()
 	{
-		return array_merge(parent::attributeLabels(), array(
-		));
+		return array_merge(parent::attributeLabels(), array( ));
+	}
+
+	/**
+	 * Add ENested Set for support child-parent relation
+	 */
+	public function behaviors()
+	{
+		return array(
+				'nestedSet' => array(
+						'class'=>'ext.behaviors.NestedSetBehavior',
+						'hasManyRoots'	=>	TRUE,
+						'leftAttribute'=>'lft',
+						'rightAttribute'=>'rgt',
+						'levelAttribute'=>'level',
+				),
+		);
+	}
+
+	/**
+	 * Return a list of available option for CHtml::dropDownList() function
+	 * @param string $rid
+	 * @return multitype:|multitype:string NULL
+	 */
+	public static function getOptions($rid = NULL){
+		$output = array();
+		if (is_null($rid)) {
+			$models = self::model()->roots()->findAll();
+			foreach ($models as $n => $m){
+				$output[$m->id] = $m->title;
+				$sub = $m->descendants()->findAll();
+				foreach ($sub as $c){
+					$output[$c->id] = str_repeat('-', $c->level) . $c->title;
+				}
+			}
+		} else {
+			$r = self::model()->findByPk($rid);
+			if (is_null($r)) return array();
+			$output = array();
+			$output[$r->id] = $r->title;
+			$sub = $r->descendants()->findAll();
+			foreach ($sub as $s){
+				$output[$s->id] = str_repeat('-', $s->level) . $s->title;
+			}
+		}
+		return $output;
 	}
 
 	/**
@@ -80,22 +123,22 @@ class Departments extends BaseActiveRecord
 	 */
 	protected function createTable(){
 		$columns = array(
-			'id' => 'string',	// 
-			'root' => 'integer',	// 
-			'lft' => 'integer',	// 
-			'rgt' => 'integer',	// 
-			'level' => 'integer',	// 
-			'title' => 'string',	// 
-			'description' => 'string',	// 
-			'phone' => 'string',	// 
-			'fax' => 'string',	// 
-			'address' => 'string',	// 
-			'city' => 'string',	// 
-			'state' => 'string',	// 
-			'zip' => 'string',	// 
-			'url' => 'string',	// 
-			'createtime' => 'integer',	// 
-			'updatetime' => 'integer',	// 
+			'id' => 'string',	//
+			'root' => 'integer',	//
+			'lft' => 'integer',	//
+			'rgt' => 'integer',	//
+			'level' => 'integer',	//
+			'title' => 'string',	//
+			'description' => 'string',	//
+			'phone' => 'string',	//
+			'fax' => 'string',	//
+			'address' => 'string',	//
+			'city' => 'string',	//
+			'state' => 'string',	//
+			'zip' => 'string',	//
+			'url' => 'string',	//
+			'createtime' => 'integer',	//
+			'updatetime' => 'integer',	//
 		);
 		$this->getDbConnection()->createCommand(
 			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
@@ -103,5 +146,13 @@ class Departments extends BaseActiveRecord
 		$this->getDbConnection()->createCommand(
 			$this->getDbConnection()->getSchema()->addPrimaryKey('id', $this->tableName(), 'id')
 		)->execute();
+	}
+
+	protected function beforeSave(){
+		if ($this->isNewRecord){
+			$this->createtime = time();
+		}
+		$this->updatetime = time();
+		return parent::beforeSave();
 	}
 }

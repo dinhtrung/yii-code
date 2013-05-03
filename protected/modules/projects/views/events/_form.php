@@ -15,34 +15,7 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-<?php $this->beginClip("events"); ?>	<div class="row">
-		<?php echo $form->labelEx($model,'root'); ?>
-		<?php echo $form->textField($model,'root'); ?>
-		<?php echo $form->error($model,'root'); ?>
-		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'lft'); ?>
-		<?php echo $form->textField($model,'lft'); ?>
-		<?php echo $form->error($model,'lft'); ?>
-		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'rgt'); ?>
-		<?php echo $form->textField($model,'rgt'); ?>
-		<?php echo $form->error($model,'rgt'); ?>
-		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'level'); ?>
-		<?php echo $form->textField($model,'level'); ?>
-		<?php echo $form->error($model,'level'); ?>
-		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
-	</div>
-
+<?php $this->beginClip("events"); ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'title'); ?>
 		<?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>255)); ?>
@@ -55,6 +28,20 @@
 		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'description'); ?>
 		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'root'); ?>
+		<?php echo $form->dropDownList($model,'root', array('' => Yii::t('projects', '--- Select Parent Events ---' )) + Events::getOptions()); ?>
+		<?php echo $form->error($model,'root'); ?>
+		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'pid'); ?>
+		<?php echo $form->dropDownList($model,'pid', array('' => Yii::t('projects', '--- Select Associated Project ---' )) + CHtml::listData(Projects::model()->findAll(), 'id', 'title')); ?>
+		<?php echo $form->error($model,'pid'); ?>
+		<p class="hint"><?php echo Yii::t('pid', '@HINT FOR $column->name'); ?></p>
 	</div>
 
 	<div class="row">
@@ -103,13 +90,6 @@
 		<?php echo $form->labelEx($model,'owner'); ?>
 		<?php echo $form->textField($model,'owner'); ?>
 		<?php echo $form->error($model,'owner'); ?>
-		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'project'); ?>
-		<?php echo $form->textField($model,'project'); ?>
-		<?php echo $form->error($model,'project'); ?>
 		<p class="hint"><?php echo Yii::t('projects', '@HINT FOR $column->name'); ?></p>
 	</div>
 

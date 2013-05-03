@@ -70,6 +70,7 @@ class Contacts extends BaseActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user'	=>	array(self::BELONGS_TO, 'User', 'owner'),
 		);
 	}
 
@@ -97,39 +98,39 @@ class Contacts extends BaseActiveRecord
 	 */
 	protected function createTable(){
 		$columns = array(
-			'id' => 'integer',	// 
-			'first_name' => 'string',	// 
-			'last_name' => 'string',	// 
-			'order_by' => 'string',	// 
-			'title' => 'string',	// 
-			'birthday' => 'string',	// 
-			'job' => 'string',	// 
-			'company' => 'string',	// 
-			'department' => 'string',	// 
-			'type' => 'string',	// 
-			'email' => 'string',	// 
-			'email2' => 'string',	// 
-			'url' => 'string',	// 
-			'phone' => 'string',	// 
-			'phone2' => 'string',	// 
-			'fax' => 'string',	// 
-			'mobile' => 'string',	// 
-			'address1' => 'string',	// 
-			'address2' => 'string',	// 
-			'city' => 'string',	// 
-			'state' => 'string',	// 
-			'zip' => 'string',	// 
-			'country' => 'string',	// 
-			'jabber' => 'string',	// 
-			'icq' => 'string',	// 
-			'msn' => 'string',	// 
-			'yahoo' => 'string',	// 
-			'aol' => 'string',	// 
-			'notes' => 'string',	// 
-			'project' => 'integer',	// 
-			'icon' => 'string',	// 
-			'owner' => 'string',	// 
-			'private' => 'integer',	// 
+			'id' => 'integer',	//
+			'first_name' => 'string',	//
+			'last_name' => 'string',	//
+			'order_by' => 'string',	//
+			'title' => 'string',	//
+			'birthday' => 'string',	//
+			'job' => 'string',	//
+			'company' => 'string',	//
+			'department' => 'string',	//
+			'type' => 'string',	//
+			'email' => 'string',	//
+			'email2' => 'string',	//
+			'url' => 'string',	//
+			'phone' => 'string',	//
+			'phone2' => 'string',	//
+			'fax' => 'string',	//
+			'mobile' => 'string',	//
+			'address1' => 'string',	//
+			'address2' => 'string',	//
+			'city' => 'string',	//
+			'state' => 'string',	//
+			'zip' => 'string',	//
+			'country' => 'string',	//
+			'jabber' => 'string',	//
+			'icq' => 'string',	//
+			'msn' => 'string',	//
+			'yahoo' => 'string',	//
+			'aol' => 'string',	//
+			'notes' => 'string',	//
+			'project' => 'integer',	//
+			'icon' => 'string',	//
+			'owner' => 'string',	//
+			'private' => 'integer',	//
 		);
 		$this->getDbConnection()->createCommand(
 			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)

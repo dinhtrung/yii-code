@@ -55,9 +55,9 @@ class Events extends BaseActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
+			'project'	=>	array(self::BELONGS_TO, 'Projects', 'pid'),
+
 		);
 	}
 
@@ -81,31 +81,77 @@ class Events extends BaseActiveRecord
 	}
 
 	/**
+	 * Add ENested Set for support child-parent relation
+	 */
+	public function behaviors()
+	{
+		return array(
+				'nestedSet' => array(
+						'class'=>'ext.behaviors.NestedSetBehavior',
+						'hasManyRoots'	=>	TRUE,
+						'leftAttribute'=>'lft',
+						'rightAttribute'=>'rgt',
+						'levelAttribute'=>'level',
+				),
+		);
+	}
+
+	/**
+	 * Return a list of available option for CHtml::dropDownList() function
+	 * @param string $rid
+	 * @return multitype:|multitype:string NULL
+	 */
+	public static function getOptions($rid = NULL){
+		$output = array();
+		if (is_null($rid)) {
+			$models = self::model()->roots()->findAll();
+			foreach ($models as $n => $m){
+				$output[$m->id] = $m->title;
+				$sub = $m->descendants()->findAll();
+				foreach ($sub as $c){
+					$output[$c->id] = str_repeat('-', $c->level) . $c->title;
+				}
+			}
+		} else {
+			$r = self::model()->findByPk($rid);
+			if (is_null($r)) return array();
+			$output = array();
+			$output[$r->id] = $r->title;
+			$sub = $r->descendants()->findAll();
+			foreach ($sub as $s){
+				$output[$s->id] = str_repeat('-', $s->level) . $s->title;
+			}
+		}
+		return $output;
+	}
+
+
+	/**
 	 * Automatically create the table if needed...
 	 */
 	protected function createTable(){
 		$columns = array(
-			'id' => 'integer',	// 
-			'root' => 'integer',	// 
-			'lft' => 'integer',	// 
-			'rgt' => 'integer',	// 
-			'level' => 'integer',	// 
-			'title' => 'string',	// 
-			'description' => 'string',	// 
-			'start_date' => 'string',	// 
-			'end_date' => 'string',	// 
-			'times_recuring' => 'string',	// 
-			'recurs' => 'string',	// 
-			'remind' => 'string',	// 
-			'icon' => 'string',	// 
-			'owner' => 'integer',	// 
-			'project' => 'integer',	// 
-			'private' => 'integer',	// 
-			'type' => 'integer',	// 
-			'cwd' => 'integer',	// 
-			'notify' => 'integer',	// 
-			'createtime' => 'integer',	// 
-			'updatetime' => 'integer',	// 
+			'id' => 'integer',	//
+			'root' => 'integer',	//
+			'lft' => 'integer',	//
+			'rgt' => 'integer',	//
+			'level' => 'integer',	//
+			'title' => 'string',	//
+			'description' => 'string',	//
+			'start_date' => 'string',	//
+			'end_date' => 'string',	//
+			'times_recuring' => 'string',	//
+			'recurs' => 'string',	//
+			'remind' => 'string',	//
+			'icon' => 'string',	//
+			'owner' => 'integer',	//
+			'pid' => 'integer',	//
+			'private' => 'integer',	//
+			'type' => 'integer',	//
+			'cwd' => 'integer',	//
+			'notify' => 'integer',	//
+			'createtime' => 'integer',	//
+			'updatetime' => 'integer',	//
 		);
 		$this->getDbConnection()->createCommand(
 			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
@@ -113,5 +159,13 @@ class Events extends BaseActiveRecord
 		$this->getDbConnection()->createCommand(
 			$this->getDbConnection()->getSchema()->addPrimaryKey('id', $this->tableName(), 'id')
 		)->execute();
+	}
+
+	protected function beforeSave(){
+		if ($this->isNewRecord){
+			$this->createtime = time();
+		}
+		$this->updatetime = time();
+		return parent::beforeSave();
 	}
 }

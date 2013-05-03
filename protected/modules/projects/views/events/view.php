@@ -21,13 +21,10 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
-		'root',
-		'lft',
-		'rgt',
-		'level',
 		'title',
 		'description',
+		'pid',
+		'project',
 		'start_date',
 		'end_date',
 		'times_recuring',
@@ -35,7 +32,6 @@ $this->menu=array(
 		'remind',
 		'icon',
 		'owner',
-		'project',
 		'private',
 		'type',
 		'cwd',

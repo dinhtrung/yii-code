@@ -50,6 +50,7 @@ class Notes extends BaseActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user'	=>	array(self::BELONGS_TO, 'User', 'author')
 		);
 	}
 
@@ -77,19 +78,19 @@ class Notes extends BaseActiveRecord
 	 */
 	protected function createTable(){
 		$columns = array(
-			'id' => 'string',	// 
-			'root' => 'integer',	// 
-			'lft' => 'integer',	// 
-			'rgt' => 'integer',	// 
-			'level' => 'integer',	// 
-			'title' => 'string',	// 
-			'body' => 'string',	// 
-			'author' => 'string',	// 
-			'date' => 'string',	// 
-			'hours' => 'double',	// 
-			'code' => 'string',	// 
-			'createtime' => 'integer',	// 
-			'updatetime' => 'integer',	// 
+			'id' => 'string',	//
+			'root' => 'integer',	//
+			'lft' => 'integer',	//
+			'rgt' => 'integer',	//
+			'level' => 'integer',	//
+			'title' => 'string',	//
+			'body' => 'string',	//
+			'author' => 'string',	//
+			'date' => 'string',	//
+			'hours' => 'double',	//
+			'code' => 'string',	//
+			'createtime' => 'integer',	//
+			'updatetime' => 'integer',	//
 		);
 		$this->getDbConnection()->createCommand(
 			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
@@ -97,5 +98,59 @@ class Notes extends BaseActiveRecord
 		$this->getDbConnection()->createCommand(
 			$this->getDbConnection()->getSchema()->addPrimaryKey('id', $this->tableName(), 'id')
 		)->execute();
+	}
+
+	/**
+	 * Return a list of available option for CHtml::dropDownList() function
+	 * @param string $rid
+	 * @return multitype:|multitype:string NULL
+	 */
+	public static function getOptions($rid = NULL){
+		$output = array();
+		if (is_null($rid)) {
+			$models = self::model()->roots()->findAll();
+			foreach ($models as $n => $m){
+				$output[$m->id] = $m->title;
+				$sub = $m->descendants()->findAll();
+				foreach ($sub as $c){
+					$output[$c->id] = str_repeat('-', $c->level) . $c->title;
+				}
+			}
+		} else {
+			$r = self::model()->findByPk($rid);
+			if (is_null($r)) return array();
+			$output = array();
+			$output[$r->id] = $r->title;
+			$sub = $r->descendants()->findAll();
+			foreach ($sub as $s){
+				$output[$s->id] = str_repeat('-', $s->level) . $s->title;
+			}
+		}
+		return $output;
+	}
+
+	protected function beforeSave(){
+		if ($this->isNewRecord){
+			$this->createtime = time();
+			$this->author = (Yii::app()->user)?(Yii::app()->user->id):NULL;
+		}
+		$this->updatetime = time();
+		return parent::beforeSave();
+	}
+
+	/**
+	 * Add ENested Set for support child-parent relation
+	 */
+	public function behaviors()
+	{
+		return array(
+					'nestedSet' => array(
+							'class'=>'ext.behaviors.NestedSetBehavior',
+							'hasManyRoots'	=>	TRUE,
+							'leftAttribute'=>'lft',
+							'rightAttribute'=>'rgt',
+							'levelAttribute'=>'level',
+					),
+			);
 	}
 }

@@ -15,6 +15,11 @@ $this->mainMenu['projects'] = array(
 				'visible' => Yii::app()->user->checkAccess('Projects.Departments.Index')
 			),
 		array(
+				'label' => Yii::t('projects', 'Contacts'),
+				'url'=>array('/projects/contacts/index'),
+				'visible' => Yii::app()->user->checkAccess('Projects.Contacts.Index')
+			),
+		array(
 				'label' => Yii::t('projects', 'Events'),
 				'url'=>array('/projects/events/index'),
 				'visible' => Yii::app()->user->checkAccess('Projects.Events.Index')

@@ -2,7 +2,6 @@
 
 class EventsController extends WebBaseController
 {
-
 	public function allowedActions(){
 		return '';
 	}
@@ -12,13 +11,12 @@ class EventsController extends WebBaseController
 	 */
 	public function actions(){
 		return array(
-			'index' => 'ext.actions.BrowseAction',
-			'view' 	=> 'ext.actions.ViewAction',
-			'create' => 'ext.actions.CreateAction',
-			'update' => 'ext.actions.UpdateAction',
-			'delete' => 'ext.actions.DeleteAction',
-			'settings' => 'ext.actions.SettingsAction',
-			'duplicate' => 'ext.actions.DuplicateAction',
+				'index' => 'ext.actions.BrowseAction',
+				'view' 	=> 'ext.actions.ViewAction',
+				'update' => 'ext.actions.UpdateAction',
+				'delete' => 'ext.actions.DeleteAction',
+				'settings' => 'ext.actions.SettingsAction',
+				'duplicate' => 'ext.actions.DuplicateAction',
 		);
 	}
 
@@ -29,7 +27,7 @@ class EventsController extends WebBaseController
 	public function actionView($id)
 	{
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+				'model'=>$this->loadModel(),
 		));
 	}
 
@@ -42,17 +40,21 @@ class EventsController extends WebBaseController
 		$model=new Events;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model, 'events-form');
+		// $this->performAjaxValidation($model, 'Events-form');
 
-		if(isset($_POST['Events']))
+		if(! Yii::app()->getRequest()->getIsAjaxRequest() && isset($_POST['Events']))
 		{
-			$model->attributes=$_POST['Events'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$model->setAttributes($_POST['Events']);
+			if (empty($_POST['Events']['root'])){
+				$model->saveNode();
+			} elseif  (! is_null($root = Events::model()->findByPk($_POST['Events']['root']))){
+				$model->appendTo($root);
+			} else throw new CHttpException(500,
+					Yii::t('app', "Invalid root node ID: %d", array('%d' => $_POST['Events']['root'])));
+			$this->redirect(array('view','id'=>$model->id));
 		}
-
 		$this->render('create',array(
-			'model'=>$model,
+				'model'=>$model,
 		));
 	}
 
@@ -63,20 +65,25 @@ class EventsController extends WebBaseController
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		$model=$this->loadModel();
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model, 'events-form');
+		// $this->performAjaxValidation($model, 'Events-form');
 
 		if(isset($_POST['Events']))
 		{
-			$model->attributes=$_POST['Events'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$model->setAttributes($_POST['Events']);
+			if (empty($_POST['Events']['root'])){
+				if (! $model->isRoot()) $model->moveAsRoot();
+			} elseif  (! is_null($root = Events::model()->findByPk($_POST['Events']['root']))){
+				if ($root->getPrimaryKey() != $model->getPrimaryKey()) $model->moveAsLast($root);
+			} else throw new CHttpException(500,
+					Yii::t('app', "Invalid root node ID: %d", array('%d' => $_POST['Events']['root'])));
+			$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
-			'model'=>$model,
+				'model'=>$model,
 		));
 	}
 
@@ -101,7 +108,7 @@ class EventsController extends WebBaseController
 	{
 		$dataProvider=new CActiveDataProvider('Events');
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+				'dataProvider'=>$dataProvider,
 		));
 	}
 
@@ -116,7 +123,7 @@ class EventsController extends WebBaseController
 			$model->attributes=$_GET['Events'];
 
 		$this->render('admin',array(
-			'model'=>$model,
+				'model'=>$model,
 		));
 	}
 }

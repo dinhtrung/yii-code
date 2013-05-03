@@ -36,19 +36,29 @@ class ProjectContact extends BaseActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
+			'project'	=>	array(self::BELONGS_TO, 'Projects', 'pid'),
+			'contact'	=>	array(self::BELONGS_TO, 'Contacts', 'cid'),
 		);
 	}
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
+	public function rules() {
 		return array_merge(parent::rules(), array(
-			//@FIXME: Add more rules here to override default rules
+			array( '*', 'uniqueKeys' ) ,
+		));
+	}
+	public function uniqueKeys() {
+		$this->validateCompositeUniqueKeys();
+	}
+	public function behaviors() {
+		return array_merge(parent::behaviors() , array(
+				'ECompositeUniqueKeyValidatable' => array(
+						'class' => 'ext.behaviors.ECompositeUniqueKeyValidatable',
+						'uniqueKeys' => array(
+								'attributes' => 'pid, cid',
+								'errorMessage' => Yii::t('projects', 'This contact is already assigned to this project') ,
+						)
+				) ,
 		));
 	}
 
@@ -66,8 +76,8 @@ class ProjectContact extends BaseActiveRecord
 	 */
 	protected function createTable(){
 		$columns = array(
-			'pid' => 'integer',	// 
-			'cid' => 'integer',	// 
+			'pid' => 'integer',	//
+			'cid' => 'integer',	//
 		);
 		$this->getDbConnection()->createCommand(
 			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)

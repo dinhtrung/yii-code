@@ -1,6 +1,6 @@
 <?php
 
-class NotesController extends WebBaseController
+class ContactsController extends WebBaseController
 {
 
 	public function allowedActions(){
@@ -14,6 +14,7 @@ class NotesController extends WebBaseController
 		return array(
 			'index' => 'ext.actions.BrowseAction',
 			'view' 	=> 'ext.actions.ViewAction',
+			'create' => 'ext.actions.CreateAction',
 			'update' => 'ext.actions.UpdateAction',
 			'delete' => 'ext.actions.DeleteAction',
 			'settings' => 'ext.actions.SettingsAction',
@@ -38,22 +39,18 @@ class NotesController extends WebBaseController
 	 */
 	public function actionCreate()
 	{
-		$model=new Notes;
+		$model=new Contacts;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model, 'notes-form');
+		// $this->performAjaxValidation($model, 'contacts-form');
 
-		if(! Yii::app()->getRequest()->getIsAjaxRequest() && isset($_POST['Notes']))
+		if(isset($_POST['Contacts']))
 		{
-			$model->setAttributes($_POST['Notes']);
-			if (empty($_POST['Notes']['root'])){
-				$model->saveNode();
-			} elseif  (! is_null($root = Notes::model()->findByPk($_POST['Notes']['root']))){
-				$model->appendTo($root);
-			} else throw new CHttpException(500,
-					Yii::t('app', "Invalid root node ID: %d", array('%d' => $_POST['Notes']['root'])));
-			$this->redirect(array('view','id'=>$model->id));
+			$model->attributes=$_POST['Contacts'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
 		}
+
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -69,18 +66,13 @@ class NotesController extends WebBaseController
 		$model=$this->loadModel();
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model, 'notes-form');
+		// $this->performAjaxValidation($model, 'contacts-form');
 
-		if(isset($_POST['Notes']))
+		if(isset($_POST['Contacts']))
 		{
-			$model->setAttributes($_POST['Notes']);
-			if (empty($_POST['Notes']['root'])){
-				if (! $model->isRoot()) $model->moveAsRoot();
-			} elseif  (! is_null($root = Notes::model()->findByPk($_POST['Notes']['root']))){
-				if ($root->getPrimaryKey() != $model->getPrimaryKey()) $model->moveAsLast($root);
-			} else throw new CHttpException(500,
-					Yii::t('app', "Invalid root node ID: %d", array('%d' => $_POST['Notes']['root'])));
-			$this->redirect(array('view','id'=>$model->id));
+			$model->attributes=$_POST['Contacts'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
@@ -95,7 +87,7 @@ class NotesController extends WebBaseController
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		$this->loadModel()->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
@@ -107,7 +99,7 @@ class NotesController extends WebBaseController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Notes');
+		$dataProvider=new CActiveDataProvider('Contacts');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -118,10 +110,10 @@ class NotesController extends WebBaseController
 	 */
 	public function actionAdmin()
 	{
-		$model=new Notes('search');
+		$model=new Contacts('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Notes']))
-			$model->attributes=$_GET['Notes'];
+		if(isset($_GET['Contacts']))
+			$model->attributes=$_GET['Contacts'];
 
 		$this->render('admin',array(
 			'model'=>$model,

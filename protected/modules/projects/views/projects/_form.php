@@ -164,11 +164,16 @@ $this->widget('ext.widgets.multiselect.EMultiSelect', array(
 
 <?php $this->endClip(); ?>
 
-<?php $this->beginClip("contacts"); ?>
+<?php $this->beginClip("contacts");
+// 	$tmp = array();
+// 	foreach ($model->contacts as $k => $v) $tmp[$k] = $v->cid;
+// 	$model->contacts = $tmp;
+	CVarDumper::dump($model->contacts, 10, TRUE);
+?>
 	<div class="row">
-		<?php echo $form->labelEx($model, 'contacts'); ?>
+		<?php echo $form->labelEx($model, 'Contacts'); ?>
 		<?php echo $form->dropDownList($model, 'contacts',
-				CHtml::listData(User::model()->findAll(), 'id', 'username'),
+				CHtml::listData(Contacts::model()->findAll(), 'id', 'username'),
 				array('multiple' => TRUE, 'class' => 'multiselect')); ?>
 		<?php echo $form->error($model, 'contacts'); ?>
 		<p class="hint"><?php echo Yii::t('projects', 'Danh sách người dùng tham gia vào dự án này.'); ?></p>
@@ -197,9 +202,9 @@ $this->widget("CTabView", array(
 	          "title"	=>	Yii::t("app", "Projects"),
 	          "content"	=>	$this->clips["projects"],
 	    ),
-	    "users"=>array(
-	          "title"	=>	Yii::t("app", "Users"),
-	          "content"	=>	$this->clips["users"],
+	    "contacts"=>array(
+	          "title"	=>	Yii::t("app", "Contacts"),
+	          "content"	=>	$this->clips["contacts"],
 	    ),
 	    "departments"=>array(
 	          "title"	=>	Yii::t("app", "Departments"),

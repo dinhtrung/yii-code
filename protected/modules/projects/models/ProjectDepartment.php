@@ -36,19 +36,29 @@ class ProjectDepartment extends BaseActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
+			'department'	=>	array(self::BELONGS_TO, 'Departments', 'did'),
+			'project'	=>	array(self::BELONGS_TO, 'Projects', 'pid'),
 		);
 	}
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
+	public function rules() {
 		return array_merge(parent::rules(), array(
-			//@FIXME: Add more rules here to override default rules
+			array( '*', 'uniqueKeys' ) ,
+		));
+	}
+	public function uniqueKeys() {
+		$this->validateCompositeUniqueKeys();
+	}
+	public function behaviors() {
+		return array_merge(parent::behaviors() , array(
+				'ECompositeUniqueKeyValidatable' => array(
+						'class' => 'ext.behaviors.ECompositeUniqueKeyValidatable',
+						'uniqueKeys' => array(
+								'attributes' => 'pid, did',
+								'errorMessage' => Yii::t('projects', 'The Department is already assigned to this project') ,
+						)
+				) ,
 		));
 	}
 
@@ -66,8 +76,8 @@ class ProjectDepartment extends BaseActiveRecord
 	 */
 	protected function createTable(){
 		$columns = array(
-			'pid' => 'integer',	// 
-			'did' => 'integer',	// 
+			'pid' => 'integer',	//
+			'did' => 'integer',	//
 		);
 		$this->getDbConnection()->createCommand(
 			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
