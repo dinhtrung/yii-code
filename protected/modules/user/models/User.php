@@ -189,22 +189,4 @@ class User extends BaseActiveRecord
 		$this->role = array_keys($assignedItems);
 		return parent::afterFind();
 	}
-
-	/*
-	 * Encrypt the password
-	 */
-	protected function beforeSave(){
-		if ($this->password)
-			$this->password = UserModule::encrypting($this->password);
-		return parent::beforeSave();
-	}
-
-	protected function afterSave(){
-// 		foreach ($this->role as $role){
-// 			Rights::getAuthorizer()->authManager->assign($role, $this->getPrimaryKey());
-// 			$item = Rights::getAuthorizer()->authManager->getAuthItem($role);
-// 			$item = Rights::getAuthorizer()->attachAuthItemBehavior($item);
-// 		}
-		return parent::afterSave();
-	}
 }

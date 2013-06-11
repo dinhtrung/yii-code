@@ -44,10 +44,18 @@ class RightsFilter extends CFilter
 				$this->authItem .= '.'.ucfirst($action->id);
 
 				// Check if the user has access to the controller action
-				if( $user->checkAccess($this->authItem)!==true )
+				if( $user->checkAccess($this->authItem)!==true ){
 					$allow = false;
+					// Add missing authItem
+					$item = new Authitem();
+					$item->name = $this->authItem;
+					$item->description = $this->authItem;
+					$item->type = CAuthItem::TYPE_OPERATION;
+					$item->save();
+				}
 			}
 		}
+		
 
 		// User is not allowed access, deny access
 		if( $allow===false )

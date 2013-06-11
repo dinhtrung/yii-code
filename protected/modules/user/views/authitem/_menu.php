@@ -7,7 +7,14 @@ $this->menu['permissions'] = array(
 $this->menu['roles'] = array(
 		'label' => Yii::t('user', 'Roles'),
 		'url'=>array('/user/authitem/roles'),
-		'visible' => Yii::app()->user->checkAccess('User.Authitem.Roles')
+		'visible' => Yii::app()->user->checkAccess('User.Authitem.Create.Roles'),
+		'items'	=>	array(
+			array(
+				'label' => Yii::t('user', 'Create Roles'),
+				'url'=>array('/user/authitem/create', 'type' => CAuthItem::TYPE_ROLE),
+				'visible' => Yii::app()->user->checkAccess('User.Authitem.Create.Roles')
+			)
+		),
 );
 $this->menu['tasks'] = array(
 		'label' => Yii::t('user', 'Tasks'),

@@ -12,9 +12,6 @@ class AdminController extends WebBaseController
 		return array(
 			'view'		=>	array('class' => 'ext.actions.ViewAction', 'modelClass' => 'User'),
 			'admin'		=>	array('class' => 'ext.actions.AdminAction', 'modelClass' => 'User'),
-			'create'	=>	array('class' => 'ext.actions.CreateAction', 'modelClass' => 'User'),
-			'update'	=>	array('class' => 'ext.actions.UpdateAction', 'modelClass' => 'User'),
-			'delete'	=>	array('class' => 'ext.actions.DeleteAction', 'modelClass' => 'User'),
 		);
 	}
 
@@ -23,7 +20,7 @@ class AdminController extends WebBaseController
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreateA()
+	public function actionCreate()
 	{
 		$model=new User;
 		$this->performAjaxValidation($model, 'user-form');
@@ -60,26 +57,24 @@ class AdminController extends WebBaseController
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionUpdateOld()
+	public function actionUpdate()
 	{
 		$model=$this->loadModel('User');
 		$this->performAjaxValidation($model, 'user-form');
-		Rights::getAuthorizer()->attachUserBehavior($model);
-		Rights::getAuthorizer()->authManager->revoke($model->role, $model->getId());
+		foreach ($model->role as $r)
+			Rights::getAuthorizer()->authManager->revoke($r, $model->getId());
 		if(isset($_POST['User']))
 		{
+			$oldPass = $model->password;
 			$model->attributes=$_POST['User'];
-
 			if($model->validate()) {
-				$old_password = User::model()->notsafe()->findByPk($model->id);
-				if (! empty($model->password) AND ($old_password->password!=$model->password)) {
+				if (! empty($model->password) AND (Yii::app()->controller->module->encrypting($model->password)!=($oldPass))) {
 					$model->password=Yii::app()->controller->module->encrypting($model->password);
 					$model->activkey=Yii::app()->controller->module->encrypting(microtime().$model->password);
-				} else { $model->password = $old_password->password; }
+				} else { $model->password = $oldPass; }
 				$model->save();
-				Rights::getAuthorizer()->authManager->assign($model->role, $model->getId());
-				$item = Rights::getAuthorizer()->authManager->getAuthItem($model->role);
-				$item = Rights::getAuthorizer()->attachAuthItemBehavior($item);
+				foreach ($model->role as $r)
+					Rights::getAuthorizer()->authManager->assign($r, $model->getPrimaryKey());
 				$this->redirect(Yii::app()->getUser()->getReturnUrl());
 			}
 		}

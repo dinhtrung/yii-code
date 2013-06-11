@@ -143,6 +143,7 @@ class AuthitemController extends WebBaseController
 	public function actionCreate()
 	{
 		$type = $this->getType();
+		if (! Yii::app()->user->checkAccess('User.Authitem.Create.' . $type)) $this->accessDenied();
 
 		// Create the authorization item form
 		$formModel = new Authitem('insert');
@@ -337,7 +338,7 @@ class AuthitemController extends WebBaseController
 
 			// if AJAX request, we should not redirect the browser
 			if( isset($_POST['ajax'])===false )
-				$this->redirect(array('authItem/permissions'));
+				$this->redirect(array('authitem/permissions'));
 		}
 		else
 		{
