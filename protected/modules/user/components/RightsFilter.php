@@ -47,11 +47,7 @@ class RightsFilter extends CFilter
 				if( $user->checkAccess($this->authItem)!==true ){
 					$allow = false;
 					// Add missing authItem
-					$item = new Authitem();
-					$item->name = $this->authItem;
-					$item->description = $this->authItem;
-					$item->type = CAuthItem::TYPE_OPERATION;
-					$item->save();
+					$item = Yii::app()->authManager->createAuthItem($this->authItem, CAuthItem::TYPE_OPERATION, NULL, NULL);
 				}
 			}
 		}

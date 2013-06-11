@@ -17,7 +17,7 @@
 
 		<h3><?php echo Yii::t('user', 'Relations'); ?></h3>
 
-		<?php if( $model->name!==Rights::module()->superuserName ): ?>
+		<?php // if( $model->name!==Rights::module()->superuserName ): ?>
 
 			<div class="parents">
 
@@ -110,14 +110,14 @@
 
 			</div>
 
-		<?php else: ?>
+		<?php // else: ?>
 
 			<p class="info">
 				<?php echo Yii::t('user', 'No relations need to be set for the superuser role.'); ?><br />
 				<?php echo Yii::t('user', 'Super users are always granted access implicitly.'); ?>
 			</p>
 
-		<?php endif; ?>
+		<?php // endif; ?>
 
 	</div>
 

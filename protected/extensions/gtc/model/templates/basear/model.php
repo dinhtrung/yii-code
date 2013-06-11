@@ -100,11 +100,15 @@ class <?php echo $modelClass; ?> extends BaseActiveRecord
 
 <?php if ($dbcol->isPrimaryKey) $pkeys[] = $name; endforeach; ?>
 		);
-		$this->getDbConnection()->createCommand(
-			$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-			$this->getDbConnection()->getSchema()->addPrimaryKey('<?php echo implode('_', $pkeys); ?>', $this->tableName(), '<?php echo implode(', ', $pkeys); ?>')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+				$this->getDbConnection()->getSchema()->addPrimaryKey('<?php echo implode('_', $pkeys); ?>', $this->tableName(), '<?php echo implode(', ', $pkeys); ?>')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
 	}
 }

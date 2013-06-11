@@ -95,7 +95,7 @@ class User extends BaseActiveRecord
 		/* Create default user */
 		$this->setAttributes(array(
 				'username' => 'admin',
-				'password' => 'admin',
+				'password' => UserModule::encrypting('admin'),
 				'email' => 'admin@example.com',
 				'status'	=>	self::STATUS_ACTIVE,
 		));

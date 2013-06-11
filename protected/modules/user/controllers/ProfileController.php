@@ -93,7 +93,7 @@ class ProfileController extends WebBaseController
 			if(Yii::app()->user->id)
 				$this->_model=Yii::app()->controller->module->user();
 			if($this->_model===null)
-				$this->redirect(Yii::app()->setting->get('user', 'loginUrl', '/user/login'));
+				$this->redirect(array(Yii::app()->setting->get('user', 'loginUrl', '/user/login')));
 		}
 		return $this->_model;
 	}

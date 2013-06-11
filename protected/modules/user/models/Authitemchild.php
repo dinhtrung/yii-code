@@ -2,6 +2,7 @@
 
 class Authitemchild extends BaseActiveRecord
 {
+	public $itemname;
 	public function connectionId(){
 		return Yii::app()->hasComponent('rightsDb')?'rightsDb':'db';
 	}
@@ -12,6 +13,15 @@ class Authitemchild extends BaseActiveRecord
 
 	public function tableName(){
 		return '{{authitemchild}}';
+	}
+	
+	public function rules(){
+		return array_merge(
+			parent::rules(),
+			array(
+				array('itemname', 'safe'),		
+			)	
+		);
 	}
 
 

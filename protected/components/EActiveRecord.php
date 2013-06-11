@@ -1,5 +1,5 @@
 <?php
-class EActiveRecord extends CActiveRecord {
+class EActiveRecord extends MultiActiveRecord {
 
 	private static $_models=array();			// class name => model
 	

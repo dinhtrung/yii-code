@@ -69,7 +69,7 @@ class AuthitemController extends WebBaseController
 	*/
 	public function actionOperations()
 	{
-		Yii::app()->user->rightsReturnUrl = array('authItem/operations');
+		Yii::app()->user->rightsReturnUrl = array('authitem/operations');
 
 		$dataProvider = new RAuthItemDataProvider('operations', array(
 			'type'=>CAuthItem::TYPE_OPERATION,
@@ -93,7 +93,7 @@ class AuthitemController extends WebBaseController
 	*/
 	public function actionTasks()
 	{
-		Yii::app()->user->rightsReturnUrl = array('authItem/tasks');
+		Yii::app()->user->rightsReturnUrl = array('authitem/tasks');
 
 		$dataProvider = new RAuthItemDataProvider('tasks', array(
 			'type'=>CAuthItem::TYPE_TASK,
@@ -117,7 +117,7 @@ class AuthitemController extends WebBaseController
 	*/
 	public function actionRoles()
 	{
-		Yii::app()->user->rightsReturnUrl = array('authItem/roles');
+		Yii::app()->user->rightsReturnUrl = array('authitem/roles');
 
 		$dataProvider = new RAuthItemDataProvider('roles', array(
 			'type'=>CAuthItem::TYPE_ROLE,
@@ -158,12 +158,12 @@ class AuthitemController extends WebBaseController
 				$item = $this->_authorizer->attachAuthItemBehavior($item);
 
 				// Set a flash message for creating the item
-				Yii::app()->user->setFlash($this->module->flashSuccessKey,
+				Yii::app()->user->setFlash('success',
 					Yii::t('user', ':name created.', array(':name'=>$item->getNameText()))
 				);
 
 				// Redirect to the correct destination
-				$this->redirect(Yii::app()->user->getRightsReturnUrl(array('authItem/permissions')));
+				$this->redirect(Yii::app()->user->returnUrl);
 			}
 		}
 
@@ -196,18 +196,17 @@ class AuthitemController extends WebBaseController
 				$item = $this->_authorizer->attachAuthItemBehavior($item);
 
 				// Set a flash message for updating the item
-				Yii::app()->user->setFlash($this->module->flashSuccessKey,
+				Yii::app()->user->setFlash('success',
 					Yii::t('user', ':name updated.', array(':name'=>$item->getNameText()))
 				);
 
 				// Redirect to the correct destination
-				$this->redirect(Yii::app()->user->getRightsReturnUrl(array('authItem/permissions')));
+				$this->redirect(Yii::app()->user->getRightsReturnUrl(array('authitem/permissions')));
 			}
 		}
 
 		$type = Rights::getValidChildTypes($model->type);
-		$exclude = array($this->module->superuserName);
-		$childSelectOptions = Rights::getParentAuthItemSelectOptions($model, $type, $exclude);
+		$childSelectOptions = Rights::getParentAuthItemSelectOptions($model, $type);
 
 		if( $childSelectOptions!==array() )
 		{
@@ -225,12 +224,12 @@ class AuthitemController extends WebBaseController
 					$child = $this->_authorizer->attachAuthItemBehavior($child);
 
 					// Set a flash message for adding the child
-					Yii::app()->user->setFlash($this->module->flashSuccessKey,
+					Yii::app()->user->setFlash('success',
 						Yii::t('user', 'Child :name added.', array(':name'=>$child->getNameText()))
 					);
 
 					// Reidrect to the same page
-					$this->redirect(array('authItem/update', 'name'=>urlencode($itemName)));
+					$this->redirect(array('authitem/update', 'name'=>urlencode($itemName)));
 				}
 			}
 		}
@@ -277,13 +276,13 @@ class AuthitemController extends WebBaseController
 			$this->_authorizer->authManager->removeAuthItem($itemName);
 
 			// Set a flash message for deleting the item
-			Yii::app()->user->setFlash($this->module->flashSuccessKey,
+			Yii::app()->user->setFlash('success',
 				Yii::t('user', ':name deleted.', array(':name'=>$item->getNameText()))
 			);
 
 			// If AJAX request, we should not redirect the browser
 			if( isset($_POST['ajax'])===false )
-				$this->redirect(Yii::app()->user->getRightsReturnUrl(array('authItem/permissions')));
+				$this->redirect(Yii::app()->user->getRightsReturnUrl(array('authitem/permissions')));
 		}
 		else
 		{
@@ -308,13 +307,13 @@ class AuthitemController extends WebBaseController
 			$child = $this->_authorizer->attachAuthItemBehavior($child);
 
 			// Set a flash message for removing the child
-			Yii::app()->user->setFlash($this->module->flashSuccessKey,
+			Yii::app()->user->setFlash('success',
 				Yii::t('user', 'Child :name removed.', array(':name'=>$child->getNameText()))
 			);
 
 			// If AJAX request, we should not redirect the browser
 			if( isset($_POST['ajax'])===false )
-				$this->redirect(array('authItem/update', 'name'=>urlencode($itemName)));
+				$this->redirect(array('authitem/update', 'name'=>urlencode($itemName)));
 		}
 		else
 		{
@@ -362,7 +361,7 @@ class AuthitemController extends WebBaseController
 
 			// if AJAX request, we should not redirect the browser
 			if( isset($_POST['ajax'])===false )
-				$this->redirect(array('authItem/permissions'));
+				$this->redirect(array('authitem/permissions'));
 		}
 		else
 		{

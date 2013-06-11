@@ -59,10 +59,7 @@ class RAuthItemBehavior extends CBehavior
 	*/
 	public function getGridNameLink()
 	{
-		$markup = CHtml::link($this->owner->name, array(
-			'authItem/update',
-			'name'=>urlencode($this->owner->name),
-		));
+		$markup = CHtml::link($this->owner->name, array('authitem/update', 'name'=>urlencode($this->owner->name), ));
 
 		$markup .= $this->childCount();
 		$markup .= $this->sortableId();

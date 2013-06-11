@@ -17,7 +17,7 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Data deleted!' => '',
+  'UCB Reports: %suffix' => '',
   'Admin' => 'Quản lý',
   'Advanced Search' => 'Tìm kiếm nâng cao',
   'Attached' => '',
@@ -27,6 +27,7 @@ return array (
   'Continue Delete' => 'Tiếp tục xóa',
   'Create' => 'Tạo',
   'Createtime' => 'Thời gian tạo',
+  'Data deleted!' => '',
   'Data saved!' => 'Đã lưu dữ liệu!',
   'Delete' => 'Xóa',
   'Delete Confirmation' => 'Xác nhận việc xóa',
@@ -56,7 +57,6 @@ return array (
   'Theme' => 'Giao diện',
   'Title' => 'Tiêu đề',
   'Type' => '',
-  'UCB Reports: %suffix' => '',
   'Update' => 'Cập nhật',
   'View' => 'Xem',
   'Viewfile' => '',

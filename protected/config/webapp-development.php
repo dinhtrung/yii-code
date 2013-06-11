@@ -18,7 +18,16 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'weba
 			)
 		) ,
 		'blog',
+		'ussdbr',
 	) ,
 	'components' => array(
+		'ussdbrDb'=>array(
+				'class'	=>	'CDbConnection',
+				'connectionString' => 'mysql:host=localhost;dbname=yii_core',
+				'emulatePrepare' => true,
+				'username' => 'root',
+				'password' => 'myroot',
+				'charset' => 'utf8',
+		),
 	)
 ));
