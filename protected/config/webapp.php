@@ -2,9 +2,6 @@
 return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main.php') , array(
 	// autoloading model and component classes
 	'import' => array(
-		// Rights
-		'application.modules.rights.components.*',
-		'application.modules.rights.models.*',
 		// Yii-user
 		'application.modules.user.components.*',
 		'application.modules.user.models.*',
@@ -21,22 +18,9 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 	) ,
 	'modules' => array(
 		// Translate for Database. Use: Yii::t('source', 'message', array(), 'dbmessage')
-		'translate',
 		'user',
-		'rights' => array(
-			'superuserName' => 'Admin', // Name of the role with super user privileges.
-			'authenticatedName' => 'Authenticated', // Name of the authenticated user role.
-			'userClass' => 'User', // Name of the User model class.
-			'userIdColumn' => 'id', // Name of the user id column in the database.
-			'userNameColumn' => 'username', // Name of the user name column in the database.
-			'enableBizRule' => true, // Whether to enable authorization item business rules.
-			'enableBizRuleData' => false, // Whether to enable data for business rules.
-			'flashSuccessKey' => 'RightsSuccess', // Key to use for setting success flash messages.
-			'flashErrorKey' => 'RightsError', // Key to use for setting error flash messages.
-			'baseUrl' => '/rights', // Base URL for Rights. Change if module is nested.
-			'cssFile' => 'rights.css', // Style sheet file to use for Rights.
-		) ,
 		'core',
+		'translate',
 		'cms',
 	) ,
 	// application components

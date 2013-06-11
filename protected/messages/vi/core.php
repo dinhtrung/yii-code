@@ -18,6 +18,7 @@
  */
 return array (
   'Website' => '',
+  '' => '',
   '-- Select Category for Node --' => '-- Chọn chuyên mục cho bài viết --',
   '-- Select Parent Menu --' => '-- Chọn menu cấp cha --',
   '-- Select region --' => '-- Chọn vùng trình bày --',
