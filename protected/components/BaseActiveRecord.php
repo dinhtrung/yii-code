@@ -207,12 +207,22 @@ class BaseActiveRecord extends MultiActiveRecord {
 				'comment_cnt'	=>	'int',
 				'rating'		=>	'float',
 		);
-		$this->getDbConnection()->createCommand(
-			Yii::app()->getDb()->getSchema()->createTable($this->tableName()(), $columns)
-		)->execute();
-		$this->getDbConnection()->createCommand(
-			Yii::app()->getDb()->getSchema()->createIndex('title', $this->tableName()(), 'time')
-		)->execute();
+		try {
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->createTable($this->tableName(), $columns)
+			)->execute();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addPrimaryKey('id_lang', $this->tableName(), 'id,language')
+			)->execute();
+			// Reference tables
+			$ref = new Blocktheme();
+			$this->getDbConnection()->createCommand(
+					Yii::app()->getDb()->getSchema()->addForeignKey('fk_block_blocktheme', $this->tableName(), 'bid', $ref->tableName(), 'block')
+			)->execute();
+		} catch (CDbException $e){
+			Yii::log($e->getMessage(), 'warning');
+		}
+		$this->refreshMetaData();
     	 */
     	return FALSE;
     }

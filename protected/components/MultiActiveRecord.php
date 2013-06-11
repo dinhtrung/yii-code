@@ -1,4 +1,10 @@
 <?php
+/**
+ * MultiActiveRecord provide a separate DbConnection for using multiple-database support.
+ * 
+ * @author dinhtrung
+ *
+ */
 abstract class MultiActiveRecord extends CActiveRecord
 {
     /**
@@ -63,7 +69,4 @@ abstract class MultiActiveRecord extends CActiveRecord
     public function connectionId(){
         return 'db';
     }
-
-
-
 }
