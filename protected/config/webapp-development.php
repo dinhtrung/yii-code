@@ -17,6 +17,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'weba
 				'bootstrap.gii',
 			)
 		) ,
+		'blog',
 	) ,
 	'components' => array(
 	)

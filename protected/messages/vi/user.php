@@ -17,7 +17,11 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'Updatetime' => 'Cập nhật',
+  'Assignment' => '',
+  'Operations' => '',
+  'Permissions' => '',
+  'Roles' => '',
+  'Tasks' => '',
   'Activation' => 'Kích hoạt',
   'Active' => 'Đang hoạt động',
   'Activkey' => 'Mã kích hoạt',
@@ -131,6 +135,7 @@ return array (
   'Update' => 'Cập nhật tài khoản',
   'Update Profile Field' => 'Cập nhật trường thông tin',
   'Update User' => 'Sửa người dùng',
+  'Updatetime' => 'Cập nhật',
   'User' => 'Người dùng',
   'User activation' => 'Kích hoạt tài khoản người dùng',
   'Username' => 'Tên đăng nhập',
