@@ -169,10 +169,13 @@ abstract class WebBaseController extends BaseController
 		$blocks = new Block('search');
 		$blockTheme = new Blocktheme('search');
 		$blocks = $blockTheme->with('owner')->findAllByAttributes(
-				array("theme" => Yii::app()->setting->get("web", "theme", "classic"))
+				array("theme" => Yii::app()->theme->name)
 			);
 		foreach ($blocks as $block){
-			$this->page[$block->region] .= $block->owner->render();
+			if (array_key_exists($block->region, $this->page))
+				$this->page[$block->region] .= $block->owner->render();
+			else 
+				$this->page[$block->region] = $block->owner->render();
 		}
 	}
 	/**
