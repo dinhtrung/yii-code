@@ -120,16 +120,6 @@ class Rights extends BaseActiveRecord
 	}
 
 	/**
-	* Returns the base url to Rights.
-	* @return the url to Rights.
-	*/
-	public static function getBaseUrl()
-	{
-		$module = self::module();
-		return Yii::app()->createUrl('user');
-	}
-
-	/**
 	* Returns the list of authorization item types.
 	* @return array the list of types.
 	*/

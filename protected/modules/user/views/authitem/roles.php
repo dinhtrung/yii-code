@@ -1,5 +1,6 @@
 <?php $this->breadcrumbs = array(
-	Yii::t('user','Rights')	=>	Rights::getBaseUrl(),
+	Yii::t('user','User')	=>	array('/user/admin'),
+	Yii::t('user','Authitem')	=>	array('/user/authitem'),
 	Yii::t('user', 'Roles'),
 ); ?>
 
@@ -11,10 +12,6 @@
 		<?php echo Yii::t('user', 'A role is group of permissions to perform a variety of tasks and operations, for example the authenticated user.'); ?><br />
 		<?php echo Yii::t('user', 'Roles exist at the top of the authorization hierarchy and can therefore inherit from other roles, tasks and/or operations.'); ?>
 	</p>
-
-	<p><?php echo CHtml::link(Yii::t('user', 'Create a new role'), array('authItem/create', 'type'=>CAuthItem::TYPE_ROLE), array(
-	   	'class'=>'add-role-link',
-	)); ?></p>
 
 	<?php $this->widget('zii.widgets.grid.CGridView', array(
 	    'dataProvider'=>$dataProvider,

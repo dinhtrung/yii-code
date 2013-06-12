@@ -51,14 +51,14 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 				'/user/login'
 			) ,
 		) ,
-		'urlManager' => array(
-			'urlFormat'=>'path',
-			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-			),
-		) ,
+// 		'urlManager' => array(
+// 			'urlFormat'=>'path',
+// 			'rules'=>array(
+// 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
+// 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+// 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+// 			),
+// 		) ,
 		'authManager' => array(
 			'class' => 'RDbAuthManager',
 			'connectionID' => 'db',

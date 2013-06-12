@@ -7,6 +7,7 @@ class User extends BaseActiveRecord
 	const STATUS_BANED=-1;
 
 	public $role = array();
+	public $files;
 
 	/**
 	 * The followings are the available columns in table 'users':
@@ -128,6 +129,7 @@ class User extends BaseActiveRecord
 			array('username, email, status', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
 		);
+		if ($this->getScenario() == 'import') $rules = array(array('files', 'safe', 'on' => 'import'));
 		return array_merge(parent::rules(), $rules);
 	}
 

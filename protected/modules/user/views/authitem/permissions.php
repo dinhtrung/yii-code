@@ -1,8 +1,8 @@
 <?php $this->breadcrumbs = array(
-	Yii::t('user', 'Rights')=>Rights::getBaseUrl(),
+	Yii::t('user','User')	=>	array('/user/admin'),
+	Yii::t('user','Authitem')	=>	array('/user/authitem'),
 	Yii::t('user', 'Permissions'),
-);
-?>
+); ?>
 
 <div id="permissions">
 

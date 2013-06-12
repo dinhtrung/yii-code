@@ -95,8 +95,8 @@ class AdminController extends WebBaseController
 		{
 			// we only allow deletion via POST request
 			$model = $this->loadModel('User');
-			Rights::getAuthorizer()->attachUserBehavior($model);
-			Rights::getAuthorizer()->authManager->revoke($model->role, $model->getId());
+			foreach ($model->role as $role)
+				Rights::getAuthorizer()->authManager->revoke($role, $model->getPrimaryKey());
 			$model->delete();
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_POST['ajax']))

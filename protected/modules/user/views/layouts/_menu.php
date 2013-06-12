@@ -5,7 +5,7 @@ $this->mainMenu['user'] = array(
 				array(
 						'label' => Yii::t('user', 'Admin'),
 						'url'=>array('/user/admin'),
-						'visible'=>Yii::app()->user->checkAccess('User.Admin.Index' ),
+						'visible'=>Yii::app()->user->checkAccess('User.Admin.Admin' ),
 						'items'=>array(
 								array(
 										'label' => Yii::t('user', 'Assignment'),

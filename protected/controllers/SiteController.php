@@ -127,4 +127,56 @@ class SiteController extends WebBaseController
 		    echo $parsedText;
 		}
 	}
+	
+	/**
+	 * @TODO: Separate into 2 step: preview - import.
+	 * 
+	 * @throws CHttpException
+	 */
+	public function actionDevel(){
+		$importModel = new CsvFileUpload();
+		$dataModel = array();
+		$columns = array();
+		$tmpFiles = array();
+		if (isset($_POST[get_class($importModel)])) $importModel->attributes = $_POST[get_class($importModel)];
+		if ($importModel->validate()){
+			$files = CUploadedFile::getInstances($importModel, 'files');
+			foreach ($files as $file){
+				$rawData = array();
+				if ($file instanceof CUploadedFile){
+					// Create a random name and path here...
+					$tmpFiles[$file->getName()] = Yii::app()->assetManager->basePath . DIRECTORY_SEPARATOR . $file->getName();
+					$file->saveAs($filePath);
+					$fh = fopen($filePath, 'r');
+					$line = 0;
+					$header = fgetcsv($fh, 4096, $importModel->delimiter, $importModel->enclosure, $importModel->escape);
+					foreach ($header as $k => $v)
+						$header[$k] = @str_replace(array('-', '_', ' '), '', Transliteration::file(mb_convert_encoding($v, $importModel->encode_to, $importModel->encode_from)));
+					$columns[$file->getName()] = $header;
+					
+					// Process further if import is submit...
+					if (isset($_POST['import'])){
+						$line ++;
+						if (empty($header) OR is_null($header[0])) Yii::log("The file uploaded must have the first row as header", 'error');
+						else {
+							while ($row = fgetcsv($fh, 4096, $importModel->delimiter, $importModel->enclosure, $importModel->escape)){
+								$line++;
+								if (count($row) != count($header)) Yii::trace("Data in line #$line is malformed...", 'error');
+								else {
+									foreach ($row as $k => $v){
+										$attr[$header[$k]] = @mb_convert_encoding($v, $importModel->encode_to, $importModel->encode_from);
+									}
+									$rawData[] = $attr;
+								}
+							}
+						}
+					}
+					fclose($fh);
+					@unlink($filePath);
+					$dataModel[$file->getName()] = new CArrayDataProvider($rawData, array('keyField' => $header[0]));
+				} else throw new CHttpException(500, "Error processing uploaded file");
+			}
+		}
+		$this->render('devel', array('model' => $importModel, 'dataModel' => $dataModel, 'columns' => $columns, 'tmpFiles' => $tmpFiles));
+	}
 }

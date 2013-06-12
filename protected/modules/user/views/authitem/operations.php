@@ -1,8 +1,8 @@
 <?php $this->breadcrumbs = array(
-	Yii::t('user', 'Rights')=>Rights::getBaseUrl(),
+	Yii::t('user','User')	=>	array('/user/admin'),
+	Yii::t('user','Authitem')	=>	array('/user/authitem'),
 	Yii::t('user', 'Operations'),
 ); ?>
-
 <div id="operations">
 
 	<h1><?php echo $this->pageTitle = Yii::t('user', 'Operations'); ?></h1>
@@ -12,9 +12,6 @@
 		<?php echo Yii::t('user', 'Operations exist below tasks in the authorization hierarchy and can therefore only inherit from other operations.'); ?>
 	</p>
 
-	<p><?php echo CHtml::link(Yii::t('user', 'Create a new operation'), array('authItem/create', 'type'=>CAuthItem::TYPE_OPERATION), array(
-		'class'=>'add-operation-link',
-	)); ?></p>
 
 	<?php $this->widget('zii.widgets.grid.CGridView', array(
 	    'dataProvider'=>$dataProvider,

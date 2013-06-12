@@ -1,7 +1,5 @@
 <?php $this->breadcrumbs = array(
-	Yii::t('user', 'Rights') =>Rights::getBaseUrl(),
-	Yii::t('user', 'Assignments')=>array('assignment/view'),
-	$model->getName(),
+	Yii::t('user','User')	=>	array('/user/user'),
 ); ?>
 
 <div id="userAssignments">

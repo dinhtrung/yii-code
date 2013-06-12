@@ -1,5 +1,6 @@
 <?php $this->breadcrumbs = array(
-	Yii::t('user', 'Rights') =>Rights::getBaseUrl(),
+	Yii::t('user','User')	=>	array('/user/admin'),
+	Yii::t('user','Authitem')	=>	array('/user/authitem'),
 	Yii::t('user', 'Tasks'),
 ); ?>
 <div id="tasks">
@@ -10,10 +11,6 @@
 		<?php echo Yii::t('user', 'A task is a permission to perform multiple operations, for example accessing a group of controller action.'); ?><br />
 		<?php echo Yii::t('user', 'Tasks exist below roles in the authorization hierarchy and can therefore only inherit from other tasks and/or operations.'); ?>
 	</p>
-
-	<p><?php echo CHtml::link(Yii::t('user', 'Create a new task'), array('authItem/create', 'type'=>CAuthItem::TYPE_TASK), array(
-		'class'=>'add-task-link',
-	)); ?></p>
 
 	<?php $this->widget('zii.widgets.grid.CGridView', array(
 	    'dataProvider'=>$dataProvider,

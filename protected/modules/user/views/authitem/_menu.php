@@ -19,10 +19,24 @@ $this->menu['roles'] = array(
 $this->menu['tasks'] = array(
 		'label' => Yii::t('user', 'Tasks'),
 		'url'=>array('/user/authitem/tasks'),
-		'visible' => Yii::app()->user->checkAccess('User.Authitem.Tasks')
+		'visible' => Yii::app()->user->checkAccess('User.Authitem.Tasks'),
+		'items'	=>	array(
+				array(
+						'label' => Yii::t('user', 'Create Tasks'),
+						'url'=>array('/user/authitem/create', 'type' => CAuthItem::TYPE_TASK),
+						'visible' => Yii::app()->user->checkAccess('User.Authitem.Create.Tasks')
+				)
+		),
 );
 $this->menu['operations'] = array(
 		'label' => Yii::t('user', 'Operations'),
 		'url'=>array('/user/authitem/operations'),
-		'visible' => Yii::app()->user->checkAccess('User.Authitem.Operations')
+		'visible' => Yii::app()->user->checkAccess('User.Authitem.Operations'),
+		'items'	=>	array(
+				array(
+						'label' => Yii::t('user', 'Create Operations'),
+						'url'=>array('/user/authitem/create', 'type' => CAuthItem::TYPE_OPERATION),
+						'visible' => Yii::app()->user->checkAccess('User.Authitem.Create.Operations')
+				)
+		),
 );
