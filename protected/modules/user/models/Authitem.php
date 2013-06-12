@@ -27,6 +27,7 @@ class Authitem extends BaseActiveRecord
 	public function rules()
 	{
 		return array_merge(parent::rules(), array(
+			array('name', 'unique'),
 			array('users, authassignments', 'safe', 'on' => 'insert,update'),
 		));
 	}
