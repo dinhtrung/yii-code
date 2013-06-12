@@ -2,9 +2,6 @@
 
 class Authitem extends BaseActiveRecord
 {
-	public function connectionId(){
-		return Yii::app()->hasComponent('rightsDb')?'rightsDb':'db';
-	}
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -32,6 +29,11 @@ class Authitem extends BaseActiveRecord
 		));
 	}
 
+	public function defaultScope(){
+		return array(
+			'order' => 'name ASC',	
+		);
+	}
 
 	public function attributeLabels()
 	{

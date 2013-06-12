@@ -3,9 +3,7 @@
 class Authitemchild extends BaseActiveRecord
 {
 	public $itemname;
-	public function connectionId(){
-		return Yii::app()->hasComponent('rightsDb')?'rightsDb':'db';
-	}
+
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);

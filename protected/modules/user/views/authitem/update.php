@@ -1,6 +1,6 @@
 <?php $this->breadcrumbs = array(
-	Yii::t('user', 'Rights')=>Rights::getBaseUrl(),
-	Rights::getAuthItemTypeNamePlural($model->type)=>Rights::getAuthItemRoute($model->type),
+	Yii::t('user', 'User')=>array('/user/admin'),
+	Yii::t('user', 'Authitem') => Rights::getAuthItemRoute($model->type),
 	$model->name,
 ); ?>
 <?php $this->renderPartial('_menu', array('model'=>$formModel)); ?>

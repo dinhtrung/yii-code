@@ -46,9 +46,16 @@ class RightsFilter extends CFilter
 				// Check if the user has access to the controller action
 				if( $user->checkAccess($this->authItem)!==true ){
 					$allow = false;
-					// Add missing authItem
-					$item = Yii::app()->authManager->createAuthItem($this->authItem, CAuthItem::TYPE_OPERATION, NULL, NULL);
 				}
+			}
+			
+			// Add missing authItem on development environment...
+			if (YII_DEBUG){
+				$item = new Authitem();
+				$item->name = ($module = $controller->getModule())?((ucfirst($module->id))."." . ucfirst($controller->id) . "." . $action->id):(ucfirst($controller->id) . "." . $action->id);
+				$item->type = CAuthItem::TYPE_OPERATION;
+				$item->data = serialize(NULL);
+				$item->save();
 			}
 		}
 		
