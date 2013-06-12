@@ -21,11 +21,16 @@ class UcbController extends WebBaseController
 	public function actionIndex()
 	{
 		$this->layout = '//layouts/column1';
-		$model=Ucb::getModel(Yii::app()->request->getParam('suffix'));
+		$suffix = NULL;
+		if (isset($_GET['Ucb']['data_timestamp']))
+			$suffix = substr(str_replace('-', '', $_GET['Ucb']['data_timestamp']), 0, 6);
+		$model = Ucb::getModel($suffix);
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Ucb']))
-			$model->attributes=$_GET['Ucb'];
-
+		if(isset($_GET['Ucb'])){
+			$model->setAttributes($_GET['Ucb']);
+			CVarDumper::dump($_GET['Ucb'], 10, TRUE);
+			CVarDumper::dump($suffix, 10, TRUE);
+		}
 		$this->render('admin',array(
 			'model'=>$model,
 		));

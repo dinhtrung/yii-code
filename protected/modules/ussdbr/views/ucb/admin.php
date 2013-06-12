@@ -14,41 +14,19 @@ $this->breadcrumbs=array(
 
 ?>
 
-<h1><?php echo Yii::t('app', 'UCB Reports: %suffix', array('%suffix' => $model->tableName())); ?></h1>
+<h1><?php echo Yii::t('app', 'UCB Reports'); ?></h1>
 
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<div class="form wide">
+<p class="desc">Nhập thời gian vào ô lọc dữ liệu để xem theo ngày tháng. Định dạng thời gian là <em>YYYY-MM-DD</em>. </p>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'ucb-search-form',
 	'enableAjaxValidation'=>false,
 )); ?>
-<div class="span-8">
-	<div class="row">
-		<?php echo $form->labelEx($model,'tableSuffix'); ?>
-		<?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-	 			'name' 	=> 'suffix',
-				'value'	=>	$model->tableSuffix,
-				'options'	=>	array('dateFormat' => 'yymm'),
-	  )); ?>
-	</div>
-</div>
-<div class="span-5">
-	<div class="row buttons">
+	<div class="row column">
 		<?php echo CHtml::dropDownList('export', '', $types); ?>
-	</div>
-</div>
-<div class="span-2 last">
-	<div class="row buttons">
 		<?php echo CHtml::submitButton('Gửi'); ?>
 	</div>
-</div>
 <?php $this->endWidget(); ?>
-<hr class="clearfix">
 
 
 <?php 
