@@ -17,7 +17,7 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
-  'UCB Reports: %suffix' => '',
+  'UCB Reports' => '',
   'Admin' => 'Quản lý',
   'Advanced Search' => 'Tìm kiếm nâng cao',
   'Attached' => '',
@@ -57,6 +57,7 @@ return array (
   'Theme' => 'Giao diện',
   'Title' => 'Tiêu đề',
   'Type' => '',
+  'UCB Reports: %suffix' => '',
   'Update' => 'Cập nhật',
   'View' => 'Xem',
   'Viewfile' => '',

@@ -47,7 +47,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 					'campaign_id',
 		*/
 		array(
-			'class'=>'EButtonColumnWithClearFilters',
+			'class'=>'EButtonColumn',
 						'template' => implode(' ', $btn),
 		),
 	),

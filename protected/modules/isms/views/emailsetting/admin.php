@@ -27,7 +27,7 @@ if (Yii::app()->getUser()->checkAccess('Isms.Emailsetting.Delete')) $btn[] = '{d
 		'email',
 		'option',
 		array(
-			'class'=>'EButtonColumnWithClearFilters',
+			'class'=>'EButtonColumn',
 			'template'	=>	implode(' ', $btn),
 		),
 	),

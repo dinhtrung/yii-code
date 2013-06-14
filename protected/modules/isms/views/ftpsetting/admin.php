@@ -25,7 +25,7 @@ if (Yii::app()->getUser()->checkAccess('Isms.Ftpsetting.Delete')) $btn[] = '{del
 		'hostname',
 		'username',
 		array(
-			'class'=>'EButtonColumnWithClearFilters',
+			'class'=>'EButtonColumn',
 			'template'	=>	implode(' ', $btn),
 		),
 	),

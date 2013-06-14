@@ -23,7 +23,7 @@ if (Yii::app()->getUser()->checkAccess('Isms.Worktime.Delete')) $btn[] = '{delet
 		'start',
 		'end',
 		array(
-			'class'=>'EButtonColumnWithClearFilters',
+			'class'=>'EButtonColumn',
 			'template'	=>	implode(' ', $btn),
 		),
 	),

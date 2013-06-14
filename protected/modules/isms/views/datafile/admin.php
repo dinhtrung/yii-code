@@ -30,7 +30,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 					'filemime',
 		*/
 		array(
-			'class'=>'EButtonColumnWithClearFilters',
+			'class'=>'EButtonColumn',
 						'template' => implode(' ', $btn),
 		),
 	),

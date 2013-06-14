@@ -1,13 +1,13 @@
 <?php
 /**
- * EButtonColumnWithClearFilters class file.
+ * EButtonColumn class file.
  *
  * @author Marton Kodok http://www.yiiframework.com/forum/index.php?/user/8824-pentium10/
  * @link http://www.yiiframework.com/
  * @version 1.0
  */
 
-/* The EButtonColumnWithClearFilters extension adds up some functionality to the default
+/* The EButtonColumn extension adds up some functionality to the default
 * possibilites of zii�s CButtonColumn implementation.
 *
 * An image will be placed in the top column(on same line of AJAX filters). When clicked
@@ -15,12 +15,12 @@
 *
 *
 * To use this extension, just copy this file to your components/ directory,
-* add 'import' => 'application.components.EButtonColumnWithClearFilters', [...] to your
+* add 'import' => 'application.components.EButtonColumn', [...] to your
 * config/main.php and use this column on each widget's Column array you would like to
 * inherit the new possibilities:
 *
 * array(
-*   'class'=>'EButtonColumnWithClearFilters',
+*   'class'=>'EButtonColumn',
 *   //'clearVisible'=>true,
 *   //'onClick_BeforeClear'=>'alert('this js fragment executes before clear');',
 *   //'onClick_AfterClear'=>'alert('this js fragment executes after clear');',

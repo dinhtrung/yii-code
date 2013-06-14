@@ -138,7 +138,7 @@ if (Yii::app()->getUser()->checkAccess('Isms.Campaign.Delete')) $btn[] = '{delet
 		'ftpserver',
 		*/
 		array(
-			'class'=>'EButtonColumnWithClearFilters',
+			'class'=>'EButtonColumn',
 			'buttons' => $buttons,
 			'template'	=>	implode(' ', $btn),
 		),

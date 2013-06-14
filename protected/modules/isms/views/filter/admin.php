@@ -49,7 +49,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'refuse_count',
 		*/
 		array(
-			'class' => 'EButtonColumnWithClearFilters',
+			'class' => 'EButtonColumn',
 			'template' => implode(' ', $btn),
 		) ,
 	) ,

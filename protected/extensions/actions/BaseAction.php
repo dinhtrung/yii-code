@@ -82,7 +82,7 @@ abstract class BaseAction extends CViewAction
 					'content' => $this->getController()->renderPartial( $this->view, array(
 							'model' => $this->_model
 					),
-							true, true ),
+				true, true ),
 			));
 			Yii::app()->end();
 		} else {

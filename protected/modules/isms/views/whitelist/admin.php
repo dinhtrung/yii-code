@@ -50,7 +50,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		) ,
 		'isdn',
 		array(
-			'class' => 'EButtonColumnWithClearFilters',
+			'class' => 'EButtonColumn',
 			'template'	=>	implode(' ', $btn),
 		) ,
 	) ,

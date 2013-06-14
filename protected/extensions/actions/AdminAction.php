@@ -25,7 +25,7 @@ class AdminAction extends BaseAction
 		$this->_model->setScenario('search');
 		$this->_model->setRememberScenario('search');
 		if (intval(Yii::app()->request->getParam('clearFilters'))==1) {
-			EButtonColumnWithClearFilters::clearFilters($this->getController(),$this->_model);
+			EButtonColumn::clearFilters($this->getController(),$this->_model);
 		}
 	}
 	/**

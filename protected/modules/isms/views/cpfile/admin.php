@@ -25,7 +25,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'f',
 		'status',
 		array(
-			'class'=>'EButtonColumnWithClearFilters',
+			'class'=>'EButtonColumn',
 			'viewButtonUrl' => 'Yii::app()->controller->createUrl("view",$data->primaryKey)',
 			'updateButtonUrl' => 'Yii::app()->controller->createUrl("update",$data->primaryKey)',
 			'deleteButtonUrl' => 'Yii::app()->controller->createUrl("delete",$data->primaryKey)',

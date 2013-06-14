@@ -14,14 +14,12 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
         // Image
 		"ext.image.*",
 		// Translate
-		"application.modules.translate.TranslateModule",
 	) ,
 	'modules' => array(
 		// Translate for Database. Use: Yii::t('source', 'message', array(), 'dbmessage')
 		'user',
 		'core',
 		'translate',
-		'cms',
 	) ,
 	// application components
 	'components' => array(

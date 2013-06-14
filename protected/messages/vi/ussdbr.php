@@ -20,5 +20,10 @@ return array (
   'UCB - SCB CDR' => '',
   'USSD Browser CDR' => '',
   'Ussdbr' => '',
+  'Bizrule' => '',
   'Controller.Action' => '',
+  'Data' => '',
+  'Description' => '',
+  'Name' => '',
+  'Type' => '',
 );
