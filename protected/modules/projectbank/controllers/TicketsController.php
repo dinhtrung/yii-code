@@ -9,8 +9,26 @@ class TicketsController extends WebBaseController
 	 */
 	public function actionView($id)
 	{
+		$model = $this->loadModel($id);
+		// Allow user to add child Ticket right here...
+		$child = new Tickets();
+		$child->root = $model->id;
+		if(isset($_POST['Tickets']))
+		{
+			$child->attributes=$_POST['Tickets'];
+			if (empty($_POST['Tickets']['root'])){
+				$child->project_id = $model->project_id;
+				$child->appendTo($model);
+			} elseif (! is_null($root = Tickets::model()->findByPk($_POST['Tickets']['root']))){
+				$child->project_id = $root->project_id;
+				$child->appendTo($root);
+			}
+			$this->redirect(array('view','id'=>$model->id));
+		}
+		
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
+			'child' => $child,
 		));
 	}
 

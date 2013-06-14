@@ -44,6 +44,9 @@ $this->menu=array(
 		'updatetime:datetime',
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
+			'viewButtonUrl'	=>	'array("tickets/view", "id" => $data->id)',
+			'updateButtonUrl'	=>	'array("tickets/update", "id" => $data->id)',
+			'deleteButtonUrl'	=>	'array("tickets/delete", "id" => $data->id)',
 		),
 	),
 )); ?>

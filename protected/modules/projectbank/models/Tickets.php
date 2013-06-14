@@ -88,7 +88,7 @@ class Tickets extends BaseActiveRecord
 		if (is_null($rootNode)) {
 			$rootNodes = self::model()->roots()->findAll();
 			foreach ($rootNodes as $rootNode){
-				$output[] = self::getOptions($rootNode);
+				$output += self::getOptions($rootNode);
 			}
 		} elseif ($rootNode instanceof Tickets){
 			$output[$rootNode->id] = str_repeat('-', $rootNode->level) . $rootNode->title;

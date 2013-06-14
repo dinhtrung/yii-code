@@ -17,6 +17,25 @@ $this->menu=array(
 
 <?php $this->beginWidget('CMarkdown'); ?><?php echo CHtml::encode($model->body); ?><?php $this->endWidget(); ?>
 
+<?php $this->beginWidget('bootstrap.widgets.TbModal', array('id'=>'tickets-reply')); ?>
+	<div class="modal-header">
+	    <a class="close" data-dismiss="modal">&times;</a>
+	    <h4><?php echo Yii::t("projectbank", "Post A Reply")?></h4>
+	</div>
+	<?php $this->renderPartial("_childForm", array("model" => $child)); ?>
+ 
+<?php $this->endWidget(); ?>
+
+<?php $this->widget('bootstrap.widgets.TbButton', array(
+    'label'=>Yii::t('projectbank', 'New Message'),
+    'type'=>'primary',
+    'htmlOptions'=>array(
+        'data-toggle'=>'modal',
+        'data-target'=>'#tickets-reply',
+    ),
+)); ?>
+
+
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
 	'attributes'=>array(
@@ -26,3 +45,10 @@ $this->menu=array(
 		'project:html',
 	),
 )); ?>
+
+<div class="children offset1">
+	<?php $this->widget('bootstrap.widgets.TbListView',array(
+		'dataProvider'=>new CActiveDataProvider($model->children()),
+		'itemView'=>'_view',
+	)); ?>
+</div>

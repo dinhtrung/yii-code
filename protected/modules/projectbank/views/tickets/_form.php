@@ -13,7 +13,7 @@
 
 	<?php echo $form->dropDownListRow($model,'project_id', Projects::getOptions()); ?>
 
-	<?php echo $form->dropDownListRow($model,'root', Tickets::getOptions()); ?>
+	<?php echo $form->dropDownListRow($model,'root', array('' => Yii::t('projectbank', '-- Select Hierarchy --')) + Tickets::getOptions()); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

@@ -24,9 +24,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'title',
-		'description:ntext',
-		'createtime:datetime',
+		array(
+			'name' => 'title',
+			'value'	=>	'CHtml::link($data->title, array("view", "id" => $data->id), array("rel" => "tooltip", "title" => $data->description))',
+			'type'	=>	'raw',
+		),
 		'updatetime:datetime',
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
