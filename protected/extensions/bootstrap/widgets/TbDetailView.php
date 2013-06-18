@@ -1,29 +1,25 @@
 <?php
 /**
  * TbDetailView class file.
+ * @author Antonio Ramirez <ramirez.cobos@gmail.com>
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
- * @copyright Copyright &copy; Christoffer Niska 2011-
+ * @copyright Copyright &copy; Christoffer Niska 2013-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @package bootstrap.widgets
  */
 
+Yii::import('bootstrap.helpers.TbHtml');
 Yii::import('zii.widgets.CDetailView');
 
-/**
- * Bootstrap Zii detail view.
- */
 class TbDetailView extends CDetailView
 {
-	// Table types.
-	const TYPE_STRIPED = 'striped';
-	const TYPE_BORDERED = 'bordered';
-	const TYPE_CONDENSED = 'condensed';
 
 	/**
 	 * @var string|array the table type.
-	 * Valid values are 'striped', 'bordered' and/or 'condensed'.
+	 * Valid values are TbHtml::GRID_STRIPED, TbHtml::GRID_BORDERED and/or TbHtml::GRID_CONDENSED.
 	 */
-	public $type = array(self::TYPE_STRIPED, self::TYPE_CONDENSED);
+	public $type = array(TbHtml::GRID_STRIPED, TbHtml::GRID_CONDENSED);
+
 	/**
 	 * @var string the URL of the CSS file used by this detail view.
 	 * Defaults to false, meaning that no CSS will be included.
@@ -39,30 +35,19 @@ class TbDetailView extends CDetailView
 
 		$classes = array('table');
 
-		if (isset($this->type))
+		if (isset($this->type) && !empty($this->type))
 		{
 			if (is_string($this->type))
 				$this->type = explode(' ', $this->type);
 
-			$validTypes = array(self::TYPE_STRIPED, self::TYPE_BORDERED, self::TYPE_CONDENSED);
-
-			if (!empty($this->type))
+			$validTypes = array(TbHtml::GRID_BORDERED, TbHtml::GRID_CONDENSED, TbHtml::GRID_STRIPED);
+			foreach ($this->type as $type)
 			{
-				foreach ($this->type as $type)
-				{
-					if (in_array($type, $validTypes))
-						$classes[] = 'table-'.$type;
-				}
+				if (in_array($type, $validTypes))
+					$classes[] = 'table-' . $type;
 			}
 		}
 
-		if (!empty($classes))
-		{
-			$classes = implode(' ', $classes);
-			if (isset($this->htmlOptions['class']))
-				$this->htmlOptions['class'] .= ' '.$classes;
-			else
-				$this->htmlOptions['class'] = $classes;
-		}
+		$this->htmlOptions = TbHtml::addClassName(implode(' ', $classes), $this->htmlOptions);
 	}
 }

@@ -1,63 +1,66 @@
 <?php
 /**
  * TbCollapse class file.
- * @author Christoffer Niska <ChristofferNiska@gmail.com>
- * @copyright Copyright &copy; Christoffer Niska 2012-
+ * @author Christoffer Niska <christoffer.niska@gmail.com>
+ * @copyright Copyright &copy; Christoffer Niska 2013-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @package bootstrap.widgets
- * @since 1.0.0
  */
+
+Yii::import('bootstrap.helpers.TbHtml');
+Yii::import('bootstrap.widgets.TbWidget');
 
 /**
  * Bootstrap collapse widget.
  * @see http://twitter.github.com/bootstrap/javascript.html#collapse
  */
-class TbCollapse extends CWidget
+class TbCollapse extends TbWidget
 {
-	const CONTAINER_PREFIX = 'yii_bootstrap_collapse_';
-
 	/**
-	 * @var string the name of the collapse element. Defaults to 'div'.
+	 * @var string the HTML tag for the container.
 	 */
 	public $tagName = 'div';
 	/**
-	 * @var boolean the CSS selector for element to collapse. Defaults to 'false'.
+	 * @var string the content text or path to a partial view with the content.
 	 */
-	public $parent = false;
+	public $content;
 	/**
-	 * @var boolean indicates whether to toggle the collapsible element on invocation.
+	 * @var string the CSS selector for the parent element.
 	 */
-	public $toggle = true;
+	public $parent;
 	/**
-	 * @var array the options for the Bootstrap Javascript plugin.
+	 * @var boolean whether to be collapsed on invocation.
 	 */
-	public $options = array();
+	public $toggle;
 	/**
-	 * @var string[] the Javascript event handlers.
+	 * @var string[] $events the JavaScript event configuration (name=>handler).
 	 */
 	public $events = array();
 	/**
-	* @var array the HTML attributes for the widget container.
-	*/
+	 * @var array the HTML attributes for the container.
+	 */
 	public $htmlOptions = array();
-
-	private static $_containerId = 0;
+	/**
+	 * @var array additional data to be passed to the view.
+	 */
+	public $viewData = array();
 
 	/**
 	 * Initializes the widget.
 	 */
 	public function init()
 	{
-		if (!isset($this->htmlOptions['id']))
-			$this->htmlOptions['id'] = $this->getId();
-
-		if (isset($this->parent) && !isset($this->options['parent']))
-			$this->options['parent'] = $this->parent;
-
-		if (isset($this->toggle) && !isset($this->options['toggle']))
-			$this->options['toggle'] = $this->toggle;
-
-		echo CHtml::openTag($this->tagName, $this->htmlOptions);
+		$this->htmlOptions = TbHtml::defaultOption('id', $this->getId(), $this->htmlOptions);
+		$this->htmlOptions = TbHtml::addClassName('collapse', $this->htmlOptions);
+		$this->htmlOptions['data-toggle'] = 'collapse';
+		if (isset($this->parent))
+			$this->htmlOptions = TbHtml::defaultOption('data-parent', $this->parent, $this->htmlOptions);
+		if (isset($this->toggle) && $this->toggle)
+			$this->htmlOptions = TbHtml::addClassName('in', $this->htmlOptions);
+		$controller = $this->getController();
+		if (isset($controller) && $controller->getViewFile($this->content) !== false)
+			$this->content = $this->controller->renderPartial($this->content, $this->viewData, true);
+		echo CHtml::tag($this->tagName, $this->htmlOptions, $this->content);
 	}
 
 	/**
@@ -65,30 +68,7 @@ class TbCollapse extends CWidget
 	 */
 	public function run()
 	{
-		$id = $this->htmlOptions['id'];
-
-		echo CHtml::closeTag($this->tagName);
-
-		/** @var CClientScript $cs */
-		$cs = Yii::app()->getClientScript();
-		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-		$cs->registerScript(__CLASS__.'#'.$id, "jQuery('#{$id}').collapse({$options});");
-
-		foreach ($this->events as $name => $handler)
-		{
-			$handler = CJavaScript::encode($handler);
-			$cs->registerScript(__CLASS__.'#'.$id.'_'.$name, "jQuery('#{$id}').on('{$name}', {$handler});");
-		}
-	}
-
-	/**
-	 * Returns the next collapse container ID.
-	 * @return string the id
-	 * @static
-	 */
-	public static function getNextContainerId()
-	{
-		return self::CONTAINER_PREFIX.self::$_containerId++;
+		$selector = '#' . $this->htmlOptions['id'];
+		$this->registerEvents($selector, $this->events);
 	}
 }
-
