@@ -6,13 +6,13 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
-Yii::import('bootstrap.widgets.TbWidget');
+Yii::import('bootstrap.behaviors.TbWidget');
 
 /**
  * Bootstrap scrollspy widget.
  * @see http://twitter.github.com/bootstrap/javascript.html#scrollspy
  */
-class TbScrollspy extends TbWidget
+class TbScrollspy extends CWidget
 {
 	/**
 	 * @var string the CSS selector for the scrollspy element.
@@ -30,6 +30,14 @@ class TbScrollspy extends TbWidget
 	 * @var string[] $events the JavaScript event configuration (name=>handler).
 	 */
 	public $events = array();
+
+    /**
+     * Initializes the widget.
+     */
+    public function init()
+    {
+        $this->attachBehavior('TbWidget', new TbWidget);
+    }
 
 	/**
 	 * Runs the widget.

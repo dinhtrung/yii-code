@@ -19,6 +19,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'weba
 		) ,
 		'blog',
 		'ussdbr',
+		'projectbank',
 	) ,
 	'components' => array(
 		'ussdbrDb'=>array(
@@ -28,6 +29,15 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'weba
 				'username' => 'root',
 				'password' => 'myroot',
 				'charset' => 'utf8',
+		),
+		'projectbankDb'=>array(
+				'class'	=>	'CDbConnection',
+				'connectionString' => 'mysql:host=localhost;dbname=test',
+				'emulatePrepare' => true,
+				'username' => 'root',
+				'password' => 'myroot',
+				'charset' => 'utf8',
+				'tablePrefix'	=>	'pb_',
 		),
 	)
 ));

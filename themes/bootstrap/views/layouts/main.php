@@ -7,41 +7,46 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/styles.css" />
 
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<title><?php echo CHtml::encode(Yii::app()->name); ?> :: <?php echo CHtml::encode(strip_tags($this->pageTitle)); ?></title>
 
 	<?php Yii::app()->bootstrap->register(); ?>
 </head>
 
 <body>
 
-<?php $this->widget('bootstrap.widgets.TbNavbar',array(
-    'items'=>array(
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'items'=>$this->mainMenu,
-        ),
-    ),
-)); ?>
+<?php
+echo TbHtml::codeBlock(var_export($this->mainMenu, TRUE));
+
+ $this->widget('bootstrap.widgets.TbNavbar', array(
+    'brandLabel' => Yii::app()->name,
+	'display' => NULL,
+    'items' =>  array(
+		array(
+			'class' => 'bootstrap.widgets.TbNav',
+			'items' => $this->mainMenu, 
+			), 
+		)
+	)
+); ?>
 
 <div class="container" id="page">
 
 	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
+		<?php echo TbHtml::breadcrumbs($this->breadcrumbs); ?><!-- breadcrumbs -->
 	<?php endif?>
 
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
 
-	<div id="footer">
+</div><!-- page -->
+
+<div id="footer">
+	<div class="container">
 		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?>
-	</div><!-- footer -->
-
-</div><!-- page -->
-
+	</div>
+</div><!-- footer -->
 </body>
 </html>

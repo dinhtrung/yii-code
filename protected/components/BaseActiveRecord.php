@@ -52,7 +52,7 @@ class BaseActiveRecord extends MultiActiveRecord {
 
 	public function  __toString() {
 		if (Yii::app() instanceof CWebApplication){
-			return CVarDumper::dumpAsString($this->getAttributes(), 3, TRUE);
+			return '(' . $this->getScenario() . ') '. CVarDumper::dumpAsString($this->getAttributes(), 3, TRUE);
 		} else {
 			return CVarDumper::dumpAsString($this->getAttributes(), 3, FALSE);
 		}
@@ -384,5 +384,17 @@ class BaseActiveRecord extends MultiActiveRecord {
     		$name=$rawName.($i++);
 
     	return $name;
+    }
+    /**
+     * Generate a CHtml::listData to use in dropDownList or checkBoxList
+     * @param string $required
+     * @param string $condition
+     * @return Ambigous <multitype:, multitype:unknown mixed , mixed, multitype:mixed >|number
+     */
+    public static function getOptions($required = TRUE, $condition = NULL){
+    	if ($required)
+    		return CHtml::listData(self::model()->findAll($condition), 'id', 'title');
+    	else
+    		return array('' => Yii::t('projectbank', '-- Select Project --')) + self::getOptions(TRUE);
     }
 }

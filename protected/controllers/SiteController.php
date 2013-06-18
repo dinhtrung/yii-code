@@ -21,17 +21,6 @@ class SiteController extends WebBaseController
 			'page'=>array(
 				'class'=>'CViewAction',
 			),
-			'fileManager'=>array(
-                'class'=>'ext.elfinder.ElFinderAction',
-            ),
-		/**
-		 * Provide Search through ESearch
-		 */
-            'search'=>array(
-                'class'=>'ext.esearch.SearchAction',
-                'model'=>'Node',
-				'attributes'	=>	array('title', 'tags', 'description'),
-			),
 		);
 	}
 
@@ -43,16 +32,15 @@ class SiteController extends WebBaseController
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		if (Yii::app()->getHomeUrl() == '/site/index')
+		if ((Yii::app()->getHomeUrl() == '') OR (Yii::app()->getHomeUrl() == '/site/index')) 
 			$this->render('index');
-// 		else
-// 			$this->forward(Yii::app()->getHomeUrl());
-		$this->render('index');
+ 		elseif (! empty(Yii::app()->homeUrl))
+ 			$this->forward(Yii::app()->getHomeUrl());
 	}
 
 	/**
 	 * This is the action to handle external exceptions.
-	 */
+	 *
 	public function actionError()
 	{
 	    if($error=Yii::app()->errorHandler->error)
@@ -100,19 +88,6 @@ class SiteController extends WebBaseController
 		} else {
 			Yii::app()->getUser()->setState("language", $_GET['lang']);
 			$this->redirect(Yii::app()->getUser()->getReturnUrl());
-		}
-	}
-	/**
-	 * Simple support for search
-	 * Only search nodes for titles
-	 * @see Gtel layouts/main.php for view
-	 */
-	public function actionSearch(){
-		if (! isset($_GET['q'])) throw new CHttpException(404, Yii::t('app', "The requested page was not found."));
-		else {
-			$model = new Node("search");
-			$model->title = $_GET['q'];
-			$this->render('search', array('model' => $model));
 		}
 	}
 

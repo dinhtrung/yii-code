@@ -7,12 +7,12 @@
  * @package bootstrap.widgets
  */
 
-Yii::import('bootstrap.widgets.TbWidget');
+Yii::import('bootstrap.behaviors.TbWidget');
 
 /**
  * Class TbModal
  */
-class TbModal extends TbWidget
+class TbModal extends CWidget
 {
 
 	/**
@@ -116,6 +116,8 @@ class TbModal extends TbWidget
 	 */
 	public function init()
 	{
+        $this->attachBehavior('TbWidget', new TbWidget);
+
 		$this->htmlOptions = TbHtml::defaultOption('id', $this->getId(), $this->htmlOptions);
 		$this->htmlOptions = TbHtml::defaultOption('role', 'dialog', $this->htmlOptions);
 		$this->htmlOptions = TbHtml::defaultOption('tabindex', '-1', $this->htmlOptions);
@@ -123,6 +125,9 @@ class TbModal extends TbWidget
 		$this->htmlOptions = TbHtml::addClassName('modal hide', $this->htmlOptions);
 		if($this->fade)
 			$this->htmlOptions = TbHtml::addClassName('fade', $this->htmlOptions);
+
+        if (is_array($this->footer))
+            $this->footer = implode('&nbsp;', $this->footer);
 
 		$this->initOptions();
 		$this->initEvents();
@@ -133,18 +138,19 @@ class TbModal extends TbWidget
 	 */
 	public function initEvents()
 	{
-		foreach(array('onShow', 'onShown', 'onHide', 'onHidden') as $event)
-		{
-			if($this->$event!==null)
-			{
-				$modalEvent = strtolower(substr($event, 2));
-
-				if($this->$event instanceof CJavaScriptExpression)
-					$this->events[$modalEvent]=$this->$event;
-				else
-					$this->events[$modalEvent]=new CJavaScriptExpression($this->$event);
-			}
-		}
+        foreach (array('onShow', 'onShown', 'onHide', 'onHidden') as $event)
+        {
+            if ($this->$event !== null)
+            {
+                $modalEvent = strtolower(substr($event, 2));
+                if ($this->$event instanceof CJavaScriptExpression)
+                {
+                    $this->events[$modalEvent] = $this->$event;
+                } else {
+                    $this->events[$modalEvent] = new CJavaScriptExpression($this->$event);
+                }
+            }
+        }
 	}
 
 	/**
@@ -184,13 +190,9 @@ class TbModal extends TbWidget
 				$this->buttonOptions = TbHtml::defaultOption('data-remote', CHtml::normalizeUrl($this->remote), $this->buttonOptions);
 
 			$selector = '#' . $this->htmlOptions['id'];
-
 			$label = TbHtml::popOption('label', $this->buttonOptions, 'button');
-
 			$attr = isset($this->buttonOptions['data-remote']) ? 'data-target' : 'href';
-
 			$this->buttonOptions = TbHtml::defaultOption($attr, $selector, $this->buttonOptions);
-
 			echo TbHtml::button($label, $this->buttonOptions);
 		}
 	}
@@ -200,7 +202,7 @@ class TbModal extends TbWidget
  	 */
 	public function renderModal()
 	{
-		echo CHtml::openTag('div', $this->htmlOptions) . PHP_EOL;
+		echo TbHtml::openTag('div', $this->htmlOptions) . PHP_EOL;
 
 		$this->renderModalHeader();
 		$this->renderModalBody();
@@ -217,7 +219,7 @@ class TbModal extends TbWidget
 		echo '<div class="modal-header">' . PHP_EOL;
 		if($this->closeText)
 			echo TbHtml::closeButton($this->closeText, array('data-dismiss'=>'modal'));
-		echo $this->header;
+		echo TbHtml::tag('h3', array(), $this->header);
 		echo '</div>' . PHP_EOL;
 	}
 

@@ -1,5 +1,9 @@
 <?php
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main.php') , array(
+	'theme' => 'bootstrap',
+ 	'homeUrl'	=>	'user/profile',
+	'preload' => array('bootstrap'),
 	// autoloading model and component classes
 	'import' => array(
 		// Yii-user
@@ -14,6 +18,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
         // Image
 		"ext.image.*",
 		// Translate
+		'bootstrap.helpers.*',
 	) ,
 	'modules' => array(
 		// Translate for Database. Use: Yii::t('source', 'message', array(), 'dbmessage')
@@ -24,12 +29,7 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 	// application components
 	'components' => array(
 		'request' => array(
-			'enableCsrfValidation' => FALSE,
-		) ,
-		'input' => array(
-			'class' => 'ext.components.Input',
-			'cleanPost' => true,
-			'cleanGet' => true,
+			'enableCsrfValidation' => TRUE,
 		) ,
 		// Add XWebDebugRouter for Yii
 		'log' => array(
@@ -109,6 +109,9 @@ return CMap::mergeArray(require (dirname(__FILE__) . DIRECTORY_SEPARATOR . 'main
 							'htmlOptions'=>array('class'=>'button green'),
 						),
 				)
+		),
+		'bootstrap'=>array(
+				'class'=>'bootstrap.components.TbApi',
 		),
 	) ,
 ));

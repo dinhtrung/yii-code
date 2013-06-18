@@ -7,6 +7,7 @@
  * @package bootstrap.widgets
  */
 
+Yii::import('bootstrap.behaviors.TbWidget');
 Yii::import('bootstrap.helpers.TbHtml');
 
 /**
@@ -16,9 +17,9 @@ Yii::import('bootstrap.helpers.TbHtml');
 class TbNav extends CWidget
 {
 	/**
-	 * @var string the menu style.
+	 * @var string the menu type.
 	 */
-	public $style;
+	public $type;
 	/**
 	 * @var boolean whether the menu items should be stacked on top of each other.
 	 */
@@ -64,7 +65,8 @@ class TbNav extends CWidget
 	 */
 	public function init()
 	{
-		$this->htmlOptions = TbHtml::defaultOption('id', $this->getId(), $this->htmlOptions);
+        $this->attachBehavior('TbWidget', new TbWidget);
+        $this->copyId();
 		$route = $this->controller->getRoute();
 		if ($this->stacked)
 			$this->htmlOptions = TbHtml::addClassName('nav-stacked', $this->htmlOptions);
@@ -83,7 +85,7 @@ class TbNav extends CWidget
 	public function run()
 	{
 		if (!empty($this->items))
-			echo TbHtml::nav($this->style, $this->items, $this->htmlOptions);
+			echo TbHtml::nav($this->type, $this->items, $this->htmlOptions);
 	}
 
 	/**

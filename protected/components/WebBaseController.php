@@ -61,7 +61,7 @@ abstract class WebBaseController extends BaseController
 
 		$this->siteName = Yii::app()->name = Yii::app()->setting->get('website', 'siteName', Yii::app()->name);
 		$this->siteSlogan = Yii::app()->setting->get('website', 'siteSlogan');
-		Yii::app()->setHomeUrl(Yii::app()->setting->get('website', 'homeUrl', 'core/node'));
+		// Yii::app()->setHomeUrl(Yii::app()->setting->get('website', 'homeUrl', 'core/node'));
 
 		$this->layout = Yii::app()->setting->get('website', 'layout', '//layouts/column2');
 		Yii::app()->theme = Yii::app()->setting->get('website', 'theme', 'classic');

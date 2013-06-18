@@ -7,13 +7,13 @@
  * @package bootstrap.widgets
  */
 
-Yii::import('bootstrap.widgets.TbWidget');
+Yii::import('bootstrap.behaviors.TbWidget');
 
 /**
  * Bootstrap alert widget.
  * @see http://twitter.github.com/bootstrap/javascript.html#alerts
  */
-class TbAlert extends TbWidget
+class TbAlert extends CWidget
 {
 	/**
 	 * @var array the alerts configurations (style=>config).
@@ -45,11 +45,19 @@ class TbAlert extends TbWidget
 	 */
 	public function init()
 	{
-		$this->htmlOptions = TbHtml::defaultOption('id', $this->getId(), $this->htmlOptions);
+        $this->attachBehavior('TbWidget', new TbWidget);
+        $this->copyId();
 		if (is_string($this->alerts))
 			$styles = explode(' ', $this->alerts);
 		else if (!isset($this->alerts))
-			$styles = TbHtml::$alertStyles; // render all styles by default
+        {
+			$styles = array(
+                TbHtml::ALERT_COLOR_SUCCESS,
+                TbHtml::ALERT_COLOR_WARNING,
+                TbHtml::ALERT_COLOR_INFO,
+                TbHtml::ALERT_COLOR_ERROR
+            ); // render all styles by default
+        }
 		if (isset($styles))
 		{
 			$this->alerts = array();
@@ -65,7 +73,7 @@ class TbAlert extends TbWidget
 	{
 		/* @var $user CWebUser */
 		$user = Yii::app()->getUser();
-		echo CHtml::openTag('div', $this->htmlOptions);
+		echo TbHtml::openTag('div', $this->htmlOptions);
 		foreach ($this->alerts as $style => $alert)
 		{
 			if (isset($alert['visible']) && !$alert['visible'])
