@@ -17,7 +17,7 @@
 <?php $this->widget('bootstrap.widgets.TbNavbar',array(
     'items'=>array(
         array(
-            'class'=>'bootstrap.widgets.TbMenu',
+            'class'=>'bootstrap.widgets.TbNav',
             'items'=>$this->mainMenu,
         ),
     ),
@@ -26,9 +26,7 @@
 <div class="container" id="page">
 
 	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
+		<?php TbHtml::breadcrumbs($this->breadcrumbs); ?>
 	<?php endif?>
 
 	<?php echo $content; ?>
