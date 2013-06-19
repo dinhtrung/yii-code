@@ -1,9 +1,14 @@
 <?php
 /**
  * The following variables are available in this template:
- * - $this: the BootCrudCode object
+ * - $this: the BootstrapCode object
  */
 ?>
+<?php echo "<?php\n"; ?>
+/* @var $this <?php echo $this->getControllerClass(); ?> */
+/* @var $data <?php echo $this->getModelClass(); ?> */
+?>
+
 <div class="view">
 
 <?php

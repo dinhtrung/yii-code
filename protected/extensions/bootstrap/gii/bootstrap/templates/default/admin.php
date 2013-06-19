@@ -1,9 +1,13 @@
 <?php
 /**
  * The following variables are available in this template:
- * - $this: the BootCrudCode object
+ * - $this: the BootstrapCode object
  */
 ?>
+<?php echo "<?php\n"; ?>
+/* @var $this <?php echo $this->getControllerClass(); ?> */
+/* @var $model <?php echo $this->getModelClass(); ?> */
+
 <?php
 echo "<?php\n";
 $label=$this->pluralize($this->class2name($this->modelClass));
@@ -14,8 +18,8 @@ echo "\$this->breadcrumbs=array(
 ?>
 
 $this->menu=array(
-	array('label'=>'List <?php echo $this->modelClass; ?>','url'=>array('index')),
-	array('label'=>'Create <?php echo $this->modelClass; ?>','url'=>array('create')),
+	array('label'=>'List <?php echo $this->modelClass; ?>', 'url'=>array('index')),
+	array('label'=>'Create <?php echo $this->modelClass; ?>', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -24,7 +28,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('<?php echo $this->class2id($this->modelClass); ?>-grid', {
+	$('#<?php echo $this->class2id($this->modelClass); ?>-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;

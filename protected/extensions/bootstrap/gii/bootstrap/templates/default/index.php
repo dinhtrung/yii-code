@@ -1,9 +1,13 @@
 <?php
 /**
  * The following variables are available in this template:
- * - $this: the BootCrudCode object
+ * - $this: the BootstrapCode object
  */
 ?>
+<?php echo "<?php\n"; ?>
+/* @var $this <?php echo $this->getControllerClass(); ?> */
+/* @var $dataProvider CActiveDataProvider */
+
 <?php
 echo "<?php\n";
 $label=$this->pluralize($this->class2name($this->modelClass));
