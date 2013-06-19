@@ -1,6 +1,6 @@
 <?php
 
-class Authitemchild extends BaseActiveRecord
+class AuthItemChild extends BaseActiveRecord
 {
 	public $itemname;
 
