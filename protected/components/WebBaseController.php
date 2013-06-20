@@ -64,7 +64,7 @@ abstract class WebBaseController extends BaseController
 		Yii::app()->setHomeUrl(Yii::app()->setting->get('website', 'homeUrl', 'core/node'));
 
 		$this->layout = Yii::app()->setting->get('website', 'layout', '//layouts/column2');
-		Yii::app()->theme = Yii::app()->setting->get('website', 'theme', 'classic');
+// 		Yii::app()->theme = Yii::app()->setting->get('website', 'theme', 'classic');
 
 
 		/*
@@ -93,7 +93,7 @@ abstract class WebBaseController extends BaseController
 	function filters() {
 		return array(
 			"Language",
-			"Rights",
+// 			"Rights",
 			array(
             	"ext.components.ESetReturnUrlFilter + index, admin, view",
 			)
@@ -157,19 +157,23 @@ abstract class WebBaseController extends BaseController
 		}
 	}
 	function render($view, $data = NULL, $return = FALSE, $renderBlock = TRUE) {
-		if ($renderBlock && Yii::app()->hasModule('core')){
-			$this->renderBlocks();
+		if (Yii::app()->request->isAjaxRequest){
+			$this->renderPartial($view, $data);
+		} else {
+			if ($renderBlock && Yii::app()->hasModule('core')){
+				$this->renderBlocks();
+			}
+			parent::render($view, $data, $return);
 		}
-
-		parent::render($view, $data, $return);
 	}
 
 	protected function renderBlocks() {
 		$blockTypes = new Blocktype('search');
 		$blocks = new Block('search');
 		$blockTheme = new Blocktheme('search');
+		$theme = (Yii::app()->theme instanceof CTheme)?Yii::app()->theme->name:Yii::app()->theme;
 		$blocks = $blockTheme->with('owner')->findAllByAttributes(
-				array("theme" => Yii::app()->theme->name)
+				array("theme" => $theme)
 			);
 		foreach ($blocks as $block){
 			if (array_key_exists($block->region, $this->page))
