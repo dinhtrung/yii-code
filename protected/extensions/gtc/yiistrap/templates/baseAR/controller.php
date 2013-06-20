@@ -33,8 +33,16 @@ class <?php echo $this->controllerClass; ?> extends WebBaseController
 		if(isset($_POST['<?php echo $this->modelClass; ?>']))
 		{
 			$model->attributes=$_POST['<?php echo $this->modelClass; ?>'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>));
+			if ($model->validate()){
+				// More customization goes here
+				
+				if($model->save())
+<?php if (is_array($this->getTableSchema()->primaryKey)) { ?>				
+					$this->redirect(array('view',$model->primaryKey));
+<?php } else { ?>					
+					$this->redirect(array('view','id'=>$model->primaryKey));
+<?php } ?>					
+			}
 		}
 
 		$this->render('create<?php echo $this->modelClass; ?>',array(
@@ -56,8 +64,15 @@ class <?php echo $this->controllerClass; ?> extends WebBaseController
 		if(isset($_POST['<?php echo $this->modelClass; ?>']))
 		{
 			$model->attributes=$_POST['<?php echo $this->modelClass; ?>'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>));
+			if($model->validate()){
+				// More customization goes here
+				if ($model->save())
+<?php if (is_array($this->getTableSchema()->primaryKey)) { ?>				
+					$this->redirect(array('view',$model->primaryKey));
+<?php } else { ?>					
+					$this->redirect(array('view','id'=>$model->primaryKey));
+<?php } ?>					
+			}
 		}
 
 		$this->render('update<?php echo $this->modelClass; ?>',array(
@@ -75,7 +90,7 @@ class <?php echo $this->controllerClass; ?> extends WebBaseController
 		if (Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel(<?php echo $this->modelClass; ?>)->delete();
+			$this->loadModel('<?php echo $this->modelClass; ?>')->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
@@ -109,53 +124,5 @@ class <?php echo $this->controllerClass; ?> extends WebBaseController
 		$this->render('admin<?php echo $this->modelClass; ?>',array(
 			'model'=>$model,
 		));
-	}
-
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return <?php echo $this->modelClass; ?> the loaded model
-	 * @throws CHttpException
-	 */
-	public function loadModel($model = FALSE)
-	{
-		if(!$model)
-			$model = str_replace('Controller', '', get_class($this));
-
-		if($this->_model === null) {
-			if(isset($_GET['id'])){
-				$this->_model = CActiveRecord::model($model)->findbyPk(urldecode($_GET['id']));
-			} else {
-				$pkeys = CActiveRecord::model($model)->getTableSchema()->primaryKey;
-				if (is_string($pkeys) && isset($_GET[$pkeys])){
-					$this->_model = CActiveRecord::model($model)->findbyPk(urldecode($_GET[$pkeys]));
-				} elseif (is_array($pkeys)){
-					$tmp = array_flip($pkeys);
-					foreach ($pkeys as $field) {
-						if (isset($_GET[$field])) $tmp[$field] = urldecode($_GET[$field]);
-						else { $tmp = FALSE; break; }
-					}
-					if (! empty($tmp))
-					$this->_model = CActiveRecord::model($model)->findbyPk($tmp);
-				}
-			}
-			if($this->_model===null)
-				throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
-		}
-		return $this->_model;
-	}
-
-	/**
-	 * Performs the AJAX validation.
-	 * @param <?php echo $this->modelClass; ?> $model the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='<?php echo $this->class2id($this->modelClass); ?>-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
 	}
 }

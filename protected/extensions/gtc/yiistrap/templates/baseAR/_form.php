@@ -36,12 +36,10 @@ foreach($this->tableSchema->columns as $column)
 <?php
 }
 ?>
-	<div class="form-actions">
-		<?php echo "<?php TbHtml::submitButton(\$model->isNewRecord ? 'Create' : 'Save',array(
-		    'color'=>TbHtml::BUTTON_COLOR_PRIMARY,
-		    'size'=>TbHtml::BUTTON_SIZE_LARGE,
-		)); ?>\n"; ?>
-	</div>
+	<?php echo "<?php echo TbHtml::formActions(array(
+		TbHtml::submitButton(Yii::t('app', 'Submit'), array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+		TbHtml::resetButton(Yii::t('app', 'Reset')),
+	)); ?>"; ?>
 
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>
 

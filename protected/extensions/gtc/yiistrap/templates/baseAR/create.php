@@ -9,7 +9,6 @@
 /* @var $model <?php echo $this->getModelClass(); ?> */
 
 <?php
-echo "<?php\n";
 $label=$this->pluralize($this->class2name($this->modelClass));
 echo "\$this->breadcrumbs=array(
 	'$label'=>array('index'),
@@ -23,6 +22,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create <?php echo $this->modelClass; ?></h1>
+<h1><?php echo "<?php echo \$this->pageTitle = Yii::t('app', 'Create New {$this->modelClass}'); ?>"?></h1>
 
 <?php echo "<?php \$this->renderPartial('_form{$this->modelClass}', array('model'=>\$model)); ?>"; ?>

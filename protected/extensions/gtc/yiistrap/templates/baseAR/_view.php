@@ -10,10 +10,14 @@
 ?>
 
 <div class="view">
+<?php if (is_array($this->getTableSchema()->primaryKey)) { ?>				
+	<h3><?php echo "<?php echo CHtml::link(\$data->title, array('view', \$data->primaryKey)); ?>"; ?></h3>
+<?php } else { ?>					
+	<h3><?php echo "<?php echo CHtml::link(\$data->title, array('view', 'id' => \$data->primaryKey)); ?>"; ?></h3>
+<?php } ?>					
+
 
 <?php
-echo "\t<b><?php echo CHtml::encode(\$data->getAttributeLabel('{$this->tableSchema->primaryKey}')); ?>:</b>\n";
-echo "\t<?php echo CHtml::link(CHtml::encode(\$data->{$this->tableSchema->primaryKey}),array('view','id'=>\$data->{$this->tableSchema->primaryKey})); ?>\n\t<br />\n\n";
 $count=0;
 foreach($this->tableSchema->columns as $column)
 {

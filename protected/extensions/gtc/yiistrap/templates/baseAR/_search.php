@@ -26,13 +26,10 @@
 	<?php echo "<?php echo ".$this->generateActiveControlGroup($this->modelClass,$column)."; ?>\n"; ?>
 
 <?php endforeach; ?>
-	<div class="form-actions">
-		<?php echo "<?php \$this->widget('bootstrap.widgets.TbButton', array(
-			'buttonType'=>'submit',
-			'type'=>'primary',
-			'label'=>'Search',
-		)); ?>\n"; ?>
-	</div>
+	<?php echo "<?php echo TbHtml::formActions(array(
+		TbHtml::submitButton(Yii::t('app', 'Search'), array('color' => TbHtml::BUTTON_COLOR_PRIMARY)),
+	)); ?>"; ?>
+
 
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>
 
